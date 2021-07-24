@@ -1,0 +1,59 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2 class="pb-1 border-bottom">Create new material</h2>       
+<div class="container-fluid">
+        <div class="row">
+        <form action='.' method='post'>                             
+            <div class="mb-3">
+                <label for="name"  required class="form-label">Material name</label>
+                <input type="text" name="name" class="form-control" id="name">
+            </div>
+            <div class="mb-3">
+                <label for="struct" required class="form-label">Material structure</label>
+                <input type="text" name="struct" class="form-control" id="struct">
+            </div>
+            <div class="mb-3">
+                <label for="unit" required class="form-label">Material unit</label>
+                <input type="text" name="unit" class="form-control" id="unit">
+            </div>
+            <div class="mb-3">
+                <label for="manuf" required class="form-label">Material manufacturer</label>
+                <input type="text" name="manuf" class="form-control" id="manuf">
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label" placeholder="0.00" min="0" value="0" step="0.01" required class="form-label">Material price</label>
+                <input type="text" class="num form-control" name="price" class="form-control" id="price">
+            </div>
+            {% if messages %}      
+                {% for message in messages %}
+                <p{% if message.tags %} style="color: white;" class="badge bg-danger text-wrap {{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            <br>
+            <button type="submit" class="btn btn-primary">Add a new material</button>             
+{% csrf_token %}
+        </form>
+        </div>
+</div>
+    
+
+{% endblock %}
+
+
+{% block scripts %}
+
+    {% load staticfiles %}
+<script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
+<script> $('.num').inputmask({
+   'alias':          'decimal',
+   'digits':         2,
+   'digitsOptional': false,
+   'placeholder':    '0.00'
+}); </script>
+{% endblock %}

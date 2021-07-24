@@ -1,0 +1,16 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h2 class="pb-1 border-bottom">Delete material by id</h2>   
+<p> Select an item </p>
+<form action='.' method='post'>    
+    <select style="min-width: 450px;" name="material_id" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+        {% for post in posts %}
+            <option value="{{ post.id_material }}">ID: {{ post.id_material }}; Name: {{ post.name }}; Manufacturer: {{post.manufacturer}} </option>
+        {% endfor %} </select>
+    <br>
+    <button type="submit" class="btn btn-primary">Delete this material</button>
+    {% csrf_token %}
+</form>    
+{% endblock %}
+

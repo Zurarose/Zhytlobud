@@ -1,0 +1,51 @@
+{% extends "app/layout.html" %}
+{# app/tabs/Matorder.html #}
+
+{% load render_table from django_tables2 %}
+{% load static %}
+
+
+{% block content %}
+<h2 class="offset-md-2 pb-1 border-bottom ">Ordered materials</h2>
+<div class="container-fluid">
+    <form action='.' method='post'>
+        <div class="row offset-2">
+        <p class="mt-2 px-1">Filter by status: </p>
+        <select class="mx-2 form-select mt-1" name="select" style="height:2em" aria-label="Default select example">
+            {% if which == '1' %}
+            <option selected value="all">All</option>
+            {% else %}
+            <option  value="all">All</option>
+            {% endif %}
+
+            {% if which == '2' %}
+            <option selected value="completed">Completed</option>
+            {% else %}
+            <option value="completed">Completed</option>
+            {% endif %}
+
+            {% if which == '3' %}
+            <option selected value="open">Open</option>
+            {% else %}
+            <option value="open">Open</option>
+            {% endif %}         
+        </select>
+         <input type="submit" name="filter" value="Filter" style="height:2.5em" class="btn btn-primary">
+        </div>
+        
+        {% csrf_token %}
+    
+    <div class="row justify-content-md-center col-12">
+        <div class="layer2 mb-3">
+            {% render_table table %}
+        </div>
+    </div>
+    <div class="offset-md-5">
+        <a class="btn btn-primary" href="{% url 'MatordlAdd' %}">Add new order</a>
+        <input type="submit" name="review" value="Review the order" class="btn btn-primary">
+        <a class="btn btn-primary" href="{% url 'MatorderCancel' %}">Cancel the order</a>
+    </div>
+</form>
+</div>
+{% endblock %}
+
