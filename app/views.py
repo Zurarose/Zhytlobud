@@ -1,45 +1,1 @@
-"""
-Definition of views.
-"""
-
-from datetime import datetime
-from django.shortcuts import render
-from django.http import HttpRequest
-
-def home(request):
-    """Renders the home page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/index.html',
-        {
-            'title':'Home Page',
-            'year':datetime.now().year,
-        }
-    )
-
-def contact(request):
-    """Renders the contact page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/contact.html',
-        {
-            'title':'Contact',
-            'message':'Your contact page.',
-            'year':datetime.now().year,
-        }
-    )
-
-def about(request):
-    """Renders the about page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/about.html',
-        {
-            'title':'About',
-            'message':'Your application description page.',
-            'year':datetime.now().year,
-        }
-    )
+"""Definition of views."""from django.shortcuts import render, redirectfrom django.http import HttpRequestfrom django.contrib.auth import authenticatefrom django.contrib.auth import login as log from django.contrib.auth import logout as lgoutfrom django.contrib import messagesfrom django.contrib.auth.decorators import login_requireddef login(request):                      """Renders the home page."""    if request.user.is_authenticated:       return render(request, 'app/menu.html')    if request.POST.get('log'):        username = request.POST['username']        password = request.POST['password']        user = authenticate(request, username=username, password=password)        if user is not None:            log(request, user)            # Redirect to a success page.            return render(request, 'app/menu.html')        else:            # Return an 'invalid login' error message.            messages.error(request,'username or password not correct')            return redirect('login')                      return render(request, 'app/login.html')@login_requireddef menu(request):    return render(request, "app/menu.html")def logout(request):    lgout(request)
