@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MaterialApp</title>
     {% load staticfiles %}
+    {% load static %}
     <link rel="shortcut icon" href="{% static 'app/img/icon.ico' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'app/fonts/icomoon/style.css' %}" />
@@ -15,22 +16,42 @@
     <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
     <script src="{% static 'app/scripts/respond.js' %}"></script>
     <script src="{% static 'app/scripts/main.js' %}"></script>
+    <style type="text/css">
+        body { 
+         background: url('{% static "app/img/bg.jpg" %}') no-repeat center center fixed; 
+         -webkit-background-size: cover;
+         -moz-background-size: cover;
+         -o-background-size: cover;
+         background-size: cover;
+        }
+</style>
 </head>
-<body>
+<body >
+
 {% if user.is_authenticated %}
 {% csrf_token %}
-{% load static %}
-<nav class="navbar navbar-dark bg-white">
-      <div class="container-fluid">
-        <a href="{% url 'menu' %}" class="navbar-brand"><p style="color:orange; font-size:24px; font-weight:bold; margin-top: 1em;margin-right: 1em;" >ЖИЛСТРОЙ-2</p></a>
-            <form class="d-flex" method="post">
-                 <p style="color:orange; font-size:24px; font-weight:bold; margin-top: 1em;margin-right: 1em;" >{{ user.username }}</p>
-                 <a style="color:orange; font-size:24px; font-weight:bold; margin-top: 1em;margin-right: 1em;" href="{% url 'logout' %}">Logout</a>
-            {% csrf_token %}
-            </form>
-      </div>
-  </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
 
+        <a class="navbar-brand" href="#">
+            <img src='{% static "app/img/logo.png" %}')" alt="ЖИЛСТРОЙ-2" height="36">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link text-light mt-2" href="#"><h5>ГЛАВНАЯ</h5><span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <form class="form-inline">
+                <span class="navbar-text text-light">
+                    <h5 class="mt-2"> {{ user.username|title }}</h5>
+                </span>
+                <button class="btn btn-light my-2 mx-5 my-sm-0" type="submit">
+                    <a class="text-dark" href="{% url 'logout' %}">Выйти</a>
+                </button>
+            </form>
+        </div>
+    </nav>
 {% endif %}
 
 {% block content %}
@@ -40,7 +61,7 @@
 
 {% block scripts %}
 
-     {% endblock %}
+{% endblock %}
 
 </body>
 </html>

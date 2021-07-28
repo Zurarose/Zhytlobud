@@ -8,33 +8,31 @@
           <div class="col-md-12">
             <div class="form-block mx-auto">
               <div class="text-center mb-5">
-              <h3>Login to <strong>Colorlib</strong></h3>
+              <h3>Вход в систему</h3>
               </div>
               <form action="#" method="post">
                 {% csrf_token %}
                 <div class="form-group first">
-                  <label for="username">Username</label>
-                  <input type="text" class="form-control" placeholder="your-email@gmail.com" id="username" name="username">
+                  <label for="username">Имя пользователя</label>
+                  <input type="text" class="form-control" placeholder="user" id="username" name="username">
                 </div>
                 <div class="form-group last mb-3">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" placeholder="Your Password" id="password" name="password">
+                  <label for="password">Пароль</label>
+                  <input type="password" class="form-control" placeholder="123456" id="password" name="password">
                 </div>
                 {% for message in messages %}
                     <div class="alert alert-danger">
                         <a class="close" href="#" data-dismiss="alert">×</a>
-
                         {{ message }}
-
                     </div>
                 {% endfor %}
                 <div class="d-sm-flex mb-5 align-items-center">
-                  <label class="control control--checkbox mb-3 mb-sm-0"><span class="caption">Remember me</span>
+                  <label class="control control--checkbox mb-3 mb-sm-0"><span class="caption">Запомнить вход</span>
                     <input type="checkbox" checked="checked"/>
                     <div class="control__indicator"></div>
                   </label>
                 </div>
-                <input type="submit" name="log" value="Sign in"class="btn btn-block btn-primary">
+                <input type="submit" name="log" value="Войти"class="btn btn-block btn-warning">
               </form>
               
             </div>
