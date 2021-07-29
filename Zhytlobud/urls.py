@@ -17,4 +17,6 @@ urlpatterns = [
    path('', views.login, name='login'),
    path('menu/', views.menu, name='menu'),
    path("logout/", LogoutView.as_view(), name="logout"),
+
+   path("tabs/building_add/", views.building_add, name="building_add"),
 ]
