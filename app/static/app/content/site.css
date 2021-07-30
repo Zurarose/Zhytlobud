@@ -265,7 +265,19 @@ h2 {
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06)
 }
-
+#loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.9;
+    background-color: #fff6e5;
+    z-index: 99;
+}
 /*building_add*/
 
 .btn-circle.btn-xl {
@@ -275,4 +287,7 @@ h2 {
     font-size: 24px;
     line-height: 1.33;
     border-radius: 35px;
+}
+.nav-link:active > button {
+    color: red;
 }
