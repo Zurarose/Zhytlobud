@@ -11,7 +11,7 @@ from django.urls import path
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 from app import forms, views
-
+from django.conf.urls import url
 
 urlpatterns = [
    path('admin/', admin.site.urls),
@@ -20,4 +20,6 @@ urlpatterns = [
    path("logout/", LogoutView.as_view(), name="logout"),
 
    path("tabs/building_add/", views.building_add, name="building_add"),
+   #For Ajax. Look at script in building_add.html.
+   url(r'^ajax/getStreets/$', views.getStreets, name='getStreets'),
 ]
