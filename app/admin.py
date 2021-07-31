@@ -1,5 +1,6 @@
 from django.contrib import admin
-#from .models import Materials
+from .models import *
 
 
-#admin.site.register(Materials)
+admin.site.register(Areas)
+admin.site.register(Customers)
