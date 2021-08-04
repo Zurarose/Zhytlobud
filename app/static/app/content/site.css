@@ -35,11 +35,6 @@ p {
     font-weight: 300;
 }
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: "Roboto", sans-serif;
-}
-
 a {
     -webkit-transition: .3s all ease;
     -o-transition: .3s all ease;
@@ -289,6 +284,6 @@ h2 {
     line-height: 1.33;
     border-radius: 35px;
 }
-.nav-link:active > button {
-    color: red;
+#menu1 {
+    background: url('../../app/img/bg.jpg') no-repeat center center fixed;
 }
