@@ -19,7 +19,8 @@ urlpatterns = [
    path('menu/', views.menu, name='menu'),
    path("logout/", LogoutView.as_view(), name="logout"),
 
-   path("tabs/building_add/", views.building_add, name="building_add"),
+   path("ObjectAdding/", views.building_add, name="building_add"),
+   path("UpdateMenu/", views.update_menu, name="update_menu"),
    #For Ajax. Look at script in building_add.html.
    url(r'^ajax/getStreets/$', views.getStreets, name='getStreets'),
 ]

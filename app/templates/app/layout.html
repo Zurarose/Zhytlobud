@@ -55,11 +55,9 @@
                 </li>
             </ul>
             <form class="form-inline">
-                <span class="navbar-text text-light">
-                    <h5 class="mt-2"> {{ user.username|title }}</h5>
-                </span>
+                    <h5 class="mt-2 navbar-text text-light"> {{ user.username|title }}</h5>
                 <button class="btn btn-light my-2 mx-5 my-sm-0" type="submit">
-                    <a class="text-dark" href="{% url 'logout' %}">Выйти</a>
+                    <a disabled class="text-dark" href="{% url 'logout' %}">Выйти</a>
                 </button>
             </form>
         </div>
