@@ -177,7 +177,7 @@
                 <div class="tab-pane fade mt-5 bg-white shadow-lg rounded p-4" id="menu2" role="tabpanel" aria-labelledby="building-tab">
                     <form id="topaste-house">
                         <h5 class="text-center mt-1 mb-4">Информация о домах</h5>
-                        <div id="tocopy-house">
+                        <div id="tocopy-house1">
                             <h5 class="text-center mt-4 mb-4" id="counts">№1</h5>
                             <div class="form-row mt-2">
                                 <div class="col-xl-1">
@@ -266,6 +266,7 @@
                     </form>
                     <div>
                         <button type="button" class="btn btn-warning mt-4 col-auto btn-copy-house">Добавить новый дом</button>
+                        <button type="button" class="btn btn-warning mt-4 col-auto btn-delete-house">Удалить дом</button>
                     </div>
                     <button type="button" class="btn btn-warning btn-back mt-5">Назад</button>
                     <button type="button" class="btn btn-warning btn-next mt-5 sectionChange">Продолжить</button>
@@ -274,7 +275,7 @@
                 <div class="tab-pane fade mt-5 bg-white shadow-lg rounded p-4" id="menu3" role="tabpanel" aria-labelledby="section-tab">
                     <form id="topaste-section">
                         <h5 class="text-center mt-1 mb-4">Информация о секциях</h5>
-                        <div id="tocopy-section">
+                        <div id="tocopy-section1">
                             <h5 class="text-center mt-4 mb-4" id="counts">№1</h5>
                             <div class="form-row mt-2">
                                 <div class="col-xl-2">
@@ -282,7 +283,7 @@
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text" id="addon-wrapping">№</span>
                                         <select class="custom-select house-num-select" id="num-section-house1">
-                                            <option selected value="">...</option>
+                                             <option selected value=""></option>
                                         </select>
                                     </div>
                                 </div>
@@ -452,7 +453,8 @@
                         </div>                   
                     </form>               
                     <div>
-                        <button type="button" class="btn btn-warning mt-4 col-auto btn-copy-section">Добавить секцию"</button>
+                        <button type="button" class="btn btn-warning mt-4 col-auto btn-copy-section">Добавить новую секцию"</button>
+                        <button type="button" class="btn btn-warning mt-4 col-auto btn-delete-section">Удалить секцию"</button>
                     </div>
                     <button type="button" class="btn btn-warning btn-back mt-5">Назад</button>
                     <button type="button" class="btn btn-warning mt-5">Подтвердить</button>
@@ -497,17 +499,16 @@
     $('#parking').change(parkOnOff);
     $('#parking-type').change(EnableChoice);
 
-    var yesOrNo = document.getElementById("parking");
-
-    var parking_up = document.getElementsByClassName("parking-up");
-    var parking_down = document.getElementsByClassName("parking-down");
-
     var typeparking = document.getElementById("parking-type");
 
-    var len_up = parking_up.length;
-    var len_down = parking_down.length;
+    function parkOnOff()
+    {
+        var yesOrNo = document.getElementById("parking");
+        var parking_up = document.getElementsByClassName("parking-up");
+        var parking_down = document.getElementsByClassName("parking-down");
+        var len_up = parking_up.length;
+        var len_down = parking_down.length;
 
-    function parkOnOff() {        
         if (yesOrNo.value == "Нет") {
             typeparking.disabled = true;
             for (var i = 0; i < len_up; i++) {
@@ -528,6 +529,12 @@
     }
     function EnableChoice()
     {
+        //To set inputs for right parking
+        var parking_up = document.getElementsByClassName("parking-up");
+        var parking_down = document.getElementsByClassName("parking-down");
+        var len_up = parking_up.length;
+        var len_down = parking_down.length;
+
         if (typeparking.value == "Надземная") {
             for (var i = 0; i < len_up; i++) {
                 parking_up[i].value = ""
@@ -557,20 +564,42 @@
     // To Create house and section clones
     var houseCount = 2;
     var sectionCount = 2;
+    var names_house = []
+    var names_section = []
+    $(".btn-delete-house").click(function () {
+        houseCount = whatToDelete(names_house, houseCount);
+    });
+
+    $(".btn-delete-section").click(function () {
+        sectionCount = whatToDelete(names_section, sectionCount);
+    });
 
     $(".btn-copy-house").click(function () {
-        houseCopy("#tocopy-house", "#topaste-house", houseCount);
+        houseCopy("#tocopy-house1", "#topaste-house", houseCount);
+        names_house.push("tocopy-house" + houseCount);
         houseCount = houseCount + 1;
+
     });
     $(".btn-copy-section").click(function () {
-        houseCopy("#tocopy-section", "#topaste-section", sectionCount);
+        houseCopy("#tocopy-section1", "#topaste-section", sectionCount);
+        names_section.push("tocopy-section" + sectionCount);
         sectionCount = sectionCount + 1;
     });
+    function whatToDelete(what, countNum) {
+        if (what.length != 0) {
+            var len = what.length - 1;
+            document.getElementById(what[len]).remove();
+            what.splice(-1);
+            countNum = countNum - 1;
+            return countNum;
+        }
+    };
+
     function houseCopy(whatToCopy, whereToPaste, count)
     {
         var $clone = $(whatToCopy).clone();
         // Get the number at the end of the ID, increment it, and replace the old id
-        //$clone.attr('id', $clone.attr('id').replace(/\d+$/, function (str) { return parseInt(str) + 1; }));
+        $clone.attr('id', $clone.attr('id').replace(/\d+$/, count));
         // Find all elements in $clone that have an ID, and iterate using each()     
         $clone.find('[id]').each(function () {
             //Perform the same replace as above
@@ -578,11 +607,10 @@
             var newID = $th.attr('id').replace(/\d+$/, function (str) { return parseInt(str) + 1; });
             $th.attr('id', newID);     
         });
-        //To delete input values
+        //To delete input values 
         $clone.find("input").each(function () {
             var $th = $(this);
             $th.val("");
-
         });
         $clone.find("#counts").text("№" + count);
         $clone.appendTo($(whereToPaste));
@@ -641,12 +669,11 @@
         var nums = document.getElementsByClassName('house-nums');
         //select input
         var option = document.getElementsByClassName("house-num-select");        
-
         for (var j = 0; j < option.length; j++)
         {          
             var length = option[j].options.length;
-            for (i = length - 1; i >= 0; i--) {
-                option[j].options[i] = null;
+            for (var i = length - 1; i >= 0; i--) {                                            
+                    option[j].options[i] = null                   
             }
         }
         for (var j = 0; j < option.length; j++)
