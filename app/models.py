@@ -87,13 +87,17 @@ class Buildings(models.Model):
     id_buildings = models.AutoField(db_column='ID_buildings', primary_key=True)  # Field name made lowercase.
     class_field = models.CharField(db_column='class', max_length=50)  # Field renamed because it was a Python reserved word.
     name = models.CharField(max_length=50)
+    street_type = models.CharField(max_length=50)
+    street_name = models.ForeignKey('Streets', models.DO_NOTHING, db_column='street_name')
     builder = models.CharField(max_length=50)
     customer = models.ForeignKey('Customers', models.DO_NOTHING, db_column='customer')
     urban_develop_zone = models.CharField(max_length=50)
     city_area = models.ForeignKey(Areas, models.DO_NOTHING, db_column='city area')  # Field renamed to remove unsuitable characters.
     subway = models.ForeignKey('Subways', models.DO_NOTHING, db_column='subway')
-    all_rcvd_info = models.CharField(max_length=50)
-    parking = models.IntegerField()
+    parking = models.CharField(max_length=25)
+    parking_num = models.IntegerField()
+    parking_price_hrn = models.FloatField()
+    parking_price_dol = models.FloatField()
 
     class Meta:
         managed = False
@@ -158,21 +162,16 @@ class DjangoSession(models.Model):
 class Houses(models.Model):
     id_buildings = models.ForeignKey(Buildings, models.DO_NOTHING, db_column='ID_buildings')  # Field name made lowercase.
     id_house = models.AutoField(db_column='ID_house', primary_key=True)  # Field name made lowercase.
-    build_number = models.CharField(max_length=25)
-    street_type = models.CharField(max_length=50)
-    street_name = models.ForeignKey('Streets', models.DO_NOTHING, db_column='street_name')
     street_number = models.CharField(max_length=25)
     ttl_area_building = models.FloatField()
     ttl_area_apartments = models.FloatField()
     storeys = models.IntegerField()
-    construction_phase = models.IntegerField()
     construction_phase_prst = models.IntegerField()
     parking_num = models.IntegerField()
     parking_price_hrn = models.FloatField()
     parking_price_dol = models.FloatField()
-    sales = models.IntegerField()
     remark = models.CharField(max_length=50)
-    commis_year = models.DateField()
+    commis_year = models.TextField()  # This field type is a guess.
     quarter = models.IntegerField(db_column='Quarter')  # Field name made lowercase.
 
     class Meta:
@@ -214,7 +213,7 @@ class SalesAndPrices(models.Model):
 class Sections(models.Model):
     id_house = models.ForeignKey(Houses, models.DO_NOTHING, db_column='ID_house')  # Field name made lowercase.
     id_sections = models.AutoField(db_column='ID_sections', primary_key=True)  # Field name made lowercase.
-    section_letter = models.CharField(max_length=50)
+    section = models.IntegerField()
     attribute = models.IntegerField()
     financing = models.CharField(max_length=50)
     duplex_apartments = models.IntegerField()
