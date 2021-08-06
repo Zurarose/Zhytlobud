@@ -7,7 +7,7 @@
     <div class="row col-md-10 d-flex justify-content-center ">
         <div class="col-md-12">
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item mx-5" role="presentation">
                     <a class="nav-link active" id="complex-tab" href="#menu1" role="tab" aria-controls="menu1" aria-selected="true"><button disabled type="button" class="shadow-sm btn btn-warning btn-circle btn-xl" style="color: white; font-size: 0.5rem; "><i class="fas fa-city fa-4x d-flex justify-content-center "></i></button></a>
                 </li>
@@ -28,8 +28,8 @@
                             <div class="col-xl-2">
                                 <label for="class-select">Класс*</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-star"></i></span>
-                                    <select class="custom-select" id="class-select" required>
+                                    <span class="input-group-text"><i class="fas fa-star"></i></span>
+                                    <select class="custom-select" id="class-select" name="class-select" required>
                                         <option selected></option>
                                         <option value="Де-люкс">Де-люкс</option>
                                         <option value="Премиум">Премиум</option>
@@ -43,15 +43,15 @@
                             <div class="col-xl-4">
                                 <label for="complex-name">Название*</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-signature"></i></span>
-                                    <input type="text" class="form-control" id="complex-name" value="" required>
+                                    <span class="input-group-text"><i class="fas fa-signature"></i></span>
+                                    <input type="text" class="form-control" id="complex-name" name="complex-name" value="" required>
                                 </div>
                             </div>
                             <div class="col-xl-2">
                                 <label for="type-streets">Тип</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-map-marked-alt"></i></span>
-                                    <select class="custom-select" id="type-streets">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                    <select class="custom-select" id="type-streets" name="type-streets">
                                         <option selected></option>
                                         {% for post4 in posts4 %}
                                         <option value="{{ post4 }}">{{ post4 }}</option>
@@ -62,8 +62,8 @@
                             <div class="col-xl-4">
                                 <label for="name-streets">Наименование</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-map-pin"></i></span>
-                                    <select class="custom-select" id="name-streets">
+                                    <span class="input-group-text"><i class="fas fa-map-pin"></i></span>
+                                    <select class="custom-select" id="name-streets" name="name-streets">
                                     </select>
                                 </div>
                             </div>
@@ -72,8 +72,8 @@
                             <div class="col-xl-3">
                                 <label for="customer">Заказчик</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user-tie"></i></span>
-                                    <select class="custom-select" id="customer">
+                                    <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                                    <select class="custom-select" id="customer" name="customer">
                                         <option selected></option>
                                         {% for post1 in posts1 %}
                                         <option value="{{ post1 }}">{{ post1 }}</option>
@@ -84,15 +84,15 @@
                             <div class="col-xl-3">
                                 <label for="builder">Генподрядчик</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-hammer"></i></span>
-                                    <input type="text" class="form-control" id="builder" value="">
+                                    <span class="input-group-text"><i class="fas fa-hammer"></i></span>
+                                    <input type="text" class="form-control" id="builder" name="builder" value="">
                                 </div>
                             </div>
                             <div class="col-xl-2">
                                 <label for="urban-zone">Зона</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-map-marker-alt"></i></span>
-                                    <select class="custom-select" id="urban-zone">
+                                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                    <select class="custom-select" id="urban-zone" name="urban-zone">
                                         <option selected></option>
                                         <option selected value="Центр">Центр</option>
                                         <option value="Приближенный">Приближонный р-н</option>
@@ -104,8 +104,8 @@
                             <div class="col-xl-4">
                                 <label for="subway">Метрополитен</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-subway"></i></span>
-                                    <select class="custom-select" id="subway">
+                                    <span class="input-group-text"><i class="fas fa-subway"></i></span>
+                                    <select class="custom-select" id="subway" name="subway">
                                         <option selected></option>
                                         {% for post3 in posts3 %}
                                         <option value="{{ post3 }}">{{ post3 }}</option>
@@ -117,10 +117,10 @@
                         </div>
                         <div class="form-row mt-2">
                             <div class="col-xl-2">
-                                <label for="city-area">Бытовой район города</label>
+                                <label for="city-area">Бытовой район</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-layer-group"></i></span>
-                                    <select class="custom-select" id="city-area">
+                                    <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                                    <select class="custom-select" id="city-area" name="city-area">
                                         <option selected></option>
                                         {% for post2 in posts2 %}
                                         <option value="{{ post2 }}">{{ post2 }}</option>
@@ -131,8 +131,8 @@
                             <div class="col-xl-2">
                                 <label for="parking">Парковка</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-parking"></i></span>
-                                    <select class="custom-select" id="parking">
+                                    <span class="input-group-text"><i class="fas fa-parking"></i></span>
+                                    <select class="custom-select" id="parking" name="parking">
                                         <option selected value="Нет">Нет</option>
                                         <option value="Есть">Есть</option>
                                     </select>
@@ -141,8 +141,8 @@
                             <div class="col-xl-2">
                                 <label for="parking-type">Тип</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-arrows-alt-v"></i></span>
-                                    <select class="custom-select" id="parking-type">
+                                    <span class="input-group-text"><i class="fas fa-arrows-alt-v"></i></span>
+                                    <select class="custom-select" id="parking-type"  name="parking-type">
                                         <option selected value="Подземная">Подземная</option>
                                         <option value="Надземная">Надземная</option>
                                     </select>
@@ -151,22 +151,22 @@
                             <div class="col-xl-2">
                                 <label>Парковка(мест)</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-list-ol"></i></span>
-                                    <input class="form-control parking-up" type="number" id="num-parking-up1" min="1" max="1000">
+                                    <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
+                                    <input class="form-control parking-up" type="number" id="num-parking-up1" name="num-parking-up1" min="1" max="1000">
                                 </div>
                             </div>
                             <div class="col-xl-2">
                                 <label>Стоимость</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping">₴</span>
-                                    <input class="num form-control parking-up" type="text" id="price-parking-up-hrn1">
+                                    <span class="input-group-text">₴</span>
+                                    <input class="num form-control parking-up" type="text" id="price-parking-up-hrn1" name="price-parking-up-hrn1">
                                 </div>
                             </div>
                             <div class="col-xl-2">
                                 <label>Стоимость</label>
                                 <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping">$</span>
-                                    <input class="num form-control parking-up" type="text" id="price-parking-up-dol1">
+                                    <span class="input-group-text">$</span>
+                                    <input class="num form-control parking-up" type="text" id="price-parking-up-dol1" name="price-parking-up-dol1">
                                 </div>
                             </div>
                         </div>
@@ -177,56 +177,56 @@
                 <div class="tab-pane fade mt-5 bg-white shadow-lg rounded p-4" id="menu2" role="tabpanel" aria-labelledby="building-tab">
                     <form id="topaste-house">
                         <h5 class="text-center mt-1 mb-4">Информация о домах</h5>
-                        <div id="tocopy-house1">
-                            <h5 class="text-center mt-4 mb-4" id="counts">№1</h5>
+                        <div id="tocopy-house1" name="tocopy-house1">
+                            <h5 class="text-center mt-4 mb-4 counts">№1</h5>
                             <div class="form-row mt-2">
                                 <div class="col-xl-1">
                                     <label>№ дома</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping">№</span>
-                                        <input class="form-control house-nums" pattern="![^А-Я0-9]" type="text" id="num-build1">
+                                        <span class="input-group-text">№</span>
+                                        <input class="form-control house-nums" pattern="![^А-Я0-9]" type="text" id="num-build1" name="num-build1">
                                     </div>
                                 </div>
                                 <div class="col-xl-2">
                                     <label>Площадь дома</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-vector-square"></i></span>
-                                        <input class="num form-control" type="text" id="area-build1">
+                                        <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                        <input class="num form-control" type="text" id="area-build1"  name="area-build1">
                                     </div>
                                 </div>
                                 <div class="col-xl-2">
                                     <label>Площадь квартир</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-vector-square"></i></span>
-                                        <input class="num form-control" type="text" id="area-apart1">
+                                        <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                        <input class="num form-control" type="text" id="area-apart1" name="area-apart1">
                                     </div>
                                 </div>
                                 <div class="col-xl-2">
                                     <label>Этажность</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-layer-group"></i></span>
-                                        <input class="form-control" type="number" id="num-storeys1" min="1" max="1000">
+                                        <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                                        <input class="form-control" type="number" id="num-storeys1" name="num-storeys1" min="1" max="1000">
                                     </div>
                                 </div>                              
                                 <div class="col-xl-2">
                                     <label class="ml-3">Этап постройки</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-percent"></i></span>
-                                        <input class="form-control" step="5" type="number" id="constr-phase-prc1" min="0" max="100">
+                                        <span class="input-group-text"><i class="fas fa-percent"></i></span>
+                                        <input class="form-control" step="5" type="number" id="constr-phase-prc1" name="constr-phase-prc1" min="0" max="100">
                                     </div>
                                 </div>
                                 <div class="col-xl-2">
                                     <label>Год ввода</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-calendar-alt"></i></span>
-                                        <input class="form-control" type="number" min="1990" max="2099" step="1" id="date-pick1" value="2021"/>
+                                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                        <input class="form-control" type="number" min="1990" max="2099" step="1" id="date-pick1" name="date-pick1" value="2021"/>
                                     </div>
                                 </div>
                                 <div class="col-xl-1">
                                     <label>Квартал</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-calendar-day"></i></i></span>
-                                        <input class="form-control" type="number" min="1" max="4" step="1" id="quarter-pick1" value="1" />
+                                        <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
+                                        <input class="form-control" type="number" min="1" max="4" step="1" id="quarter-pick1" name="quarter-pick1" value="1" />
                                     </div>
                                 </div>
                             </div>
@@ -235,29 +235,29 @@
                                 <div class="col-xl-2">
                                     <label>Парковка(мест)</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-list-ol"></i></span>
-                                        <input class="form-control parking-down" type="number" id="num-parking-down1" min="1" max="1000">
+                                        <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
+                                        <input class="form-control parking-down" type="number" id="num-parking-down1" name="num-parking-down1" min="1" max="1000">
                                     </div>
                                 </div>
                                 <div class="col-xl-2">
                                     <label>Стоимость</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping">₴</span>
-                                        <input class="num form-control parking-down" type="text" id="price-parking-down-hrn1">
+                                        <span class="input-group-text">₴</span>
+                                        <input class="num form-control parking-down" type="text" id="price-parking-down-hrn1" name="price-parking-down-hrn1">
                                     </div>
                                 </div>
                                 <div class="col-xl-2">
                                     <label>Стоимость</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping">$</span>
-                                        <input class="num form-control parking-down" type="text" id="price-parking-down-dol1">
+                                        <span class="input-group-text">$</span>
+                                        <input class="num form-control parking-down" type="text" id="price-parking-down-dol1" name="price-parking-down-dol1">
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
                                     <label>Примечание</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-sticky-note"></i></span>
-                                        <input type="text" class="form-control" id="info-house1" value="">
+                                        <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                                        <input type="text" class="form-control" id="info-house1" name="info-house1" value="">
                                     </div>
                                 </div>
                             </div>
@@ -272,51 +272,44 @@
                     <button type="button" class="btn btn-warning btn-next mt-5 sectionChange">Продолжить</button>
                 </div>
 
-                <div class="tab-pane fade mt-5 bg-white shadow-lg rounded p-4" id="menu3" role="tabpanel" aria-labelledby="section-tab">
+                <div class="tab-pane fade mt-5 bg-white shadow-lg rounded p-4 " id="menu3" role="tabpanel" aria-labelledby="section-tab">
                     <form id="topaste-section">
                         <h5 class="text-center mt-1 mb-4">Информация о секциях</h5>
-                        <div id="tocopy-section1">
-                            <h5 class="text-center mt-4 mb-4" id="counts">№1</h5>
+                        <div class="mainTab" id="tocopy-section1" name="tocopy-section1">
+                            <h5 class="text-center mt-4 mb-4 counts">№1</h5>
                             <div class="form-row mt-2">
                                 <div class="col-xl-2">
                                     <label>№ дома</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping">№</span>
-                                        <select class="custom-select house-num-select" id="num-section-house1">
+                                        <span class="input-group-text">№</span>
+                                        <select class="custom-select house-num-select" id="num-section-house1"  name="num-section-house1">
                                              <option selected value=""></option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="col-xl-1">
-                                    <label>Секция</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-puzzle-piece"></i></span>
-                                        <input class="form-control" type="number" id="num-section1" value="1" readonly>
-                                    </div>
-                                </div>
+                                </div>                          
                                 <div class="col-xl-2">
                                     <label>Продажи</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-tags"></i></span>
-                                        <select class="custom-select" id="sales1">
+                                        <span class="input-group-text"><i class="fas fa-tags"></i></span>
+                                        <select class="custom-select" id="sales1" name="sales1">
                                             <option selected value="В продаже">В продаже</option>
                                             <option value="Продано">Продано</option>
                                             <option value="Перспектива">Перспектива</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-xl-3">
+                                <div class="col-xl-2">
                                     <label>Финансирование</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-coins"></i></span>
-                                        <input type="text" class="form-control" id="finance1" value="">
+                                        <span class="input-group-text"><i class="fas fa-coins"></i></span>
+                                        <input type="text" class="form-control" id="finance1" name="finance1" value="">
                                     </div>
                                 </div>
                                 <div class="col-xl-2">
                                     <label>Двухур-е квартиры</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-dice-two"></i></span>
-                                        <select class="custom-select" id="duplex1">
+                                        <span class="input-group-text"><i class="fas fa-dice-two"></i></span>
+                                        <select class="custom-select" id="duplex1" name="duplex1">
                                             <option selected value=""></option>
                                             <option selected value="Нет">Нет</option>
                                             <option value="Есть">Есть</option>
@@ -326,8 +319,8 @@
                                 <div class="col-xl-2">
                                     <label>Пентхаусы</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fab fa-autoprefixer"></i></span>
-                                        <select class="custom-select" id="penthouse1">
+                                        <span class="input-group-text"><i class="fab fa-autoprefixer"></i></span>
+                                        <select class="custom-select" id="penthouse1" name="penthouse1">
                                             <option selected value=""></option>
                                             <option value="Нет">Нет</option>
                                             <option value="Есть">Есть</option>
@@ -337,117 +330,140 @@
                               
                             </div>
                             <div class="form-row mt-2">
-                                <div class="col-xl-4 d-flex align-items-end">
-                                    <h5>Инфо. об однокомнатных квартирах:</h5>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Количество 1км. кв.</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping">№</span>
-                                        <input class="form-control" type="number" id="num-apart-one1" min="1" max="10000">
+                                <div class="card col-12">
+                                    <div class="card-header">
+                                       Информация об однокомнатных квартирах:
                                     </div>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Мин. площадь 1км. кв</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-vector-square"></i></span>
-                                        <input class="num form-control" type="text" id="min-area-one1">
-                                    </div>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Макс. площадь 1км. кв</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-vector-square"></i></span>
-                                        <input class="num form-control" type="text" id="max-area-one1">
-                                    </div>
-                                </div>
+                                     <div class="card-body row">                                  
+                                        <div class="col-xl-2">
+                                            <label>Количество 1км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text">№</span>
+                                                <input class="form-control totalApart" type="number" id="num-apart-one1" name="num-apart-one1" min="1" max="10000">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2">
+                                            <label>Мин. площадь 1км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="min-area-one1" name="min-area-one1">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2">
+                                            <label>Макс. площадь 1км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="max-area-one1" name="max-area-one1">
+                                            </div>
+                                        </div>
+                                     </div>
+                                  </div>
                             </div>
                             <div class="form-row mt-2">
-                                <div class="col-xl-4 d-flex align-items-end">
-                                    <h5>Инфо. о двухкомнатных квартирах:</h5>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Количество 2км. кв.</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping">№</span>
-                                        <input class="form-control" type="number" id="num-apart-two" min="1" max="10000">
+                                 <div class="card col-12">
+                                    <div class="card-header">
+                                       Информация о двухкомнатных квартирах:
                                     </div>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Мин. площадь 2км. кв</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-vector-square"></i></span>
-                                        <input class="num form-control" type="text" id="min-area-two1">
+                                     <div class="card-body row">                                
+                                    <div class="col-xl-2">
+                                        <label>Количество 2км.</label>
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text">№</span>
+                                            <input class="form-control totalApart" type="number" id="num-apart-two" name="num-apart-two" min="1" max="10000">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Макс. площадь 2км. кв</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-vector-square"></i></span>
-                                        <input class="num form-control" type="text" id="max-area-two1">
+                                    <div class="col-xl-2">
+                                        <label>Мин. площадь 2км.</label>
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                            <input class="num form-control totalArea" type="text" id="min-area-two1" name="min-area-two1">
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="col-xl-2">
+                                        <label>Макс. площадь 2км.</label>
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                            <input class="num form-control totalArea" type="text" id="max-area-two1" name="max-area-two1">
+                                        </div>
+                                    </div>
+                                   </div>
+                                 </div>
                             </div>
                             <div class="form-row mt-2">
-                                <div class="col-xl-4 d-flex align-items-end">
-                                    <h5>Инфо. о трехкомнатных квартирах:</h5>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Количество 3км. кв.</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping">№</span>
-                                        <input class="form-control" type="number" id="num-apart-three1" min="1" max="10000">
+                                <div class="card col-12">
+                                    <div class="card-header">
+                                       Информация о трехкомнатных квартирах:
                                     </div>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Мин. площадь 3км. кв</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-vector-square"></i></span>
-                                        <input class="num form-control" type="text" id="min-area-three1">
+                                     <div class="card-body row">                              
+                                        <div class="col-xl-2">
+                                            <label>Количество 3км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text">№</span>
+                                                <input class="form-control totalApart" type="number" id="num-apart-three1" name="num-apart-three1" min="1" max="10000">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2">
+                                            <label>Мин. площадь 3км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="min-area-three1" name="min-area-three1">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2">
+                                            <label>Макс. площадь 3км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="max-area-three1" name="max-area-three1">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Макс. площадь 3км. кв</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-vector-square"></i></span>
-                                        <input class="num form-control" type="text" id="max-area-three1">
-                                    </div>
-                                </div>
+                                  </div>
                             </div>
                             <div class="form-row mt-2">
-                                <div class="col-xl-4 d-flex align-items-end">
-                                    <h5>Инфо. о четырехкомнатных квартирах:</h5>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Количество 4км. кв.</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping">№</span>
-                                        <input class="form-control" type="number" id="num-apart-four1" min="1" max="10000">
+                                <div class="card col-12">
+                                    <div class="card-header">
+                                       Информация о четырехкомнатных квартирах:
                                     </div>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Мин. площадь 4км. кв</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-vector-square"></i></span>
-                                        <input class="num form-control" type="text" id="min-area-four1">
-                                    </div>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Макс. площадь 4км. кв</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-vector-square"></i></span>
-                                        <input class="num form-control" type="text" id="max-area-four1">
-                                    </div>
+                                     <div class="card-body row">
+                                        <div class="col-xl-2">
+                                            <label>Количество 4км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text">№</span>
+                                                <input class="form-control totalApart" type="number" id="num-apart-four1" name="num-apart-four1" min="1" max="10000">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2">
+                                            <label>Мин. площадь 4км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="min-area-four1" name="min-area-four1">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2">
+                                            <label>Макс. площадь 4км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="max-area-four1" name="max-area-four1">
+                                            </div>
+                                        </div>
+                                     </div>
                                 </div>
                             </div>
                              <div class="form-row mt-2">
-                                <div class="col-xl-2">
+                                <div class="col-xl-2 offset-xl-4">
                                     <label>Квартир всего</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping">№</span>
-                                        <input readonly class="form-control" type="number" id="num-apart-ttl1" min="1" max="10000">
+                                        <span class="input-group-text">№</span>
+                                        <input readonly class="form-control num-apart-ttl" type="number" id="num-apart-ttl1" name="num-apart-ttl1" min="1" max="10000">
                                     </div>
                                 </div>
+                                 <div class="col-xl-2">
+                                    <label>Ср. площадь</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                        <input readonly class="num form-control avg-area" type="text" id="avg-area1" name="max-area-four1">
+                                    </div>
+                                </div>                               
                              </div>
                             <hr class="bg-warning col-6">
                         </div>                   
@@ -593,25 +609,31 @@
             return countNum;
         }
     };
-
     function houseCopy(whatToCopy, whereToPaste, count)
     {
-        var $clone = $(whatToCopy).clone();
+        var $clone = $(whatToCopy).clone(true);
         // Get the number at the end of the ID, increment it, and replace the old id
         $clone.attr('id', $clone.attr('id').replace(/\d+$/, count));
+        $clone.attr('name', $clone.attr('name').replace(/\d+$/, count));
         // Find all elements in $clone that have an ID, and iterate using each()     
         $clone.find('[id]').each(function () {
             //Perform the same replace as above
             var $th = $(this);           
             var newID = $th.attr('id').replace(/\d+$/, function (str) { return parseInt(str) + 1; });
-            $th.attr('id', newID);     
+            $th.attr('id', newID);            
+        });
+        $clone.find('[name]').each(function () {
+            //Perform the same replace as above
+            var $th = $(this);
+            var newName = $th.attr('name').replace(/\d+$/, function (str) { return parseInt(str) + 1; });
+            $th.attr('name', newName);
         });
         //To delete input values 
         $clone.find("input").each(function () {
             var $th = $(this);
             $th.val("");
         });
-        $clone.find("#counts").text("№" + count);
+        $clone.find(".counts").text("№" + count);
         $clone.appendTo($(whereToPaste));
         masknum();     
     }
@@ -670,10 +692,7 @@
         for (var i = 0; i < temp.length; i++) {
             saves.push(temp[i].value);
         }
-        console.log(saves);
     }
-
-
     //To add house section's options
     $('.sectionChange').click(sectionChange);
     function sectionChange() {
@@ -709,6 +728,69 @@
             }
             saves = [];
         }
-    }   
+    }
+    /*To count sections NOT REALIZED
+    $('.house-num-select').change(SectionCount);
+    function SectionCount() {
+        var option = document.getElementsByClassName("house-num-select");
+        var nums = document.getElementsByClassName('house-nums');
+        var countsMap = new Map();
+
+        count = 0;
+        for (var j = 0; j < option.length; j++) {
+            for (var i = 0; i < option.length; i++) {
+                if (nums[j].value == option[i].value) {
+                    count = count + 1;               
+                }              
+            }
+            countsMap.set(nums[j].value, count);
+            count = 0;
+        }
+
+        for (var i = 0; i < option.length; i++) {                   
+            var curVal = option[i].value;
+            var curCount = countsMap.get(curVal);
+            $(option[i]).closest('.form-row').find('.sections').val("4");
+            //console.log($(option[i]).closest('.form-row').find('.sections').val());
+        }
+        //console.log(countsMap);
+    }*/
+</script>
+<script>
+//To count avg prices and areas
+    $(".totalApart").change(function () {
+        var what = $(this).closest('.mainTab').find('.totalApart');
+        var where = $(this).closest('.mainTab').find('.num-apart-ttl')
+        ToCount(what, where, "ttl");
+    });
+    $(".totalArea").change(function () {
+        var what = $(this).closest('.mainTab').find('.totalArea');
+        var where = $(this).closest('.mainTab').find('.avg-area')      
+        ToCount(what, where, "avg");
+    });
+
+
+    function ToCount(WhatCount, WhereToPut, how) {
+        var count = 0;
+        var totalobj = 0;
+        if (how == "ttl") {
+            for (var i = 0; i < WhatCount.length; i++) {
+                if (WhatCount[i].value != "") {
+                    count = count + parseFloat(WhatCount[i].value);
+                }
+            }
+        }
+        else if (how == "avg")
+        {
+            for (var i = 0; i < WhatCount.length; i++) {
+                if (WhatCount[i].value != "") {
+                    count = count + parseFloat(WhatCount[i].value);
+                    totalobj = totalobj + 1;
+                }
+            }
+            count = count / totalobj;
+        }
+        $(WhereToPut).val(count);
+    }
 </script>
 {% endblock %}
