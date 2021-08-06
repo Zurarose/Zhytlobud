@@ -7,18 +7,23 @@
     <div class="row col-md-10 d-flex justify-content-center ">
         <div class="col-md-12">
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
                 <li class="nav-item mx-5" role="presentation">
-                    <a class="nav-link active" id="complex-tab" href="#menu1" role="tab" aria-controls="menu1" aria-selected="true"><button disabled type="button" class="shadow-sm btn btn-warning btn-circle btn-xl" style="color: white; font-size: 0.5rem; "><i class="fas fa-city fa-4x d-flex justify-content-center "></i></button></a>
+                    <a class="nav-link active" id="complex-tab" href="#menu1" role="tab" aria-controls="menu1" aria-selected="true">
+                        <button disabled type="button" class="shadow-sm btn btn-warning btn-circle btn-xl" style="color: white; font-size: 0.5rem;"><i class="fas fa-city fa-4x d-flex justify-content-center "></i></button>
+                    </a>
                 </li>
                 <li class="nav-item mx-5" role="presentation">
-                    <a class="nav-link" id="building-tab" href="#menu2" role="tab" aria-controls="menu2" aria-selected="false"><button disabled type="button" class="shadow-sm btn btn-warning btn-circle btn-xl" style="color: white; font-size: 0.5rem;"><i class="fas fa-building fa-4x d-flex justify-content-center "></i></button></a>
+                    <a class="nav-link" id="building-tab" href="#menu2" role="tab" aria-controls="menu2" aria-selected="false">
+                        <button disabled type="button" class="shadow-sm btn btn-warning btn-circle btn-xl" style="color: white; font-size: 0.5rem;"><i class="fas fa-building fa-4x d-flex justify-content-center "></i></button>
+                    </a>
                 </li>
                 <li class="nav-item mx-5" role="presentation">
-                    <a class="nav-link" id="section-tab" href="#menu3" role="tab" aria-controls="menu3" aria-selected="false"><button disabled type="button" class="shadow-sm btn btn-warning btn-circle btn-xl" style="color: white; font-size: 0.5rem;"><i class="fas fa-door-closed fa-4x d-flex justify-content-center "></i></button></a>
-                </li>         
+                    <a class="nav-link" id="section-tab" href="#menu3" role="tab" aria-controls="menu3" aria-selected="false">
+                        <button disabled type="button" class="shadow-sm btn btn-warning btn-circle btn-xl" style="color: white; font-size: 0.5rem;"><i class="fas fa-door-closed fa-4x d-flex justify-content-center "></i></button>
+                    </a>
+                </li>
             </ul>
-
             <!-- Tab panes -->
             <div class="tab-content">
                 <div class="tab-pane fade show active mt-5 shadow-lg rounded p-4" id="menu1" role="tabpanel" aria-labelledby="complex-tab">
@@ -113,7 +118,6 @@
                                     </select>
                                 </div>
                             </div>
-                            
                         </div>
                         <div class="form-row mt-2">
                             <div class="col-xl-2">
@@ -142,7 +146,7 @@
                                 <label for="parking-type">Тип</label>
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text"><i class="fas fa-arrows-alt-v"></i></span>
-                                    <select class="custom-select" id="parking-type"  name="parking-type">
+                                    <select class="custom-select" id="parking-type" name="parking-type">
                                         <option selected value="Подземная">Подземная</option>
                                         <option value="Надземная">Надземная</option>
                                     </select>
@@ -173,14 +177,13 @@
                         <button type="button" class="btn btn-warning btn-next mt-5">Продолжить</button>
                     </form>
                 </div>
-
                 <div class="tab-pane fade mt-5 bg-white shadow-lg rounded p-4" id="menu2" role="tabpanel" aria-labelledby="building-tab">
                     <form id="topaste-house">
                         <h5 class="text-center mt-1 mb-4">Информация о домах</h5>
                         <div id="tocopy-house1" name="tocopy-house1">
                             <h5 class="text-center mt-4 mb-4 counts">№1</h5>
                             <div class="form-row mt-2">
-                                <div class="col-xl-1">
+                                <div class="col-xl-2">
                                     <label>№ дома</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text">№</span>
@@ -191,7 +194,7 @@
                                     <label>Площадь дома</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                        <input class="num form-control" type="text" id="area-build1"  name="area-build1">
+                                        <input class="num form-control" type="text" id="area-build1" name="area-build1">
                                     </div>
                                 </div>
                                 <div class="col-xl-2">
@@ -201,13 +204,12 @@
                                         <input class="num form-control" type="text" id="area-apart1" name="area-apart1">
                                     </div>
                                 </div>
-                                <div class="col-xl-2">
+                                <div class="col-xl-1">
                                     <label>Этажность</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                                         <input class="form-control" type="number" id="num-storeys1" name="num-storeys1" min="1" max="1000">
                                     </div>
-                                </div>                              
+                                </div>
                                 <div class="col-xl-2">
                                     <label class="ml-3">Этап постройки</label>
                                     <div class="input-group flex-nowrap">
@@ -219,7 +221,7 @@
                                     <label>Год ввода</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                                        <input class="form-control" type="number" min="1990" max="2099" step="1" id="date-pick1" name="date-pick1" value="2021"/>
+                                        <input class="form-control" type="number" min="1990" max="2099" step="1" id="date-pick1" name="date-pick1" value="2021" />
                                     </div>
                                 </div>
                                 <div class="col-xl-1">
@@ -262,7 +264,7 @@
                                 </div>
                             </div>
                             <hr class="bg-warning col-6">
-                        </div>                        
+                        </div>
                     </form>
                     <div>
                         <button type="button" class="btn btn-warning mt-4 col-auto btn-copy-house">Добавить новый дом</button>
@@ -271,7 +273,6 @@
                     <button type="button" class="btn btn-warning btn-back mt-5">Назад</button>
                     <button type="button" class="btn btn-warning btn-next mt-5 sectionChange">Продолжить</button>
                 </div>
-
                 <div class="tab-pane fade mt-5 bg-white shadow-lg rounded p-4 " id="menu3" role="tabpanel" aria-labelledby="section-tab">
                     <form id="topaste-section">
                         <h5 class="text-center mt-1 mb-4">Информация о секциях</h5>
@@ -282,11 +283,11 @@
                                     <label>№ дома</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text">№</span>
-                                        <select class="custom-select house-num-select" id="num-section-house1"  name="num-section-house1">
-                                             <option selected value=""></option>
+                                        <select class="custom-select house-num-select" id="num-section-house1" name="num-section-house1">
+                                            <option selected value=""></option>
                                         </select>
                                     </div>
-                                </div>                          
+                                </div>
                                 <div class="col-xl-2">
                                     <label>Продажи</label>
                                     <div class="input-group flex-nowrap">
@@ -305,10 +306,9 @@
                                         <input type="text" class="form-control" id="finance1" name="finance1" value="">
                                     </div>
                                 </div>
-                                <div class="col-xl-2">
-                                    <label>Двухур-е квартиры</label>
+                                <div class="col-xl-1">
+                                    <label>Дюплекс</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text"><i class="fas fa-dice-two"></i></span>
                                         <select class="custom-select" id="duplex1" name="duplex1">
                                             <option selected value=""></option>
                                             <option selected value="Нет">Нет</option>
@@ -316,10 +316,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-xl-2">
+                                <div class="col-xl-1">
                                     <label>Пентхаусы</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text"><i class="fab fa-autoprefixer"></i></span>
                                         <select class="custom-select" id="penthouse1" name="penthouse1">
                                             <option selected value=""></option>
                                             <option value="Нет">Нет</option>
@@ -327,89 +326,100 @@
                                         </select>
                                     </div>
                                 </div>
-                              
+                                <div class="col-xl-2">
+                                    <label>Квартир всего</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text">№</span>
+                                        <input readonly class="form-control num-apart-ttl" type="number" id="num-apart-ttl1" name="num-apart-ttl1" min="1" max="10000">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <label>Ср. площадь</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                        <input readonly class="num form-control avg-area" type="text" id="avg-area1" name="max-area-four1">
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-row mt-2">
-                                <div class="card col-12">
+                                <div class="card col-6 except p-0 shadow-none border-right-0 border">
                                     <div class="card-header">
-                                       Информация об однокомнатных квартирах:
+                                        Информация об однокомнатных квартирах:
                                     </div>
-                                     <div class="card-body row">                                  
-                                        <div class="col-xl-2">
+                                    <div class="card-body row">
+                                        <div class="col-xl-4">
                                             <label>Количество 1км.</label>
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text">№</span>
                                                 <input class="form-control totalApart" type="number" id="num-apart-one1" name="num-apart-one1" min="1" max="10000">
                                             </div>
                                         </div>
-                                        <div class="col-xl-2">
+                                        <div class="col-xl-4">
                                             <label>Мин. площадь 1км.</label>
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
                                                 <input class="num form-control totalArea" type="text" id="min-area-one1" name="min-area-one1">
                                             </div>
                                         </div>
-                                        <div class="col-xl-2">
+                                        <div class="col-xl-4">
                                             <label>Макс. площадь 1км.</label>
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
                                                 <input class="num form-control totalArea" type="text" id="max-area-one1" name="max-area-one1">
                                             </div>
                                         </div>
-                                     </div>
-                                  </div>
+                                    </div>
+                                </div>
+                                <div class="card col-6 except p-0 shadow-none border-top">
+                                    <div class="card-header">
+                                        Информация о двухкомнатных квартирах:
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-xl-4">
+                                            <label>Количество 2км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text">№</span>
+                                                <input class="form-control totalApart" type="number" id="num-apart-two" name="num-apart-two" min="1" max="10000">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <label>Мин. площадь 2км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="min-area-two1" name="min-area-two1">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <label>Макс. площадь 2км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="max-area-two1" name="max-area-two1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-row mt-2">
-                                 <div class="card col-12">
+                                <div class="card col-6 except p-0 shadow-none border-right-0">
                                     <div class="card-header">
-                                       Информация о двухкомнатных квартирах:
+                                        Информация о трехкомнатных квартирах:
                                     </div>
-                                     <div class="card-body row">                                
-                                    <div class="col-xl-2">
-                                        <label>Количество 2км.</label>
-                                        <div class="input-group flex-nowrap">
-                                            <span class="input-group-text">№</span>
-                                            <input class="form-control totalApart" type="number" id="num-apart-two" name="num-apart-two" min="1" max="10000">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2">
-                                        <label>Мин. площадь 2км.</label>
-                                        <div class="input-group flex-nowrap">
-                                            <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                            <input class="num form-control totalArea" type="text" id="min-area-two1" name="min-area-two1">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2">
-                                        <label>Макс. площадь 2км.</label>
-                                        <div class="input-group flex-nowrap">
-                                            <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                            <input class="num form-control totalArea" type="text" id="max-area-two1" name="max-area-two1">
-                                        </div>
-                                    </div>
-                                   </div>
-                                 </div>
-                            </div>
-                            <div class="form-row mt-2">
-                                <div class="card col-12">
-                                    <div class="card-header">
-                                       Информация о трехкомнатных квартирах:
-                                    </div>
-                                     <div class="card-body row">                              
-                                        <div class="col-xl-2">
+                                    <div class="card-body row">
+                                        <div class="col-xl-4">
                                             <label>Количество 3км.</label>
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text">№</span>
                                                 <input class="form-control totalApart" type="number" id="num-apart-three1" name="num-apart-three1" min="1" max="10000">
                                             </div>
                                         </div>
-                                        <div class="col-xl-2">
+                                        <div class="col-xl-4">
                                             <label>Мин. площадь 3км.</label>
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
                                                 <input class="num form-control totalArea" type="text" id="min-area-three1" name="min-area-three1">
                                             </div>
                                         </div>
-                                        <div class="col-xl-2">
+                                        <div class="col-xl-4">
                                             <label>Макс. площадь 3км.</label>
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
@@ -417,70 +427,52 @@
                                             </div>
                                         </div>
                                     </div>
-                                  </div>
-                            </div>
-                            <div class="form-row mt-2">
-                                <div class="card col-12">
+                                </div>
+                                <div class="card col-6 except p-0 shadow-none border-top">
                                     <div class="card-header">
-                                       Информация о четырехкомнатных квартирах:
+                                        Информация о четырехкомнатных квартирах:
                                     </div>
-                                     <div class="card-body row">
-                                        <div class="col-xl-2">
+                                    <div class="card-body row">
+                                        <div class="col-xl-4">
                                             <label>Количество 4км.</label>
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text">№</span>
                                                 <input class="form-control totalApart" type="number" id="num-apart-four1" name="num-apart-four1" min="1" max="10000">
                                             </div>
                                         </div>
-                                        <div class="col-xl-2">
+
+                                        <div class="col-xl-4">
                                             <label>Мин. площадь 4км.</label>
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
                                                 <input class="num form-control totalArea" type="text" id="min-area-four1" name="min-area-four1">
                                             </div>
                                         </div>
-                                        <div class="col-xl-2">
+                                        <div class="col-xl-4">
                                             <label>Макс. площадь 4км.</label>
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
                                                 <input class="num form-control totalArea" type="text" id="max-area-four1" name="max-area-four1">
                                             </div>
                                         </div>
-                                     </div>
+                                    </div>
                                 </div>
                             </div>
-                             <div class="form-row mt-2">
-                                <div class="col-xl-2 offset-xl-4">
-                                    <label>Квартир всего</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text">№</span>
-                                        <input readonly class="form-control num-apart-ttl" type="number" id="num-apart-ttl1" name="num-apart-ttl1" min="1" max="10000">
-                                    </div>
-                                </div>
-                                 <div class="col-xl-2">
-                                    <label>Ср. площадь</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                        <input readonly class="num form-control avg-area" type="text" id="avg-area1" name="max-area-four1">
-                                    </div>
-                                </div>                               
-                             </div>
                             <hr class="bg-warning col-6">
-                        </div>                   
-                    </form>               
+                        </div>
+                    </form>
                     <div>
                         <button type="button" class="btn btn-warning mt-4 col-auto btn-copy-section">Добавить новую секцию"</button>
                         <button type="button" class="btn btn-warning mt-4 col-auto btn-delete-section">Удалить секцию"</button>
                     </div>
                     <button type="button" class="btn btn-warning btn-back mt-5 save-choice">Назад</button>
                     <button type="button" class="btn btn-warning mt-5">Подтвердить</button>
-                </div>              
+                </div>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
-
 {% block scripts %}
 <script>
     //For change tabs
@@ -490,13 +482,13 @@
     function clkToNext() {
         if (current <= 3) {
             current = current + 1;
-            $('#myTab li:nth-child('+current+') a').tab('show') // Select third tab            
+            $('#myTab li:nth-child(' + current + ') a').tab('show') // Select third tab            
         }
     }
     function clkToBack() {
         if (current >= 1) {
             current = current - 1;
-            $('#myTab li:nth-child(' + current+ ') a').tab('show') // Select third tab          
+            $('#myTab li:nth-child(' + current + ') a').tab('show') // Select third tab          
         }
     }
 </script>
@@ -513,11 +505,8 @@
     //To select parking type
     $('#parking').change(parkOnOff);
     $('#parking-type').change(EnableChoice);
-
     var typeparking = document.getElementById("parking-type");
-
-    function parkOnOff()
-    { 
+    function parkOnOff() {
         var yesOrNo = document.getElementById("parking");
         var parking_up = document.getElementsByClassName("parking-up");
         var parking_down = document.getElementsByClassName("parking-down");
@@ -536,14 +525,12 @@
                 parking_down[i].disabled = true;
             }
         }
-        else
-        {
+        else {
             typeparking.disabled = false;
             EnableChoice();
-        }     
+        }
     }
-    function EnableChoice()
-    {
+    function EnableChoice() {
         //To set inputs for right parking
         var parking_up = document.getElementsByClassName("parking-up");
         var parking_down = document.getElementsByClassName("parking-down");
@@ -609,8 +596,7 @@
             return countNum;
         }
     };
-    function houseCopy(whatToCopy, whereToPaste, count)
-    {
+    function houseCopy(whatToCopy, whereToPaste, count) {
         var $clone = $(whatToCopy).clone(true);
         // Get the number at the end of the ID, increment it, and replace the old id
         $clone.attr('id', $clone.attr('id').replace(/\d+$/, count));
@@ -618,9 +604,9 @@
         // Find all elements in $clone that have an ID, and iterate using each()     
         $clone.find('[id]').each(function () {
             //Perform the same replace as above
-            var $th = $(this);           
+            var $th = $(this);
             var newID = $th.attr('id').replace(/\d+$/, function (str) { return parseInt(str) + 1; });
-            $th.attr('id', newID);            
+            $th.attr('id', newID);
         });
         $clone.find('[name]').each(function () {
             //Perform the same replace as above
@@ -635,7 +621,7 @@
         });
         $clone.find(".counts").text("№" + count);
         $clone.appendTo($(whereToPaste));
-        masknum();     
+        masknum();
     }
 </script>
 <script>
@@ -679,13 +665,12 @@
                     select.appendChild(opt);
                 }
             }
-    })
-}
+        })
+    }
 </script>
 <script>
     //To save section choice
     $('.save-choice').click(SaveChoice);
-
     var saves = [];
     function SaveChoice() {
         temp = document.getElementsByClassName("house-num-select");
@@ -701,20 +686,17 @@
         //select input
         var option = document.getElementsByClassName("house-num-select");
         //To clear selects
-        for (var j = 0; j < option.length; j++)
-        {          
+        for (var j = 0; j < option.length; j++) {
             var length = option[j].options.length;
-            for (var i = length - 1; i >= 0; i--) {                                            
-                    option[j].options[i] = null                   
+            for (var i = length - 1; i >= 0; i--) {
+                option[j].options[i] = null
             }
         }
         //To add options
-        for (var j = 0; j < option.length; j++)
-        {
+        for (var j = 0; j < option.length; j++) {
             for (var i = 0; i < nums.length; i++) {
                 var opt = document.createElement('option');
-                if (nums[i].value != "")
-                {
+                if (nums[i].value != "") {
                     opt.value = nums[i].value;
                     opt.innerHTML = nums[i].value;
                     option[j].appendChild(opt);
@@ -722,42 +704,16 @@
             }
         }
         //To apply saves
-        if (saves.length != 0) {       
+        if (saves.length != 0) {
             for (var i = 0; i < option.length; i++) {
-                $(option[i]).val(saves[i]);               
+                $(option[i]).val(saves[i]);
             }
             saves = [];
         }
     }
-    /*To count sections NOT REALIZED
-    $('.house-num-select').change(SectionCount);
-    function SectionCount() {
-        var option = document.getElementsByClassName("house-num-select");
-        var nums = document.getElementsByClassName('house-nums');
-        var countsMap = new Map();
-
-        count = 0;
-        for (var j = 0; j < option.length; j++) {
-            for (var i = 0; i < option.length; i++) {
-                if (nums[j].value == option[i].value) {
-                    count = count + 1;               
-                }              
-            }
-            countsMap.set(nums[j].value, count);
-            count = 0;
-        }
-
-        for (var i = 0; i < option.length; i++) {                   
-            var curVal = option[i].value;
-            var curCount = countsMap.get(curVal);
-            $(option[i]).closest('.form-row').find('.sections').val("4");
-            //console.log($(option[i]).closest('.form-row').find('.sections').val());
-        }
-        //console.log(countsMap);
-    }*/
 </script>
 <script>
-//To count avg prices and areas
+    //To count avg prices and areas
     $(".totalApart").change(function () {
         var what = $(this).closest('.mainTab').find('.totalApart');
         var where = $(this).closest('.mainTab').find('.num-apart-ttl')
@@ -765,11 +721,9 @@
     });
     $(".totalArea").change(function () {
         var what = $(this).closest('.mainTab').find('.totalArea');
-        var where = $(this).closest('.mainTab').find('.avg-area')      
+        var where = $(this).closest('.mainTab').find('.avg-area')
         ToCount(what, where, "avg");
     });
-
-
     function ToCount(WhatCount, WhereToPut, how) {
         var count = 0;
         var totalobj = 0;
@@ -780,8 +734,7 @@
                 }
             }
         }
-        else if (how == "avg")
-        {
+        else if (how == "avg") {
             for (var i = 0; i < WhatCount.length; i++) {
                 if (WhatCount[i].value != "") {
                     count = count + parseFloat(WhatCount[i].value);
