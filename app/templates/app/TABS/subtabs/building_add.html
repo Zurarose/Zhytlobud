@@ -456,7 +456,7 @@
                         <button type="button" class="btn btn-warning mt-4 col-auto btn-copy-section">Добавить новую секцию"</button>
                         <button type="button" class="btn btn-warning mt-4 col-auto btn-delete-section">Удалить секцию"</button>
                     </div>
-                    <button type="button" class="btn btn-warning btn-back mt-5">Назад</button>
+                    <button type="button" class="btn btn-warning btn-back mt-5 save-choice">Назад</button>
                     <button type="button" class="btn btn-warning mt-5">Подтвердить</button>
                 </div>              
             </div>
@@ -471,7 +471,6 @@
     var current = 1;
     $('.btn-next').click(clkToNext);
     $('.btn-back').click(clkToBack);
-
     function clkToNext() {
         if (current <= 3) {
             current = current + 1;
@@ -502,7 +501,7 @@
     var typeparking = document.getElementById("parking-type");
 
     function parkOnOff()
-    {
+    { 
         var yesOrNo = document.getElementById("parking");
         var parking_up = document.getElementsByClassName("parking-up");
         var parking_down = document.getElementsByClassName("parking-down");
@@ -557,7 +556,6 @@
                 parking_down[i].disabled = false;
             }
         }
-
     }
 </script>
 <script>
@@ -585,6 +583,7 @@
         names_section.push("tocopy-section" + sectionCount);
         sectionCount = sectionCount + 1;
     });
+    //To delete elements(house, sections)
     function whatToDelete(what, countNum) {
         if (what.length != 0) {
             var len = what.length - 1;
@@ -662,13 +661,27 @@
 }
 </script>
 <script>
+    //To save section choice
+    $('.save-choice').click(SaveChoice);
+
+    var saves = [];
+    function SaveChoice() {
+        temp = document.getElementsByClassName("house-num-select");
+        for (var i = 0; i < temp.length; i++) {
+            saves.push(temp[i].value);
+        }
+        console.log(saves);
+    }
+
+
     //To add house section's options
     $('.sectionChange').click(sectionChange);
     function sectionChange() {
         //text input
         var nums = document.getElementsByClassName('house-nums');
         //select input
-        var option = document.getElementsByClassName("house-num-select");        
+        var option = document.getElementsByClassName("house-num-select");
+        //To clear selects
         for (var j = 0; j < option.length; j++)
         {          
             var length = option[j].options.length;
@@ -676,6 +689,7 @@
                     option[j].options[i] = null                   
             }
         }
+        //To add options
         for (var j = 0; j < option.length; j++)
         {
             for (var i = 0; i < nums.length; i++) {
@@ -687,6 +701,13 @@
                     option[j].appendChild(opt);
                 }
             }
+        }
+        //To apply saves
+        if (saves.length != 0) {       
+            for (var i = 0; i < option.length; i++) {
+                $(option[i]).val(saves[i]);               
+            }
+            saves = [];
         }
     }   
 </script>
