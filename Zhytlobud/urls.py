@@ -23,4 +23,6 @@ urlpatterns = [
    path("UpdateMenu/", views.update_menu, name="update_menu"),
    #For Ajax. Look at script in building_add.html.
    url(r'^ajax/getStreets/$', views.getStreets, name='getStreets'),
+   url(r'^ajax/getSubways/$', views.getSubways, name='getSubways'),
+    url(r'^ajax/getCityAreas/$', views.getCityAreas, name='getCityAreas'),
 ]

@@ -10,6 +10,7 @@ from django.db import models
 
 class Areas(models.Model):
     id_areas = models.AutoField(db_column='ID_areas', primary_key=True)  # Field name made lowercase.
+    zone = models.CharField(db_column='Zone', max_length=50)  # Field name made lowercase.
     name = models.CharField(db_column='Name', max_length=50)  # Field name made lowercase.
 
     class Meta:
@@ -266,6 +267,7 @@ class Streets(models.Model):
 
 class Subways(models.Model):
     id_subway = models.AutoField(db_column='ID_subway', primary_key=True)  # Field name made lowercase.
+    zone = models.CharField(db_column='Zone', max_length=50)  # Field name made lowercase.
     name = models.CharField(db_column='Name', max_length=50)  # Field name made lowercase.
 
     class Meta:
