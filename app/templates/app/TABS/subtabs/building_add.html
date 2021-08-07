@@ -174,11 +174,14 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-warning btn-next mt-5">Продолжить</button>
+                        <button type="button" class="btn btn-warning btn-next mt-5 btn-complex-name">Продолжить</button>
                     </form>
                 </div>
-                <div class="tab-pane fade mt-5 bg-white shadow-lg rounded p-4" id="menu2" role="tabpanel" aria-labelledby="building-tab">
-                    <form id="topaste-house">
+                <div class="tab-pane fade mt-3 bg-white shadow-lg rounded p-0" id="menu2" role="tabpanel" aria-labelledby="building-tab">
+                     <div class="card-header">
+                         <h5 class="text-center" id="colplex-name-header1">Комплекс:</h5>
+                    </div>
+                    <form id="topaste-house" class="p-4">
                         <h5 class="text-center mt-1 mb-4">Информация о домах</h5>
                         <div id="tocopy-house1" name="tocopy-house1">
                             <h5 class="text-center mt-4 mb-4 counts">№1</h5>
@@ -217,23 +220,37 @@
                                         <input class="form-control" step="5" type="number" id="constr-phase-prc1" name="constr-phase-prc1" min="0" max="100">
                                     </div>
                                 </div>
+                                <div class="col-xl-3">
+                                    <label>Примечание</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                                        <input type="text" class="form-control" id="info-house1" name="info-house1" value="">
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <div class="form-row mt-2">
+                                 <div class="col-xl-2">
+                                    <label>Год начала</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                        <input class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-start1" name="date-pick1" value="" />
+                                    </div>
+                                </div>
                                 <div class="col-xl-2">
                                     <label>Год ввода</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                                        <input class="form-control" type="number" min="1990" max="2099" step="1" id="date-pick1" name="date-pick1" value="2021" />
+                                        <input class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-commis1" name="date-pick1" value="" />
                                     </div>
                                 </div>
-                                <div class="col-xl-1">
+                                <div class="col-xl-2">
                                     <label>Квартал</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
-                                        <input class="form-control" type="number" min="1" max="4" step="1" id="quarter-pick1" name="quarter-pick1" value="1" />
+                                        <input class="form-control" type="number" min="1" max="4" step="1" id="quarter-pick1" name="quarter-pick1" value="" />
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="form-row mt-2">
                                 <div class="col-xl-2">
                                     <label>Парковка(мест)</label>
                                     <div class="input-group flex-nowrap">
@@ -255,29 +272,25 @@
                                         <input class="num form-control parking-down" type="text" id="price-parking-down-dol1" name="price-parking-down-dol1">
                                     </div>
                                 </div>
-                                <div class="col-xl-6">
-                                    <label>Примечание</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
-                                        <input type="text" class="form-control" id="info-house1" name="info-house1" value="">
-                                    </div>
-                                </div>
                             </div>
                             <hr class="bg-warning col-6">
                         </div>
                     </form>
                     <div>
-                        <button type="button" class="btn btn-warning mt-4 col-auto btn-copy-house">Добавить новый дом</button>
+                        <button type="button" class="btn btn-warning mt-4 col-auto btn-copy-house ml-4">Добавить новый дом</button>
                         <button type="button" class="btn btn-warning mt-4 col-auto btn-delete-house">Удалить дом</button>
                     </div>
-                    <button type="button" class="btn btn-warning btn-back mt-5">Назад</button>
-                    <button type="button" class="btn btn-warning btn-next mt-5 sectionChange">Продолжить</button>
+                    <button type="button" class="btn btn-warning btn-back mt-5 mb-4 ml-4">Назад</button>
+                    <button type="button" class="btn btn-warning btn-next mt-5 mb-4 sectionChange">Продолжить</button>
                 </div>
-                <div class="tab-pane fade mt-5 bg-white shadow-lg rounded p-4 " id="menu3" role="tabpanel" aria-labelledby="section-tab">
-                    <form id="topaste-section">
+                <div class="tab-pane fade mt-3 bg-white shadow-lg rounded p-0" id="menu3" role="tabpanel" aria-labelledby="section-tab">
+                     <div class="card-header">
+                         <h5 class="text-center" id="colplex-name-header2">Комплекс:</h5>
+                    </div>
+                    <form id="topaste-section" class="p-4">
                         <h5 class="text-center mt-1 mb-4">Информация о секциях</h5>
                         <div class="mainTab" id="tocopy-section1" name="tocopy-section1">
-                            <h5 class="text-center mt-4 mb-4 counts">№1</h5>
+                            <h5 class=" mt-4 mb-4 text-center counts">№1</h5>
                             <div class="form-row mt-2">
                                 <div class="col-xl-2">
                                     <label>№ дома</label>
@@ -303,7 +316,12 @@
                                     <label>Финансирование</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-coins"></i></span>
-                                        <input type="text" class="form-control" id="finance1" name="finance1" value="">
+                                        <select class="custom-select" id="finance1" name="finance1">
+                                        <option selected></option>
+                                        {% for post5 in posts5 %}
+                                        <option value="{{ post5 }}">{{ post5 }}</option>
+                                        {% endfor %}
+                                    </select>
                                     </div>
                                 </div>
                                 <div class="col-xl-1">
@@ -462,11 +480,11 @@
                         </div>
                     </form>
                     <div>
-                        <button type="button" class="btn btn-warning mt-4 col-auto btn-copy-section">Добавить новую секцию"</button>
+                        <button type="button" class="btn btn-warning mt-4  ml-4 col-auto btn-copy-section">Добавить новую секцию"</button>
                         <button type="button" class="btn btn-warning mt-4 col-auto btn-delete-section">Удалить секцию"</button>
                     </div>
-                    <button type="button" class="btn btn-warning btn-back mt-5 save-choice">Назад</button>
-                    <button type="button" class="btn btn-warning mt-5">Подтвердить</button>
+                    <button type="button" class="btn btn-warning btn-back mt-5 mb-4 ml-4 save-choice">Назад</button>
+                    <button type="button" class="btn btn-warning mt-5 mb-4">Подтвердить</button>
                 </div>
             </div>
         </div>
@@ -500,6 +518,16 @@
         parkOnOff();
         masknum();
     })
+</script>
+<script>
+    //To change complex name
+    $(".btn-complex-name").click(chngComplexName);
+    function chngComplexName() {
+
+        var name = $("#complex-name").val();
+        $("#colplex-name-header1").text("Комплекс: " + name);
+        $("#colplex-name-header2").text("Комплекс: " + name);
+    }
 </script>
 <script>
     //To select parking type

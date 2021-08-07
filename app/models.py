@@ -85,19 +85,19 @@ class AuthUserUserPermissions(models.Model):
 
 class Buildings(models.Model):
     id_buildings = models.AutoField(db_column='ID_buildings', primary_key=True)  # Field name made lowercase.
-    class_field = models.CharField(db_column='class', max_length=50)  # Field renamed because it was a Python reserved word.
+    class_field = models.CharField(db_column='class', max_length=50, blank=True, null=True)  # Field renamed because it was a Python reserved word.
     name = models.CharField(max_length=50)
-    street_type = models.CharField(max_length=50)
-    street_name = models.ForeignKey('Streets', models.DO_NOTHING, db_column='street_name')
-    builder = models.CharField(max_length=50)
-    customer = models.ForeignKey('Customers', models.DO_NOTHING, db_column='customer')
-    urban_develop_zone = models.CharField(max_length=50)
-    city_area = models.ForeignKey(Areas, models.DO_NOTHING, db_column='city area')  # Field renamed to remove unsuitable characters.
-    subway = models.ForeignKey('Subways', models.DO_NOTHING, db_column='subway')
-    parking = models.CharField(max_length=25)
-    parking_num = models.IntegerField()
-    parking_price_hrn = models.FloatField()
-    parking_price_dol = models.FloatField()
+    street_type = models.CharField(max_length=50, blank=True, null=True)
+    street_name = models.ForeignKey('Streets', models.DO_NOTHING, db_column='street_name', blank=True, null=True)
+    builder = models.CharField(max_length=50, blank=True, null=True)
+    customer = models.ForeignKey('Customers', models.DO_NOTHING, db_column='customer', blank=True, null=True)
+    urban_develop_zone = models.CharField(max_length=50, blank=True, null=True)
+    city_area = models.ForeignKey(Areas, models.DO_NOTHING, db_column='city area', blank=True, null=True)  # Field renamed to remove unsuitable characters.
+    subway = models.ForeignKey('Subways', models.DO_NOTHING, db_column='subway', blank=True, null=True)
+    parking = models.CharField(max_length=25, blank=True, null=True)
+    parking_num = models.IntegerField(blank=True, null=True)
+    parking_price_hrn = models.FloatField(blank=True, null=True)
+    parking_price_dol = models.FloatField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -159,20 +159,31 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+class Financing(models.Model):
+    id_finance = models.AutoField(db_column='ID_finance', primary_key=True)  # Field name made lowercase.
+    name = models.CharField(db_column='Name', max_length=50)  # Field name made lowercase.
+    full_name = models.CharField(db_column='Full_name', max_length=50)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'financing'
+
+
 class Houses(models.Model):
     id_buildings = models.ForeignKey(Buildings, models.DO_NOTHING, db_column='ID_buildings')  # Field name made lowercase.
     id_house = models.AutoField(db_column='ID_house', primary_key=True)  # Field name made lowercase.
     street_number = models.CharField(max_length=25)
-    ttl_area_building = models.FloatField()
-    ttl_area_apartments = models.FloatField()
-    storeys = models.IntegerField()
-    construction_phase_prst = models.IntegerField()
-    parking_num = models.IntegerField()
-    parking_price_hrn = models.FloatField()
-    parking_price_dol = models.FloatField()
-    remark = models.CharField(max_length=50)
-    commis_year = models.TextField()  # This field type is a guess.
-    quarter = models.IntegerField(db_column='Quarter')  # Field name made lowercase.
+    ttl_area_building = models.FloatField(blank=True, null=True)
+    ttl_area_apartments = models.FloatField(blank=True, null=True)
+    storeys = models.IntegerField(blank=True, null=True)
+    construction_phase_prst = models.IntegerField(blank=True, null=True)
+    parking_num = models.IntegerField(blank=True, null=True)
+    parking_price_hrn = models.FloatField(blank=True, null=True)
+    parking_price_dol = models.FloatField(blank=True, null=True)
+    remark = models.CharField(max_length=50, blank=True, null=True)
+    start_year = models.TextField(blank=True, null=True)  # This field type is a guess.
+    commis_year = models.TextField(blank=True, null=True)  # This field type is a guess.
+    quarter = models.IntegerField(db_column='Quarter', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -182,28 +193,34 @@ class Houses(models.Model):
 class SalesAndPrices(models.Model):
     id_row = models.AutoField(db_column='ID_row', primary_key=True)  # Field name made lowercase.
     id_sections = models.ForeignKey('Sections', models.DO_NOTHING, db_column='ID_sections')  # Field name made lowercase.
-    a1_min_price = models.FloatField()
-    a1_max_price = models.FloatField()
-    a1_avg_price = models.FloatField()
-    a2_min_price = models.FloatField()
-    a2_max_price = models.FloatField()
-    a2_avg_price = models.FloatField()
-    a3_min_price = models.FloatField()
-    a3_max_price = models.FloatField()
-    a3_avg_price = models.FloatField()
-    a4_min_price = models.FloatField()
-    a4_max_price = models.FloatField()
-    a4_avg_price = models.FloatField()
-    a1_to_sale = models.IntegerField()
-    a2_to_sale = models.IntegerField()
-    a3_to_sale = models.IntegerField()
-    a4_to_sale = models.IntegerField()
-    a1_area_to_sale = models.FloatField()
-    a2_area_to_sale = models.FloatField()
-    a3_area_to_sale = models.FloatField()
-    a4_area_to_sale = models.FloatField()
-    area_remain = models.FloatField()
-    ondate = models.DateField()
+    a1_to_sale = models.IntegerField(blank=True, null=True)
+    a1_min_price = models.FloatField(blank=True, null=True)
+    a1_max_price = models.FloatField(blank=True, null=True)
+    a1_avg_price = models.FloatField(blank=True, null=True)
+    a2_to_sale = models.IntegerField(blank=True, null=True)
+    a2_min_price = models.FloatField(blank=True, null=True)
+    a2_max_price = models.FloatField(blank=True, null=True)
+    a2_avg_price = models.FloatField(blank=True, null=True)
+    a3_to_sale = models.IntegerField(blank=True, null=True)
+    a3_min_price = models.FloatField(blank=True, null=True)
+    a3_max_price = models.FloatField(blank=True, null=True)
+    a3_avg_price = models.FloatField(blank=True, null=True)
+    a4_to_sale = models.IntegerField(blank=True, null=True)
+    a4_min_price = models.FloatField(blank=True, null=True)
+    a4_max_price = models.FloatField(blank=True, null=True)
+    a4_avg_price = models.FloatField(blank=True, null=True)
+    a1_area_to_sale = models.FloatField(blank=True, null=True)
+    a2_area_to_sale = models.FloatField(blank=True, null=True)
+    a3_area_to_sale = models.FloatField(blank=True, null=True)
+    a4_area_to_sale = models.FloatField(blank=True, null=True)
+    area_remain = models.FloatField(blank=True, null=True)
+    min_price_hrn = models.FloatField(blank=True, null=True)
+    max_price_hrn = models.FloatField(blank=True, null=True)
+    avg_price_hrn = models.FloatField(blank=True, null=True)
+    min_price_dol = models.FloatField(blank=True, null=True)
+    max_price_dol = models.FloatField(blank=True, null=True)
+    avg_price_dol = models.FloatField(blank=True, null=True)
+    ondate = models.DateField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -213,31 +230,24 @@ class SalesAndPrices(models.Model):
 class Sections(models.Model):
     id_house = models.ForeignKey(Houses, models.DO_NOTHING, db_column='ID_house')  # Field name made lowercase.
     id_sections = models.AutoField(db_column='ID_sections', primary_key=True)  # Field name made lowercase.
-    section = models.IntegerField()
-    attribute = models.IntegerField()
-    financing = models.CharField(max_length=50)
-    duplex_apartments = models.IntegerField()
-    penthouses = models.IntegerField()
-    apartments_num = models.IntegerField()
-    a1_num = models.IntegerField()
-    a2_num = models.IntegerField()
-    a3_num = models.IntegerField()
-    a4_num = models.IntegerField()
-    a1_area_min = models.FloatField()
-    a1_area_max = models.FloatField()
-    a2_area_min = models.FloatField()
-    a2_area_max = models.FloatField()
-    a3_area_min = models.FloatField()
-    a3_area_max = models.FloatField()
-    a4_area_min = models.FloatField()
-    a4_area_max = models.FloatField()
-    avg_area = models.FloatField()
-    min_price_hrn = models.FloatField()
-    max_price_hrn = models.FloatField()
-    avg_price_hrn = models.FloatField()
-    min_price_dol = models.FloatField()
-    max_price_dol = models.FloatField()
-    avg_price_dol = models.FloatField()
+    attribute = models.IntegerField(blank=True, null=True)
+    financing = models.ForeignKey(Financing, models.DO_NOTHING, db_column='financing', blank=True, null=True)
+    duplex_apartments = models.IntegerField(blank=True, null=True)
+    penthouses = models.IntegerField(blank=True, null=True)
+    apartments_num = models.IntegerField(blank=True, null=True)
+    a1_num = models.IntegerField(blank=True, null=True)
+    a2_num = models.IntegerField(blank=True, null=True)
+    a3_num = models.IntegerField(blank=True, null=True)
+    a4_num = models.IntegerField(blank=True, null=True)
+    a1_area_min = models.FloatField(blank=True, null=True)
+    a1_area_max = models.FloatField(blank=True, null=True)
+    a2_area_min = models.FloatField(blank=True, null=True)
+    a2_area_max = models.FloatField(blank=True, null=True)
+    a3_area_min = models.FloatField(blank=True, null=True)
+    a3_area_max = models.FloatField(blank=True, null=True)
+    a4_area_min = models.FloatField(blank=True, null=True)
+    a4_area_max = models.FloatField(blank=True, null=True)
+    avg_area = models.FloatField(blank=True, null=True)
 
     class Meta:
         managed = False
