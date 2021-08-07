@@ -95,6 +95,7 @@
     <Content Include="app\static\app\img\settings,old.png" />
     <Content Include="app\static\app\img\update.old.png" />
     <Content Include="app\static\app\scripts\jquery-3.3.1.min.js" />
+    <Content Include="app\static\app\scripts\jquery.inputmask.min.js" />
     <Content Include="app\static\app\scripts\jquery.min.js" />
     <Content Include="app\static\app\scripts\jquery.steps.js" />
     <Content Include="app\static\app\scripts\main.js" />
