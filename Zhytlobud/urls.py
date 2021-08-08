@@ -13,6 +13,9 @@ heroku run python manage.py migrate -a zhytlobud
 python manage.py dumpdata > db.json
 
 on heroku: heroku run python manage.py loaddata db.json -a zhytlobud
+
+heroku ps
+heroku ps:stop run.4859
 """
 
 from datetime import datetime
