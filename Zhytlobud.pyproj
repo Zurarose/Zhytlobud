@@ -64,8 +64,6 @@
     <Folder Include="app\static\app\scripts\" />
     <Folder Include="app\templates\" />
     <Folder Include="app\templates\app\" />
-    <Folder Include="app\templates\app\tabs\" />
-    <Folder Include="app\templates\app\tabs\subtabs\" />
     <Folder Include="Zhytlobud\" />
     <Folder Include="Helpfull files\" />
     <Folder Include="Helpfull files\templates\" />
@@ -97,8 +95,8 @@
     <Content Include="app\static\app\scripts\jquery.min.js" />
     <Content Include="app\static\app\scripts\jquery.steps.js" />
     <Content Include="app\static\app\scripts\main.js" />
-    <Content Include="app\templates\app\tabs\subtabs\building_add.html" />
-    <Content Include="app\templates\app\tabs\update_menu.html" />
+    <Content Include="app\templates\app\building_add.html" />
+    <Content Include="app\templates\app\update_menu.html" />
     <Content Include="Procfile" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
