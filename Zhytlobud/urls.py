@@ -11,6 +11,8 @@ heroku run python manage.py createsuperuser -a zhytlobud
 heroku run python manage.py migrate -a zhytlobud
 
 python manage.py dumpdata > db.json
+
+on heroku: heroku run python manage.py loaddata db.json -a zhytlobud
 """
 
 from datetime import datetime
