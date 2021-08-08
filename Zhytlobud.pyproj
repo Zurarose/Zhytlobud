@@ -102,6 +102,7 @@
     <Content Include="app\static\app\scripts\owl.carousel.min.js" />
     <Content Include="app\templates\app\tabs\subtabs\building_add.html" />
     <Content Include="app\templates\app\tabs\update_menu.html" />
+    <Content Include="Procfile" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.min.css" />
