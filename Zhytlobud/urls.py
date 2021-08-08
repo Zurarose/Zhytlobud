@@ -2,8 +2,13 @@
 Definition of urls for Zhytlobud
 $ python manage.py makemigrations tutorial
 $ python manage.py migrate tutorial
+
 $ python manage.py inspectdb
+
 heroku run python manage.py migrate
+
+heroku run python manage.py createsuperuser -a zhytlobud
+heroku run python manage.py migrate -a zhytlobud
 """
 
 from datetime import datetime
