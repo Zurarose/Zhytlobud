@@ -35,7 +35,7 @@
                                     <label for="class-select">Класс*</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-star"></i></span>
-                                        <select class="custom-select" id="class-select" name="class-select" required>
+                                        <select class="custom-select required" id="class-select" name="class-select" >
                                             <option selected></option>
                                             <option value="Де-люкс">Де-люкс</option>
                                             <option value="Премиум">Премиум</option>
@@ -50,7 +50,7 @@
                                     <label for="complex-name">Название*</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-signature"></i></span>
-                                        <input type="text" class="form-control" id="complex-name" name="complex-name" value="" required>
+                                        <input type="text" class="form-control required" id="complex-name" name="complex-name" value="" >
                                     </div>
                                 </div>
                                 <div class="col-xl-2">
@@ -186,7 +186,7 @@
                                         <label>№ дома</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text">№</span>
-                                            <input class="form-control house-nums" type="text" id="num-build1" name="num-build1" required>
+                                            <input class="form-control house-nums required" type="text" id="num-build1" name="num-build1" >
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
@@ -273,7 +273,8 @@
                             </div>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-warning mt-4 col-auto btn-copy-house ml-4 counts-houses" value="1" name="counts-houses" >Добавить новый дом</button>
+                            <button type="button" class="btn btn-warning mt-4 col-auto btn-copy-house ml-4"name="counts-houses" >Добавить новый дом</button>
+                            <input type="hidden" id="counts-houses" name="counts-houses" value="1">
                             <button type="button" class="btn btn-warning mt-4 col-auto btn-delete-house">Удалить дом</button>
                         </div>
                         <button type="button" class="btn btn-warning btn-back mt-5 mb-4 ml-4">Назад</button>
@@ -292,7 +293,7 @@
                                         <label>№ дома</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text">№</span>
-                                            <select class="custom-select house-num-select" id="num-section-house1" name="num-section-house1" required>
+                                            <select class="custom-select house-num-select required" id="num-section-house1" name="num-section-house1" >
                                                 <option selected value=""></option>
                                             </select>
                                         </div>
@@ -476,11 +477,12 @@
                             </div>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-warning mt-4  ml-4 col-auto btn-copy-section counts-sections" value="1" name="counts-sections">Добавить новую секцию"</button>
+                            <button type="button" class="btn btn-warning mt-4  ml-4 col-auto btn-copy-section " name="counts-sections">Добавить новую секцию"</button>
+                            <input type="hidden" id="counts-sections" name="counts-sections" value="1">
                             <button type="button" class="btn btn-warning mt-4 col-auto btn-delete-section">Удалить секцию"</button>
                         </div>
                         <button type="button" class="btn btn-warning btn-back mt-5 mb-4 ml-4 save-choice">Назад</button>
-                        <button type="submit" class="btn btn-warning mt-5 mb-4">Подтвердить</button>
+                        <button type="submit" class="btn btn-warning mt-5 mb-4 required-check">Подтвердить</button>
                     </div>
                 </div>
             </form>
@@ -663,28 +665,28 @@
     $(".btn-delete-house").click(function () {
         if (houseCount != 2) {
             houseCount = whatToDelete(names_house, houseCount);
-            $(".counts-houses").val(houseCount - 1);
+            $("#counts-houses").val(houseCount - 1);
         }
     });
 
     $(".btn-delete-section").click(function () {
         if (sectionCount != 2) {
             sectionCount = whatToDelete(names_section, sectionCount);
-            $(".counts-sections").val(sectionCount - 1);
+            $("#counts-sections").val(sectionCount - 1);
         }
     });
 
     $(".btn-copy-house").click(function () {
         houseCopy("#tocopy-house1", "#topaste-house", houseCount);
         names_house.push("tocopy-house" + houseCount);
-        $(".counts-houses").val(houseCount);
+        $("#counts-houses").val(houseCount);
         houseCount = houseCount + 1;
 
     });
     $(".btn-copy-section").click(function () {
         houseCopy("#tocopy-section1", "#topaste-section", sectionCount);
         names_section.push("tocopy-section" + sectionCount);
-        $(".counts-sections").val(sectionCount);
+        $("#counts-sections").val(sectionCount);
         sectionCount = sectionCount + 1;
     });
     //To delete elements(house, sections)
@@ -706,13 +708,13 @@
         $clone.find('[id]').each(function () {
             //Perform the same replace as above
             var $th = $(this);
-            var newID = $th.attr('id').replace(/\d+$/, function (str) { return parseInt(str) + 1; });
+            var newID = $th.attr('id').replace(/\d+$/, count);
             $th.attr('id', newID);
         });
         $clone.find('[name]').each(function () {
             //Perform the same replace as above
             var $th = $(this);
-            var newName = $th.attr('name').replace(/\d+$/, function (str) { return parseInt(str) + 1; });
+            var newName = $th.attr('name').replace(/\d+$/, count);
             $th.attr('name', newName);
         });
         //To delete input values 
@@ -846,5 +848,18 @@
         }
         $(WhereToPut).val(count);
     }
+</script>
+<script>
+    $(".required-check").click(function () {
+        $('.required').each(function () {
+            if ($(this).val() == "") {
+                event.preventDefault();
+                alert('Заполните все обязательные поля!');
+                return false;
+            }
+        });
+        return true;
+    });
+   
 </script>
 {% endblock %}

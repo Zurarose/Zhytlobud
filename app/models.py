@@ -14,6 +14,7 @@ class Areas(models.Model):
     name = models.CharField(db_column='Name', max_length=50, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
+        managed = True
         db_table = 'areas'
 
 class Streets(models.Model):
@@ -22,6 +23,7 @@ class Streets(models.Model):
     name = models.CharField(max_length=50)
 
     class Meta:
+        managed = True
         db_table = 'streets'
 
 
@@ -31,6 +33,7 @@ class Subways(models.Model):
     name = models.CharField(db_column='Name', max_length=50, blank=True, null=True) # Field name made lowercase.
 
     class Meta:
+        managed = True
         db_table = 'subways'
 
 class Customers(models.Model):
@@ -40,13 +43,13 @@ class Customers(models.Model):
     start_work = models.DateField()
 
     class Meta:
+        managed = True
         db_table = 'customers'
 
 class Buildings(models.Model):
     id_buildings = models.AutoField(db_column='ID_buildings', primary_key=True)  # Field name made lowercase.
     class_field = models.CharField(db_column='class', max_length=50, blank=True, null=True)  # Field renamed because it was a Python reserved word.
     name = models.CharField(max_length=50)
-    street_type = models.CharField(max_length=50, blank=True, null=True)
     street_name = models.ForeignKey(Streets, models.DO_NOTHING, db_column='street_name', blank=True, null=True)
     builder = models.CharField(max_length=50, blank=True, null=True)
     customer = models.ForeignKey(Customers, models.DO_NOTHING, db_column='customer', blank=True, null=True)
@@ -54,11 +57,13 @@ class Buildings(models.Model):
     city_area = models.ForeignKey(Areas, models.DO_NOTHING, db_column='city area', blank=True, null=True)  # Field renamed to remove unsuitable characters.
     subway = models.ForeignKey(Subways, models.DO_NOTHING, db_column='subway', blank=True, null=True)
     parking = models.CharField(max_length=25, blank=True, null=True)
+    parking_type = models.CharField(max_length=25, blank=True, null=True)
     parking_num = models.IntegerField(blank=True, null=True)
     parking_price_hrn = models.FloatField(blank=True, null=True)
     parking_price_dol = models.FloatField(blank=True, null=True)
 
     class Meta:
+        managed = True
         db_table = 'buildings'
 
 class Financing(models.Model):
@@ -67,6 +72,7 @@ class Financing(models.Model):
     full_name = models.CharField(db_column='Full_name', max_length=50, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
+        managed = True
         db_table = 'financing'
 
 class Houses(models.Model):
@@ -86,6 +92,7 @@ class Houses(models.Model):
     quarter = models.IntegerField(db_column='Quarter', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
+        managed = True
         db_table = 'houses'
 
 class SalesAndPrices(models.Model):
@@ -121,16 +128,17 @@ class SalesAndPrices(models.Model):
     ondate = models.DateField(blank=True, null=True)
 
     class Meta:
+        managed = True
         db_table = 'sales_and_prices'
 
 
 class Sections(models.Model):
     id_house = models.ForeignKey(Houses, models.DO_NOTHING, db_column='ID_house', blank=True, null=True)  # Field name made lowercase.
     id_sections = models.AutoField(db_column='ID_sections', primary_key=True)  # Field name made lowercase.
-    attribute = models.IntegerField(blank=True, null=True)
+    attribute = models.CharField(max_length=50, blank=True, null=True)
     financing = models.ForeignKey(Financing, models.DO_NOTHING, db_column='financing', blank=True, null=True)
-    duplex_apartments = models.IntegerField(blank=True, null=True)
-    penthouses = models.IntegerField(blank=True, null=True)
+    duplex_apartments = models.CharField(max_length=50, blank=True, null=True)
+    penthouses = models.CharField(max_length=50, blank=True, null=True)
     apartments_num = models.IntegerField(blank=True, null=True)
     a1_num = models.IntegerField(blank=True, null=True)
     a2_num = models.IntegerField(blank=True, null=True)
@@ -147,6 +155,7 @@ class Sections(models.Model):
     avg_area = models.FloatField(blank=True, null=True)
 
     class Meta:
+        managed = True
         db_table = 'sections'
 
 

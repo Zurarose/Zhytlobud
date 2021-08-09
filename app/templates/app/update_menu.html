@@ -4,6 +4,12 @@
 {% load static %}
 
     <div class="container-fluid bg-trasparent my-5 p-3" style="position: relative;">
+        {% for message in messages %}
+                    <div class="alert alert-danger">
+                        <a class="close" href="#" data-dismiss="alert">×</a>
+                        {{ message }}
+                    </div>
+                {% endfor %}
         <div class="row row-cols-1 justify-content-center row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3 mt-5">
             <div class="col mt-3">
                 <div class="card  text-center h-100 shadow-sm rounded">

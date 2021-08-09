@@ -14,6 +14,8 @@ python manage.py dumpdata > db.json
 
 on heroku: heroku run python manage.py loaddata db.json -a zhytlobud
 
+DELETE ALL SUPERUSERS IF THERE IS PROBLEM!!
+
 heroku ps
 heroku ps:stop run.4859
 """
@@ -36,5 +38,5 @@ urlpatterns = [
    #For Ajax. Look at script in building_add.html.
    url(r'^ajax/getStreets/$', views.getStreets, name='getStreets'),
    url(r'^ajax/getSubways/$', views.getSubways, name='getSubways'),
-    url(r'^ajax/getCityAreas/$', views.getCityAreas, name='getCityAreas'),
+   url(r'^ajax/getCityAreas/$', views.getCityAreas, name='getCityAreas'),
 ]
