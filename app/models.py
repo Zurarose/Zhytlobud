@@ -36,12 +36,21 @@ class Subways(models.Model):
         managed = True
         db_table = 'subways'
 
+class Ownership(models.Model):
+    id_ownership = models.AutoField(db_column='id_ownership', primary_key=True)  # Field name made lowercase.
+    form = models.CharField(db_column='form', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    full_form = models.CharField(db_column='full_form', max_length=50, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = True
+        db_table = 'ownership'
+
 class Customers(models.Model):
     id_customer = models.AutoField(db_column='ID_customer', primary_key=True)  # Field name made lowercase.
-    ownership = models.CharField(db_column='Ownership', max_length=50, blank=True, null=True)
+    ownership = models.ForeignKey(Ownership, models.DO_NOTHING, db_column='form', blank=True, null=True)
     name = models.CharField(db_column='Name', max_length=50, blank=True, null=True)  # Field name made lowercase.
     phone = models.CharField(db_column='Phone', max_length=15, blank=True, null=True)  # Field name made lowercase.
-    start_work = models.DateField()
+    start_work = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = True
@@ -75,6 +84,8 @@ class Financing(models.Model):
     class Meta:
         managed = True
         db_table = 'financing'
+
+
 
 class Houses(models.Model):
     id_buildings = models.ForeignKey(Buildings, models.DO_NOTHING, db_column='ID_buildings', blank=True, null=True)  # Field name made lowercase.
