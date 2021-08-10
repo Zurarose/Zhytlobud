@@ -287,3 +287,6 @@ h2 {
 #menu1 {
     background: url('../../app/img/bg.jpg') no-repeat center center fixed;
 }
+input:invalid {
+    background: #e03444;
+}

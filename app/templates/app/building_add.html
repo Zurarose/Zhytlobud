@@ -24,7 +24,7 @@
                 </li>
             </ul>
             <!-- Tab panes -->
-            <form action='.' method='POST'>
+            <form action='.' id="form1" method='POST'>
                 {% csrf_token %}
                 <div class="tab-content">
                     <div class="tab-pane fade show active mt-5 shadow-lg rounded p-4" id="menu1" role="tabpanel" aria-labelledby="complex-tab">
@@ -35,7 +35,7 @@
                                     <label for="class-select">Класс*</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-star"></i></span>
-                                        <select class="custom-select required" id="class-select" name="class-select" >
+                                        <select class="custom-select required" id="class-select" name="class-select">
                                             <option selected></option>
                                             <option value="Де-люкс">Де-люкс</option>
                                             <option value="Премиум">Премиум</option>
@@ -50,7 +50,7 @@
                                     <label for="complex-name">Название*</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-signature"></i></span>
-                                        <input type="text" class="form-control required" id="complex-name" name="complex-name" value="" >
+                                        <input type="text" class="form-control required" id="complex-name" name="complex-name" value="">
                                     </div>
                                 </div>
                                 <div class="col-xl-2">
@@ -70,7 +70,7 @@
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-map-pin"></i></span>
                                         <select class="custom-select" id="name-streets" name="name-streets">
-                                             <option selected value=""></option>
+                                            <option selected value=""></option>
                                         </select>
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@
                                         <label>№ дома</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text">№</span>
-                                            <input class="form-control house-nums required" type="text" id="num-build1" name="num-build1" >
+                                            <input class="form-control house-nums required" type="text" id="num-build1" name="num-build1">
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
@@ -273,7 +273,7 @@
                             </div>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-warning mt-4 col-auto btn-copy-house ml-4"name="counts-houses" >Добавить новый дом</button>
+                            <button type="button" class="btn btn-warning mt-4 col-auto btn-copy-house ml-4" name="counts-houses">Добавить новый дом</button>
                             <input type="hidden" id="counts-houses" name="counts-houses" value="1">
                             <button type="button" class="btn btn-warning mt-4 col-auto btn-delete-house">Удалить дом</button>
                         </div>
@@ -293,7 +293,7 @@
                                         <label>№ дома</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text">№</span>
-                                            <select class="custom-select house-num-select required" id="num-section-house1" name="num-section-house1" >
+                                            <select class="custom-select house-num-select required" id="num-section-house1" name="num-section-house1">
                                                 <option selected value=""></option>
                                             </select>
                                         </div>
@@ -722,7 +722,7 @@
             var $th = $(this);
             $th.val("");
         });
-        $clone.find(".counts").text("№" + count);      
+        $clone.find(".counts").text("№" + count);
         $clone.appendTo($(whereToPaste));
         masknum();
     }
@@ -730,7 +730,7 @@
 <script>
     //mask for double
     function masknum() {
-       $('.num').inputmask({
+        $('.num').inputmask({
             'alias': 'decimal',
             'digits': 2,
             'digitsOptional': false,
@@ -850,16 +850,33 @@
     }
 </script>
 <script>
-    $(".required-check").click(function () {
+    $('#form1').submit(function (evt) {
         $('.required').each(function () {
+            //To check if inputs are unique         
             if ($(this).val() == "") {
-                event.preventDefault();
-                alert('Заполните все обязательные поля!');
                 return false;
-            }
+                alert('Заполните все обязательные поля!');
+            }           
         });
-        return true;
+        var inputs = [], flag = false;
+        $('.house-nums').each(function () {
+            if ($.inArray(this.value, inputs) != -1) flag = true;
+            inputs.push(this.value);
+        });
+        if (flag == true) {
+            alert('Номера домов должны быть уникальны!');
+            return false;
+        }        
     });
-   
+    $('.required-check').on('click', function () {
+        var Form = document.getElementById('form1');
+        if (Form.checkValidity() == false) {
+            var list = Form.querySelectorAll(':invalid');
+            for (var item of list) {
+                alert("Ошибка. " + $(item).closest("div").prev('label').text() + " — Проверьте это значение");
+            }
+        }
+    });
+
 </script>
 {% endblock %}
