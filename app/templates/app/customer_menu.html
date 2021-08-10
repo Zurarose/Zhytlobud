@@ -4,44 +4,35 @@
 {% load static %}
 
     <div class="container-fluid bg-trasparent my-5 p-3" style="position: relative;">
+
         <div class="row row-cols-1 justify-content-center row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3 mt-5">
             <div class="col mt-3">
                 <div class="card  text-center h-100 shadow-sm rounded">
-                    <div class="card-img-top" style="color: orange; "><i class="fas fa-home fa-9x"></i></div>
+                    <div class="card-img-top" style="color: orange; "><i class="fas fa-user-plus fa-9x"></i></div>
                     <div class="card-body">
-                        <h5 class="card-title my-0 my-2">Объекты</h5>
+                        <h5 class="card-title my-0 my-2">Добавить заказчика</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="text-center mt-5"> <a href="{% url 'object_menu' %}" class="stretched-link"></a> </div>
+                        <div class="text-center mt-5"> <a href="{% url 'customers_add' %}" class="stretched-link"></a> </div>
                     </div>
                 </div>
             </div>
             <div class="col mt-3">
                 <div class="card  text-center h-100 shadow-sm rounded">
-                    <div class="card-img-top" style="color: orange; "><i class="fas fa-sync fa-9x"></i></div>
+                    <div class="card-img-top" style="color: orange; "><i class="fas fa-user-tie fa-9x"></i></div>
                     <div class="card-body">
-                        <h5 class="card-title my-0 my-2">Обновить данные</h5>
+                        <h5 class="card-title my-0 my-2">Просмотр заказчиков</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="text-center mt-5"> <a href="{% url 'update_menu' %}" class="stretched-link"></a> </div>
+                        <div class="text-center mt-5"> <a href="{% url 'customers' %}" class="stretched-link"></a> </div>
                     </div>
                 </div>
             </div>
-            <div class="col mt-3">
+             <div class="col mt-3">
                 <div class="card  text-center h-100 shadow-sm rounded">
-                    <div class="card-img-top" style="color: orange; "><i class="fas fa-chart-bar fa-9x"></i></div>
+                    <div class="card-img-top" style="color: orange; "><i class="fas fa-user-edit fa-9x"></i></div>
                     <div class="card-body">
-                        <h5 class="card-title my-0 my-2">Аналитика</h5>
+                        <h5 class="card-title my-0 my-2">Редактирование заказчика</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <div class="text-center mt-5"> <a href="#" class="stretched-link"></a> </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mt-3">
-                <div class="card  text-center h-100 shadow-sm rounded">
-                    <div class="card-img-top" style="color: orange; "><i class="fas fa-cogs fa-9x"></i></div>
-                    <div class="card-body">
-                        <h5 class="card-title my-0 my-2">Дополнительно</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="text-center mt-5"> <a href="{% url 'other_menu' %}" class="stretched-link"></a> </div>
                     </div>
                 </div>
             </div>

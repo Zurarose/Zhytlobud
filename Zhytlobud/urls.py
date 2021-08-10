@@ -33,8 +33,16 @@ urlpatterns = [
    path('menu/', views.menu, name='menu'),
    path("logout/", LogoutView.as_view(), name="logout"),
 
-   path("building_add/", views.building_add, name="building_add"),
+
    path("update_menu/", views.update_menu, name="update_menu"),
+   path("object_menu/", views.object_menu, name="object_menu"),
+   path("customer_menu/", views.customer_menu, name="customer_menu"),
+   path("other_menu/", views.other_menu, name="other_menu"),
+
+   path("customers_add/", views.customers_add, name="customers_add"),
+   path("customers/", views.customers, name="customers"),
+   path("building_add/", views.building_add, name="building_add"),
+
    #For Ajax. Look at script in building_add.html.
    url(r'^ajax/getStreets/$', views.getStreets, name='getStreets'),
    url(r'^ajax/getSubways/$', views.getSubways, name='getSubways'),

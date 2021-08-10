@@ -8,21 +8,23 @@
     {% load static %}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <script src="{% static 'app/scripts/jquery.inputmask.min.js' %}"></script>
+    <script src="{% static 'app/scripts/jquery.inputmask.min.js' %}"></script>   
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="{% static 'app/DataTables/datatables.min.css' %}"/>
+    <script type="text/javascript" src="{% static 'app/DataTables/datatables.min.js' %}"></script>
+
     <link rel="shortcut icon" href="{% static 'app/img/icon.ico' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'app/fonts/icomoon/style.css' %}" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="{% static 'app/scripts/main.js' %}"></script>
     <script src="https://kit.fontawesome.com/1a5b8d2bcc.js" crossorigin="anonymous"></script>
-
     <style type="text/css">
         body {
             font-family: 'Open Sans', sans-serif;
@@ -31,21 +33,18 @@
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-        }
-      
+        }     
     </style>
 </head>
 <body>
 {% if user.is_authenticated %}
 {% csrf_token %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-
+    <nav class="navbar navbar-expand navbar-light bg-warning">
         <a class="navbar-brand" href="{% url 'menu' %}">
             <img src='{% static "app/img/logo.png" %}')" alt="ЖИЛСТРОЙ-2" height="36">
         </a>
-
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <ul class="navbar-nav mr-auto mt-2">
                 <li class="nav-item active">
                     <a class="nav-link text-light mt-2" href="{% url 'menu' %}"><h5>ГЛАВНАЯ</h5><span class="sr-only">(current)</span></a>
                 </li>
@@ -70,7 +69,6 @@
 {% block content %}
 
 {% endblock %}
-
 
 {% block scripts %}
 

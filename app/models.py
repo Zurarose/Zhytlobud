@@ -38,6 +38,7 @@ class Subways(models.Model):
 
 class Customers(models.Model):
     id_customer = models.AutoField(db_column='ID_customer', primary_key=True)  # Field name made lowercase.
+    ownership = models.CharField(db_column='Ownership', max_length=50, blank=True, null=True)
     name = models.CharField(db_column='Name', max_length=50, blank=True, null=True)  # Field name made lowercase.
     phone = models.CharField(db_column='Phone', max_length=15, blank=True, null=True)  # Field name made lowercase.
     start_work = models.DateField()

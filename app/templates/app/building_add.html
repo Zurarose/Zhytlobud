@@ -83,7 +83,7 @@
                                         <select class="custom-select" id="customer" name="customer">
                                             <option selected value=""></option>
                                             {% for post1 in posts1 %}
-                                            <option value="{{ post1 }}">{{ post1 }}</option>
+                                            <option value="{{ post1.name }}">{{ post1.ownership}} {{ post1.name }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>

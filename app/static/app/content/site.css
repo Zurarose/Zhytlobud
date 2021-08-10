@@ -290,3 +290,12 @@ h2 {
 input:invalid {
     background: #e03444;
 }
+/*tables*/
+.page-item.active .page-link {
+    background-color: #ffc404 !important;
+    border: 0px;
+}
+
+.page-link {
+    color: black !important;
+}
