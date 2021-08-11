@@ -2,6 +2,12 @@
 {% block content %}
 {% load static %}
 <div class="container-fluid bg-trasparent my-5 p-3" style="position: relative;">
+        {% for message in messages %}
+        <div class="alert alert-danger">
+            <a class="close" href="#" data-dismiss="alert">×</a>
+            {{ message }}
+        </div>
+        {% endfor %}
         {% if instances %}
         <h5 class="text-center mt-1 mb-2">Редактирование информации о заказчиках</h5>
         <hr class="bg-warning col-6 mb-2">
@@ -31,8 +37,8 @@
             <form action='.' id="form1" method='POST'>
                 {% csrf_token %}
                 <input class="required" type="hidden" id="selected" name="selected" value="" >
-                <input type="submit" class="btn btn-warning mt-5 mb-4 required-check" name="edit" value="Редактировать">
-                <input type="submit" class="btn btn-warning mt-5 mb-4 required-check" name="delete" value="Удалить">
+                <input type="submit" class="btn btn-warning mt-5 mb-4" name="edit" value="Редактировать">
+                <input type="submit" class="btn btn-warning mt-5 mb-4 check" name="delete" value="Удалить">
             </form>
          </div>
     {% else %}
@@ -46,6 +52,13 @@
     $('#form1').submit(function (evt) {
         if ($("#selected").val() == "") {
             alert("Выберите значения");
+            return false;
+        }
+    });
+    $(".check").click(function () {
+        if (confirm('Удалить поле?')) {
+            form1.submit();
+        } else {
             return false;
         }
     });

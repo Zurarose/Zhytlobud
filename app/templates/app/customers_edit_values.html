@@ -23,7 +23,7 @@
                         <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
                         <select class="custom-select" id="form" name="form" required>
                             {% for post1 in posts1 %}
-                            <option value="{{ post1.form }}">{{ post1.full_form}}</option>
+                            <option value="{{ post1.form }}"{% if cust.ownership.form == post1.form %}selected{% endif %}>{{ post1.full_form}}</option>
                             {% endfor %}
                         </select>
                     </div>
