@@ -299,3 +299,6 @@ h2 {
 .page-link {
     color: black !important;
 }
+#CustomerTableEdit .active {
+    background-color: #ffc404 !important;
+}

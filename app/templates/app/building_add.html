@@ -855,8 +855,8 @@
         $('.required').each(function () {
             //To check if inputs are unique         
             if ($(this).val() == "") {
-                return false;
                 alert('Заполните все обязательные поля!');
+                return false;             
             }           
         });
         var inputs = [], flag = false;
