@@ -58,10 +58,11 @@
 
 {% block scripts %}
 <script>
-    $(window).on('load', function () {
-        $('#loading').hide();
-    })
-
+  $(window).on('load', function () {
+    $('#loading').hide();
+  }) 
+</script>
+<script>
     $(document).ready(function () {
         $("#phone").inputmask({ "mask": "(999)999-9999" }); //specifying options
     });

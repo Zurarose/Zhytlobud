@@ -1,0 +1,32 @@
+﻿{% extends "app/layout.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid bg-trasparent my-5" style="position: relative;">
+    <h5 class="text-center mt-1 mb-2">Редактирование информации. Введите новые значения</h5>
+    <hr class="bg-warning col-6 mb-2">
+    <div class="d-flex justify-content-center mt-5 col-12">
+        <form action="." method="post">
+            {{ user_form|crispy }}
+            {% csrf_token %}
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                <select class="custom-select" id="type" name="type" required>
+                    <option selected value="Пользователь">Пользователь</option>
+                    <option value="Аналитик">Аналитик</option>
+                    <option value="Администратор">Администратор</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-warning mt-5 mb-4">Сохранить информацию</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(window).on('load', function () {
+        $('#loading').hide();
+    })
+</script>
+{% endblock %}
+

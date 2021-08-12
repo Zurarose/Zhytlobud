@@ -49,6 +49,11 @@
 
 {% block scripts %}
 <script>
+  $(window).on('load', function () {
+    $('#loading').hide();
+  }) 
+</script>
+<script>
     $('#form1').submit(function (evt) {
         if ($("#selected").val() == "") {
             alert("Выберите значения");
@@ -284,8 +289,5 @@
         });
 
     });
-    $(window).on('load', function () {
-        $('#loading').hide();
-    })
 </script>
 {% endblock %}
