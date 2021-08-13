@@ -290,6 +290,12 @@ h2 {
 .tab-content input:invalid {
     background: #e03444;
 }
+@media screen and (min-width: 0px) and (max-width: 1200px) {
+    #tohide {
+        display: none;
+    }
+    /* hide it elsewhere */
+}
 /*tables*/
 .page-item.active .page-link {
     background-color: #ffc404 !important;

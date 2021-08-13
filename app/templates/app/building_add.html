@@ -6,26 +6,36 @@
     <div class="row col-md-10 d-flex justify-content-center ">
         <div class="col-md-12">
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
-                <li class="nav-item mx-5" role="presentation">
-                    <a class="nav-link active" id="complex-tab" href="#menu1" role="tab" aria-controls="menu1" aria-selected="true">
-                        <button disabled type="button" class="shadow-sm btn btn-warning btn-circle btn-xl" style="color: white; font-size: 0.5rem;"><i class="fas fa-city fa-4x d-flex justify-content-center "></i></button>
-                    </a>
-                </li>
-                <li class="nav-item mx-5" role="presentation">
-                    <a class="nav-link" id="building-tab" href="#menu2" role="tab" aria-controls="menu2" aria-selected="false">
-                        <button disabled type="button" class="shadow-sm btn btn-warning btn-circle btn-xl" style="color: white; font-size: 0.5rem;"><i class="fas fa-building fa-4x d-flex justify-content-center "></i></button>
-                    </a>
-                </li>
-                <li class="nav-item mx-5" role="presentation">
-                    <a class="nav-link" id="section-tab" href="#menu3" role="tab" aria-controls="menu3" aria-selected="false">
-                        <button disabled type="button" class="shadow-sm btn btn-warning btn-circle btn-xl" style="color: white; font-size: 0.5rem;"><i class="fas fa-door-closed fa-4x d-flex justify-content-center "></i></button>
-                    </a>
-                </li>
-            </ul>
+            <div id="tohide">
+                <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
+                    <li class="nav-item mx-5" role="presentation">
+                        <a class="nav-link active" id="complex-tab" href="#menu1" role="tab" aria-controls="menu1" aria-selected="true">
+                            <button disabled type="button" class="shadow-sm btn btn-warning btn-circle btn-xl" style="color: white; font-size: 0.5rem;"><i class="fas fa-city fa-4x d-flex justify-content-center "></i></button>
+                        </a>
+                    </li>
+                    <li class="nav-item mx-5" role="presentation">
+                        <a class="nav-link" id="building-tab" href="#menu2" role="tab" aria-controls="menu2" aria-selected="false">
+                            <button disabled type="button" class="shadow-sm btn btn-warning btn-circle btn-xl" style="color: white; font-size: 0.5rem;"><i class="fas fa-building fa-4x d-flex justify-content-center "></i></button>
+                        </a>
+                    </li>
+                    <li class="nav-item mx-5" role="presentation">
+                        <a class="nav-link" id="section-tab" href="#menu3" role="tab" aria-controls="menu3" aria-selected="false">
+                            <button disabled type="button" class="shadow-sm btn btn-warning btn-circle btn-xl" style="color: white; font-size: 0.5rem;"><i class="fas fa-door-closed fa-4x d-flex justify-content-center "></i></button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <!-- Tab panes -->
             <form action='.' id="form1" method='POST'>
                 {% csrf_token %}
+                <div class="sticky-top col-xl-3" style="position:absolute">
+                <label>Курс доллара</label>
+                    <div class="input-group flex-nowrap p-0 col-xl-8">
+                        <span class="input-group-text">$</span>
+                        <input class="num form-control dollar_val" type="text" id="dollar" name="dollar">
+                        <a class="btn btn-warning" id="checkDollar" href="https://goo-gl.su/jd6bSL" target="_blank">Узнать</a>
+                    </div>
+                </div>
                 <div class="tab-content">
                     <div class="tab-pane fade show active mt-5 shadow-lg rounded p-4" id="menu1" role="tabpanel" aria-labelledby="complex-tab">
                         <div>
@@ -159,14 +169,14 @@
                                     <label>Стоимость</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text">₴</span>
-                                        <input class="num form-control parking-up" type="text" id="price-parking-up-hrn1" name="price-parking-up-hrn1">
+                                        <input class="num calc_dollar form-control parking-up" type="text" id="price-parking-up-hrn1" name="price-parking-up-hrn1">
                                     </div>
                                 </div>
                                 <div class="col-xl-2">
                                     <label>Стоимость</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text">$</span>
-                                        <input class="num form-control parking-up" type="text" id="price-parking-up-dol1" name="price-parking-up-dol1">
+                                        <input class="num dollar form-control parking-up" readonly type="text" id="price-parking-up-dol1" name="price-parking-up-dol1">
                                     </div>
                                 </div>
                             </div>
@@ -258,14 +268,14 @@
                                         <label>Стоимость</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text">₴</span>
-                                            <input class="num form-control parking-down" type="text" id="price-parking-down-hrn1" name="price-parking-down-hrn1">
+                                            <input class="num calc_dollar form-control parking-down" type="text" id="price-parking-down-hrn1" name="price-parking-down-hrn1">
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
                                         <label>Стоимость</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text">$</span>
-                                            <input class="num form-control parking-down" type="text" id="price-parking-down-dol1" name="price-parking-down-dol1">
+                                            <input class="num dollar form-control parking-down" readonly type="text" id="price-parking-down-dol1" name="price-parking-down-dol1">
                                         </div>
                                     </div>
                                 </div>
@@ -598,6 +608,19 @@
             subway.disabled = true;
         }
     }
+    //To culc dollar
+    $('.calc_dollar').change(calcDol);
+    $('.dollar_val').change(function () {
+        $(".calc_dollar").val("")
+        $(".dollar").val("")
+    });
+
+    function calcDol() {
+        console.log("H");
+        var dol = parseFloat($(this).val()) / parseFloat($(".dollar_val").val());
+        $(this).closest('.form-row').find('.dollar').val(dol);
+    }
+
     //To select parking type
     $('#parking').change(parkOnOff);
     $('#parking-type').change(EnableChoice);
