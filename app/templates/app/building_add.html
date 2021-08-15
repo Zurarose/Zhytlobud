@@ -796,6 +796,14 @@
     }
 </script>
 <script>
+    $(".house-nums").keypress(function (e) {
+        var verified = String.fromCharCode(e.which).match(/[a-zA-Z-]/);
+        if (verified) {
+            e.preventDefault();
+        }
+    });
+</script>
+<script>
     //To save section choice
     $('.save-choice').click(SaveChoice);
     var saves = [];

@@ -40,7 +40,7 @@ urlpatterns = [
    path("object_menu/", views.object_menu, name="object_menu"),
    path("customer_menu/", views.customer_menu, name="customer_menu"),
    path("other_menu/", views.other_menu, name="other_menu"),
-  url(r'^register/$', views.register, name='register'),
+   url(r'^register/$', views.register, name='register'),
 
    path("customers_add/", views.customers_add, name="customers_add"),
    path("customers_edit/", views.customers_edit, name="customers_edit"),
