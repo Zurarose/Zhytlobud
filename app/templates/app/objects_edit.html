@@ -1,46 +1,56 @@
 ﻿{% extends "app/layout.html" %}
 {% block content %}
 {% load static %}
-<div class="container-fluid bg-trasparent my-5 p-3" style="position: relative;">
+<div class="container col-12 bg-trasparent my-5 p-3" style="position: relative;">
         {% for message in messages %}
-        <div class="alert alert-danger">
-            <a class="close" href="#" data-dismiss="alert">×</a>
-            {{ message }}
-        </div>
+            <div class="alert alert-danger">
+                <a class="close" href="#" data-dismiss="alert">×</a>
+                {{ message }}
+            </div>
         {% endfor %}
         {% if instances %}
-        <h5 class="text-center mt-1 mb-2">Просмотр и редактирование информации о заказчиках</h5>
-        <hr class="bg-warning col-6 mb-2">
-        <div class="table-responsive-lg">
-            <table id="CustomerTableEdit" class='table table-Light '>
-                <thead>
-                    <tr class="bg-warning text-white">
-                      <th>ИД</th>
-                      <th>Форма собственности</th>
-                      <th>Наименование</th>
-                      <th>Номер Телефона</th>
-                      <th>Начало сотрудничества</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <h5 class="text-center mt-1 mb-2">Просмотр и редактирование информации объектов</h5>
+    <hr class="bg-warning col-6 mb-2">
+    <div class="table-responsive-lg">
+        <table id="CustomerTableEdit" class='table table-Light '>
+            <thead>
+                <tr class="bg-warning text-white">
+                    <th>ИД</th>
+                    <th>Класс</th>
+                    <th>Наименование</th>                 
+                    <th>Застройщик</th>
+                    <th>Генподрядчик</th>
+                    <th>Улица</th>
+                    <th>Район</th>
+                    <th>Градостроительная зона</th>
+                    <th>Метрополитен</th>
+                    <th>Наличие парковки</th>
+                </tr>
+            </thead>
+            <tbody>
                 {% for row in instances %}
                     <tr>
-                      <td class="id">{{ row.id_customer }}</td>
-                      <td>{{ row.ownership.form }}</td>
-                      <td>{{ row.name }}</td>
-                      <td>{{ row.phone }}</td>
-                      <td>{{ row.start_work }}</td>
-                    </tr> 
+                        <td class="id">{{ row.id_buildings }}</td>
+                        <td>{{ row.class_field }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.customer.name }}</td>
+                        <td>{{ row.builder }}</td>
+                        <td>{{ row.street_name.name }}</td>
+                        <td>{{ row.city_area.name }}</td>
+                        <td>{{ row.urban_develop_zone}} район</td>
+                        <td>{{ row.subway.name }}</td>
+                        <td>{{ row.parking }}</td>
+                    </tr>
                 {% endfor %}
-                </tbody>
-            </table>
-            <form action='.' id="form1" method='POST'>
-                {% csrf_token %}
-                <input class="required" type="hidden" id="selected" name="selected" value="" >
-                <input type="submit" class="btn btn-warning mt-5 mb-4" name="edit" value="Редактировать">
-                <input type="submit" class="btn btn-warning mt-5 mb-4 check" name="delete" value="Удалить">
-            </form>
-         </div>
+            </tbody>
+        </table>
+        <form action='.' id="form1" method='POST'>
+            {% csrf_token %}
+                <input class="required" type="hidden" id="selected" name="selected" value="">
+            <input type="submit" class="btn btn-warning mt-5 mb-4" name="edit" value="Редактировать">
+            <input type="submit" class="btn btn-warning mt-5 mb-4 check" name="delete" value="Удалить">
+        </form>
+    </div>
     {% else %}
         <p>No data available</p>
     {% endif %}
@@ -49,9 +59,9 @@
 
 {% block scripts %}
 <script>
-  $(window).on('load', function () {
-    $('#loading').hide();
-  }) 
+    $(window).on('load', function () {
+        $('#loading').hide();
+    })
 </script>
 <script>
     $('#form1').submit(function (evt) {
@@ -275,7 +285,7 @@
             }
         });
 
-        $.fn.dataTable.ext.classes.sPageButton = 'btn btn-warning';      
+        $.fn.dataTable.ext.classes.sPageButton = 'btn btn-warning';
         $('#CustomerTableEdit tbody').on('click', 'tr', function () {
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
@@ -284,7 +294,7 @@
             else {
                 table.$('tr.active').removeClass('active');
                 $(this).addClass('active');
-                $("#selected").val($(this).closest('tr').find('.id').text());               
+                $("#selected").val($(this).closest('tr').find('.id').text());
             }
         });
 

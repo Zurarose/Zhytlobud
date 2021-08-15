@@ -146,6 +146,8 @@
     <Content Include="app\static\app\scripts\jquery.steps.js" />
     <Content Include="app\static\app\scripts\main.js" />
     <Content Include="app\templates\app\building_add.html" />
+    <Content Include="app\templates\app\objects_edit_values.html" />
+    <Content Include="app\templates\app\objects_edit.html" />
     <Content Include="app\templates\app\customers_edit_values.html" />
     <Content Include="app\templates\app\customers_edit.html" />
     <Content Include="app\templates\app\customers_add.html" />

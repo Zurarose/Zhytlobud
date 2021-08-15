@@ -1,8 +1,6 @@
 ﻿{% extends "app/layout.html" %}
-
 {% block content %}
 {% load static %}
-
     <div class="container-fluid bg-trasparent my-5 p-3" style="position: relative;">
         {% for message in messages %}
         <div class="alert alert-danger">
@@ -25,27 +23,15 @@
                 <div class="card  text-center h-100 shadow-sm rounded">
                     <div class="card-img-top" style="color: orange;"><i class="fas fa-search-location fa-9x"></i></div>
                     <div class="card-body">
-                        <h5 class="card-title my-0 my-2">Просмотр оъектов</h5>
+                        <h5 class="card-title my-0 my-2">Просмотр и редактирование оъектов</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="text-center mt-5"><a href="#" class="stretched-link"></a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mt-3">
-                <div class="card  text-center h-100 shadow-sm rounded">
-                    <div class="card-img-top" style="color: orange;"><i class="fas fa-file-signature fa-9x"></i></div>
-                    <div class="card-body">
-                        <h5 class="card-title my-0 my-2">Редактирование объектов</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="text-center mt-5"><a href="#" class="stretched-link"></a></div>
+                        <div class="text-center mt-5"><a href="{% url 'objects_edit' %}" class="stretched-link"></a></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock %}
-
 {% block scripts %}
 <script>
   $(window).on('load', function () {
