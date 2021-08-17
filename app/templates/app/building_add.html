@@ -2,7 +2,7 @@
 
 {% block content %}
 {% load static %}
-<div class="container mt-5 col-md-12 d-flex justify-content-center">
+<div class="container mt-3 col-md-12 d-flex justify-content-center">
     <div class="row col-md-10 d-flex justify-content-center ">
         <div class="col-md-12">
             <!-- Nav tabs -->
@@ -25,10 +25,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- Tab panes -->
-            <form action='.' id="form1" method='POST'>
-                {% csrf_token %}
-                <div class="sticky-top col-xl-3" style="position:absolute">
+             <div class="sticky-top col-xl-4 col-sm-4" style="position:absolute">
                 <label>Курс доллара</label>
                     <div class="input-group flex-nowrap p-0 col-xl-8">
                         <span class="input-group-text">$</span>
@@ -36,6 +33,9 @@
                         <a class="btn btn-warning" id="checkDollar" href="https://goo-gl.su/jd6bSL" target="_blank">Узнать</a>
                     </div>
                 </div>
+            <!-- Tab panes -->
+            <form action='.' id="form1" method='POST'>
+                {% csrf_token %}              
                 <div class="tab-content">
                     <div class="tab-pane fade show active mt-5 shadow-lg rounded p-4" id="menu1" role="tabpanel" aria-labelledby="complex-tab">
                         <div>
@@ -283,9 +283,9 @@
                             </div>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-warning mt-4 col-auto btn-copy-house ml-4" name="counts-houses">Добавить новый дом</button>
+                            <button type="button" class="btn btn-warning mt-1 col-auto btn-copy-house ml-4" name="counts-houses">Добавить новый дом</button>
                             <input type="hidden" id="counts-houses" name="counts-houses" value="1">
-                            <button type="button" class="btn btn-warning mt-4 col-auto btn-delete-house">Удалить дом</button>
+                            <button type="button" class="btn btn-warning mt-1 col-auto btn-delete-house">Удалить дом</button>
                         </div>
                         <button type="button" class="btn btn-warning btn-back mt-5 mb-4 ml-4">Назад</button>
                         <button type="button" class="btn btn-warning btn-next mt-5 mb-4 sectionChange">Продолжить</button>
@@ -368,10 +368,10 @@
                                 </div>
                                 <div class="form-row mt-2">
                                     <div class="card col-6 except p-0 shadow-none border-right-0 border">
-                                        <div class="card-header">
+                                        <div class="p-1 pl-2 card-header">
                                             Информация об однокомнатных квартирах:
                                         </div>
-                                        <div class="card-body row">
+                                        <div class="py-1 card-body row">
                                             <div class="col-xl-4">
                                                 <label>Количество 1км.</label>
                                                 <div class="input-group flex-nowrap">
@@ -396,10 +396,10 @@
                                         </div>
                                     </div>
                                     <div class="card col-6 except p-0 shadow-none border-top">
-                                        <div class="card-header">
+                                        <div class="p-1 pl-2 card-header">
                                             Информация о двухкомнатных квартирах:
                                         </div>
-                                        <div class="card-body row">
+                                        <div class="py-1 card-body row">
                                             <div class="col-xl-4">
                                                 <label>Количество 2км.</label>
                                                 <div class="input-group flex-nowrap">
@@ -426,10 +426,10 @@
                                 </div>
                                 <div class="form-row mt-2">
                                     <div class="card col-6 except p-0 shadow-none border-right-0">
-                                        <div class="card-header">
+                                        <div class="p-1 pl-2 card-header">
                                             Информация о трехкомнатных квартирах:
                                         </div>
-                                        <div class="card-body row">
+                                        <div class="py-1 card-body row">
                                             <div class="col-xl-4">
                                                 <label>Количество 3км.</label>
                                                 <div class="input-group flex-nowrap">
@@ -454,10 +454,10 @@
                                         </div>
                                     </div>
                                     <div class="card col-6 except p-0 shadow-none border-top">
-                                        <div class="card-header">
+                                        <div class="p-1 pl-2 card-header">
                                             Информация о четырехкомнатных квартирах:
                                         </div>
-                                        <div class="card-body row">
+                                        <div class="py-1 card-body row">
                                             <div class="col-xl-4">
                                                 <label>Количество 4км.</label>
                                                 <div class="input-group flex-nowrap">
@@ -487,9 +487,9 @@
                             </div>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-warning mt-4  ml-4 col-auto btn-copy-section " name="counts-sections">Добавить новую секцию"</button>
+                            <button type="button" class="btn btn-warning mt-1  ml-4 col-auto btn-copy-section " name="counts-sections">Добавить новую секцию"</button>
                             <input type="hidden" id="counts-sections" name="counts-sections" value="1">
-                            <button type="button" class="btn btn-warning mt-4 col-auto btn-delete-section">Удалить секцию"</button>
+                            <button type="button" class="btn btn-warning mt-1 col-auto btn-delete-section">Удалить секцию"</button>
                         </div>
                         <button type="button" class="btn btn-warning btn-back mt-5 mb-4 ml-4 save-choice">Назад</button>
                         <button type="submit" class="btn btn-warning mt-5 mb-4 required-check">Подтвердить</button>
@@ -610,13 +610,10 @@
     }
     //To culc dollar
     $('.calc_dollar').change(calcDol);
-    $('.dollar_val').change(function () {
-        $(".calc_dollar").val("")
-        $(".dollar").val("")
+    $('.dollar_val').change(function () {    
+        $('.calc_dollar').trigger("change")
     });
-
     function calcDol() {
-        console.log("H");
         var dol = parseFloat($(this).val()) / parseFloat($(".dollar_val").val());
         $(this).closest('.form-row').find('.dollar').val(dol);
     }
@@ -778,7 +775,6 @@
             },
             dataType: 'json',
             success: function (data) {
-                //console.log(data.names)
                 var select = document.getElementById('name-streets');
 
                 var length = select.options.length;

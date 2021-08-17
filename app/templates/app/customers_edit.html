@@ -1,7 +1,7 @@
 ﻿{% extends "app/layout.html" %}
 {% block content %}
 {% load static %}
-<div class="container-fluid bg-trasparent my-5 p-3" style="position: relative;">
+<div class="container-fluid bg-trasparent my-3 p-3" style="position: relative;">
         {% for message in messages %}
         <div class="alert alert-danger">
             <a class="close" href="#" data-dismiss="alert">×</a>
@@ -11,8 +11,8 @@
         {% if instances %}
         <h5 class="text-center mt-1 mb-2">Просмотр и редактирование информации о заказчиках</h5>
         <hr class="bg-warning col-6 mb-2">
-        <div class="table-responsive-lg">
-            <table id="CustomerTableEdit" class='table table-Light '>
+        <div class="table-responsive">
+            <table id="DataTable" class='table table-Light '>
                 <thead>
                     <tr class="bg-warning text-white">
                       <th>ИД</th>
@@ -70,7 +70,7 @@
 </script>
 <script>
     $(document).ready(function () {
-        var table = $('#CustomerTableEdit').DataTable({
+        var table = $('#DataTable').DataTable({
             select: true,
             language: {
                 "processing": "Подождите...",

@@ -1,23 +1,23 @@
 ﻿{% extends "app/layout.html" %}
 {% block content %}
 {% load static %}
-<div class="container col-12 bg-trasparent my-5 p-3" style="position: relative;">
-        {% for message in messages %}
+<div class="container col-12 bg-trasparent my-3 p-3" style="position: relative;">
+    {% for message in messages %}
             <div class="alert alert-danger">
                 <a class="close" href="#" data-dismiss="alert">×</a>
                 {{ message }}
             </div>
-        {% endfor %}
+    {% endfor %}
         {% if instances %}
-        <h5 class="text-center mt-1 mb-2">Просмотр и редактирование информации объектов</h5>
+        <h5 class="text-center mt-1 mb-2">Просмотр и редактирование информации об объектах</h5>
     <hr class="bg-warning col-6 mb-2">
-    <div class="table-responsive-lg">
-        <table id="CustomerTableEdit" class='table table-Light '>
+    <div class="table-responsive">
+        <table id="DataTable" class='table table-Light '>
             <thead>
                 <tr class="bg-warning text-white">
                     <th>ИД</th>
                     <th>Класс</th>
-                    <th>Наименование</th>                 
+                    <th>Наименование</th>
                     <th>Застройщик</th>
                     <th>Генподрядчик</th>
                     <th>Улица</th>
@@ -46,9 +46,8 @@
         </table>
         <form action='.' id="form1" method='POST'>
             {% csrf_token %}
-                <input class="required" type="hidden" id="selected" name="selected" value="">
-            <input type="submit" class="btn btn-warning mt-5 mb-4" name="edit" value="Редактировать">
-            <input type="submit" class="btn btn-warning mt-5 mb-4 check" name="delete" value="Удалить">
+            <input class="required" type="hidden" id="selected" name="selected" value="">
+            <input type="submit" class="btn btn-warning mt-5 mb-4" name="review" value="Посмотреть запись">
         </form>
     </div>
     {% else %}
@@ -70,17 +69,10 @@
             return false;
         }
     });
-    $(".check").click(function () {
-        if (confirm('Удалить поле?')) {
-            form1.submit();
-        } else {
-            return false;
-        }
-    });
 </script>
 <script>
     $(document).ready(function () {
-        var table = $('#CustomerTableEdit').DataTable({
+        var table = $('#DataTable').DataTable({
             select: true,
             language: {
                 "processing": "Подождите...",
@@ -286,7 +278,7 @@
         });
 
         $.fn.dataTable.ext.classes.sPageButton = 'btn btn-warning';
-        $('#CustomerTableEdit tbody').on('click', 'tr', function () {
+        $('#DataTable tbody').on('click', 'tr', function () {
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
                 $("#selected").val("");
