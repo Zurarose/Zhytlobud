@@ -12,7 +12,9 @@
     <h5 class="text-center mt-1 mb-2">Комлпекс: {{complex.name}}</h5>
     <hr class="bg-warning col-6 mb-2">
     <div class="row row-cols-xl-2">
-        <ul class="list-group col-xl-2 p-0 mt-1">
+    <div class="col-xl-2 p-0 mt-1">        
+        <h5 class="text-left ml-3">О комплексе:</h5>
+        <ul class="list-group">
             <li class="list-group-item">Класс: {{complex.class_field}}</li>
             <li class="list-group-item">Улица: {{complex.street_name.name}}</li>
             <li class="list-group-item">Застройщик: {{complex.customer.name}}</li>
@@ -21,20 +23,24 @@
             <li class="list-group-item">Район: {{complex.city_area.name}}</li>
             <li class="list-group-item">Метрополитен: {{complex.subway.name}}</li>
             <li class="list-group-item">Наличие парковки: {{complex.parking}}</li>
-            <li class="list-group-item">Тип парковки: {{complex.parking_type}}</li>
-            {% if complex.parking_type == "Надземная" %}
-            <li class="list-group-item">Метрополитен: {{complex.subway.name}}</li>
-            <li class="list-group-item">Наличие парковки: {{complex.parking}}</li>
-            <li class="list-group-item">Тип парковки: {{complex.parking_type}}</li>
+            {% if complex.parking == "Есть" %}
+                <li class="list-group-item {% if complex.parking_type == "Подземная" %} border-bottom-0 {% endif %}">Тип парковки: {{complex.parking_type}}</li>
+                    {% if complex.parking_type == "Надземная" %}
+                    <li class="list-group-item">Парковка (мест): {{complex.parking_num}}</li>
+                    <li class="list-group-item">Цена(₴): {{complex.parking_price_hrn}}</li>
+                    <li class="list-group-item border-bottom-0">Цена($): {{complex.parking_price_dol}}</li>
+                    {% endif %}     
             {% endif %}
         </ul>
-        <div class="col-xl-10">
-            <div class="table-responsive">
+        </div>
+        <div class="p-0 col-xl-10">
+            <h5 class="text-left ml-3">Дома:</h5>
+            <div class="table-responsive col-xl-12">
                 <table id="DataTable" class='table table-Light display compact'>
                     <thead>
                         <tr class="bg-warning text-white">
                             <th style="display: none;">ИД</th>
-                            <th>Номер дома</th>
+                            <th>№ дома</th>
                             <th>Площадь дома</th>
                             <th>Площадь квартир</th>
                             <th>Этап постройки</th>
@@ -42,12 +48,12 @@
                             <th>Год ввода</th>
                             <th>Квартал</th>
                             <th>Этажность</th>
-                            {% if complex.parking_type == "Подземная" %}
-                        <th>Парковка(мест)</th>
-                            <th>Стоимость ₴</th>
-                            <th>Стоимость $</th>
+                            {% if complex.parking_type == "Подземная" and complex.parking == "Есть" %}
+                            <th>Парковка (мест)</th>
+                            <th>Цена(₴)</th>
+                            <th>Цена($)</th>
                             {% endif %}
-                        <th>Примечание</th>
+                            <th>Заметка</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,13 +73,16 @@
                             <td>{{ row.parking_price_hrn }}</td>
                             <td>{{ row.parking_price_dol}}</td>
                             {% endif %}
-                            <td class="p-1"><a class="border border-warning btn btn-light" role="button" data-toggle="popover" data-trigger="hover" title="Примечание" data-content="{{row.remark}}">Посмотреть</a></td>
+                            <td class="p-1"><a class="border border-warning btn btn-light" role="button" data-toggle="popover" data-trigger="hover" title="Примечание" data-content="{{row.remark}}"><i class="fas fa-search"></i></a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
-            <div class="table-responsive">
+
+
+            <h5 class="text-left ml-3">Секции:</h5>
+            <div class="table-responsive col-xl-12">
                 <table id="DataTable_second" class='table table-Light display compact'>
                     <thead>
                         <tr class="bg-warning text-white">
@@ -126,9 +135,9 @@
                 "processing": "Подождите...",
                 "search": "Поиск:",
                 "lengthMenu": "Показать _MENU_ записей",
-                "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
-                "infoEmpty": "Записи с 0 до 0 из 0 записей",
-                "infoFiltered": "(отфильтровано из _MAX_ записей)",
+                "info": "",
+                "infoEmpty": "",
+                "infoFiltered": "",
                 "loadingRecords": "Загрузка записей...",
                 "zeroRecords": "Записи отсутствуют.",
                 "emptyTable": "В таблице отсутствуют данные",
@@ -324,22 +333,26 @@
                 }
             }
         });
-
+        
         $.fn.dataTable.ext.classes.sPageButton = 'btn btn-warning';
         $('#DataTable tbody').on('click', 'tr', function () {
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
-                $(".toRemove").remove()
+                $(".toRemove").remove();
                 selected = null
             }
             else {
                 table.$('tr.active').removeClass('active');
                 $(this).addClass('active');
                 selected = ($(this).closest('tr').find('.id').text());
+                $(".toRemove").remove();
                 selectChg();
+                
             }
         });
-
+        $("#DataTable>tbody>tr:first").attr("class", "active");
+        selected = $("#DataTable>tbody>tr:first").find('.id').text();
+        selectChg();
     });
 
     var appendTable = document.getElementById("appendHere");
@@ -356,7 +369,7 @@
                 for (var i = 0; i < data.objects.length; i++) {
                     var tr = document.createElement('tr')
                     appendTable.appendChild(tr);
-                    for (var j = 0; j < 10; j++) {
+                    for (var j = 0; j < 18; j++) {
                         if (j > 5) {
                             var td = document.createElement('td');
                             var a = document.createElement('a');
@@ -365,12 +378,15 @@
                             a.setAttribute("data-toggle", "popover");
                             a.setAttribute("data-trigger", "hover");
                             a.setAttribute("title", "Дополнительная информация");
-                            a.setAttribute("data-content", data.objects[i][j]);
-                            var text = document.createTextNode("Подробнее")
+                            a.setAttribute("data-content", "Минимальная площадь: " + data.objects[i][j + 1] + "\n" + "Максимальная площадь: " + data.objects[i][j + 2]);
+                            var text = document.createTextNode(data.objects[i][j + 1] + " шт. ")
+                            j = j + 2;
                             a.appendChild(text);
+                            var ielem = document.createElement("i");
+                            ielem.setAttribute("class", "fas fa-search")
+                            a.appendChild(ielem);
                             td.appendChild(a);
-                            td.setAttribute("class", "p-1");
-                            td.setAttribute("class", "toRemove")
+                            td.setAttribute("class", "p-1 toRemove")
                             tr.appendChild(td);
                             $('[data-toggle="popover"]').popover()
                         }
@@ -396,9 +412,9 @@
                 "processing": "Подождите...",
                 "search": "Поиск:",
                 "lengthMenu": "Показать _MENU_ записей",
-                "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
-                "infoEmpty": "Записи с 0 до 0 из 0 записей",
-                "infoFiltered": "(отфильтровано из _MAX_ записей)",
+                "info": "",
+                "infoEmpty": "",
+                "infoFiltered": "",
                 "loadingRecords": "Загрузка записей...",
                 "zeroRecords": "Записи отсутствуют.",
                 "emptyTable": "В таблице отсутствуют данные",
