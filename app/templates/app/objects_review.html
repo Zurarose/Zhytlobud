@@ -378,8 +378,21 @@
                             a.setAttribute("data-toggle", "popover");
                             a.setAttribute("data-trigger", "hover");
                             a.setAttribute("title", "Дополнительная информация");
-                            a.setAttribute("data-content", "Минимальная площадь: " + data.objects[i][j + 1] + "\n" + "Максимальная площадь: " + data.objects[i][j + 2]);
-                            var text = document.createTextNode(data.objects[i][j + 1] + " шт. ")
+                            var min_area
+                            if (data.objects[i][j + 1] != null)
+                                min_area = data.objects[i][j + 1]
+                            else
+                                min_area = "—"
+                            if (data.objects[i][j + 2] != null)
+                                max_area = data.objects[i][j + 2]
+                            else
+                                max_area = "—"
+                            a.setAttribute("data-content", "Минимальная площадь: " + min_area + "\n" + "Максимальная площадь: " + max_area);
+                            if (data.objects[i][j] != null)
+                                total = data.objects[i][j]
+                            else
+                                total = "—"
+                            var text = document.createTextNode(total + " шт. ")
                             j = j + 2;
                             a.appendChild(text);
                             var ielem = document.createElement("i");
