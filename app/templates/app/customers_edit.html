@@ -276,7 +276,7 @@
         });
 
         $.fn.dataTable.ext.classes.sPageButton = 'btn btn-warning';      
-        $('#CustomerTableEdit tbody').on('click', 'tr', function () {
+        $('#DataTable tbody').on('click', 'tr', function () {
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
                 $("#selected").val("");
