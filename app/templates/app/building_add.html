@@ -42,7 +42,7 @@
                             <h5 class="text-center mt-1 mb-4">Информация о комплексе</h5>
                             <div class="form-row mt-2">
                                 <div class="col-xl-2">
-                                    <label for="class-select">Класс*</label>
+                                    <label for="class-select">Класс<span style="color:red;">*</span></label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-star"></i></span>
                                         <select class="custom-select required" id="class-select" name="class-select">
@@ -57,7 +57,7 @@
                                 </div>
 
                                 <div class="col-xl-4">
-                                    <label for="complex-name">Название*</label>
+                                    <label for="complex-name">Название<span style="color:red;">*</span></label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-signature"></i></span>
                                         <input type="text" class="form-control required" id="complex-name" name="complex-name" value="">
@@ -193,7 +193,7 @@
                                 <h5 class="text-center mt-4 mb-4 counts">№1</h5>
                                 <div class="form-row mt-2">
                                     <div class="col-xl-2">
-                                        <label>№ дома</label>
+                                        <label>№ дома<span style="color:red;">*</span></label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text">№</span>
                                             <input class="form-control house-nums required" type="text" id="num-build1" name="num-build1">
@@ -283,9 +283,9 @@
                             </div>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-warning mt-1 col-auto btn-copy-house ml-4" name="counts-houses">Добавить новый дом</button>
+                            <button type="button" class="btn btn-success mt-1 col-auto btn-copy-house ml-4" name="counts-houses">Добавить новый дом</button>
                             <input type="hidden" id="counts-houses" name="counts-houses" value="1">
-                            <button type="button" class="btn btn-warning mt-1 col-auto btn-delete-house">Удалить дом</button>
+                            <button type="button" class="btn btn-danger mt-1 col-auto btn-delete-house">Удалить дом</button>
                         </div>
                         <button type="button" class="btn btn-warning btn-back mt-5 mb-4 ml-4">Назад</button>
                         <button type="button" class="btn btn-warning btn-next mt-5 mb-4 sectionChange">Продолжить</button>
@@ -300,7 +300,7 @@
                                 <h5 class="mt-4 mb-4 text-center counts">№1</h5>
                                 <div class="form-row mt-2">
                                     <div class="col-xl-2">
-                                        <label>№ дома</label>
+                                        <label>№ дома<span style="color:red;">*</span></label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text">№</span>
                                             <select class="custom-select house-num-select required" id="num-section-house1" name="num-section-house1">
@@ -309,7 +309,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
-                                        <label>Продажи</label>
+                                        <label>Продажи<span style="color:red;">*</span></label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-tags"></i></span>
                                             <select class="custom-select" id="sales1" name="sales1">
@@ -487,12 +487,12 @@
                             </div>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-warning mt-1  ml-4 col-auto btn-copy-section " name="counts-sections">Добавить новую секцию"</button>
+                            <button type="button" class="btn btn-success mt-1  ml-4 col-auto btn-copy-section" name="counts-sections">Добавить новую секцию</button>
                             <input type="hidden" id="counts-sections" name="counts-sections" value="1">
-                            <button type="button" class="btn btn-warning mt-1 col-auto btn-delete-section">Удалить секцию"</button>
+                            <button type="button" class="btn btn-danger mt-1 col-auto btn-delete-section">Удалить секцию</button>
                         </div>
                         <button type="button" class="btn btn-warning btn-back mt-5 mb-4 ml-4 save-choice">Назад</button>
-                        <button type="submit" class="btn btn-warning mt-5 mb-4 required-check">Подтвердить</button>
+                        <button type="submit" class="btn btn-success mt-5 mb-4 required-check">Сохранить данные</button>
                     </div>
                 </div>
             </form>

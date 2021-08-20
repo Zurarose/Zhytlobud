@@ -1,7 +1,7 @@
 ﻿{% extends "app/layout.html" %}
 {% block content %}
 {% load static %}
-<div class="container-fluid bg-trasparent my-5" style="position: relative;">
+<div class="container col-12 bg-trasparent my-5" style="position: relative;">
     {% for message in messages %}
     <div class="alert alert-danger">
         <a class="close" href="#" data-dismiss="alert">×</a>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-warning mt-5 mb-4">Подтвердить</button>
+            <button type="submit" class="btn btn-success mt-5 mb-4">Сохранить данные</button>
         </form>
     </div>
 </div>
