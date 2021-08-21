@@ -1,13 +1,14 @@
 ﻿{% extends "app/layout.html" %}
 {% block content %}
 {% load static %}
-<div class="container col-12 bg-trasparent my-5" style="position: relative;">
+<div class="container-fluid col-12 bg-trasparent my-2" style="position: relative;">
     {% for message in messages %}
     <div class="alert alert-danger">
         <a class="close" href="#" data-dismiss="alert">×</a>
         {{ message }}
     </div>
     {% endfor %}
+    <a class="btn btn-warning" href="{% url 'customers_edit' %}"><i class="fas fa-chevron-circle-left"></i> Назад</a>
     <h5 class="text-center mt-1 mb-2">Добавить заказчика</h5>
     <hr class="bg-warning col-6 mb-2">
     <div class="d-flex justify-content-center mt-5 col-12">

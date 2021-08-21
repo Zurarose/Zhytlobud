@@ -1,7 +1,7 @@
 ﻿{% extends "app/layout.html" %}
 {% block content %}
 {% load static %}
-<div class="container col-12 bg-trasparent my-3 p-3" style="position: relative;">
+<div class="container col-12 bg-trasparent p-3" style="position: relative;">
     {% for message in messages %}
             <div class="alert alert-danger">
                 <a class="close" href="#" data-dismiss="alert">×</a>
@@ -9,8 +9,10 @@
             </div>
     {% endfor %}
         {% if instances %}
-        <h5 class="text-center mt-1 mb-2">Просмотр и редактирование информации об объектах</h5>
+    <a class="btn btn-warning" href="{% url 'object_menu' %}"><i class="fas fa-chevron-circle-left"></i> Назад</a>
+    <h5 class="text-center mb-2">Просмотр и редактирование информации об объектах</h5>
     <hr class="bg-warning col-6 mb-2">
+    <h5 class="text-center mt-1 mb-2">Комплексы:</h5>
     <div class="table-responsive">
         <table id="DataTable" class='table table-Light '>
             <thead>
