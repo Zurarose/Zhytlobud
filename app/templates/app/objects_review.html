@@ -12,30 +12,43 @@
     <h5 class="text-center mt-1 mb-2">Комлпекс: {{complex.name}}</h5>
     <hr class="bg-warning col-6 mb-2">
     <div class="row row-cols-xl-2">
-    <div class="col-xl-2 p-0 mt-1">        
-        <h5 class="text-left ml-3">О комплексе:</h5>
-        <ul class="list-group">
-            <li class="list-group-item">Класс: {{complex.class_field}}</li>
-            <li class="list-group-item">Улица: {{complex.street_name.name}}</li>
-            <li class="list-group-item">Застройщик: {{complex.customer.name}}</li>
-            <li class="list-group-item">Генподрядчик: {{complex.builder}}</li>
-            <li class="list-group-item">Градостроительная зона: {{complex.urban_develop_zone}}</li>
-            <li class="list-group-item">Район: {{complex.city_area.name}}</li>
-            <li class="list-group-item">Метрополитен: {{complex.subway.name}}</li>
-            <li class="list-group-item">Наличие парковки: {{complex.parking}}</li>
-            {% if complex.parking == "Есть" %}
-                <li class="list-group-item {% if complex.parking_type == "Подземная" %} border-bottom-0 {% endif %}">Тип парковки: {{complex.parking_type}}</li>
-                    {% if complex.parking_type == "Надземная" %}
+        <div class="col-xl-2 p-0 mt-1">
+            <h5 class="text-left ml-3">О комплексе:</h5>
+            <ul class="list-group">
+                <li class="list-group-item">Класс: {{complex.class_field}}</li>
+                <li class="list-group-item">Улица: {{complex.street_name.name}}</li>
+                <li class="list-group-item">Застройщик: {{complex.customer.name}}</li>
+                <li class="list-group-item">Генподрядчик: {{complex.builder}}</li>
+                <li class="list-group-item">Градостроительная зона: {{complex.urban_develop_zone}}</li>
+                <li class="list-group-item">Район: {{complex.city_area.name}}</li>
+                <li class="list-group-item">Метрополитен: {{complex.subway.name}}</li>
+                <li class="list-group-item">Наличие парковки: {{complex.parking}}</li>
+                {% if complex.parking == "Есть" %}
+                <li class="list-group-item">Тип парковки: {{complex.parking_type}}</li>
+                {% if complex.parking_type == "Надземная" %}
                     <li class="list-group-item">Парковка (мест): {{complex.parking_num}}</li>
-                    <li class="list-group-item">Цена(₴): {{complex.parking_price_hrn}}</li>
-                    <li class="list-group-item border-bottom-0">Цена($): {{complex.parking_price_dol}}</li>
-                    {% endif %}     
+                <li class="list-group-item">Цена(₴): {{complex.parking_price_hrn}}</li>
+                <li class="list-group-item border-bottom-0">Цена($): {{complex.parking_price_dol}}</li>
+                {% endif %}     
             {% endif %}
-        </ul>
+            <form action='.' id="form_complex" method='POST'>
+                {% csrf_token %}
+                <li class="border-bottom-0 list-group-item">
+                    <input type="submit" class="btn btn-warning btn-sm" name="edit_complex" value="Редактировать">
+                    <input type="submit" class="btn btn-danger check_complex btn-sm" name="delete_complex" value="Удалить">
+                </li>
+            </form>
+            </ul>
         </div>
         <div class="p-0 col-xl-10">
-            <h5 class="text-left ml-3">Дома:</h5>
-            <div class="table-responsive col-xl-12">
+            <h5 class="ml-1">Дома:</h5>
+            <form action='.' id="form_house" method='POST'>
+                {% csrf_token %}
+                <input type="submit" class="ml-1 btnTable_first btn btn-warning btn-sm" name="edit_house" value="Редактировать">
+                <input class="required" type="hidden" id="selected_house" name="selected_house" value="">
+                <input type="submit" class="ml-1 btnTable_first btn btn-danger check_house btn-sm" name="delete_house" value="Удалить">
+            </form>
+            <div class="pl-1 pr-2 m-0 table-responsive col-xl-12">
                 <table id="DataTable" class='table table-Light display compact'>
                     <thead>
                         <tr class="bg-warning text-white">
@@ -79,13 +92,18 @@
                     </tbody>
                 </table>
             </div>
-
-
-            <h5 class="text-left ml-3">Секции:</h5>
-            <div class="table-responsive col-xl-12">
+            <h5 class="ml-1">Секции:</h5>
+            <form action='.' id="form_section" method='POST'>
+                {% csrf_token %}
+                <input type="submit" disabled class="ml-1 btnTable_second btn btn-warning btn-sm" name="edit_section" value="Редактировать">
+                <input type="hidden" class="required" id = "selected_section" name="selected_section" value="">
+                <input type="submit" disabled class="ml-1 btnTable_second btn btn-danger check_section btn-sm" name="delete_section" value="Удалить">
+            </form>
+            <div class="p-1 m-0 table-responsive col-xl-12">
                 <table id="DataTable_second" class='table table-Light display compact'>
                     <thead>
                         <tr class="bg-warning text-white">
+                            <th>ИД</th>
                             <th>Продажи</th>
                             <th>Финансирование</th>
                             <th>Дюплекс</th>
@@ -99,7 +117,19 @@
                         </tr>
                     </thead>
                     <tbody id="appendHere">
-                        <tr></tr>
+                        <tr class="toRemove">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -114,6 +144,32 @@
 
 {% block scripts %}
 <script>
+    $(".check_complex").click(function () {
+        if (confirm('Удалить целый комплекс? Это удалит все дочерние объекты!')) {
+            form_complex.submit();
+        }
+        else {
+            return false;
+        }
+    });
+    $(".check_house").click(function () {
+        if (confirm('Удалить дом? Это удалит все дочерние секции!')) {
+            form_house.submit();
+        }
+        else {
+            return false;
+        }
+    });
+    $(".check_section").click(function () {
+        if (confirm('Удалить секцию?')) {
+            form_section.submit();
+        }
+        else {
+            return false;
+        }
+    });
+</script>
+<script>
     //For remarks
     $(function () {
         $('[data-toggle="popover"]').popover()
@@ -125,9 +181,8 @@
 
 </script>
 <script>
-    var selected = null;
     $(document).ready(function () {
-        var table = $('#DataTable').DataTable({
+        var table_first = $('#DataTable').DataTable({
             searching: false,
             paging: false,
             select: true,
@@ -333,25 +388,245 @@
                 }
             }
         });
-        
-        $.fn.dataTable.ext.classes.sPageButton = 'btn btn-warning';
         $('#DataTable tbody').on('click', 'tr', function () {
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
                 $(".toRemove").remove();
-                selected = null
+                $("#selected_house").val("");
+                $(".btnTable_first").prop("disabled", true);
             }
             else {
-                table.$('tr.active').removeClass('active');
+                table_first.$('tr.active').removeClass('active');
                 $(this).addClass('active');
-                selected = ($(this).closest('tr').find('.id').text());
+                $("#selected_house").val($(this).closest('tr').find('.id').text());
                 $(".toRemove").remove();
                 selectChg();
-                
+                $(".btnTable_first").prop("disabled", false);
+
+            }
+        });
+        var table_second = $('#DataTable_second').DataTable({
+            searching: false,
+            paging: false,
+            select: true,
+            language: {
+                "processing": "Подождите...",
+                "search": "Поиск:",
+                "lengthMenu": "Показать _MENU_ записей",
+                "info": "",
+                "infoEmpty": "",
+                "infoFiltered": "",
+                "loadingRecords": "Загрузка записей...",
+                "zeroRecords": "Записи отсутствуют.",
+                "emptyTable": "В таблице отсутствуют данные",
+                "paginate": {
+                    "first": "Первая",
+                    "previous": "Предыдущая",
+                    "next": "Следующая",
+                    "last": "Последняя"
+                },
+                "aria": {
+                    "sortAscending": ": активировать для сортировки столбца по возрастанию",
+                    "sortDescending": ": активировать для сортировки столбца по убыванию"
+                },
+                "select": {
+                    "rows": {
+                        "_": "Выбрано записей: %d",
+                        "1": "Выбрана одна запись"
+                    },
+                    "cells": {
+                        "1": "1 ячейка выбрана",
+                        "_": "Выбрано %d ячеек"
+                    },
+                    "columns": {
+                        "1": "1 столбец выбран",
+                        "_": "%d столбцов выбрано"
+                    }
+                },
+                "searchBuilder": {
+                    "conditions": {
+                        "string": {
+                            "startsWith": "Начинается с",
+                            "contains": "Содержит",
+                            "empty": "Пусто",
+                            "endsWith": "Заканчивается на",
+                            "equals": "Равно",
+                            "not": "Не",
+                            "notEmpty": "Не пусто"
+                        },
+                        "date": {
+                            "after": "После",
+                            "before": "До",
+                            "between": "Между",
+                            "empty": "Пусто",
+                            "equals": "Равно",
+                            "not": "Не",
+                            "notBetween": "Не между",
+                            "notEmpty": "Не пусто"
+                        },
+                        "number": {
+                            "empty": "Пусто",
+                            "equals": "Равно",
+                            "gt": "Больше чем",
+                            "gte": "Больше, чем равно",
+                            "lt": "Меньше чем",
+                            "lte": "Меньше, чем равно",
+                            "not": "Не",
+                            "notEmpty": "Не пусто",
+                            "between": "Между",
+                            "notBetween": "Не между ними"
+                        },
+                        "array": {
+                            "equals": "Равно",
+                            "empty": "Пусто",
+                            "contains": "Содержит",
+                            "not": "Не равно",
+                            "notEmpty": "Не пусто",
+                            "without": "Без"
+                        }
+                    },
+                    "data": "Данные",
+                    "deleteTitle": "Удалить условие фильтрации",
+                    "logicAnd": "И",
+                    "logicOr": "Или",
+                    "title": {
+                        "0": "Конструктор поиска",
+                        "_": "Конструктор поиска (%d)"
+                    },
+                    "value": "Значение",
+                    "add": "Добавить условие",
+                    "button": {
+                        "0": "Конструктор поиска",
+                        "_": "Конструктор поиска (%d)"
+                    },
+                    "clearAll": "Очистить всё",
+                    "condition": "Условие",
+                    "leftTitle": "Превосходные критерии",
+                    "rightTitle": "Критерии отступа"
+                },
+                "searchPanes": {
+                    "clearMessage": "Очистить всё",
+                    "collapse": {
+                        "0": "Панели поиска",
+                        "_": "Панели поиска (%d)"
+                    },
+                    "count": "{total}",
+                    "countFiltered": "{shown} ({total})",
+                    "emptyPanes": "Нет панелей поиска",
+                    "loadMessage": "Загрузка панелей поиска",
+                    "title": "Фильтры активны - %d"
+                },
+                "thousands": ",",
+                "buttons": {
+                    "pageLength": {
+                        "_": "Показать 10 строк",
+                        "-1": "Показать все ряды"
+                    },
+                    "pdf": "PDF",
+                    "print": "Печать",
+                    "collection": "Коллекция <span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"><\/span>",
+                    "colvis": "Видимость столбцов",
+                    "colvisRestore": "Восстановить видимость",
+                    "copy": "Копировать",
+                    "copyKeys": "Нажмите ctrl or u2318 + C, чтобы скопировать данные таблицы в буфер обмена.  Для отмены, щелкните по сообщению или нажмите escape.",
+                    "copySuccess": {
+                        "1": "Скопирована 1 ряд в буфер обмена",
+                        "_": "Скопировано %ds рядов в буфер обмена"
+                    },
+                    "copyTitle": "Скопировать в буфер обмена",
+                    "csv": "CSV",
+                    "excel": "Excel"
+                },
+                "decimal": ".",
+                "infoThousands": ",",
+                "autoFill": {
+                    "cancel": "Отменить",
+                    "fill": "Заполнить все ячейки <i>%d<i><\/i><\/i>",
+                    "fillHorizontal": "Заполнить ячейки по горизонтали",
+                    "fillVertical": "Заполнить ячейки по вертикали"
+                },
+                "datetime": {
+                    "previous": "Предыдущий",
+                    "next": "Следующий",
+                    "hours": "Часы",
+                    "minutes": "Минуты",
+                    "seconds": "Секунды",
+                    "unknown": "Неизвестный",
+                    "amPm": [
+                        "AM",
+                        "PM"
+                    ],
+                    "months": {
+                        "0": "Январь",
+                        "1": "Февраль",
+                        "10": "Ноябрь",
+                        "11": "Декабрь",
+                        "2": "Март",
+                        "3": "Апрель",
+                        "4": "Май",
+                        "5": "Июнь",
+                        "6": "Июль",
+                        "7": "Август",
+                        "8": "Сентябрь",
+                        "9": "Октябрь"
+                    },
+                    "weekdays": [
+                        "Вс",
+                        "Пн",
+                        "Вт",
+                        "Ср",
+                        "Чт",
+                        "Пт",
+                        "Сб"
+                    ]
+                },
+                "editor": {
+                    "close": "Закрыть",
+                    "create": {
+                        "button": "Новый",
+                        "title": "Создать новую запись",
+                        "submit": "Создать"
+                    },
+                    "edit": {
+                        "button": "Изменить",
+                        "title": "Изменить запись",
+                        "submit": "Изменить"
+                    },
+                    "remove": {
+                        "button": "Удалить",
+                        "title": "Удалить",
+                        "submit": "Удалить",
+                        "confirm": {
+                            "_": "Вы точно хотите удалить %d строк?",
+                            "1": "Вы точно хотите удалить 1 строку?"
+                        }
+                    },
+                    "multi": {
+                        "restore": "Отменить изменения",
+                        "title": "Несколько значений"
+                    },
+                    "error": {
+                        "system": "Возникла системная ошибка (<a target=\"\\\" rel=\"nofollow\" href=\"\\\">Подробнее<\/a>)"
+                    }
+                }
+            }
+        });
+        $('#DataTable_second tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                $("#selected_section").val("");
+                $(".btnTable_second").prop("disabled", true);
+            }
+            else {
+                table_second.$('tr.active').removeClass('active');
+                $(this).addClass('active');
+                $("#selected_section").val($(this).closest('tr').find('.id').text());
+                $(".btnTable_second").prop("disabled", false);
             }
         });
         $("#DataTable>tbody>tr:first").attr("class", "active");
-        selected = $("#DataTable>tbody>tr:first").find('.id').text();
+        $("#selected_house").val($("#DataTable>tbody>tr:first").find('.id').text());
+        $(".toRemove").remove();
         selectChg();
     });
 
@@ -362,15 +637,16 @@
             type: "GET",
             url: '/ajax/getSection/',
             data: {
-                'selected': selected
+                'selected': $("#selected_house").val()
             },
             dataType: 'json',
             success: function (data) {
                 for (var i = 0; i < data.objects.length; i++) {
                     var tr = document.createElement('tr')
+                    tr.setAttribute("class", "toRemove")
                     appendTable.appendChild(tr);
-                    for (var j = 0; j < 18; j++) {
-                        if (j > 5) {
+                    for (var j = 0; j < 19; j++) {
+                        if (j > 6) {
                             var td = document.createElement('td');
                             var a = document.createElement('a');
                             a.setAttribute("class", "border border-warning btn btn-light");
@@ -392,238 +668,32 @@
                                 total = data.objects[i][j]
                             else
                                 total = "—"
-                            var text = document.createTextNode(total + " шт. ")
+                            var text = document.createTextNode(total + " ")
                             j = j + 2;
                             a.appendChild(text);
                             var ielem = document.createElement("i");
                             ielem.setAttribute("class", "fas fa-search")
                             a.appendChild(ielem);
                             td.appendChild(a);
-                            td.setAttribute("class", "p-1 toRemove")
+                            td.setAttribute("class", "p-1")
                             tr.appendChild(td);
-                            $('[data-toggle="popover"]').popover()
+                        }
+                        else if (j > 0 && j < 7) {
+                            var td = document.createElement('td');
+                            td.innerHTML = data.objects[i][j];
+                            tr.appendChild(td);
                         }
                         else {
                             var td = document.createElement('td');
-                            td.setAttribute("class", "toRemove")
+                            td.setAttribute("class", "id")
                             td.innerHTML = data.objects[i][j];
                             tr.appendChild(td);
                         }
                     }
+                    $('[data-toggle="popover"]').popover()
                 }
             }
         })
     }
-</script>
-<script>
-    $(document).ready(function () {
-        var table = $('#DataTable_second').DataTable({
-            searching: false,
-            paging: false,
-            select: true,
-            language: {
-                "processing": "Подождите...",
-                "search": "Поиск:",
-                "lengthMenu": "Показать _MENU_ записей",
-                "info": "",
-                "infoEmpty": "",
-                "infoFiltered": "",
-                "loadingRecords": "Загрузка записей...",
-                "zeroRecords": "Записи отсутствуют.",
-                "emptyTable": "В таблице отсутствуют данные",
-                "paginate": {
-                    "first": "Первая",
-                    "previous": "Предыдущая",
-                    "next": "Следующая",
-                    "last": "Последняя"
-                },
-                "aria": {
-                    "sortAscending": ": активировать для сортировки столбца по возрастанию",
-                    "sortDescending": ": активировать для сортировки столбца по убыванию"
-                },
-                "select": {
-                    "rows": {
-                        "_": "Выбрано записей: %d",
-                        "1": "Выбрана одна запись"
-                    },
-                    "cells": {
-                        "1": "1 ячейка выбрана",
-                        "_": "Выбрано %d ячеек"
-                    },
-                    "columns": {
-                        "1": "1 столбец выбран",
-                        "_": "%d столбцов выбрано"
-                    }
-                },
-                "searchBuilder": {
-                    "conditions": {
-                        "string": {
-                            "startsWith": "Начинается с",
-                            "contains": "Содержит",
-                            "empty": "Пусто",
-                            "endsWith": "Заканчивается на",
-                            "equals": "Равно",
-                            "not": "Не",
-                            "notEmpty": "Не пусто"
-                        },
-                        "date": {
-                            "after": "После",
-                            "before": "До",
-                            "between": "Между",
-                            "empty": "Пусто",
-                            "equals": "Равно",
-                            "not": "Не",
-                            "notBetween": "Не между",
-                            "notEmpty": "Не пусто"
-                        },
-                        "number": {
-                            "empty": "Пусто",
-                            "equals": "Равно",
-                            "gt": "Больше чем",
-                            "gte": "Больше, чем равно",
-                            "lt": "Меньше чем",
-                            "lte": "Меньше, чем равно",
-                            "not": "Не",
-                            "notEmpty": "Не пусто",
-                            "between": "Между",
-                            "notBetween": "Не между ними"
-                        },
-                        "array": {
-                            "equals": "Равно",
-                            "empty": "Пусто",
-                            "contains": "Содержит",
-                            "not": "Не равно",
-                            "notEmpty": "Не пусто",
-                            "without": "Без"
-                        }
-                    },
-                    "data": "Данные",
-                    "deleteTitle": "Удалить условие фильтрации",
-                    "logicAnd": "И",
-                    "logicOr": "Или",
-                    "title": {
-                        "0": "Конструктор поиска",
-                        "_": "Конструктор поиска (%d)"
-                    },
-                    "value": "Значение",
-                    "add": "Добавить условие",
-                    "button": {
-                        "0": "Конструктор поиска",
-                        "_": "Конструктор поиска (%d)"
-                    },
-                    "clearAll": "Очистить всё",
-                    "condition": "Условие",
-                    "leftTitle": "Превосходные критерии",
-                    "rightTitle": "Критерии отступа"
-                },
-                "searchPanes": {
-                    "clearMessage": "Очистить всё",
-                    "collapse": {
-                        "0": "Панели поиска",
-                        "_": "Панели поиска (%d)"
-                    },
-                    "count": "{total}",
-                    "countFiltered": "{shown} ({total})",
-                    "emptyPanes": "Нет панелей поиска",
-                    "loadMessage": "Загрузка панелей поиска",
-                    "title": "Фильтры активны - %d"
-                },
-                "thousands": ",",
-                "buttons": {
-                    "pageLength": {
-                        "_": "Показать 10 строк",
-                        "-1": "Показать все ряды"
-                    },
-                    "pdf": "PDF",
-                    "print": "Печать",
-                    "collection": "Коллекция <span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"><\/span>",
-                    "colvis": "Видимость столбцов",
-                    "colvisRestore": "Восстановить видимость",
-                    "copy": "Копировать",
-                    "copyKeys": "Нажмите ctrl or u2318 + C, чтобы скопировать данные таблицы в буфер обмена.  Для отмены, щелкните по сообщению или нажмите escape.",
-                    "copySuccess": {
-                        "1": "Скопирована 1 ряд в буфер обмена",
-                        "_": "Скопировано %ds рядов в буфер обмена"
-                    },
-                    "copyTitle": "Скопировать в буфер обмена",
-                    "csv": "CSV",
-                    "excel": "Excel"
-                },
-                "decimal": ".",
-                "infoThousands": ",",
-                "autoFill": {
-                    "cancel": "Отменить",
-                    "fill": "Заполнить все ячейки <i>%d<i><\/i><\/i>",
-                    "fillHorizontal": "Заполнить ячейки по горизонтали",
-                    "fillVertical": "Заполнить ячейки по вертикали"
-                },
-                "datetime": {
-                    "previous": "Предыдущий",
-                    "next": "Следующий",
-                    "hours": "Часы",
-                    "minutes": "Минуты",
-                    "seconds": "Секунды",
-                    "unknown": "Неизвестный",
-                    "amPm": [
-                        "AM",
-                        "PM"
-                    ],
-                    "months": {
-                        "0": "Январь",
-                        "1": "Февраль",
-                        "10": "Ноябрь",
-                        "11": "Декабрь",
-                        "2": "Март",
-                        "3": "Апрель",
-                        "4": "Май",
-                        "5": "Июнь",
-                        "6": "Июль",
-                        "7": "Август",
-                        "8": "Сентябрь",
-                        "9": "Октябрь"
-                    },
-                    "weekdays": [
-                        "Вс",
-                        "Пн",
-                        "Вт",
-                        "Ср",
-                        "Чт",
-                        "Пт",
-                        "Сб"
-                    ]
-                },
-                "editor": {
-                    "close": "Закрыть",
-                    "create": {
-                        "button": "Новый",
-                        "title": "Создать новую запись",
-                        "submit": "Создать"
-                    },
-                    "edit": {
-                        "button": "Изменить",
-                        "title": "Изменить запись",
-                        "submit": "Изменить"
-                    },
-                    "remove": {
-                        "button": "Удалить",
-                        "title": "Удалить",
-                        "submit": "Удалить",
-                        "confirm": {
-                            "_": "Вы точно хотите удалить %d строк?",
-                            "1": "Вы точно хотите удалить 1 строку?"
-                        }
-                    },
-                    "multi": {
-                        "restore": "Отменить изменения",
-                        "title": "Несколько значений"
-                    },
-                    "error": {
-                        "system": "Возникла системная ошибка (<a target=\"\\\" rel=\"nofollow\" href=\"\\\">Подробнее<\/a>)"
-                    }
-                }
-            }
-        });
-    });
-
 </script>
 {% endblock %}

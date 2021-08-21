@@ -1,0 +1,370 @@
+﻿{% extends "app/layout.html" %}
+{% block content %}
+{% load static %}
+<div class="container-fluid col-12 bg-trasparent my-5" style="position: relative;">
+    {% for message in messages %}
+    <div class="alert alert-danger">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+        {{ message }}
+    </div>
+    {% endfor %}
+    <h5 class="text-center mt-1 mb-2">Редактирование информации о комплексе. Введите новые значения</h5>
+    <hr class="bg-warning col-6 mb-2">
+    <div class="d-flex justify-content-center">
+    <div class="col-10">
+        <div class="mb-2 col-xl-4 col-sm-4">
+        <label>Курс доллара</label>
+            <div class="input-group flex-nowrap p-0 col-xl-8">
+                <span class="input-group-text">$</span>
+                <input class="num form-control dollar_val" type="text" id="dollar" name="dollar">
+                <a class="btn btn-warning" id="checkDollar" href="https://goo-gl.su/jd6bSL" target="_blank">Узнать</a>
+            </div>
+        </div>
+        <form action='.' id="form1" method='POST'>
+            {% csrf_token %}
+            <div class="shadow-lg rounded p-4" id="menu1">
+                        <div>
+                            <h5 class="text-center mt-1 mb-4">Информация о комплексе</h5>
+                            <div class="form-row mt-2">
+                                <div class="col-xl-2">
+                                    <label for="class-select">Класс<span style="color:red;">*</span></label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-star"></i></span>
+                                        <select class="custom-select required" id="class-select" name="class-select">
+                                            <option selected></option>
+                                            <option value="Де-люкс">Де-люкс</option>
+                                            <option value="Премиум">Премиум</option>
+                                            <option value="Бизнес">Бизнес</option>
+                                            <option value="Комфорт">Комфорт</option>
+                                            <option value="Эконом">Эконом</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4">
+                                    <label for="complex-name">Название<span style="color:red;">*</span></label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-signature"></i></span>
+                                        <input type="text" class="form-control required" id="complex-name" name="complex-name" value="{{build.name}}">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <label for="type-streets">Тип</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                        <select class="custom-select" id="type-streets" name="type-streets">
+                                            <option selected value=""></option>
+                                            {% for post2 in posts2 %}
+                                            <option value="{{ post2 }}">{{ post2 }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <label for="name-streets">Наименование</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-map-pin"></i></span>
+                                        <select class="custom-select" id="name-streets" name="name-streets">
+                                            <option selected value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mt-2">
+                                <div class="col-xl-3">
+                                    <label for="customer">Заказчик</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                                        <select class="custom-select" id="customer" name="customer">
+                                            <option selected value=""></option>
+                                            {% for post1 in posts1 %}
+                                            <option value="{{ post1.name }}">{{ post1.ownership.name}} {{ post1.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3">
+                                    <label for="builder">Генподрядчик</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-hammer"></i></span>
+                                        <input type="text" class="form-control" id="builder" name="builder" value="{{build.builder}}">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <label for="urban-zone">Зона</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                        <select class="custom-select" id="urban-zone" name="urban-zone">
+                                            <option selected value=""></option>
+                                            <option selected value="Центр">Центр</option>
+                                            <option value="Приближенный">Приближенный р-н</option>
+                                            <option value="Отдаленный">Отдаленный р-н</option>
+                                            <option value="Область">Область</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <label for="subway">Метрополитен</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-subway"></i></span>
+                                        <select class="custom-select" id="subway" name="subway">
+                                            <option selected value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mt-2">
+                                <div class="col-xl-2">
+                                    <label for="city-area">Бытовой район</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                                        <select class="custom-select" id="city-area" name="city-area">
+                                            <option selected value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <label for="parking">Парковка</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-parking"></i></span>
+                                        <select class="custom-select" id="parking" name="parking">
+                                            <option selected value="Нет">Нет</option>
+                                            <option value="Есть">Есть</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <label for="parking-type">Тип</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-arrows-alt-v"></i></span>
+                                        <select class="custom-select" id="parking-type" name="parking-type">
+                                            <option selected value="Подземная">Подземная</option>
+                                            <option value="Надземная">Надземная</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <label>Парковка(мест)</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
+                                        <input class="form-control parking-up" type="number" id="num-parking-up" name="num-parking-up" min="1" max="1000">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <label>Стоимость</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text">₴</span>
+                                        <input class="num calc_dollar form-control parking-up" type="text" id="price-parking-up-hrn" name="price-parking-up-hrn">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <label>Стоимость</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text">$</span>
+                                        <input class="num dollar form-control parking-up" readonly type="text" id="price-parking-up-dol" name="price-parking-up-dol">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <input type="submit" class="btn btn-success mt-4" name="save" value="Сохранить информацию">
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(window).on('load', function () {
+        $('#loading').hide();
+        selectChg();
+        zoneSelect();
+        parkOnOff();
+        masknum();
+        savedData();
+    })
+    function savedData() {
+        var class_type = `{{ build.class_field|safe }}`;
+        $('#class-select option[value="' + class_type + '"]').prop("selected", true);
+        var type_streets = `{{ build.street_name.type|safe }}`;
+        $('#type-streets option[value="' + type_streets + '"]').prop("selected", true);
+        selectChg();
+        var name_streets = `{{ build.street_name.name|safe }}`;
+        $('#name-streets option[value="' + name_streets + '"]').prop("selected", true);
+        var customer = `{{ build.customer.name|safe }}`;
+        $('#customer option[value="' + customer + '"]').prop("selected", true);
+        var urban_zone = `{{ build.urban_develop_zone|safe }}`;
+        $('#urban-zone option[value="' + urban_zone + '"]').prop("selected", true);
+        zoneSelect();
+        var subway = `{{ build.subway.name|safe }}`;
+        $('#subway option[value="' + subway + '"]').prop("selected", true);
+        var city_area = `{{ build.city_area.name|safe }}`;
+        $('#city-area option[value="' + city_area + '"]').prop("selected", true);
+        var parking = `{{ build.parking|safe }}`;
+        $('#parking option[value="' + parking + '"]').prop("selected", true);
+        parkOnOff();
+        var parking_type = `{{ build.parking_type|safe }}`;
+        $('#parking-type option[value="' + parking_type + '"]').prop("selected", true);
+        EnableChoice();
+        var num_parking_up = `{{ build.parking_num|safe }}`;
+        $('#num-parking-up').val(num_parking_up);
+        var price_parking_up_hrn = `{{ build.parking_price_hrn|safe }}`;
+        $('#price-parking-up-hrn').val(price_parking_up_hrn);
+
+        var price_parking_up_dol = `{{ build.parking_price_dol|safe }}`;
+        $('#price-parking-up-dol').val(price_parking_up_dol);
+
+    }
+</script>
+<script>
+    //To culc dollar
+    $('.calc_dollar').change(calcDol);
+    $('.dollar_val').change(function () {
+        $('.calc_dollar').trigger("change")
+    });
+    function calcDol() {
+        var dol = parseFloat($(this).val()) / parseFloat($(".dollar_val").val());
+        $(this).closest('.form-row').find('.dollar').val(dol);
+    }
+
+    //To select parking type
+    $('#parking').change(parkOnOff);
+    $('#parking-type').change(EnableChoice);
+
+    function parkOnOff() {
+        if ($("#parking").val() == "Нет") {
+            $("#parking-type").prop("disabled", true);
+            $(".parking-up").val("");
+            $(".parking-up").prop("disabled", true);
+        }
+        else {
+            $("#parking-type").prop("disabled", false)
+            EnableChoice();
+        }
+    }
+    function EnableChoice() {
+        //To set inputs for right parking
+
+        if ($("#parking-type").val() == "Надземная") {
+            $(".parking-up").val("");
+            $(".parking-up").prop("disabled", false);
+
+        }
+        else {
+            $(".parking-up").val("");
+            $(".parking-up").prop("disabled", true);
+        }
+    }
+</script>
+<script>
+    //To zone select
+    $('#urban-zone').change(zoneSelect);
+    var subway = document.getElementById("subway");
+    var cityArea = document.getElementById("city-area");
+    function zoneSelect() {
+
+        var zone = document.getElementById("urban-zone").value
+
+        if (zone != "") {
+            cityArea.disabled = false;
+            subway.disabled = false;
+
+            $.ajax({
+                type: "GET",
+                url: '/ajax/getSubways/',
+                data: {
+                    'zone': zone
+                },
+                dataType: 'json',
+                success: function (data) {
+                    var length = subway.options.length;
+                    for (var i = length - 1; i >= 0; i--) {
+                        subway.options[i] = null;
+                    }
+                    for (var i = 0; i < data.names.length; i++) {
+                        var opt = document.createElement('option');
+                        opt.value = data.names[i];
+                        opt.innerHTML = data.names[i];
+                        subway.appendChild(opt);
+                    }
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: '/ajax/getCityAreas/',
+                data: {
+                    'zone': zone
+                },
+                dataType: 'json',
+                success: function (data) {
+                    var length = cityArea.options.length;
+                    for (var i = length - 1; i >= 0; i--) {
+                        cityArea.options[i] = null;
+                    }
+                    for (var i = 0; i < data.names.length; i++) {
+                        var opt = document.createElement('option');
+                        opt.value = data.names[i];
+                        opt.innerHTML = data.names[i];
+                        cityArea.appendChild(opt);
+                    }
+                }
+            });
+        }
+        else {
+            var length = cityArea.options.length;
+            for (var i = length - 1; i >= 0; i--) {
+                cityArea.options[i] = null;
+            }
+            var length = subway.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                subway.options[i] = null;
+            }
+            cityArea.disabled = true;
+            subway.disabled = true;
+        }
+    }
+    //To fill streets options
+    $("#type-streets").change(function () {
+        selectChg();
+    });
+    function selectChg() {
+        var type = document.getElementById("type-streets").value
+        $('option').removeAttr('selected');
+        $.ajax({
+            type: "GET",
+            url: '/ajax/getStreets/',
+            data: {
+                'type': type
+            },
+            dataType: 'json',
+            success: function (data) {
+                var select = document.getElementById('name-streets');
+
+                var length = select.options.length;
+                for (var i = length - 1; i >= 0; i--) {
+                    select.options[i] = null;
+                }
+                for (var i = 0; i < data.names.length; i++) {
+                    var opt = document.createElement('option');
+                    opt.value = data.names[i];
+                    opt.innerHTML = data.names[i];
+                    select.appendChild(opt);
+                }
+            }
+        })
+    }
+    
+</script>
+<script>
+    //mask for double
+    function masknum() {
+        $('.num').inputmask({
+            'alias': 'decimal',
+            'digits': 2,
+            'digitsOptional': false,
+            'placeholder': '0.00'
+        })
+    };
+</script>
+{% endblock %}

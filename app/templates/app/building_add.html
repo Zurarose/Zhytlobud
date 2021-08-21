@@ -25,7 +25,7 @@
                     </li>
                 </ul>
             </div>
-             <div class="sticky-top col-xl-4 col-sm-4" style="position:absolute">
+             <div class="col-xl-4 col-sm-4 mt-2">
                 <label>Курс доллара</label>
                     <div class="input-group flex-nowrap p-0 col-xl-8">
                         <span class="input-group-text">$</span>
@@ -37,7 +37,7 @@
             <form action='.' id="form1" method='POST'>
                 {% csrf_token %}              
                 <div class="tab-content">
-                    <div class="tab-pane fade show active mt-5 shadow-lg rounded p-4" id="menu1" role="tabpanel" aria-labelledby="complex-tab">
+                    <div class="tab-pane fade show active mt-3 shadow-lg rounded p-4" id="menu1" role="tabpanel" aria-labelledby="complex-tab">
                         <div>
                             <h5 class="text-center mt-1 mb-4">Информация о комплексе</h5>
                             <div class="form-row mt-2">
@@ -621,59 +621,36 @@
     //To select parking type
     $('#parking').change(parkOnOff);
     $('#parking-type').change(EnableChoice);
-    var typeparking = document.getElementById("parking-type");
+
     function parkOnOff() {
-        var yesOrNo = document.getElementById("parking");
-        var parking_up = document.getElementsByClassName("parking-up");
-        var parking_down = document.getElementsByClassName("parking-down");
-        var len_up = parking_up.length;
-        var len_down = parking_down.length;
-
-        if (yesOrNo.value == "Нет") {
-            typeparking.disabled = true;
-            for (var i = 0; i < len_up; i++) {
-                parking_up[i].value = ""
-                parking_up[i].disabled = true;
-            }
-
-            for (var i = 0; i < len_down; i++) {
-                parking_down[i].value = ""
-                parking_down[i].disabled = true;
-            }
+        if ($("#parking").val() == "Нет") {
+            $("#parking-type").prop("disabled", true);
+            $(".parking-up").val("");
+            $(".parking-up").prop("disabled", true);
+            $(".parking-down").val("");
+            $(".parking-down").prop("disabled", true);
         }
         else {
-            typeparking.disabled = false;
+            $("#parking-type").prop("disabled", false)
             EnableChoice();
         }
     }
     function EnableChoice() {
         //To set inputs for right parking
-        var parking_up = document.getElementsByClassName("parking-up");
-        var parking_down = document.getElementsByClassName("parking-down");
-        var len_up = parking_up.length;
-        var len_down = parking_down.length;
-
-        if (typeparking.value == "Надземная") {
-            for (var i = 0; i < len_up; i++) {
-                parking_up[i].value = ""
-                parking_up[i].disabled = false;
-            }
-
-            for (var i = 0; i < len_down; i++) {
-                parking_down[i].value = ""
-                parking_down[i].disabled = true;
-            }
+       
+        if ($("#parking-type").val() == "Надземная")
+        {
+            $(".parking-up").val("");
+            $(".parking-up").prop("disabled", false);
+            $(".parking-down").val("");
+            $(".parking-down").prop("disabled", true);
         }
-        else {
-            for (var i = 0; i < len_up; i++) {
-                parking_up[i].value = ""
-                parking_up[i].disabled = true;
-            }
-
-            for (var i = 0; i < len_down; i++) {
-                parking_down[i].value = ""
-                parking_down[i].disabled = false;
-            }
+        else
+        {
+            $(".parking-up").val("");
+            $(".parking-up").prop("disabled", true);
+            $(".parking-down").val("");
+            $(".parking-down").prop("disabled", false);
         }
     }
 </script>

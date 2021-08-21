@@ -63,14 +63,6 @@
     })
 </script>
 <script>
-    $('#form1').submit(function (evt) {
-        if ($("#selected").val() == "") {
-            alert("Выберите значения");
-            return false;
-        }
-    });
-</script>
-<script>
     $(document).ready(function () {
         var table = $('#DataTable').DataTable({
             select: true,
@@ -282,14 +274,17 @@
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
                 $("#selected").val("");
+                $(".btn").prop("disabled", true);
             }
             else {
                 table.$('tr.active').removeClass('active');
                 $(this).addClass('active');
                 $("#selected").val($(this).closest('tr').find('.id').text());
+                $(".btn").prop("disabled", false);
             }
         });
-
+        $("#DataTable>tbody>tr:first").attr("class", "active");
+        $("#selected").val($("#DataTable>tbody>tr:first").find('.id').text());
     });
 </script>
 {% endblock %}

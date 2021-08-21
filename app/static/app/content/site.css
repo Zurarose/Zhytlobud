@@ -304,4 +304,7 @@ h2 {
 #DataTable .active {
     background-color: #ffc404 !important;
 }
+#DataTable_second .active {
+    background-color: #ffc404 !important;
+}
 /*object reviews*/
