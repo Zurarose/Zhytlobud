@@ -13,25 +13,25 @@
     <h5 class="text-center mb-2">Комплекс: {{complex.name}}</h5>
     <hr class="bg-warning col-6 mb-2">
     <div class="row row-cols-xl-2">
-        <div class="col-xl-2 p-0 mt-1">
+        <div class="col-xl-2 p-0">
             <h5 class="text-left ml-3">О комплексе:</h5>
             <ul class="list-group">
-                <li class="list-group-item">Класс: {{complex.class_field}}</li>
-                <li class="list-group-item">Улица: {{complex.street_name.name}}</li>
-                <li class="list-group-item">Застройщик: {{complex.customer.name}}</li>
-                <li class="list-group-item">Генподрядчик: {{complex.builder}}</li>
-                <li class="list-group-item">Градостроительная зона: {{complex.urban_develop_zone}}</li>
-                <li class="list-group-item">Район: {{complex.city_area.name}}</li>
-                <li class="list-group-item">Метрополитен: {{complex.subway.name}}</li>
-                <li class="list-group-item">Наличие парковки: {{complex.parking}}</li>
+                <li class="p-2 list-group-item">Класс: {{complex.class_field}}</li>
+                <li class="p-2 list-group-item">Улица: {{complex.street_name.name}}</li>
+                <li class="p-2 list-group-item">Застройщик: {{complex.customer.name}}</li>
+                <li class="p-2 list-group-item">Генподрядчик: {{complex.builder}}</li>
+                <li class="p-2 list-group-item">Градостроительная зона: {{complex.urban_develop_zone}}</li>
+                <li class="p-2 list-group-item">Район: {{complex.city_area.name}}</li>
+                <li class="p-2 list-group-item">Метрополитен: {{complex.subway.name}}</li>
+                <li class="p-2 list-group-item">Наличие парковки: {{complex.parking}}</li>
                 {% if complex.parking == "Есть" %}
-                <li class="list-group-item">Тип парковки: {{complex.parking_type}}</li>
+                <li class="p-2 list-group-item">Тип парковки: {{complex.parking_type}}</li>
                 {% if complex.parking_type == "Надземная" %}
-                <li class="list-group-item">Парковка (мест): {{complex.parking_num}}</li>
-                <li class="list-group-item">Мин цена(₴): {{complex.parking_price_hrn_min}}</li>
-                <li class="list-group-item border-bottom-0">Мин цена($): {{complex.parking_price_dol_min}}</li>
-                <li class="list-group-item">Макс цена(₴): {{complex.parking_price_hrn_max}}</li>
-                <li class="list-group-item border-bottom-0">Макс цена($): {{complex.parking_price_dol_max}}</li>
+                <li class="p-2 list-group-item">Парковка (мест): {{complex.parking_num}}</li>
+                <li class="p-2 list-group-item">Мин цена(₴): {{complex.parking_price_hrn_min}}</li>
+                <li class="p-2 list-group-item border-bottom-0">Мин цена($): {{complex.parking_price_dol_min}}</li>
+                <li class="p-2 list-group-item">Макс цена(₴): {{complex.parking_price_hrn_max}}</li>
+                <li class="p-2 list-group-item border-bottom-0">Макс цена($): {{complex.parking_price_dol_max}}</li>
                 {% endif %}     
             {% endif %}
             <form action='.' id="form_complex" method='POST'>
