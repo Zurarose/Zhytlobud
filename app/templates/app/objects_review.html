@@ -27,9 +27,11 @@
                 {% if complex.parking == "Есть" %}
                 <li class="list-group-item">Тип парковки: {{complex.parking_type}}</li>
                 {% if complex.parking_type == "Надземная" %}
-                    <li class="list-group-item">Парковка (мест): {{complex.parking_num}}</li>
-                <li class="list-group-item">Цена(₴): {{complex.parking_price_hrn}}</li>
-                <li class="list-group-item border-bottom-0">Цена($): {{complex.parking_price_dol}}</li>
+                <li class="list-group-item">Парковка (мест): {{complex.parking_num}}</li>
+                <li class="list-group-item">Мин цена(₴): {{complex.parking_price_hrn_min}}</li>
+                <li class="list-group-item border-bottom-0">Мин цена($): {{complex.parking_price_dol_min}}</li>
+                <li class="list-group-item">Макс цена(₴): {{complex.parking_price_hrn_max}}</li>
+                <li class="list-group-item border-bottom-0">Макс цена($): {{complex.parking_price_dol_max}}</li>
                 {% endif %}     
             {% endif %}
             <form action='.' id="form_complex" method='POST'>
@@ -64,8 +66,10 @@
                             <th>Этажность</th>
                             {% if complex.parking_type == "Подземная" and complex.parking == "Есть" %}
                             <th>Парковка (мест)</th>
-                            <th>Цена(₴)</th>
-                            <th>Цена($)</th>
+                            <th>Мин цена(₴)</th>
+                            <th>Мин цена($)</th>
+                            <th>Макс цена(₴)</th>
+                            <th>Макс цена($)</th>
                             {% endif %}
                             <th>Заметка</th>
                         </tr>
@@ -84,8 +88,10 @@
                             <td>{{ row.storeys }}</td>
                             {% if complex.parking_type == "Подземная" %}
                             <td>{{ row.parking_num }}</td>
-                            <td>{{ row.parking_price_hrn }}</td>
-                            <td>{{ row.parking_price_dol}}</td>
+                            <td>{{ row.parking_price_hrn_min }}</td>
+                            <td>{{ row.parking_price_dol_min}}</td>
+                            <td>{{ row.parking_price_hrn_max }}</td>
+                            <td>{{ row.parking_price_dol_max}}</td>
                             {% endif %}
                             <td class="p-1"><a class="border border-warning btn btn-light" role="button" data-toggle="popover" data-trigger="hover" title="Примечание" data-content="{{row.remark}}"><i class="fas fa-search"></i></a></td>
                         </tr>
@@ -104,7 +110,8 @@
                 <table id="DataTable_second" class='table table-Light display compact'>
                     <thead>
                         <tr class="bg-warning text-white">
-                            <th>ИД</th>
+                            <th style="display: none;">ИД</th>
+                            <th>№</th>
                             <th>Продажи</th>
                             <th>Финансирование</th>
                             <th>Дюплекс</th>
@@ -119,6 +126,7 @@
                     </thead>
                     <tbody id="appendHere">
                         <tr class="toRemove">
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -646,8 +654,8 @@
                     var tr = document.createElement('tr')
                     tr.setAttribute("class", "toRemove")
                     appendTable.appendChild(tr);
-                    for (var j = 0; j < 19; j++) {
-                        if (j > 6) {
+                    for (var j = 0; j < 20; j++) {
+                        if (j > 7) {
                             var td = document.createElement('td');
                             var a = document.createElement('a');
                             a.setAttribute("class", "border border-warning btn btn-light");
@@ -679,7 +687,7 @@
                             td.setAttribute("class", "p-1")
                             tr.appendChild(td);
                         }
-                        else if (j > 0 && j < 7) {
+                        else if (j > 0 && j < 8) {
                             var td = document.createElement('td');
                             td.innerHTML = data.objects[i][j];
                             tr.appendChild(td);
@@ -687,6 +695,7 @@
                         else {
                             var td = document.createElement('td');
                             td.setAttribute("class", "id")
+                            td.setAttribute("style", "display: none;")
                             td.innerHTML = data.objects[i][j];
                             tr.appendChild(td);
                         }
