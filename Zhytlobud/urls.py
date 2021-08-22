@@ -18,6 +18,10 @@ on heroku: heroku run python manage.py loaddata db.json -a zhytlobud
 
 DELETE ALL SUPERUSERS IF THERE IS PROBLEM!!
 
+> python manage.py shell
+$ from django.contrib.auth.models import User
+$ User.objects.get(username="joebloggs", is_superuser=True).delete()
+
 heroku ps
 heroku ps:stop run.4859
 """
