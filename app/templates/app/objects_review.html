@@ -414,7 +414,7 @@
 
             }
         });
-        var table_second = $('#DataTable_second').DataTable({
+        $('#DataTable_second').DataTable({
             searching: false,
             paging: false,
             select: true,
@@ -627,7 +627,7 @@
                 $(".btnTable_second").prop("disabled", true);
             }
             else {
-                table_second.$('tr.active').removeClass('active');
+                $('tr.toRemove').removeClass('active');
                 $(this).addClass('active');
                 $("#selected_section").val($(this).closest('tr').find('.id').text());
                 $(".btnTable_second").prop("disabled", false);
