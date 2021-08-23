@@ -7,6 +7,7 @@
     <TestFramework>Pytest</TestFramework>
     <InterpreterId>
     </InterpreterId>
+    <SuppressEnvironmentCreationPrompt>True</SuppressEnvironmentCreationPrompt>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -144,6 +145,8 @@
     <Content Include="app\templates\app\customers_edit.html" />
     <Content Include="app\templates\app\customers_add.html" />
     <Content Include="app\templates\app\customer_menu.html" />
+    <Content Include="app\templates\app\object_edit_section.html" />
+    <Content Include="app\templates\app\object_edit_house.html" />
     <Content Include="app\templates\app\object_menu.html" />
     <Content Include="app\templates\app\register.html" />
     <Content Include="app\templates\app\update_menu.html" />

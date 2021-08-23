@@ -54,6 +54,8 @@ urlpatterns = [
    path("objects_edit/", views.objects_edit, name="objects_edit"),
    path("objects_review/", views.objects_review, name="objects_review"),
    path("object_edit_complex/", views.object_edit_complex, name="object_edit_complex"),
+   path("object_edit_house/", views.object_edit_house, name="object_edit_house"),
+   path("object_edit_section/", views.object_edit_section, name="object_edit_section"),
 
    #For Ajax. Look at script in building_add.html.
    url(r'^ajax/getStreets/$', views.getStreets, name='getStreets'),

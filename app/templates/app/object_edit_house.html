@@ -1,0 +1,211 @@
+﻿{% extends "app/layout.html" %}
+{% block content %}
+{% load static %}
+<div class="container-fluid col-12 bg-trasparent my-5" style="position: relative;">
+    {% for message in messages %}
+    <div class="alert alert-danger">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+        {{ message }}
+    </div>
+    {% endfor %}
+    <h5 class="text-center mt-1 mb-2">Редактирование информации о доме. Введите новые значения</h5>
+    <hr class="bg-warning col-6 mb-2">
+    <div class="d-flex justify-content-center">
+    <div class="col-10">
+        <div class="mb-2 col-xl-4 col-sm-4">
+        <label>Курс доллара</label>
+            <div class="input-group flex-nowrap p-0 col-xl-8">
+                <span class="input-group-text">$</span>
+                <input class="num form-control dollar_val" type="text" id="dollar" name="dollar">
+                <a class="btn btn-warning" id="checkDollar" href="https://goo-gl.su/jd6bSL" target="_blank">Узнать</a>
+            </div>
+        </div>
+        <form action='.' id="form1" method='POST'>
+            {% csrf_token %}
+             <div class="shadow-lg rounded p-0 mt-2" id="menu2">
+                        <div class="card-header p-0">
+                            <h5 class="text-center" id="colplex-name-header1">Комплекс: {{complex.name}}</h5>
+                        </div>
+                        <div class="p-4">
+                            <h5 class="text-center mt-1 mb-4">Информация о доме</h5>
+                                <div class="form-row mt-2">
+                                    <div class="col-xl-2">
+                                        <label>№ дома<span style="color:red;">*</span></label>
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text">№</span>
+                                            <input class="form-control house-nums required" type="text" id="num-build" name="num-build" value="{{house.street_number}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <label>Площадь дома</label>
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                            <input class="num form-control" type="text" id="area-build" name="area-build" value="{{house.ttl_area_building}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <label>Площадь квартир</label>
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                            <input class="num form-control" type="text" id="area-apart" name="area-apart" value="{{house.ttl_area_apartments}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1">
+                                        <label>Этажность</label>
+                                        <div class="input-group flex-nowrap">
+                                            <input class="form-control" type="number" id="num-storeys" name="num-storeys" min="1" max="1000" value="{{house.storeys}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <label class="ml-3">Этап постройки</label>
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text"><i class="fas fa-percent"></i></span>
+                                            <input class="form-control" step="5" type="number" id="constr-phase-prc" name="constr-phase-prc" min="0" max="100" value="{{house.construction_phase_prst}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <label>Примечание</label>
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                                            <input type="text" class="form-control" id="info-house" name="info-house" value="{{house.remark}}">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-row mt-2">
+                                    <div class="col-xl-2">
+                                        <label>Год начала</label>
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                            <input class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-start" name="date-pick-start" value="{{house.start_year}}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <label>Год ввода</label>
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                            <input class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-commis" name="date-pick-commis" value="{{house.commis_year}}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <label>Квартал</label>
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
+                                            <input class="form-control" type="number" min="1" max="4" step="1" id="quarter-pick" name="quarter-pick" value="{{house.quarter}}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <label>Парковка(мест)</label>
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
+                                            <input class="form-control parking-down" type="number" id="num-parking-down" name="num-parking-down" min="1" max="1000">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                    <label>Стоимость мин</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text">₴</span>
+                                        <input class="num calc_dollar_min form-control parking-down" type="text" id="price-parking-down-hrn_min" name="price-parking-down-hrn_min">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <label>Стоимость мин</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text">$</span>
+                                        <input class="num dollar_min form-control parking-down" readonly type="text" id="price-parking-down-dol_min" name="price-parking-down-dol_min">
+                                    </div>
+                                </div>
+                                    </div>
+                                <div class="form-row mt-2">
+                                <div class="offset-xl-8 col-xl-2 col-xl-2">
+                                    <label>Стоимость макс</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text">₴</span>
+                                        <input class="num calc_dollar_max form-control parking-down" type="text" id="price-parking-down-hrn_max" name="price-parking-down-hrn_max">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <label>Стоимость макс</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text">$</span>
+                                        <input class="num dollar_max form-control parking-down" readonly type="text" id="price-parking-down-dol_max" name="price-parking-down-dol_max">
+                                    </div>
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+            <input type="submit" class="btn btn-success mt-4" name="save" value="Сохранить информацию">
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(window).on('load', function () {
+        $('#loading').hide();
+        masknum();
+        savedData();
+    })
+    function savedData() {
+        var parking = `{{ complex.parking|safe }}`;
+
+        if (parking == "Есть") {
+            var parking_type = `{{ complex.parking_type|safe }}`;
+            
+            if (parking_type == "Подземная") {
+                var num_parking_down = `{{ house.parking_num|safe }}`;
+                $('#num-parking-down').val(num_parking_down);
+
+                var price_parking_down_hrn_min = `{{ house.parking_price_hrn_min|safe }}`;
+                $('#price-parking-down-hrn_min').val(price_parking_down_hrn_min);
+
+                var price_parking_down_dol_min = `{{ house.parking_price_dol_min|safe }}`;
+                $('#price-parking-down-dol_min').val(price_parking_down_dol_min);
+
+                var price_parking_down_hrn_max = `{{ house.parking_price_hrn_max|safe }}`;
+                $('#price-parking-down-hrn_max').val(price_parking_down_hrn_max);
+
+                var price_parking_down_dol_max = `{{ house.parking_price_dol_max|safe }}`;
+                $('#price-parking-down-dol_max').val(price_parking_down_dol_max);
+            }
+            else {
+                $('#num-parking-down').prop("disabled", true)
+                $('#price-parking-down-hrn_min').prop("disabled", true)
+                $('#price-parking-down-dol_min').prop("disabled", true)
+                $('#price-parking-down-hrn_max').prop("disabled", true)
+                $('#price-parking-down-dol_max').prop("disabled", true)
+            }
+        }
+
+    }
+    //mask for double
+    function masknum() {
+        $('.num').inputmask({
+            'alias': 'decimal',
+            'digits': 2,
+            'digitsOptional': false,
+            'placeholder': '0.00'
+        })
+    };
+    //To culc dollar for min
+    $('.calc_dollar_min').change(calcDol_min);
+    $('.dollar_val').change(function () {
+        $('.calc_dollar_min').trigger("change")
+    });
+    function calcDol_min() {
+        var dol = parseFloat($(this).val()) / parseFloat($(".dollar_val").val());
+        $(this).closest('.form-row').find('.dollar_min').val(dol);
+    }
+    //To culc dollar for max
+    $('.calc_dollar_max').change(calcDol_max);
+    $('.dollar_val').change(function () {
+        $('.calc_dollar_max').trigger("change")
+    });
+    function calcDol_max() {
+        var dol = parseFloat($(this).val()) / parseFloat($(".dollar_val").val());
+        $(this).closest('.form-row').find('.dollar_max').val(dol);
+    }
+</script>
+{% endblock %}

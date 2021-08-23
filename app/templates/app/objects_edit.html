@@ -12,7 +12,7 @@
     <a class="btn btn-warning" href="{% url 'object_menu' %}"><i class="fas fa-chevron-circle-left"></i> Назад</a>
     <h5 class="text-center mb-2">Просмотр и редактирование информации об объектах</h5>
     <hr class="bg-warning col-6 mb-2">
-    <h5 class="text-center mt-1 mb-2">Комплексы:</h5>
+    <h5 class="text-center mt-1">Комплексы:</h5>
     <div class="table-responsive">
         <table id="DataTable" class='table table-Light '>
             <thead>
@@ -49,7 +49,7 @@
         <form action='.' id="form1" method='POST'>
             {% csrf_token %}
             <input class="required" type="hidden" id="selected" name="selected" value="">
-            <input type="submit" class="btn btn-warning mt-5 mb-4" name="review" value="Посмотреть запись">
+            <input type="submit" class="btn btn-warning mt-2 mb-4" name="review" value="Посмотреть запись">
         </form>
     </div>
     {% else %}

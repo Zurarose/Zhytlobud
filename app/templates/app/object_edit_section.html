@@ -1,0 +1,289 @@
+﻿{% extends "app/layout.html" %}
+{% block content %}
+{% load static %}
+<div class="container-fluid col-12 bg-trasparent my-5" style="position: relative;">
+    {% for message in messages %}
+    <div class="alert alert-danger">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+        {{ message }}
+    </div>
+    {% endfor %}
+    <h5 class="text-center mt-1 mb-2">Редактирование информации о секции. Введите новые значения</h5>
+    <hr class="bg-warning col-6 mb-2">
+    <div class="d-flex justify-content-center">
+    <div class="col-10">     
+        <form action='.' id="form1" method='POST'>
+            {% csrf_token %}
+             <div class="shadow-lg rounded p-0 mt-2" id="menu2">
+                        <div class="card-header p-0">
+                            <h5 class="text-center" id="colplex-name-header1">Комплекс: {{complex.name}}</h5>
+                        </div>
+                        <div class="p-4">
+                            <h5 class="text-center mt-1 mb-4">Информация о секции</h5>
+                            <div class="mainTab">
+                            <div class="form-row mt-2">
+                                <div class="col-xl-2">
+                                    <label>№ дома<span style="color:red;">*</span></label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text">№</span>
+                                        <select class="custom-select house-num-select required" id="num-section-house" name="num-section-house">
+                                            {% for houses_nums in houses_num %}
+                                            <option value="{{ houses_nums }}">{{ houses_nums }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <label>Продажи<span style="color:red;">*</span></label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-tags"></i></span>
+                                        <select class="custom-select" id="sales" name="sales">
+                                            <option selected value="В продаже">В продаже</option>
+                                            <option value="Продано">Продано</option>
+                                            <option value="Перспектива">Перспектива</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <label>Финансирование</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-coins"></i></span>
+                                        <select class="custom-select" id="finance" name="finance">
+                                            <option selected value=""></option>
+                                            {% for post5 in posts5 %}
+                                            <option value="{{ post5 }}">{{ post5 }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-1">
+                                    <label>Дюплекс</label>
+                                    <div class="input-group flex-nowrap">
+                                        <select class="custom-select" id="duplex" name="duplex">
+                                            <option selected value=""></option>
+                                            <option selected value="Нет">Нет</option>
+                                            <option value="Есть">Есть</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-1">
+                                    <label>Пентхаусы</label>
+                                    <div class="input-group flex-nowrap">
+                                        <select class="custom-select" id="penthouse" name="penthouse">
+                                            <option selected value=""></option>
+                                            <option value="Нет">Нет</option>
+                                            <option value="Есть">Есть</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <label>Квартир всего</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text">№</span>
+                                        <input readonly class="form-control num-apart-ttl" type="number" id="num-apart-ttl" name="num-apart-ttl" min="1" max="10000">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <label>Ср. площадь</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                        <input readonly class="num form-control avg-area" type="text" id="avg-area" name="avg-area">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mt-2">
+                                <div class="card col-6 except p-0 shadow-none border-right-0 border">
+                                    <div class="p-1 pl-2 card-header">
+                                        Информация об однокомнатных квартирах:
+                                    </div>
+                                    <div class="py-1 card-body row">
+                                        <div class="col-xl-4">
+                                            <label>Количество 1км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text">№</span>
+                                                <input class="form-control totalApart" type="number" id="num-apart-one" name="num-apart-one" min="1" max="10000" value="{{section.a1_num}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <label>Мин. площадь 1км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="min-area-one" name="min-area-one" value="{{section.a1_area_min}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <label>Макс. площадь 1км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="max-area-one" name="max-area-one" value="{{section.a1_area_max}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card col-6 except p-0 shadow-none border-top">
+                                    <div class="p-1 pl-2 card-header">
+                                        Информация о двухкомнатных квартирах:
+                                    </div>
+                                    <div class="py-1 card-body row">
+                                        <div class="col-xl-4">
+                                            <label>Количество 2км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text">№</span>
+                                                <input class="form-control totalApart" type="number" id="num-apart-two" name="num-apart-two" min="1" max="10000" value="{{section.a2_num}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <label>Мин. площадь 2км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="min-area-two" name="min-area-two" value="{{section.a2_area_min}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <label>Макс. площадь 2км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="max-area-two" name="max-area-two" value="{{section.a2_area_max}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mt-2">
+                                <div class="card col-6 except p-0 shadow-none border-right-0">
+                                    <div class="p-1 pl-2 card-header">
+                                        Информация о трехкомнатных квартирах:
+                                    </div>
+                                    <div class="py-1 card-body row">
+                                        <div class="col-xl-4">
+                                            <label>Количество 3км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text">№</span>
+                                                <input class="form-control totalApart" type="number" id="num-apart-three" name="num-apart-three" min="1" max="10000" value="{{section.a3_num}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <label>Мин. площадь 3км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="min-area-three" name="min-area-three" value="{{section.a3_area_min}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <label>Макс. площадь 3км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="max-area-three" name="max-area-three" value="{{section.a3_area_max}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card col-6 except p-0 shadow-none border-top">
+                                    <div class="p-1 pl-2 card-header">
+                                        Информация о четырехкомнатных квартирах:
+                                    </div>
+                                    <div class="py-1 card-body row">
+                                        <div class="col-xl-4">
+                                            <label>Количество 4км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text">№</span>
+                                                <input class="form-control totalApart" type="number" id="num-apart-four" name="num-apart-four" min="1" max="10000" value="{{section.a4_num}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-4">
+                                            <label>Мин. площадь 4км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="min-area-four" name="min-area-four" value="{{section.a4_area_min}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <label>Макс. площадь 4км.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                                <input class="num form-control totalArea" type="text" id="max-area-four" name="max-area-four" value="{{section.a4_area_max}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <input type="submit" class="btn btn-success mt-4" name="save" value="Сохранить информацию">
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(window).on('load', function () {
+        $('#loading').hide();
+        masknum();
+        savedData();
+        $('.totalApart').trigger("change");
+        $('.totalArea').trigger("change");
+    })
+    //mask for double
+    function masknum() {
+        $('.num').inputmask({
+            'alias': 'decimal',
+            'digits': 2,
+            'digitsOptional': false,
+            'placeholder': '0.00'
+        })
+    };
+    function savedData() {
+        var num = `{{ selected_num|safe }}`;
+        $('#num-section-house option[value="' + num + '"]').prop("selected", true);
+
+        var sales = `{{ section.attribute|safe }}`;
+        $('#sales option[value="' + sales + '"]').prop("selected", true);
+
+        var finance = `{{ section.financing.name|safe }}`;
+        $('#finance option[value="' + finance + '"]').prop("selected", true);
+
+        var duplex = `{{ section.duplex_apartments|safe }}`;
+        $('#duplex option[value="' + duplex + '"]').prop("selected", true);
+
+        var penthouse = `{{ section.penthouses|safe }}`;
+        $('#penthouse option[value="' + penthouse + '"]').prop("selected", true);
+    }
+
+    //To count avg prices and areas
+    $(".totalApart").change(function () {
+        var what = $(this).closest('.mainTab').find('.totalApart');
+        var where = $(this).closest('.mainTab').find('.num-apart-ttl')
+        ToCount(what, where, "ttl");
+    });
+    $(".totalArea").change(function () {
+        var what = $(this).closest('.mainTab').find('.totalArea');
+        var where = $(this).closest('.mainTab').find('.avg-area')
+        ToCount(what, where, "avg");
+    });
+    function ToCount(WhatCount, WhereToPut, how) {
+        var count = 0;
+        var totalobj = 0;
+        if (how == "ttl") {
+            for (var i = 0; i < WhatCount.length; i++) {
+                if (WhatCount[i].value != "") {
+                    count = count + parseFloat(WhatCount[i].value);
+                }
+            }
+        }
+        else if (how == "avg") {
+            for (var i = 0; i < WhatCount.length; i++) {
+                if (WhatCount[i].value != "") {
+                    count = count + parseFloat(WhatCount[i].value);
+                    totalobj = totalobj + 1;
+                }
+            }
+            count = count / totalobj;
+        }
+        $(WhereToPut).val(count);
+    }
+</script>
+{% endblock %}
