@@ -40,11 +40,6 @@
     <Compile Include="app\migrations\__init__.py" />
     <Compile Include="manage.py" />
     <Compile Include="app\admin.py" />
-    <Compile Include="Helpfull files\forms_help.py" />
-    <Compile Include="Helpfull files\models_help.py" />
-    <Compile Include="Helpfull files\tables_help.py" />
-    <Compile Include="Helpfull files\views_help.py" />
-    <Compile Include="Helpfull files\__init__.py" />
     <Compile Include="Zhytlobud\__init__.py" />
     <Compile Include="Zhytlobud\settings.py" />
     <Compile Include="Zhytlobud\urls.py" />
@@ -70,11 +65,6 @@
     <Folder Include="app\templates\" />
     <Folder Include="app\templates\app\" />
     <Folder Include="Zhytlobud\" />
-    <Folder Include="Helpfull files\" />
-    <Folder Include="Helpfull files\templates\" />
-    <Folder Include="Helpfull files\templates\app\" />
-    <Folder Include="Helpfull files\templates\app\appfunct\" />
-    <Folder Include="Helpfull files\templates\app\tabs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\static\app\DataTables\DataTables-1.10.25\css\dataTables.bootstrap.css" />
@@ -176,23 +166,9 @@
     <Content Include="app\static\app\scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="app\static\app\scripts\respond.min.js" />
     <Content Include="app\static\app\scripts\_references.js" />
-    <Content Include="Helpfull files\templates\app\appfunct\MaterialAdd.html" />
-    <Content Include="Helpfull files\templates\app\appfunct\MaterialDel.html" />
-    <Content Include="Helpfull files\templates\app\appfunct\MatorderCancel.html" />
-    <Content Include="Helpfull files\templates\app\appfunct\MatordlAdd.html" />
-    <Content Include="Helpfull files\templates\app\appfunct\MatordReview.html" />
-    <Content Include="Helpfull files\templates\app\appfunct\OrderReview.html" />
-    <Content Include="Helpfull files\templates\app\error.html" />
     <Content Include="app\templates\app\layout.html" />
     <Content Include="app\templates\app\login.html" />
     <Content Include="app\templates\app\menu.html" />
-    <Content Include="Helpfull files\templates\app\register.html" />
-    <Content Include="Helpfull files\templates\app\reg_done.html" />
-    <Content Include="Helpfull files\templates\app\tabs\CNextStep.html" />
-    <Content Include="Helpfull files\templates\app\tabs\Create.html" />
-    <Content Include="Helpfull files\templates\app\tabs\Matorder.html" />
-    <Content Include="Helpfull files\templates\app\tabs\Resources.html" />
-    <Content Include="Helpfull files\templates\app\tabs\Review.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.html">
