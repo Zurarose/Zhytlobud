@@ -271,9 +271,9 @@
             if ($.inArray(this.value, inputs) != -1) flag = true;
             inputs.push(this.value);
         });
-        var exsited = `{{houses|safe}}`
+        var exsisted = `{{houses|safe}}`
         $('.house-nums').each(function () {
-            if ($.inArray(this.value, exsited) != -1) flag = true;
+            if ($.inArray(this.value, exsisted) != -1) { flag = true; }
         });
         if (flag == true) {
             alert('Номера домов должны быть уникальны!');

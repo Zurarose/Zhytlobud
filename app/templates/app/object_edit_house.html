@@ -208,5 +208,23 @@
         var dol = parseFloat($(this).val()) / parseFloat($(".dollar_val").val());
         $(this).closest('.form-row').find('.dollar_max').val(dol);
     }
+    //To check all inputs
+    $('#form1').submit(function (evt) {
+        var inputs = [], flag = false;
+        $('.house-nums').each(function () {
+            if ($.inArray(this.value, inputs) != -1) flag = true;
+            inputs.push(this.value);
+        });
+        var exsisted = `{{houses|safe}}`
+        var thisHouse = '{{house.street_number|safe}}';
+        $('.house-nums').each(function () {
+            if ($.inArray(this.value, exsisted) != -1 && (this).value != thisHouse) 
+            { flag = true; }
+        });
+        if (flag == true) {
+            alert('Номера домов должны быть уникальны!');
+            return false;
+        }
+    });
 </script>
 {% endblock %}
