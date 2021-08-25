@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
 <a class="btn btn-warning ml-3 mt-2" href="{% url 'objects_review' %}"><i class="fas fa-chevron-circle-left"></i> Назад</a>
-<div class="container-fluid col-12 bg-trasparent my-5" style="position: relative;">
+<div class="container-fluid col-12 bg-trasparent" style="position: relative;">
     {% for message in messages %}
     <div class="alert alert-danger">
         <a class="close" href="#" data-dismiss="alert">×</a>

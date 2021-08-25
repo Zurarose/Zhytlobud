@@ -1,7 +1,8 @@
 ﻿{% extends "app/layout.html" %}
 {% block content %}
 {% load static %}
-<div class="container-fluid bg-trasparent my-3 p-3" style="position: relative;">
+<a class="btn btn-warning ml-3 mt-2" href="{% url 'objects_review' %}"><i class="fas fa-chevron-circle-left"></i> Назад</a>
+<div class="container-fluid bg-trasparent p-3" style="position: relative;">
     {% for message in messages %}
         <div class="alert alert-danger">
             <a class="close" href="#" data-dismiss="alert">×</a>
