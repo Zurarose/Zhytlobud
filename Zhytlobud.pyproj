@@ -145,6 +145,8 @@
     <Content Include="app\templates\app\customers_edit.html" />
     <Content Include="app\templates\app\customers_add.html" />
     <Content Include="app\templates\app\customer_menu.html" />
+    <Content Include="app\templates\app\object_add_house.html" />
+    <Content Include="app\templates\app\object_add_section.html" />
     <Content Include="app\templates\app\object_edit_section.html" />
     <Content Include="app\templates\app\object_edit_house.html" />
     <Content Include="app\templates\app\object_menu.html" />

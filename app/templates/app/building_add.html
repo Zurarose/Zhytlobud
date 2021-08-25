@@ -2,9 +2,10 @@
 
 {% block content %}
 {% load static %}
-<div class="container mt-3 col-md-12 d-flex justify-content-center">
+<a class="btn btn-warning ml-3 mt-2" href="{% url 'object_menu' %}"><i class="fas fa-chevron-circle-left"></i> Назад</a>
+<div class="container col-md-12 d-flex justify-content-center">
     <div class="row col-md-10 d-flex justify-content-center ">
-        <div class="col-md-12">
+        <div class="col-md-12">           
             <!-- Nav tabs -->
             <div id="tohide">
                 <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
@@ -297,27 +298,27 @@
                                 </div>
                                     </div>
                                 <div class="form-row mt-2">
-                                <div class="offset-xl-8 col-xl-2 col-xl-2">
-                                    <label>Стоимость макс</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text">₴</span>
-                                        <input class="num calc_dollar_max form-control parking-down" type="text" id="price-parking-down-hrn_max1" name="price-parking-down-hrn_max1">
+                                    <div class="offset-xl-8 col-xl-2 col-xl-2">
+                                        <label>Стоимость макс</label>
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text">₴</span>
+                                            <input class="num calc_dollar_max form-control parking-down" type="text" id="price-parking-down-hrn_max1" name="price-parking-down-hrn_max1">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Стоимость макс</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text">$</span>
-                                        <input class="num dollar_max form-control parking-down" readonly type="text" id="price-parking-down-dol_max1" name="price-parking-down-dol_max1">
+                                    <div class="col-xl-2">
+                                        <label>Стоимость макс</label>
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text">$</span>
+                                            <input class="num dollar_max form-control parking-down" readonly type="text" id="price-parking-down-dol_max1" name="price-parking-down-dol_max1">
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                                 
                                 <hr class="bg-warning col-6">
                             </div>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-success col-auto btn-copy-house ml-4" name="counts-houses">Добавить новый дом</button>
+                            <button type="button" class="btn btn-success col-auto btn-copy-house ml-4">Добавить новый дом</button>
                             <input type="hidden" id="counts-houses" name="counts-houses" value="1">
                             <button type="button" class="btn btn-danger col-auto btn-delete-house">Удалить дом</button>
                         </div>

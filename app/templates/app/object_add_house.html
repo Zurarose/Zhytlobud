@@ -1,0 +1,284 @@
+﻿{% extends "app/layout.html" %}
+{% block content %}
+{% load static %}
+<a class="btn btn-warning ml-3 mt-2" href="{% url 'objects_review' %}"><i class="fas fa-chevron-circle-left"></i> Назад</a>
+<div class="container-fluid col-12 bg-trasparent my-5" style="position: relative;">
+    {% for message in messages %}
+    <div class="alert alert-danger">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+        {{ message }}
+    </div>
+    {% endfor %}
+    <h5 class="text-center mt-1 mb-2">Добавление новых домов в комплекс. Введите значения</h5>
+    <hr class="bg-warning col-6 mb-2">
+    <div class="d-flex justify-content-center">
+        <div class="col-10">
+            <div class="mb-2 col-xl-4 col-sm-4">
+                <label>Курс доллара</label>
+                <div class="input-group flex-nowrap p-0 col-xl-8">
+                    <span class="input-group-text">$</span>
+                    <input class="num form-control dollar_val" type="text" id="dollar" name="dollar">
+                    <a class="btn btn-warning" id="checkDollar" href="https://goo-gl.su/jd6bSL" target="_blank">Узнать</a>
+                </div>
+            </div>
+            <form action='.' id="form1" method='POST'>
+                {% csrf_token %}
+             <div class="shadow-lg rounded p-0 mt-2" id="menu2">
+                 <div class="card-header p-0">
+                     <h5 class="text-center" id="colplex-name-header1">Комплекс: {{complex.name}}</h5>
+                 </div>
+                 <div id="topaste-house" class="p-4">
+                     <h5 class="text-center mt-1 mb-4">Информация о домах</h5>
+                     <div id="tocopy-house1" name="tocopy-house1">
+                         <h5 class="text-center mt-4 mb-4 counts">№1</h5>
+                         <div class="form-row mt-2">
+                             <div class="col-xl-2">
+                                 <label>№ дома<span style="color: red;">*</span></label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text">№</span>
+                                     <input class="form-control house-nums" required type="text" id="num-build1" name="num-build1">
+                                 </div>
+                             </div>
+                             <div class="col-xl-2">
+                                 <label>Площадь дома</label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                     <input class="num form-control" type="text" id="area-build1" name="area-build1">
+                                 </div>
+                             </div>
+                             <div class="col-xl-2">
+                                 <label>Площадь квартир</label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                     <input class="num form-control" type="text" id="area-apart1" name="area-apart1">
+                                 </div>
+                             </div>
+                             <div class="col-xl-1">
+                                 <label>Этажность</label>
+                                 <div class="input-group flex-nowrap">
+                                     <input class="form-control" type="number" id="num-storeys1" name="num-storeys1" min="1" max="1000">
+                                 </div>
+                             </div>
+                             <div class="col-xl-2">
+                                 <label class="ml-3">Этап постройки</label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text"><i class="fas fa-percent"></i></span>
+                                     <input class="form-control" step="5" type="number" id="constr-phase-prc1" name="constr-phase-prc1" min="0" max="100">
+                                 </div>
+                             </div>
+                             <div class="col-xl-3">
+                                 <label>Примечание</label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                                     <input type="text" class="form-control" id="info-house1" name="info-house1">
+                                 </div>
+                             </div>
+
+                         </div>
+                         <div class="form-row mt-2">
+                             <div class="col-xl-2">
+                                 <label>Год начала</label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                     <input class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-start1" name="date-pick-start1" />
+                                 </div>
+                             </div>
+                             <div class="col-xl-2">
+                                 <label>Год ввода</label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                     <input class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-commis1" name="date-pick-commis1" />
+                                 </div>
+                             </div>
+                             <div class="col-xl-2">
+                                 <label>Квартал</label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
+                                     <input class="form-control" type="number" min="1" max="4" step="1" id="quarter-pick1" name="quarter-pick1" />
+                                 </div>
+                             </div>
+                             <div class="col-xl-2">
+                                 <label>Парковка(мест)</label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
+                                     <input class="form-control parking-down" type="number" id="num-parking-down1" name="num-parking-down1" min="1" max="1000">
+                                 </div>
+                             </div>
+                             <div class="col-xl-2">
+                                 <label>Стоимость мин</label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text">₴</span>
+                                     <input class="num calc_dollar_min form-control parking-down" type="text" id="price-parking-down-hrn_min1" name="price-parking-down-hrn_min1">
+                                 </div>
+                             </div>
+                             <div class="col-xl-2">
+                                 <label>Стоимость мин</label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text">$</span>
+                                     <input class="num dollar_min form-control parking-down" readonly type="text" id="price-parking-down-dol_min1" name="price-parking-down-dol_min1">
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="form-row mt-2">
+                             <div class="offset-xl-8 col-xl-2 col-xl-2">
+                                 <label>Стоимость макс</label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text">₴</span>
+                                     <input class="num calc_dollar_max form-control parking-down" type="text" id="price-parking-down-hrn_max1" name="price-parking-down-hrn_max1">
+                                 </div>
+                             </div>
+                             <div class="col-xl-2">
+                                 <label>Стоимость макс</label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text">$</span>
+                                     <input class="num dollar_max form-control parking-down" readonly type="text" id="price-parking-down-dol_max1" name="price-parking-down-dol_max1">
+                                 </div>
+                             </div>
+                         </div>
+                         <hr class="bg-warning col-6">
+                     </div>
+                 </div>
+                 <div>
+                     <button type="button" class="btn btn-success col-auto btn-copy-house ml-4">Добавить новый дом</button>
+                     <input type="hidden" id="counts-houses" name="counts-houses" value="1">
+                     <button type="button" class="btn btn-danger col-auto btn-delete-house">Удалить дом</button>
+                 </div>
+                 <input type="submit" class="btn btn-success my-4 ml-4" name="save" value="Сохранить информацию">
+             </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(window).on('load', function () {
+        $('#loading').hide();
+        masknum();
+        savedData();
+    })
+    function savedData() {
+        var parking = `{{complex.parking|safe}}`;
+
+        if (parking == "Есть") {
+            var parking_type = `{{complex.parking_type|safe}}`;
+
+            if (parking_type != "Подземная") {
+                $('#num-parking-down').prop("disabled", true)
+                $('#price-parking-down-hrn_min').prop("disabled", true)
+                $('#price-parking-down-dol_min').prop("disabled", true)
+                $('#price-parking-down-hrn_max').prop("disabled", true)
+                $('#price-parking-down-dol_max').prop("disabled", true)
+            }
+        }
+
+    }
+    //mask for double
+    function masknum() {
+        $('.num').inputmask({
+            'alias': 'decimal',
+            'digits': 2,
+            'digitsOptional': false,
+            'placeholder': '0.00'
+        })
+    };
+    //To culc dollar for min
+    $('.calc_dollar_min').change(calcDol_min);
+    $('.dollar_val').change(function () {
+        $('.calc_dollar_min').trigger("change")
+    });
+    function calcDol_min() {
+        var dol = parseFloat($(this).val()) / parseFloat($(".dollar_val").val());
+        $(this).closest('.form-row').find('.dollar_min').val(dol);
+    }
+    //To culc dollar for max
+    $('.calc_dollar_max').change(calcDol_max);
+    $('.dollar_val').change(function () {
+        $('.calc_dollar_max').trigger("change")
+    });
+    function calcDol_max() {
+        var dol = parseFloat($(this).val()) / parseFloat($(".dollar_val").val());
+        $(this).closest('.form-row').find('.dollar_max').val(dol);
+    }
+</script>
+<script>
+    // To Create house and section clones
+    var houseCount = 2;
+    var names_house = []
+    $(".btn-delete-house").click(function () {
+        if (houseCount != 2) {
+            houseCount = whatToDelete(names_house, houseCount);
+            $("#counts-houses").val(houseCount - 1);
+        }
+    });
+    $(".btn-copy-house").click(function () {
+        houseCopy("#tocopy-house1", "#topaste-house", houseCount);
+        names_house.push("tocopy-house" + houseCount);
+        $("#counts-houses").val(houseCount);
+        houseCount = houseCount + 1;
+
+    });
+    //To delete elements(house, sections)
+    function whatToDelete(what, countNum) {
+        if (what.length != 0) {
+            var len = what.length - 1;
+            document.getElementById(what[len]).remove();
+            what.splice(-1);
+            countNum = countNum - 1;
+            return countNum;
+        }
+    };
+    function houseCopy(whatToCopy, whereToPaste, count) {
+        var $clone = $(whatToCopy).clone(true);
+        // Get the number at the end of the ID, increment it, and replace the old id
+        $clone.attr('id', $clone.attr('id').replace(/\d+$/, count));
+        $clone.attr('name', $clone.attr('name').replace(/\d+$/, count));
+        // Find all elements in $clone that have an ID, and iterate using each()     
+        $clone.find('[id]').each(function () {
+            //Perform the same replace as above
+            var $th = $(this);
+            var newID = $th.attr('id').replace(/\d+$/, count);
+            $th.attr('id', newID);
+        });
+        $clone.find('[name]').each(function () {
+            //Perform the same replace as above
+            var $th = $(this);
+            var newName = $th.attr('name').replace(/\d+$/, count);
+            $th.attr('name', newName);
+        });
+        //To delete input values 
+        $clone.find("input").each(function () {
+            var $th = $(this);
+            $th.val("");
+        });
+        $clone.find(".counts").text("№" + count);
+        $clone.appendTo($(whereToPaste));
+        masknum();
+    }
+</script>
+<script>
+    $(".house-nums").keypress(function (e) {
+        var verified = String.fromCharCode(e.which).match(/[a-zA-Z-]/);
+        if (verified) {
+            e.preventDefault();
+        }
+    });
+    //To check all inputs
+    $('#form1').submit(function (evt) {
+        var inputs = [], flag = false;
+        $('.house-nums').each(function () {
+            if ($.inArray(this.value, inputs) != -1) flag = true;
+            inputs.push(this.value);
+        });
+        var exsited = `{{houses|safe}}`
+        $('.house-nums').each(function () {
+            if ($.inArray(this.value, exsited) != -1) flag = true;
+        });
+        if (flag == true) {
+            alert('Номера домов должны быть уникальны!');
+            return false;
+        }
+    });
+</script>
+{% endblock %}

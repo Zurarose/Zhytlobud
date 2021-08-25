@@ -5,6 +5,8 @@ $ python manage.py migrate tutorial
 
 $ python manage.py inspectdb
 
+https://www.investing.com/currencies/usd-uah-historical-data
+
 heroku run python manage.py migrate
 
 heroku run python manage.py createsuperuser -a zhytlobud
@@ -55,7 +57,8 @@ urlpatterns = [
    path("objects_review/", views.objects_review, name="objects_review"),
    path("object_edit_complex/", views.object_edit_complex, name="object_edit_complex"),
    path("object_edit_house/", views.object_edit_house, name="object_edit_house"),
-   path("object_edit_section/", views.object_edit_section, name="object_edit_section"),
+   path("object_add_house/", views.object_add_house, name="object_add_house"),
+   path("object_add_section/", views.object_add_section, name="object_add_section"),
 
    #For Ajax. Look at script in building_add.html.
    url(r'^ajax/getStreets/$', views.getStreets, name='getStreets'),

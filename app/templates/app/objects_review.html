@@ -47,6 +47,7 @@
             <h5 class="ml-1">Дома:</h5>
             <form action='.' id="form_house" method='POST'>
                 {% csrf_token %}
+                <input type="submit" class="ml-1 btn btn-warning btn-sm" name="add_house" value="Добавить дом">
                 <input type="submit" class="ml-1 btnTable_first btn btn-warning btn-sm" name="edit_house" value="Редактировать дом">
                 <input class="required" type="hidden" id="selected_house" name="selected_house" value="">
                 <input type="submit" class="ml-1 btnTable_first btn btn-danger check_house btn-sm" name="delete_house" value="Удалить дом">
@@ -102,6 +103,7 @@
             <h5 class="ml-1">Секции:</h5>
             <form action='.' id="form_section" method='POST'>
                 {% csrf_token %}
+                <input type="submit" class="ml-1 btn btn-warning btn-sm" name="add_section" value="Добавить секцию">
                 <input type="submit" disabled class="ml-1 btnTable_second btn btn-warning btn-sm" name="edit_section" value="Редактировать секцию">
                 <input type="hidden" class="required" id = "selected_section" name="selected_section" value="">
                 <input type="submit" disabled class="ml-1 btnTable_second btn btn-danger check_section btn-sm" name="delete_section" value="Удалить секцию">
@@ -148,13 +150,13 @@
 {% else %}
             <p>No data available</p>
 {% endif %}
-</div>
+
 {% endblock %}
 
 {% block scripts %}
 <script>
     $(".check_complex").click(function () {
-        if (confirm('Удалить целый комплекс? Это удалит все дочерние объекты!')) {
+        if (confirm('Удалить целый комплекс? Это удалит все дочерние объекты (дома, секции)!')) {
             form_complex.submit();
         }
         else {

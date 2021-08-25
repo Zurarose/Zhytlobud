@@ -1,0 +1,330 @@
+﻿{% extends "app/layout.html" %}
+{% block content %}
+{% load static %}
+<a class="btn btn-warning ml-3 mt-2" href="{% url 'objects_review' %}"><i class="fas fa-chevron-circle-left"></i> Назад</a>
+<div class="container-fluid col-12 bg-trasparent my-5" style="position: relative;">
+    {% for message in messages %}
+    <div class="alert alert-danger">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+        {{ message }}
+    </div>
+    {% endfor %}
+    <h5 class="text-center mt-1 mb-2">Добавление новых секций в дома комплекса. Введите значения</h5>
+    <hr class="bg-warning col-6 mb-2">
+    <div class="d-flex justify-content-center">
+        <div class="col-10">
+            <form action='.' id="form1" method='POST'>
+                {% csrf_token %}
+             <div class="shadow-lg rounded p-0 mt-2" id="menu2">
+                 <div class="card-header p-0">
+                     <h5 class="text-center" id="colplex-name-header1">Комплекс: {{complex.name}}</h5>
+                 </div>
+                 <div id="topaste-section" class="p-4">
+                     <h5 class="text-center mt-1 mb-4">Информация о секциях</h5>
+                     <div class="mainTab" id="tocopy-section1" name="tocopy-section1">
+                         <h5 class="mt-4 mb-4 text-center counts">№1</h5>
+                         <div class="form-row mt-2">
+                             <div class="col-xl-2">
+                                 <label>№ дома<span style="color: red;">*</span></label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text">№</span>
+                                     <select class="custom-select house-num-select required" id="num-section-house1" name="num-section-house1">
+                                         {% for houses_nums in houses_num %}
+                                            <option value="{{ houses_nums }}">{{ houses_nums }}</option>
+                                         {% endfor %}
+                                     </select>
+                                 </div>
+                             </div>
+                             <div class="col-xl-2">
+                                 <label>Продажи<span style="color: red;">*</span></label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text"><i class="fas fa-tags"></i></span>
+                                     <select class="custom-select" id="sales1" name="sales1">
+                                         <option selected value="В продаже">В продаже</option>
+                                         <option value="Продано">Продано</option>
+                                         <option value="Перспектива">Перспектива</option>
+                                     </select>
+                                 </div>
+                             </div>
+                             <div class="col-xl-2">
+                                 <label>Финансирование</label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text"><i class="fas fa-coins"></i></span>
+                                     <select class="custom-select" id="finance1" name="finance1">
+                                         <option selected value=""></option>
+                                         {% for post5 in posts5 %}
+                                            <option value="{{ post5 }}">{{ post5 }}</option>
+                                         {% endfor %}
+                                     </select>
+                                 </div>
+                             </div>
+                             <div class="col-xl-1">
+                                 <label>Дюплекс</label>
+                                 <div class="input-group flex-nowrap">
+                                     <select class="custom-select" id="duplex1" name="duplex1">
+                                         <option selected value=""></option>
+                                         <option selected value="Нет">Нет</option>
+                                         <option value="Есть">Есть</option>
+                                     </select>
+                                 </div>
+                             </div>
+                             <div class="col-xl-1">
+                                 <label>Пентхаусы</label>
+                                 <div class="input-group flex-nowrap">
+                                     <select class="custom-select" id="penthouse1" name="penthouse1">
+                                         <option selected value=""></option>
+                                         <option value="Нет">Нет</option>
+                                         <option value="Есть">Есть</option>
+                                     </select>
+                                 </div>
+                             </div>
+                             <div class="col-xl-2">
+                                 <label>Квартир всего</label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text">№</span>
+                                     <input readonly class="form-control num-apart-ttl" type="number" id="num-apart-ttl1" name="num-apart-ttl1" min="1" max="10000">
+                                 </div>
+                             </div>
+                             <div class="col-xl-2">
+                                 <label>Ср. площадь</label>
+                                 <div class="input-group flex-nowrap">
+                                     <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                     <input readonly class="num form-control avg-area" type="text" id="avg-area1" name="avg-area1">
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="form-row mt-2">
+                             <div class="card col-6 except p-0 shadow-none border-right-0 border">
+                                 <div class="p-1 pl-2 card-header">
+                                     Информация об однокомнатных квартирах:
+                                 </div>
+                                 <div class="py-1 card-body row">
+                                     <div class="col-xl-4">
+                                         <label>Количество 1км.</label>
+                                         <div class="input-group flex-nowrap">
+                                             <span class="input-group-text">№</span>
+                                             <input class="form-control totalApart" type="number" id="num-apart-one1" name="num-apart-one1" min="1" max="10000">
+                                         </div>
+                                     </div>
+                                     <div class="col-xl-4">
+                                         <label>Мин. площадь 1км.</label>
+                                         <div class="input-group flex-nowrap">
+                                             <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                             <input class="num form-control totalArea" type="text" id="min-area-one1" name="min-area-one1">
+                                         </div>
+                                     </div>
+                                     <div class="col-xl-4">
+                                         <label>Макс. площадь 1км.</label>
+                                         <div class="input-group flex-nowrap">
+                                             <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                             <input class="num form-control totalArea" type="text" id="max-area-one1" name="max-area-one1">
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="card col-6 except p-0 shadow-none border-top">
+                                 <div class="p-1 pl-2 card-header">
+                                     Информация о двухкомнатных квартирах:
+                                 </div>
+                                 <div class="py-1 card-body row">
+                                     <div class="col-xl-4">
+                                         <label>Количество 2км.</label>
+                                         <div class="input-group flex-nowrap">
+                                             <span class="input-group-text">№</span>
+                                             <input class="form-control totalApart" type="number" id="num-apart-two1" name="num-apart-two1" min="1" max="10000">
+                                         </div>
+                                     </div>
+                                     <div class="col-xl-4">
+                                         <label>Мин. площадь 2км.</label>
+                                         <div class="input-group flex-nowrap">
+                                             <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                             <input class="num form-control totalArea" type="text" id="min-area-two1" name="min-area-two1">
+                                         </div>
+                                     </div>
+                                     <div class="col-xl-4">
+                                         <label>Макс. площадь 2км.</label>
+                                         <div class="input-group flex-nowrap">
+                                             <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                             <input class="num form-control totalArea" type="text" id="max-area-two1" name="max-area-two1">
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="form-row mt-2">
+                             <div class="card col-6 except p-0 shadow-none border-right-0">
+                                 <div class="p-1 pl-2 card-header">
+                                     Информация о трехкомнатных квартирах:
+                                 </div>
+                                 <div class="py-1 card-body row">
+                                     <div class="col-xl-4">
+                                         <label>Количество 3км.</label>
+                                         <div class="input-group flex-nowrap">
+                                             <span class="input-group-text">№</span>
+                                             <input class="form-control totalApart" type="number" id="num-apart-three1" name="num-apart-three1" min="1" max="10000">
+                                         </div>
+                                     </div>
+                                     <div class="col-xl-4">
+                                         <label>Мин. площадь 3км.</label>
+                                         <div class="input-group flex-nowrap">
+                                             <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                             <input class="num form-control totalArea" type="text" id="min-area-three1" name="min-area-three1">
+                                         </div>
+                                     </div>
+                                     <div class="col-xl-4">
+                                         <label>Макс. площадь 3км.</label>
+                                         <div class="input-group flex-nowrap">
+                                             <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                             <input class="num form-control totalArea" type="text" id="max-area-three1" name="max-area-three1">
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="card col-6 except p-0 shadow-none border-top">
+                                 <div class="p-1 pl-2 card-header">
+                                     Информация о четырехкомнатных квартирах:
+                                 </div>
+                                 <div class="py-1 card-body row">
+                                     <div class="col-xl-4">
+                                         <label>Количество 4км.</label>
+                                         <div class="input-group flex-nowrap">
+                                             <span class="input-group-text">№</span>
+                                             <input class="form-control totalApart" type="number" id="num-apart-four1" name="num-apart-four1" min="1" max="10000">
+                                         </div>
+                                     </div>
+
+                                     <div class="col-xl-4">
+                                         <label>Мин. площадь 4км.</label>
+                                         <div class="input-group flex-nowrap">
+                                             <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                             <input class="num form-control totalArea" type="text" id="min-area-four1" name="min-area-four1">
+                                         </div>
+                                     </div>
+                                     <div class="col-xl-4">
+                                         <label>Макс. площадь 4км.</label>
+                                         <div class="input-group flex-nowrap">
+                                             <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
+                                             <input class="num form-control totalArea" type="text" id="max-area-four1" name="max-area-four1">
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div>
+                     <button type="button" class="btn btn-success ml-4 col-auto btn-copy-section" name="counts-sections">Добавить новую секцию</button>
+                     <input type="hidden" id="counts-sections" name="counts-sections" value="1">
+                     <button type="button" class="btn btn-danger col-auto btn-delete-section">Удалить секцию</button>
+                 </div>
+                 <input type="submit" class="btn btn-success my-4 ml-4" name="save" value="Сохранить информацию">
+             </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(window).on('load', function () {
+        $('#loading').hide();
+        masknum();
+    })
+    //mask for double
+    function masknum() {
+        $('.num').inputmask({
+            'alias': 'decimal',
+            'digits': 2,
+            'digitsOptional': false,
+            'placeholder': '0.00'
+        })
+    };
+    //To count avg prices and areas
+    $(".totalApart").change(function () {
+        var what = $(this).closest('.mainTab').find('.totalApart');
+        var where = $(this).closest('.mainTab').find('.num-apart-ttl')
+        ToCount(what, where, "ttl");
+    });
+    $(".totalArea").change(function () {
+        var what = $(this).closest('.mainTab').find('.totalArea');
+        var where = $(this).closest('.mainTab').find('.avg-area')
+        ToCount(what, where, "avg");
+    });
+    function ToCount(WhatCount, WhereToPut, how) {
+        var count = 0;
+        var totalobj = 0;
+        if (how == "ttl") {
+            for (var i = 0; i < WhatCount.length; i++) {
+                if (WhatCount[i].value != "") {
+                    count = count + parseFloat(WhatCount[i].value);
+                }
+            }
+        }
+        else if (how == "avg") {
+            for (var i = 0; i < WhatCount.length; i++) {
+                if (WhatCount[i].value != "") {
+                    count = count + parseFloat(WhatCount[i].value);
+                    totalobj = totalobj + 1;
+                }
+            }
+            count = count / totalobj;
+        }
+        $(WhereToPut).val(count);
+    }
+</script>
+<script>
+    // To Create house and section clones
+    var sectionCount = 2;
+    var names_section = []
+    $(".btn-delete-section").click(function () {
+        if (sectionCount != 2) {
+            sectionCount = whatToDelete(names_section, sectionCount);
+            $("#counts-sections").val(sectionCount - 1);
+        }
+    });
+    $(".btn-copy-section").click(function () {
+        houseCopy("#tocopy-section1", "#topaste-section", sectionCount);
+        names_section.push("tocopy-section" + sectionCount);
+        $("#counts-sections").val(sectionCount);
+        sectionCount = sectionCount + 1;
+    });
+    //To delete elements(house, sections)
+    function whatToDelete(what, countNum) {
+        if (what.length != 0) {
+            var len = what.length - 1;
+            document.getElementById(what[len]).remove();
+            what.splice(-1);
+            countNum = countNum - 1;
+            return countNum;
+        }
+    };
+    function houseCopy(whatToCopy, whereToPaste, count) {
+        var $clone = $(whatToCopy).clone(true);
+        // Get the number at the end of the ID, increment it, and replace the old id
+        $clone.attr('id', $clone.attr('id').replace(/\d+$/, count));
+        $clone.attr('name', $clone.attr('name').replace(/\d+$/, count));
+        // Find all elements in $clone that have an ID, and iterate using each()     
+        $clone.find('[id]').each(function () {
+            //Perform the same replace as above
+            var $th = $(this);
+            var newID = $th.attr('id').replace(/\d+$/, count);
+            $th.attr('id', newID);
+        });
+        $clone.find('[name]').each(function () {
+            //Perform the same replace as above
+            var $th = $(this);
+            var newName = $th.attr('name').replace(/\d+$/, count);
+            $th.attr('name', newName);
+        });
+        //To delete input values 
+        $clone.find("input").each(function () {
+            var $th = $(this);
+            $th.val("");
+        });
+        $clone.find(".counts").text("№" + count);
+        $clone.appendTo($(whereToPaste));
+        masknum();
+    }
+</script>
+{% endblock %}
