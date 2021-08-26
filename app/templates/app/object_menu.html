@@ -19,6 +19,7 @@
                     </div>
                 </div>
             </div>
+            {% if request.user.is_staff or request.user.is_superuser%}
             <div class="col mt-3">
                 <div class="card  text-center h-100 shadow-sm rounded">
                     <div class="card-img-top" style="color: orange;"><i class="fas fa-folder-plus fa-9x"></i></div>
@@ -29,6 +30,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

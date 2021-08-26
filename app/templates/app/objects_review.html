@@ -37,8 +37,12 @@
             <form action='.' id="form_complex" method='POST'>
                 {% csrf_token %}
                 <li class="border-bottom-0 list-group-item">
+                    {% if request.user.is_staff or request.user.is_superuser%}
                     <input type="submit" class="btn btn-warning btn-sm col-12" name="edit_complex" value="Редактировать комплекс">
+                    {% endif %}
+                    {% if request.user.is_superuser%}
                     <input type="submit" class="btn btn-danger check_complex mt-2 btn-sm col-12" name="delete_complex" value="Удалить комплекс">
+                    {% endif %}
                 </li>
             </form>
             </ul>
@@ -47,10 +51,14 @@
             <h5 class="ml-1">Дома:</h5>
             <form action='.' id="form_house" method='POST'>
                 {% csrf_token %}
+                <input class="required" type="hidden" id="selected_house" name="selected_house" value="">
+                {% if request.user.is_staff or request.user.is_superuser%}
                 <input type="submit" class="ml-1 btn btn-warning btn-sm" name="add_house" value="Добавить дом">
                 <input type="submit" class="ml-1 btnTable_first btn btn-warning btn-sm" name="edit_house" value="Редактировать дом">
-                <input class="required" type="hidden" id="selected_house" name="selected_house" value="">
+                {% endif %}
+                {% if request.user.is_superuser%}
                 <input type="submit" class="ml-1 btnTable_first btn btn-danger check_house btn-sm" name="delete_house" value="Удалить дом">
+                {% endif %}
             </form>
             <div class="pl-1 pr-2 m-0 table-responsive col-xl-12">
                 <table id="DataTable" class='table table-Light display compact' style="width:100%;">
@@ -103,10 +111,14 @@
             <h5 class="ml-1">Секции:</h5>
             <form action='.' id="form_section" method='POST'>
                 {% csrf_token %}
+                <input type="hidden" class="required" id = "selected_section" name="selected_section" value="">
+                {% if request.user.is_staff or request.user.is_superuser%}
                 <input type="submit" class="ml-1 btn btn-warning btn-sm" name="add_section" value="Добавить секцию">
                 <input type="submit" disabled class="ml-1 btnTable_second btn btn-warning btn-sm" name="edit_section" value="Редактировать секцию">
-                <input type="hidden" class="required" id = "selected_section" name="selected_section" value="">
+                {% endif %}
+                {% if request.user.is_superuser%}
                 <input type="submit" disabled class="ml-1 btnTable_second btn btn-danger check_section btn-sm" name="delete_section" value="Удалить секцию">
+                {% endif %}
             </form>
             <div class="p-1 m-0 table-responsive col-xl-12">
                 <table id="DataTable_second" class='table table-Light display compact' style="width:100%;">

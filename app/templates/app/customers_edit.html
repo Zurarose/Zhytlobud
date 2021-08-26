@@ -38,8 +38,12 @@
         <form action='.' id="form1" method='POST'>
             {% csrf_token %}
                 <input class="required" type="hidden" id="selected" name="selected" value="">
+            {% if request.user.is_staff or request.user.is_superuser%}
             <input type="submit" class="btn btn-warning mt-5 mb-4" name="edit" value="Редактировать">
+            {% endif %}
+            {% if request.user.is_superuser%}
             <input type="submit" class="btn btn-danger mt-5 mb-4 check" name="delete" value="Удалить">
+            {% endif %}
         </form>
     </div>
     {% else %}
