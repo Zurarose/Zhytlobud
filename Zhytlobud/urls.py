@@ -40,7 +40,7 @@ urlpatterns = [
    path('', views.login, name='login'),
    path('menu/', views.menu, name='menu'),
    path("logout/", LogoutView.as_view(), name="logout"),
-
+   path("logger/", views.logger, name="logger"),
 
    path("update_menu/", views.update_menu, name="update_menu"),
    path("object_menu/", views.object_menu, name="object_menu"),

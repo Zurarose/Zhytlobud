@@ -14,6 +14,7 @@ import os
 import posixpath
 import django_heroku
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -104,8 +105,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'ru-RU'
+TIME_ZONE = 'Europe/Kiev'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
@@ -119,22 +120,18 @@ LOGOUT_REDIRECT_URL = "login"
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'debug.log',
+        'console': {
+            'class': 'logging.StreamHandler',
         },
     },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
     },
 }
+
+

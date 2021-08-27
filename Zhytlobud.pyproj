@@ -138,6 +138,7 @@
     <Content Include="app\static\app\scripts\jquery.steps.js" />
     <Content Include="app\static\app\scripts\main.js" />
     <Content Include="app\templates\app\building_add.html" />
+    <Content Include="app\templates\app\logger.html" />
     <Content Include="app\templates\app\object_edit_complex.html" />
     <Content Include="app\templates\app\objects_review.html" />
     <Content Include="app\templates\app\objects_edit.html" />

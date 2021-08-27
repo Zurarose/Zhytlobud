@@ -6,7 +6,16 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+import datetime
 
+class Logger(models.Model):
+    id_log = models.AutoField(db_column='id_log', primary_key=True)  # Field name made lowercase.
+    info = models.CharField(db_column='info', max_length=2000, blank=True, null=True)  # Field name made lowercase.
+    time = models.DateTimeField(db_column='time',auto_now_add=True, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = True
+        db_table = 'logger'
 
 class Areas(models.Model):
     id_areas = models.AutoField(db_column='ID_areas', primary_key=True)  # Field name made lowercase.
@@ -102,7 +111,7 @@ class Houses(models.Model):
     parking_price_dol_min = models.FloatField(blank=True, null=True)
     parking_price_hrn_max = models.FloatField(blank=True, null=True)
     parking_price_dol_max = models.FloatField(blank=True, null=True)
-    remark = models.CharField(max_length=50, blank=True, null=True)
+    remark = models.CharField(max_length=500, blank=True, null=True)
     start_year = models.TextField(blank=True, null=True)  # This field type is a guess.
     commis_year = models.TextField(blank=True, null=True)  # This field type is a guess.
     quarter = models.IntegerField(db_column='Quarter', blank=True, null=True)  # Field name made lowercase.
