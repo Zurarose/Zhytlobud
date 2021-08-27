@@ -28,7 +28,7 @@
                                  <label>№ дома<span style="color: red;">*</span></label>
                                  <div class="input-group flex-nowrap">
                                      <span class="input-group-text">№</span>
-                                     <select class="custom-select house-num-select required" id="num-section-house1" name="num-section-house1">
+                                     <select class="custom-select house-num-select required" required id="num-section-house1" name="num-section-house1">
                                          {% for houses_nums in houses_num %}
                                             <option value="{{ houses_nums }}">{{ houses_nums }}</option>
                                          {% endfor %}
