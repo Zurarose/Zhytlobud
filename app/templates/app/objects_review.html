@@ -114,10 +114,14 @@
                 <input type="hidden" class="required" id = "selected_section" name="selected_section" value="">
                 {% if request.user.is_staff or request.user.is_superuser%}
                 <input type="submit" class="ml-1 btn btn-warning btn-sm" name="add_section" value="Добавить секцию">
-                <input type="submit" disabled class="ml-1 btnTable_second btn btn-warning btn-sm" name="edit_section" value="Редактировать секцию">
+                <input type="submit" disabled class="ml-1 btnTable_second btn btn-warning btn-sm" name="edit_section" value="Редактировать секцию">              
                 {% endif %}
                 {% if request.user.is_superuser%}
                 <input type="submit" disabled class="ml-1 btnTable_second btn btn-danger check_section btn-sm" name="delete_section" value="Удалить секцию">
+                {% endif %}
+                {% if request.user.is_staff or request.user.is_superuser%}
+                <input type="submit" disabled class="ml-5 btnTable_second btn btn-success btn-sm" name="sold_section" value="Продано">
+                <input type="submit" disabled class="ml-1 btnTable_second btn btn-info btn-sm" name="sale_section" value="В продаже">
                 {% endif %}
             </form>
             <div class="p-1 m-0 table-responsive col-xl-12">
