@@ -153,6 +153,7 @@
     <Content Include="app\templates\app\register.html" />
     <Content Include="app\templates\app\update_menu.html" />
     <Content Include="app\templates\app\other_menu.html" />
+    <Content Include="debug.log" />
     <Content Include="Procfile" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
