@@ -14,6 +14,7 @@ admin.site.register(Buildings)
 admin.site.register(Houses)
 admin.site.register(Sections)
 admin.site.register(SalesAndPrices)
+admin.site.register(Logger)
 admin.site.site_header = "Панель администратора серверной части приложения"
 
 
