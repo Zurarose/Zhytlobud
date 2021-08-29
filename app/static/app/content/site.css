@@ -283,7 +283,7 @@ h2 {
 #menu1 {
     background: url('../../app/img/bg.jpg') no-repeat center center fixed;
 }
-.tab-content input:invalid {
+.input-group input:invalid {
     background: #e03444;
 }
 @media screen and (min-width: 0px) and (max-width: 1200px) {

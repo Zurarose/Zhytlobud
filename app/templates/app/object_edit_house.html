@@ -209,14 +209,15 @@
         $(this).closest('.form-row').find('.dollar_max').val(dol);
     }
     //To check all inputs
+    var exsisted = JSON.parse(`{{houses|safe}}`)
+    var thisHouse = '{{house.street_number|safe}}';
     $('#form1').submit(function (evt) {
         var inputs = [], flag = false;
         $('.house-nums').each(function () {
             if ($.inArray(this.value, inputs) != -1) flag = true;
             inputs.push(this.value);
         });
-        var exsisted = `{{houses|safe}}`
-        var thisHouse = '{{house.street_number|safe}}';
+        
         $('.house-nums').each(function () {
             if ($.inArray(this.value, exsisted) != -1 && (this).value != thisHouse) 
             { flag = true; }

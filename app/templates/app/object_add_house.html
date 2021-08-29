@@ -258,6 +258,7 @@
     }
 </script>
 <script>
+    var exsisted = JSON.parse(`{{houses|safe}}`)
     $(".house-nums").keypress(function (e) {
         var verified = String.fromCharCode(e.which).match(/[a-zA-Z-]/);
         if (verified) {
@@ -270,8 +271,8 @@
         $('.house-nums').each(function () {
             if ($.inArray(this.value, inputs) != -1) flag = true;
             inputs.push(this.value);
-        });
-        var exsisted = `{{houses|safe}}`
+        });        
+        
         $('.house-nums').each(function () {
             if ($.inArray(this.value, exsisted) != -1) { flag = true; }
         });
