@@ -78,10 +78,6 @@ class Buildings(models.Model):
     parking = models.CharField(max_length=25, blank=True, null=True)
     parking_type = models.CharField(max_length=25, blank=True, null=True)
     parking_num = models.IntegerField(blank=True, null=True)
-    parking_price_hrn_min = models.FloatField(blank=True, null=True)
-    parking_price_dol_min = models.FloatField(blank=True, null=True)
-    parking_price_hrn_max = models.FloatField(blank=True, null=True)
-    parking_price_dol_max = models.FloatField(blank=True, null=True)
 
     class Meta:
         managed = True
@@ -106,11 +102,7 @@ class Houses(models.Model):
     ttl_area_apartments = models.FloatField(blank=True, null=True)
     storeys = models.IntegerField(blank=True, null=True)
     construction_phase_prst = models.IntegerField(blank=True, null=True)
-    parking_num = models.IntegerField(blank=True, null=True)
-    parking_price_hrn_min = models.FloatField(blank=True, null=True)
-    parking_price_dol_min = models.FloatField(blank=True, null=True)
-    parking_price_hrn_max = models.FloatField(blank=True, null=True)
-    parking_price_dol_max = models.FloatField(blank=True, null=True)
+    parking_num = models.IntegerField(blank=True, null=True)   
     remark = models.CharField(max_length=500, blank=True, null=True)
     start_year = models.TextField(blank=True, null=True)  # This field type is a guess.
     commis_year = models.TextField(blank=True, null=True)  # This field type is a guess.
@@ -123,6 +115,10 @@ class Houses(models.Model):
 class SalesAndPrices(models.Model):
     id_row = models.AutoField(db_column='ID_row', primary_key=True)  # Field name made lowercase.
     id_sections = models.ForeignKey('Sections', models.CASCADE, db_column='ID_sections', blank=True, null=True)  # Field name made lowercase.
+    parking_price_hrn_min = models.FloatField(blank=True, null=True)
+    parking_price_dol_min = models.FloatField(blank=True, null=True)
+    parking_price_hrn_max = models.FloatField(blank=True, null=True)
+    parking_price_dol_max = models.FloatField(blank=True, null=True)
     a1_to_sale = models.IntegerField(blank=True, null=True)
     a1_min_price = models.FloatField(blank=True, null=True)
     a1_max_price = models.FloatField(blank=True, null=True)

@@ -10,7 +10,17 @@
                 {{ message }}
             </div>
             {% endfor %}
-        <div class="row row-cols-1 justify-content-center row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3 mt-5">     
+        <div class="row row-cols-1 justify-content-center row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3 mt-5">
+            <div class="col mt-3">
+                <div class="card  text-center h-100 shadow-sm rounded">
+                    <div class="card-img-top" style="color: orange; "><i class="fas fa-user-friends fa-9x"></i></div>
+                    <div class="card-body">
+                        <h5 class="card-title my-0 my-2">Заказчики</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="text-center mt-5"> <a href="{% url 'customer_menu' %}" class="stretched-link"></a> </div>
+                    </div>
+                </div>
+            </div>
             <div class="col mt-3">
                 <div class="card  text-center h-100 shadow-sm rounded">
                     <div class="card-img-top" style="color: orange; "><i class="fas fa-user-plus fa-9x"></i></div>

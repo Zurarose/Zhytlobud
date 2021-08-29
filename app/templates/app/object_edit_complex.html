@@ -11,15 +11,7 @@
     <h5 class="text-center mt-1 mb-2">Редактирование информации о комплексе. Введите новые значения</h5>
     <hr class="bg-warning col-6 mb-2">
     <div class="d-flex justify-content-center">
-    <div class="col-10">
-        <div class="mb-2 col-xl-4 col-sm-4">
-        <label>Курс доллара</label>
-            <div class="input-group flex-nowrap p-0 col-xl-8">
-                <span class="input-group-text">$</span>
-                <input class="num form-control dollar_val" type="text" id="dollar" name="dollar">
-                <a class="btn btn-warning" id="checkDollar" href="https://goo-gl.su/jd6bSL" target="_blank">Узнать</a>
-            </div>
-        </div>
+    <div class="col-10">       
         <form action='.' id="form1" method='POST'>
             {% csrf_token %}
             <div class="shadow-lg rounded p-4" id="menu1">
@@ -149,37 +141,7 @@
                                         <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
                                         <input class="form-control parking-up" type="number" id="num-parking-up" name="num-parking-up" min="1" max="1000">
                                     </div>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Стоимость мин</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text">₴</span>
-                                        <input class="num calc_dollar_min form-control parking-up" type="text" id="price-parking-up-hrn_min" name="price-parking-up-hrn_min">
-                                    </div>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Стоимость мин</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text">$</span>
-                                        <input class="num dollar_min form-control parking-up" readonly type="text" id="price-parking-up-dol_min" name="price-parking-up-dol_min">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row mt-2">
-                                <div class="offset-xl-8 col-xl-2">
-                                    <label>Стоимость макс</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text">₴</span>
-                                        <input class="num calc_dollar_max form-control parking-up" type="text" id="price-parking-up-hrn_max" name="price-parking-up-hrn_max">
-                                    </div>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label>Стоимость макс</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text">$</span>
-                                        <input class="num dollar_max form-control parking-up" readonly type="text" id="price-parking-up-dol_max" name="price-parking-up-dol_max">
-                                    </div>
-                                </div>
+                                </div>                              
                                 </div>
                         </div>
                     </div>
@@ -225,41 +187,11 @@
         EnableChoice();
         var num_parking_up = `{{ build.parking_num|safe }}`;
         $('#num-parking-up').val(num_parking_up);
-
-        var price_parking_up_hrn_min = `{{ build.parking_price_hrn_min|safe }}`;
-        $('#price-parking-up-hrn_min').val(price_parking_up_hrn_min);
-
-        var price_parking_up_dol_min = `{{ build.parking_price_dol_min|safe }}`;
-        $('#price-parking-up-dol_min').val(price_parking_up_dol_min);
-
-        var price_parking_up_hrn_max = `{{ build.parking_price_hrn_max|safe }}`;
-        $('#price-parking-up-hrn_max').val(price_parking_up_hrn_max);
-
-        var price_parking_up_dol_max = `{{ build.parking_price_dol_max|safe }}`;
-        $('#price-parking-up-dol_max').val(price_parking_up_dol_max);
+      
 
     }
 </script>
 <script>
-    //To culc dollar for min
-    $('.calc_dollar_min').change(calcDol_min);
-    $('.dollar_val').change(function () {
-        $('.calc_dollar_min').trigger("change")
-    });
-    function calcDol_min() {
-        var dol = parseFloat($(this).val()) / parseFloat($(".dollar_val").val());
-        $(this).closest('.form-row').find('.dollar_min').val(dol);
-    }
-    //To culc dollar for max
-    $('.calc_dollar_max').change(calcDol_max);
-    $('.dollar_val').change(function () {
-        $('.calc_dollar_max').trigger("change")
-    });
-    function calcDol_max() {
-        var dol = parseFloat($(this).val()) / parseFloat($(".dollar_val").val());
-        $(this).closest('.form-row').find('.dollar_max').val(dol);
-    }
-
     //To select parking type
     $('#parking').change(parkOnOff);
     $('#parking-type').change(EnableChoice);
