@@ -8,13 +8,12 @@
                 {{ message }}
             </div>
     {% endfor %}
-        {% if instances %}
     <a class="btn btn-warning" href="{% url 'object_menu' %}"><i class="fas fa-chevron-circle-left"></i> Назад</a>
     <h5 class="text-center mb-2">Просмотр и редактирование информации об объектах</h5>
     <hr class="bg-warning col-6 mb-2">
-    <h5 class="text-center mt-1">Комплексы:</h5>
+    <h5 class="text-center mt-1">Комплексы:</h5> 
     <div class="table-responsive">
-        <table id="DataTable" class='table table-Light '>
+        <table id="DataTable" class='table table-Light '>          
             <thead>
                 <tr class="bg-warning text-white">
                     <th>ИД</th>
@@ -28,7 +27,7 @@
                     <th>Метрополитен</th>
                     <th>Наличие парковки</th>
                 </tr>
-            </thead>
+            </thead>          
             <tbody>
                 {% for row in instances %}
                     <tr>
@@ -49,12 +48,15 @@
         <form action='.' id="form1" method='POST'>
             {% csrf_token %}
             <input class="required" type="hidden" id="selected" name="selected" value="">
+            {% if instances %}
             <input type="submit" class="btn btn-warning mt-2 mb-4" name="review" value="Посмотреть запись">
+            {% endif %}
         </form>
+        <form action='.' id="form2" method='POST'>
+            {% csrf_token %}
+            <input class="filter" type="hidden" name="filter" value="">
+        </form>    
     </div>
-    {% else %}
-        <p>No data available</p>
-    {% endif %}
 </div>
 {% endblock %}
 
@@ -65,8 +67,13 @@
     })
 </script>
 <script>
+
     $(document).ready(function () {
         var table = $('#DataTable').DataTable({
+            dom: '<"toolbar">frtlip',
+            fnInitComplete: function(){
+               $('div.toolbar').html('Custom tool bar!');
+            },
             select: true,
             language: {
                 "processing": "Подождите...",
@@ -285,8 +292,24 @@
                 $(".btn").prop("disabled", false);
             }
         });
+        $("div.toolbar").html("<div class='container'><div class = 'row'><div class='input-group input-group-sm mb-3'><div class='input-group-prepend'> \
+            <span class= 'input-group-text' id = 'inputGroup-sizing-sm' >Фильтр</span > \
+            </div> <select class='custom-select col-xl-12' id='filter-select' name='filter-select'> \
+            <option value='В продаже'>В продаже</option><option value='В персперктиве'>В персперктиве</option> \
+            <option value='Все'>Все</option></select> \
+            </div ></div ></div > ");
         $("#DataTable>tbody>tr:first").attr("class", "active");
         $("#selected").val($("#DataTable>tbody>tr:first").find('.id').text());
+
+        var filter = `{{ filtered|safe }}`;
+        $('#filter-select option[value="' + filter + '"]').prop("selected", true);
+
+        $("#filter-select").change(function () {           
+            $(".filter").val($(this).val());
+            console.log($(".filter").val());
+            form2.submit();
+        });
     });
+    
 </script>
 {% endblock %}

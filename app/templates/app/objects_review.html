@@ -494,7 +494,10 @@
                         }
                         else if (j > 0 && j < 8) {
                             var td = document.createElement('td');
-                            td.innerHTML = data.objects[i][j];
+                            if (data.objects[i][j] == null)
+                                td.innerHTML = "None"
+                            else
+                                td.innerHTML = data.objects[i][j];
                             tr.appendChild(td);
                         }
                         else {

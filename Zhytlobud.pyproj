@@ -139,6 +139,7 @@
     <Content Include="app\static\app\scripts\main.js" />
     <Content Include="app\templates\app\building_add.html" />
     <Content Include="app\templates\app\logger.html" />
+    <Content Include="app\templates\app\sections_review.html" />
     <Content Include="app\templates\app\object_edit_complex.html" />
     <Content Include="app\templates\app\objects_review.html" />
     <Content Include="app\templates\app\objects_edit.html" />
@@ -153,7 +154,6 @@
     <Content Include="app\templates\app\object_menu.html" />
     <Content Include="app\templates\app\register.html" />
     <Content Include="app\templates\app\other_menu.html" />
-    <Content Include="debug.log" />
     <Content Include="Procfile" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />

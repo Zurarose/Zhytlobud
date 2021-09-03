@@ -1,6 +1,7 @@
 ﻿{% extends "app/layout.html" %}
 {% block content %}
 {% load static %}
+
 <a class="btn btn-warning ml-3 mt-2" href="{% url 'objects_review' %}"><i class="fas fa-chevron-circle-left"></i> Назад</a>
 <div class="container-fluid col-12 bg-trasparent" style="position: relative;">
     {% for message in messages %}
@@ -62,7 +63,7 @@
                                     <div class="input-group flex-nowrap">
                                         <select class="custom-select" id="duplex" name="duplex">
                                             <option selected value=""></option>
-                                            <option selected value="Нет">Нет</option>
+                                            <option value="Нет">Нет</option>
                                             <option value="Есть">Есть</option>
                                         </select>
                                     </div>
@@ -222,9 +223,9 @@
 {% block scripts %}
 <script>
     $(window).on('load', function () {
-        $('#loading').hide();
-        masknum();
+        $('#loading').hide();      
         savedData();
+        masknum();
         $('.totalApart').trigger("change");
         $('.totalArea').trigger("change");
     })
@@ -238,6 +239,7 @@
         })
     };
     function savedData() {
+
         var num = `{{ selected_num|safe }}`;
         $('#num-section-house option[value="' + num + '"]').prop("selected", true);
 
@@ -282,8 +284,9 @@
                     totalobj = totalobj + 1;
                 }
             }
+            if(totalobj !=0)
             count = count / totalobj;
-        }
+        }        
         $(WhereToPut).val(count);
     }
 </script>
