@@ -154,9 +154,9 @@
     <Content Include="app\templates\app\object_menu.html" />
     <Content Include="app\templates\app\register.html" />
     <Content Include="app\templates\app\other_menu.html" />
+    <Content Include="db.sqlite3" />
     <Content Include="Procfile" />
     <Content Include="requirements.txt" />
-    <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\site.css" />
     <Content Include="app\static\app\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="app\static\app\fonts\glyphicons-halflings-regular.svg" />
