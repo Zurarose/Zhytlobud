@@ -307,7 +307,16 @@ h2 {
 #DataTable_second .active {
     background-color: #ffc404 !important;
 }
+#DataTable_third .active {
+    background-color: #ffc404 !important;
+}
 .toolbar {
     float: left;
+}
+@media screen and (min-width: 1200px) {
+    #tofixed {
+        position: fixed;
+    }
+    /* hide it elsewhere */
 }
 /*object reviews*/

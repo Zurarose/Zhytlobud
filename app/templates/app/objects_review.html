@@ -13,7 +13,7 @@
     <h5 class="text-center mb-2">Комплекс: {{complex.name}}</h5>
     <hr class="bg-warning col-6 mb-2">
     <div class="row row-cols-xl-2">
-        <div class="col-xl-2 p-0">
+        <div class="col-xl-2 p-0" id="tofixed">
             <h5 class="text-left ml-3">О комплексе:</h5>
             <ul class="list-group">
                 <li class="p-2 list-group-item">Класс: {{complex.class_field}}</li>
@@ -32,18 +32,18 @@
             {% endif %}
             <form action='.' id="form_complex" method='POST'>
                 {% csrf_token %}
-                <li class="border-bottom-0 list-group-item">
+                <li class="border-bottom-0 list-group-item p-2">
                     {% if request.user.is_staff or request.user.is_superuser%}
-                    <input type="submit" class="btn btn-warning btn-sm col-12" name="edit_complex" value="Редактировать комплекс">
+                    <input type="submit" class="btn btn-warning btn-sm col-xl-12" name="edit_complex" value="Редактировать комплекс">
                     {% endif %}
                     {% if request.user.is_superuser%}
-                    <input type="submit" class="btn btn-danger check_complex mt-2 btn-sm col-12" name="delete_complex" value="Удалить комплекс">
+                    <input type="submit" class="btn btn-danger check_complex mt-2 btn-sm col-xl-12" name="delete_complex" value="Удалить комплекс">
                     {% endif %}
                 </li>
             </form>
             </ul>
         </div>
-        <div class="p-0 col-xl-10">
+        <div class="p-0 col-xl-10 offset-xl-2">
             <h5 class="ml-1">Дома:</h5>
             <form action='.' id="form_house" method='POST'>
                 {% csrf_token %}
@@ -57,7 +57,7 @@
                 {% endif %}
             </form>
             <div class="pl-1 pr-2 m-0 table-responsive col-xl-12">
-                <table id="DataTable" class='table table-Light display compact' style="width:100%;">
+                <table id="DataTable" class='table table-Light table-bordered display compact' style="width:100%;">
                     <thead>
                         <tr class="bg-warning text-white">
                             <th style="display: none;">ИД</th>
@@ -90,7 +90,7 @@
                             {% if complex.parking_type == "Подземная" %}
                             <td>{{ row.parking_num }}</td>                           
                             {% endif %}
-                            <td class="p-1"><a class="border border-warning btn btn-light" role="button" data-toggle="popover" data-trigger="hover" title="Примечание" data-content="{{row.remark}}"><i class="fas fa-search"></i></a></td>
+                            <td class="p-1"><a class="col-12 border border-warning btn btn-light" role="button" data-toggle="popover" data-trigger="hover" title="Примечание" data-content="{{row.remark}}"><i class="fas fa-search"></i></a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -113,7 +113,7 @@
                 {% endif %}
             </form>
             <div class="p-1 m-0 table-responsive col-xl-12">
-                <table id="DataTable_second" class='table table-Light display compact' style="width:100%;">
+                <table id="DataTable_second" class='table table-bordered table-Light display compact' style="width:100%;">
                     <thead>
                         <tr class="bg-warning text-white">
                             <th style="display: none;">ИД</th>
@@ -148,6 +148,41 @@
                     </tbody>
                 </table>
             </div>
+            <h5 class="ml-1">Продажи:</h5>
+            <form action='.' id="form_section" method='POST'>
+                {% csrf_token %}
+                <input type="hidden" class="required" id = "selected_sales" name="selected_sales" value="">
+                {% if request.user.is_staff or request.user.is_superuser%}
+                <input type="submit" disabled class="ml-1 btn btn-warning btn-sm btnTable_third" name="update_sale" value="Обновить продажи">
+                <input type="submit" disabled class="ml-1 btnTable_third btn btn-warning btn-sm" name="edit_sale" value="Редактировать месяц">              
+                {% endif %}
+                {% if request.user.is_superuser%}
+                <input type="submit" disabled class="ml-1 btnTable_third btn btn-danger btn-sm" name="delete_sale" value="Удалить последний месяц">
+                {% endif %}              
+            </form>
+            <div class="p-1 m-0 table-responsive col-xl-12">
+                <table id="DataTable_third" class='table table-Light display compact table-bordered' style="width:100%;">
+                    <thead>
+                        <tr class="bg-warning text-white">
+                            <th style="display: none;">ИД</th>
+                            <th>Год</th>
+                            <th>Месяц</th>
+                            <th>1км. кв.</th>
+                            <th>2км. кв.</th>
+                            <th>3км. кв.</th>
+                            <th>4км. кв.</th>
+                            <th>Площади осталось</th>
+                            <th>Паркинг</th>
+                            <th>Цены</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appendHereSale">
+                        <tr class="toRemove">
+                            <td></td>                          
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -159,6 +194,7 @@
 
 {% block scripts %}
 <script>
+    //check if delete complex
     $(".check_complex").click(function () {
         if (confirm('Удалить целый комплекс? Это удалит все дочерние объекты (дома, секции)!')) {
             form_complex.submit();
@@ -167,6 +203,7 @@
             return false;
         }
     });
+    //check if delete house
     $(".check_house").click(function () {
         if (confirm('Удалить дом? Это удалит все дочерние секции!')) {
             form_house.submit();
@@ -175,6 +212,7 @@
             return false;
         }
     });
+    //check if delete section
     $(".check_section").click(function () {
         if (confirm('Удалить секцию?')) {
             form_section.submit();
@@ -196,7 +234,9 @@
 
 </script>
 <script>
+    //to enable buttons flag
     var enableSelect = true;
+    //table setup
     $(document).ready(function () {
         var table_first = $('#DataTable').DataTable({
             searching: false,
@@ -403,15 +443,17 @@
                     }
                 }
             }
-        });       
+        });
+        //buttins of first table
         $('#DataTable tbody').on('click', 'tr', function () {
             if (enableSelect == true) {
-                console.log(enableSelect);
                 if ($(this).hasClass('active')) {
                     $(this).removeClass('active');
                     $(".toRemove").remove();
                     $("#selected_house").val("");
                     $(".btnTable_first").prop("disabled", true);
+                    $(".btnTable_third").prop("disabled", true);
+                    $(".toRemoveSale").remove();
                 }
                 else {
                     table_first.$('tr.active').removeClass('active');
@@ -420,32 +462,59 @@
                     $(".toRemove").remove();
                     selectChg();
                     $(".btnTable_first").prop("disabled", false);
+                    $(".btnTable_third").prop("disabled", true);
+                    $(".toRemoveSale").remove();
                 }
             }
-        });           
+        });
+        //buttons of second table
         $('#DataTable_second tbody').on('click', 'tr', function () {
             if (enableSelect == true) {
                 if ($(this).hasClass('active')) {
                     $(this).removeClass('active');
                     $("#selected_section").val("");
                     $(".btnTable_second").prop("disabled", true);
+                    $(".btnTable_third").prop("disabled", true);
+                    $(".toRemoveSale").remove();
                 }
                 else {
                     $('tr.toRemove').removeClass('active');
                     $(this).addClass('active');
                     $("#selected_section").val($(this).closest('tr').find('.id').text());
                     $(".btnTable_second").prop("disabled", false);
+
+                    $(".toRemoveSale").remove();
+                    selectSale();
                 }
-            }       
+            }
         });
+        //buttons of third table
+        $('#DataTable_third tbody').on('click', 'tr', function () {
+            if (enableSelect == true) {
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active');
+                    $("#selected_sales").val("");
+                    $(".btnTable_third").prop("disabled", true);
+                }
+                else {
+                    $('tr.toRemoveSale').removeClass('active');
+                    $(this).addClass('active');
+                    $("#selected_sales").val($(this).closest('tr').find('.id').text());
+                    $(".btnTable_third").prop("disabled", false);
+                }
+            }
+        });
+
         $("#DataTable>tbody>tr:first").attr("class", "active");
         $("#selected_house").val($("#DataTable>tbody>tr:first").find('.id').text());
         $(".toRemove").remove();
-        selectChg();       
+        selectChg();
     });
 
     var appendTable = document.getElementById("appendHere");
 
+    var appendTableSale = document.getElementById("appendHereSale");
+    //To get section info
     function selectChg() {
         $.ajax({
             type: "GET",
@@ -454,7 +523,7 @@
                 'selected': $("#selected_house").val()
             },
             dataType: 'json',
-            success: function (data) {           
+            success: function (data) {
                 for (var i = 0; i < data.objects.length; i++) {
                     var tr = document.createElement('tr')
                     tr.setAttribute("class", "toRemove")
@@ -463,58 +532,243 @@
                         if (j > 7) {
                             var td = document.createElement('td');
                             var a = document.createElement('a');
-                            a.setAttribute("class", "border border-warning btn btn-light");
+                            a.setAttribute("class", "col-12 border border-warning btn btn-light");
                             a.setAttribute("role", "button");
                             a.setAttribute("data-toggle", "popover");
                             a.setAttribute("data-trigger", "hover");
                             a.setAttribute("title", "Дополнительная информация");
-                            var min_area
+                            var min_area;
+                            var max_area;
+                            var total;
                             if (data.objects[i][j + 1] != null)
-                                min_area = data.objects[i][j + 1]
+                                min_area = data.objects[i][j + 1];
                             else
                                 min_area = "—"
                             if (data.objects[i][j + 2] != null)
-                                max_area = data.objects[i][j + 2]
+                                max_area = data.objects[i][j + 2];
                             else
                                 max_area = "—"
                             a.setAttribute("data-content", "Минимальная площадь: " + min_area + "\n" + "Максимальная площадь: " + max_area);
                             if (data.objects[i][j] != null)
-                                total = data.objects[i][j]
+                                total = data.objects[i][j];
                             else
                                 total = "—"
-                            var text = document.createTextNode(total + " ")
+                            var text = document.createTextNode(total);
                             j = j + 2;
                             a.appendChild(text);
+
+                            td.appendChild(a);
+                            td.setAttribute("class", "p-1");
+                            tr.appendChild(td);
+                        }
+                        else if (j > 0 && j < 8) {
+                            var td = document.createElement('td');                           
+                            td.innerHTML = data.objects[i][j];
+                            tr.appendChild(td);
+                        }
+                        else {
+                            var td = document.createElement('td');
+                            td.setAttribute("class", "id");
+                            td.setAttribute("style", "display: none;");
+                            td.innerHTML = data.objects[i][j];
+                            tr.appendChild(td);
+                        }
+                    }
+                    $('[data-toggle="popover"]').popover();
+                }
+            },
+            error: function () {
+                enableSelect = false;
+                $(".btnTable_first").prop("disabled", true);
+            }
+        })
+    }
+    function selectSale() {
+        $.ajax({
+            type: "GET",
+            url: '/ajax/getSales/',
+            data: {
+                'selectedSection': $("#selected_section").val()
+            },
+            dataType: 'json',
+            success: function (data) {
+                for (var i = 0; i < data.sales.length; i++) {
+                    var tr = document.createElement('tr');
+                    tr.setAttribute("class", "toRemoveSale");
+                    appendTableSale.appendChild(tr);
+                    for (var j = 0; j < 30; j++) {
+                        if (j >= 3 && j < 23) {
+                            var td = document.createElement('td');
+                            var a = document.createElement('a');
+                            a.setAttribute("class", "col-12 border border-warning btn btn-light");
+                            a.setAttribute("role", "button");
+                            a.setAttribute("data-toggle", "popover");
+                            a.setAttribute("data-trigger", "hover");
+                            a.setAttribute("title", "Дополнительная информация");
+                            var ap_to_sale;
+                            var ap_min_price;
+                            var ap_max_price;
+                            var ap_avg_price;
+                            var ap_area_to_sale;
+
+                            if (data.sales[i][j + 1] != null) {
+                                ap_min_price = data.sales[i][j + 1];
+                                if (data.sales[i][26] != null)
+                                    ap_min_price_dol = ap_min_price / data.sales[i][26];
+                            }
+                            else {
+                                ap_min_price = "—";
+                                ap_min_price_dol = "—";
+                            }
+                            if (data.sales[i][j + 2] != null) {
+                                ap_max_price = data.sales[i][j + 2];
+                                if (data.sales[i][26] != null)
+                                    ap_max_price_dol = ap_max_price / data.sales[i][26];
+                            }
+                            else {
+                                ap_max_price = "—"
+                                ap_max_price_dol = "—"
+                            }
+                            if (data.sales[i][j + 3] != null) {
+                                ap_avg_price = data.sales[i][j + 3];
+                                if (data.sales[i][26] != null)
+                                    ap_avg_price_dol = ap_avg_price / data.sales[i][26];
+                            }
+                            else {
+                                ap_avg_price = "—"
+                                ap_avg_price_dol = "—"
+                            }
+                            if (data.sales[i][j + 4] != null)
+                                ap_area_to_sale = data.sales[i][j + 4];
+                            else {
+                                ap_area_to_sale = "—"
+                            }
+                            a.setAttribute("data-content", "Минимальная стоимость: " + ap_min_price + "(" + ap_min_price_dol.toFixed(2) + "$)" + "\
+                            \n" + "Максимальная стоимость: " + ap_max_price + "(" + ap_max_price_dol.toFixed(2) + "$)" + "\n \
+                            Средняя(стоимость): " + ap_avg_price + "(" + ap_avg_price_dol.toFixed(2) + "$)" + "\n" + "Площадь(осталось): " + ap_area_to_sale);
+                            if (data.sales[i][j] != null)
+                                ap_to_sale = data.sales[i][j]
+                            else
+                                ap_to_sale = "—"
+                            var text = document.createTextNode(ap_to_sale)
+                            j = j + 4;
+                            a.appendChild(text);
+                            td.appendChild(a);
+                            td.setAttribute("class", "p-1");
+                            tr.appendChild(td);
+                        }
+                        else if (j < 3) {
+                            var td = document.createElement('td');
+                            td.setAttribute("class", "id");
+                            if (j == 0)
+                                td.setAttribute("style", "display: none;")
+                            td.innerHTML = data.sales[i][j];
+                            tr.appendChild(td);
+                        }
+                        else if (j == 23) {
+                            var area_remain;
+                            var td = document.createElement('td');
+                            td.setAttribute("class", "id");
+                            td.innerHTML = area_remain;;
+                            tr.appendChild(td);
+                        }
+                        else if (j >= 24 && j < 26) {
+                            var td = document.createElement('td');
+                            var a = document.createElement('a');
+                            a.setAttribute("class", "col-12 border border-warning btn btn-light");
+                            a.setAttribute("role", "button");
+                            a.setAttribute("data-toggle", "popover");
+                            a.setAttribute("data-trigger", "hover");
+                            a.setAttribute("title", "Дополнительная информация");
+                            var parking_price_min;
+                            var parking_price_max;
+                            if (data.sales[i][j] != null) {
+                                parking_price_min = data.sales[i][j];
+                                if (data.sales[i][26] != null)
+                                    parking_price_min_dol = parking_price_min / data.sales[i][26];
+                            }
+                            else {
+                                parking_price_min = "—";
+                                parking_price_min_dol = "—";
+                            }
+                            if (data.sales[i][j + 1] != null) {
+                                parking_price_max = data.sales[i][j + 1];
+                                if (data.sales[i][26] != null)
+                                    parking_price_max_dol = parking_price_max / data.sales[i][26];
+                            }
+                            else {
+                                parking_price_max = "—";
+                                parking_price_max_dol = "—";
+                            }
+
+                            a.setAttribute("data-content", "Минимальная стоимость: " + parking_price_min + "(" + parking_price_min_dol.toFixed(2) + "$)" + "\
+                            \n" + "Максимальная стоимость: " + parking_price_max + "(" + parking_price_max_dol.toFixed(2) + "$)");
+                            j = j + 1;
                             var ielem = document.createElement("i");
-                            ielem.setAttribute("class", "fas fa-search")
+                            ielem.setAttribute("class", "fas fa-search");
                             a.appendChild(ielem);
                             td.appendChild(a);
                             td.setAttribute("class", "p-1")
                             tr.appendChild(td);
                         }
-                        else if (j > 0 && j < 8) {
+                        else if (j >= 26) {
                             var td = document.createElement('td');
-                            if (data.objects[i][j] == null)
-                                td.innerHTML = "None"
+                            var a = document.createElement('a');
+                            a.setAttribute("class", "col-12 border border-warning btn btn-light");
+                            a.setAttribute("role", "button");
+                            a.setAttribute("data-toggle", "popover");
+                            a.setAttribute("data-trigger", "hover");
+                            a.setAttribute("title", "Дополнительная информация");
+                            var dollar;
+                            var min_price;
+                            var max_price;
+                            var avg_price;
+                            if (data.sales[i][j] != null)
+                                dollar = data.sales[i][j];
                             else
-                                td.innerHTML = data.objects[i][j];
-                            tr.appendChild(td);
-                        }
-                        else {
-                            var td = document.createElement('td');
-                            td.setAttribute("class", "id")
-                            td.setAttribute("style", "display: none;")
-                            td.innerHTML = data.objects[i][j];
+                                dollar = "—";
+                            if (data.sales[i][j + 1] != null) {
+                                min_price = data.sales[i][j + 1];
+                                if (data.sales[i][26] != null)
+                                    min_price_dol = min_price / data.sales[i][26];
+                            }
+                            else {
+                                min_price = "—";
+                                min_price_dol = "—"
+                            }
+                            if (data.sales[i][j + 2] != null) {
+                                max_price = data.sales[i][j + 2];
+                                if (data.sales[i][26] != null)
+                                    max_price_dol = max_price / data.sales[i][26];
+                            }
+                            else {
+                                max_price = "—";
+                                max_price_dol = "—"
+                            }
+                            if (data.sales[i][j + 3] != null) {
+                                avg_price = data.sales[i][j + 3];
+                                if (data.sales[i][26] != null)
+                                    avg_price_dol = avg_price / data.sales[i][26];
+                            }
+                            else {
+                                avg_price = "—";
+                                avg_price_dol = "—"
+                            }
+                            a.setAttribute("data-content", "Доллар на тот момент времени: " + dollar + "\n" + "Мин. стоимость квартир: " + min_price + "(" + min_price_dol.toFixed(2) + "$)" + "\
+                            \n" + "Макс. стоимость квартир: " + max_price + "(" + max_price_dol.toFixed(2) + "$)" + "\n \
+                            Средняя стоимость квартир: " + avg_price + "(" + avg_price_dol.toFixed(2) + "$)");
+                            j = j + 3;
+                            var ielem = document.createElement("i");
+                            ielem.setAttribute("class", "fas fa-search");
+                            a.appendChild(ielem);
+                            td.appendChild(a);
+                            td.setAttribute("class", "p-1")
                             tr.appendChild(td);
                         }
                     }
                     $('[data-toggle="popover"]').popover()
                 }
-            },
-            error: function(){
-                enableSelect = false;               
-                $(".btnTable_first").prop("disabled", true);
-            }           
+            }
         })
     }
 </script>

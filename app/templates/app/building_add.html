@@ -155,7 +155,7 @@
                                     <label>Парковка(мест)</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
-                                        <input class="form-control parking-up" type="number" id="num-parking-up" name="num-parking-up" min="1" max="1000">
+                                        <input class="form-control parking-up" type="number" id="num-parking-up" name="num-parking-up" min="0" max="1000">
                                     </div>
                                 </div>                               
                             </div>                           
@@ -195,7 +195,7 @@
                                     <div class="col-xl-1">
                                         <label>Этажность</label>
                                         <div class="input-group flex-nowrap">
-                                            <input class="form-control" type="number" id="num-storeys1" name="num-storeys1" min="1" max="1000">
+                                            <input class="form-control" type="number" id="num-storeys1" name="num-storeys1" min="0" max="1000">
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
@@ -233,14 +233,14 @@
                                         <label>Квартал</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
-                                            <input class="form-control" type="number" min="1" max="4" step="1" id="quarter-pick1" name="quarter-pick1" value="" />
+                                            <input class="form-control" type="number" min="0" max="4" step="1" id="quarter-pick1" name="quarter-pick1" value="" />
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
                                         <label>Парковка(мест)</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
-                                            <input class="form-control parking-down" type="number" id="num-parking-down1" name="num-parking-down1" min="1" max="1000">
+                                            <input class="form-control parking-down" type="number" id="num-parking-down1" name="num-parking-down1" min="0" max="1000">
                                         </div>
                                     </div>                                   
                                 </div>                               
@@ -320,7 +320,7 @@
                                         <label>Квартир всего</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text">№</span>
-                                            <input readonly class="form-control num-apart-ttl" type="number" id="num-apart-ttl1" name="num-apart-ttl1" min="1" max="10000">
+                                            <input readonly class="form-control num-apart-ttl" type="number" id="num-apart-ttl1" name="num-apart-ttl1" min="0" max="10000">
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
@@ -341,7 +341,7 @@
                                                 <label>Количество 1км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text">№</span>
-                                                    <input class="form-control totalApart" type="number" id="num-apart-one1" name="num-apart-one1" min="1" max="10000">
+                                                    <input class="form-control totalApart" type="number" id="num-apart-one1" name="num-apart-one1" min="0" max="10000">
                                                 </div>
                                             </div>
                                             <div class="col-xl-4">
@@ -369,7 +369,7 @@
                                                 <label>Количество 2км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text">№</span>
-                                                    <input class="form-control totalApart" type="number" id="num-apart-two1" name="num-apart-two1" min="1" max="10000">
+                                                    <input class="form-control totalApart" type="number" id="num-apart-two1" name="num-apart-two1" min="0" max="10000">
                                                 </div>
                                             </div>
                                             <div class="col-xl-4">
@@ -399,7 +399,7 @@
                                                 <label>Количество 3км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text">№</span>
-                                                    <input class="form-control totalApart" type="number" id="num-apart-three1" name="num-apart-three1" min="1" max="10000">
+                                                    <input class="form-control totalApart" type="number" id="num-apart-three1" name="num-apart-three1" min="0" max="10000">
                                                 </div>
                                             </div>
                                             <div class="col-xl-4">
@@ -427,7 +427,7 @@
                                                 <label>Количество 4км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text">№</span>
-                                                    <input class="form-control totalApart" type="number" id="num-apart-four1" name="num-apart-four1" min="1" max="10000">
+                                                    <input class="form-control totalApart" type="number" id="num-apart-four1" name="num-apart-four1" min="0" max="10000">
                                                 </div>
                                             </div>
 
@@ -592,8 +592,7 @@
         }
     }
     function EnableChoice() {
-        //To set inputs for right parking
-       
+        //To set inputs for right parking      
         if ($("#parking-type").val() == "Надземная")
         {
             $(".parking-up").val("");
@@ -629,7 +628,6 @@
             $("#counts-sections").val(sectionCount - 1);
         }
     });
-
     $(".btn-copy-house").click(function () {
         houseCopy("#tocopy-house1", "#topaste-house", houseCount);
         names_house.push("tocopy-house" + houseCount);
@@ -814,13 +812,16 @@
 <script>
     //To check all inputs
     $('#form1').submit(function (evt) {
+        var toAlert = false;
         $('.required').each(function () {
             //To check if inputs are unique         
-            if ($(this).val() == "") {
-                alert('Заполните все обязательные поля!');
-                return false;             
-            }           
+            if ($(this).val() == "") {               
+                evt.preventDefault();
+                toAlert = true;
+            }                    
         });
+        if (toAlert == true)
+            alert('Заполните все обязательные поля!');
         var inputs = [], flag = false;
         $('.house-nums').each(function () {
             if ($.inArray(this.value, inputs) != -1) flag = true;
@@ -828,7 +829,7 @@
         });
         if (flag == true) {
             alert('Номера домов должны быть уникальны!');
-            return false;
+            evt.preventDefault();
         }        
     });
     $('.required-check').on('click', function () {

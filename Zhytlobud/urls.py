@@ -67,5 +67,6 @@ urlpatterns = [
    url(r'^ajax/getSubways/$', views.getSubways, name='getSubways'),
    url(r'^ajax/getCityAreas/$', views.getCityAreas, name='getCityAreas'),
    url(r'^ajax/getSection/$', views.getSection, name='getSection'),
+   url(r'^ajax/getSales/$', views.getSales, name='getSales'),
 
 ]
