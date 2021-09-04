@@ -14,6 +14,8 @@ heroku run python manage.py createsuperuser -a zhytlobud
 heroku run python manage.py makemigrations -a zhytlobud
 heroku run python manage.py migrate -a zhytlobud
 
+heroku run python manage.py syncdb -a zhytlobud
+
 python manage.py dumpdata > db.json
 
 on heroku: heroku run python manage.py loaddata db.json -a zhytlobud
@@ -67,6 +69,6 @@ urlpatterns = [
    url(r'^ajax/getSubways/$', views.getSubways, name='getSubways'),
    url(r'^ajax/getCityAreas/$', views.getCityAreas, name='getCityAreas'),
    url(r'^ajax/getSection/$', views.getSection, name='getSection'),
-   url(r'^ajax/getSales/$', views.getSales, name='getSales'),
+
 
 ]
