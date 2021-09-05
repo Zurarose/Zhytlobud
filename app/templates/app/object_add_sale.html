@@ -1,0 +1,432 @@
+﻿{% extends "app/layout.html" %}
+{% block content %}
+{% load static %}
+<a class="btn btn-warning ml-3 mt-2" href="{% url 'objects_review' %}"><i class="fas fa-chevron-circle-left"></i>Назад</a>
+<div class="container col-12 bg-trasparent" style="position: relative;">
+    {% for message in messages %}
+    <div class="alert alert-danger">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+        {{ message }}
+    </div>
+    {% endfor %}   
+    <h5 class="text-center mt-1 mb-2">Продажи</h5>
+    <hr class="bg-warning col-6 mb-2">
+    <div class="d-flex justify-content-center">
+        <div class="col-12">
+            <form action='.' id="form1" method='POST'>
+                {% csrf_token %}
+                <div class="shadow-lg rounded p-0 mt-2">
+                    <div class="card-header p-0">
+                        <h5 class="text-center" id="colplex-name-header1">Обновление продаж для секции: "{{section.number}}" в доме: "
+                      {{section.id_house.street_number}}" в комплексе: "{{section.id_house.id_buildings.name}}"</h5>
+                    </div>
+                    <div class="p-3">
+                        <div class="mainTab">
+                            <div class="col-xl-3 col-sm-3 p-0">
+                                <label>Курс доллара</label>
+                                <div class="input-group flex-nowrap p-0 col-xl-8">
+                                    <span class="input-group-text">$</span>
+                                    <input class="num form-control dollar_val" type="text" id="dollar" name="dollar">
+                                    <a class="btn btn-warning" id="checkDollar" href="https://goo-gl.su/jd6bSL" target="_blank">Узнать</a>
+                                </div>
+                            </div>
+                            <div class="form-row mt-2">
+                                <div class="col-xl-1">
+                                    <label>Год</label>
+                                    <div class="input-group flex-nowrap">
+                                        <input class="form-control" type="number" min="2005" max="2099" step="1" id="" name="" value="2020" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-1">
+                                    <label>Месяц</label>
+                                    <div class="input-group flex-nowrap">
+                                        <select class="custom-select" id="sales1" name="sales1">
+                                            <option selected value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 text-center">
+                                    <label>Стоимость парковки (₴ \ $)</label>
+                                    <div class="row">
+                                        <div class="input-group col-6 pr-1">
+                                            <input class="num calc_dollar form-control" type="text" id="" name="" value="">
+                                        </div>
+                                        <div class="input-group col-6 pl-1">
+                                            <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <label>Остаток кв.м.</label>
+                                    <div class="input-group flex-nowrap">
+                                        <input class="num form-control areaRemain" readonly type="text" id="" name="" value="">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 text-center">
+                                    <label>Минимальная цена (₴ \ $)</label>
+                                    <div class="row">
+                                        <div class="input-group col-6 pr-1">
+                                            <input class="num avg minPrice calc_dollar form-control" readonly type="text" id="" name="" value="">
+                                        </div>
+                                        <div class="input-group col-6 pl-1">
+                                            <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 text-center">
+                                    <label>Максимальная цена (₴ \ $)</label>
+                                    <div class="row">
+                                        <div class="input-group col-6 pr-1">
+                                            <input class="num avg maxPrice calc_dollar form-control" readonly type="text" id="" name="" value="">
+                                        </div>
+                                        <div class="input-group col-6 pl-1">
+                                            <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 text-center">
+                                    <label>Средняя цена (₴ \ $)</label>
+                                    <div class="row">
+                                        <div class="input-group col-6 pr-1">
+                                            <input class="num avgPrice calc_dollar form-control" readonly type="text" id="" name="" value="">
+                                        </div>
+                                        <div class="input-group col-6 pl-1">
+                                            <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row mt-2">
+                                <div class="card col-6 except p-0 shadow-none border-right-0 border rounded-0">
+                                    <div class="p-1 pl-2 card-header">
+                                        Информация об однокомнатных квартирах:
+                                    </div>
+                                    <div class="py-1 card-body row">
+                                        <div class="col-xl-1 p-0 pr-1">
+                                            <label>Квартир</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input class="form-control totalApart" type="number" id="" name="" min="0" max="10000">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 text-center">
+                                            <label>Мин. цена (₴ \ $)</label>
+                                            <div class="row">
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num min avgAp calc_dollar form-control" type="text" id="" name="" value="">
+                                                </div>
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 text-center">
+                                            <label>Макс. цена (₴ \ $)</label>
+                                            <div class="row">
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="" name="" value="">
+                                                </div>
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 text-center">
+                                            <label>Средняя цена (₴ \ $)</label>
+                                            <div class="row">
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num calc_dollar avgApPrice form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                                <div class="input-group col-6 p-0">
+                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 pl-1 pr-0">
+                                            <label>Остаток кв.м.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input class="num form-control area" type="text" id="" name="" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card col-6 except p-0 shadow-none border-top rounded-0">
+                                    <div class="p-1 pl-2 card-header">
+                                        Информация о двухкомнатных квартирах:
+                                    </div>
+                                    <div class="py-1 card-body row">
+                                        <div class="col-xl-1 p-0 pr-1">
+                                            <label>Квартир</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input class="form-control totalApart" type="number" id="" name="" min="0" max="10000">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 text-center">
+                                            <label>Мин. цена (₴ \ $)</label>
+                                            <div class="row">
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num avgAp min calc_dollar form-control" type="text" id="" name="" value="">
+                                                </div>
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 text-center">
+                                            <label>Макс. цена (₴ \ $)</label>
+                                            <div class="row">
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="" name="" value="">
+                                                </div>
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 text-center">
+                                            <label>Средняя цена (₴ \ $)</label>
+                                            <div class="row">
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num calc_dollar avgApPrice form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                                <div class="input-group col-6 p-0">
+                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 pl-1 pr-0">
+                                            <label>Остаток кв.м.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input class="num form-control area" type="text" id="" name="" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mt-2">
+                                <div class="card col-6 except p-0 shadow-none border-right-0 rounded-0">
+                                    <div class="p-1 pl-2 card-header">
+                                        Информация о трехкомнатных квартирах:
+                                    </div>
+                                    <div class="py-1 card-body row">
+                                        <div class="col-xl-1 p-0 pr-1">
+                                            <label>Квартир</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input class="form-control totalApart" type="number" id="" name="" min="0" max="10000">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 text-center">
+                                            <label>Мин. цена (₴ \ $)</label>
+                                            <div class="row">
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num avgAp min calc_dollar form-control" type="text" id="" name="" value="">
+                                                </div>
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 text-center">
+                                            <label>Макс. цена (₴ \ $)</label>
+                                            <div class="row">
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="" name="" value="">
+                                                </div>
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 text-center">
+                                            <label>Средняя цена (₴ \ $)</label>
+                                            <div class="row">
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num avgApPrice calc_dollar form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                                <div class="input-group col-6 p-0">
+                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 pl-1 pr-0">
+                                            <label>Остаток кв.м.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input class="num form-control area" type="text" id="" name="" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card col-6 except p-0 shadow-none border-top rounded-0">
+                                    <div class="p-1 pl-2 card-header">
+                                        Информация о четырехкомнатных квартирах:
+                                    </div>
+                                    <div class="py-1 card-body row">
+                                        <div class="col-xl-1 p-0 pr-1">
+                                            <label>Квартир</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input class="form-control totalApart" type="number" id="" name="" min="0" max="10000">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 text-center">
+                                            <label>Мин. цена (₴ \ $)</label>
+                                            <div class="row">
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num avgAp min calc_dollar form-control" type="text" id="" name="" value="">
+                                                </div>
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 text-center">
+                                            <label>Макс. цена (₴ \ $)</label>
+                                            <div class="row">
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="" name="" value="">
+                                                </div>
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 text-center">
+                                            <label>Средняя цена (₴ \ $)</label>
+                                            <div class="row">
+                                                <div class="input-group col-6 p-0 pr-1">
+                                                    <input class="num calc_dollar avgApPrice form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                                <div class="input-group col-6 p-0">
+                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 pl-1 pr-0">
+                                            <label>Остаток кв.м.</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input class="num form-control area" type="text" id="" name="" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-success mt-4 mb-3" name="save" value="Сохранить информацию">
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(window).on('load', function () {
+        $('#loading').hide();
+        masknum();
+    })
+    //mask for double
+    function masknum() {
+        $('.num').inputmask({
+            'alias': 'decimal',
+            'digits': 2,
+            'digitsOptional': false,
+            'placeholder': '0.00'
+        })
+    };
+    //To culc dollar
+    $('.calc_dollar').change(calcDol);
+    $('.dollar_val').change(function () {
+        $('.calc_dollar').trigger("change")
+    });
+    function calcDol() {
+        var dol = parseFloat($(this).val()) / parseFloat($(".dollar_val").val());
+        $(this).closest('.row').find('.dollar').val(dol);
+    }
+
+
+    $('.area').change(function () {
+        var total = 0;
+        $('.area').each(function () {
+            if ($(this).val() != "") {
+                total = total + parseFloat($(this).val());
+            }
+        });
+        $(".areaRemain").val(total);
+    });
+
+    $('.min').change(function () {
+        var arrey = [];
+        $('.min').each(function () {
+            if ($(this).val() != "") {
+                arrey.push(parseFloat($(this).val()));
+            }
+        });
+        console.log(arrey.length);
+        if (arrey.length !=0) {
+            $(".minPrice").val(Math.min.apply(Math, arrey));
+            $('.avgPrice').trigger("change");
+        }
+    });
+
+    $('.max').change(function () {
+        var arrey = [];
+        $('.max').each(function () {
+            if ($(this).val() != "") {
+                arrey.push(parseFloat($(this).val()));
+            }
+        });
+        console.log(arrey.length);
+        if (arrey.length != 0) {
+            $(".maxPrice").val(Math.max.apply(Math, arrey));
+            $('.avg').trigger("change");
+        }
+    });
+
+    $('.avg').change(function () {
+        flag = true;
+        var arrey = [];
+        $('.avg').each(function () {
+            if ($(this).val() != "" && $(this).val()!=0) {
+                arrey.push(parseFloat($(this).val()));
+            }
+            else { flag = false; }
+        });
+        if (flag == true) {
+            $(".avgPrice").val((arrey[0] + arrey[1]) / 2);
+            $('.avgPrice').trigger("change");
+        }
+        else { $('.avgPrice').val(""); $('.avgPrice').trigger("change")}
+    });
+
+    $('.avgAp').change(function () {
+        var arrey = [];
+        flag = true;
+        $(this).closest('.card-body').find(".avgAp").each(function () {
+            if ($(this).val() != "" && $(this).val() != 0) {
+                arrey.push(parseFloat($(this).val()));
+            }
+            else { flag = false; }
+        });
+        if (flag == true) {
+            $(this).closest('.card-body').find(".avgApPrice").val((arrey[0] + arrey[1]) / 2);
+            $('.avgApPrice').trigger("change")
+        }
+        else { $('.avgApPrice').val(""); $('.avgApPrice').trigger("change") }
+    });
+
+</script>
+{% endblock %}

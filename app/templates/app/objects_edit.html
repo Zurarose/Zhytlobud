@@ -32,15 +32,15 @@
                 {% for row in instances %}
                     <tr>
                         <td class="id">{{ row.id_buildings }}</td>
-                        <td>{{ row.class_field }}</td>
-                        <td>{{ row.name }}</td>
-                        <td>{{ row.customer.name }}</td>
-                        <td>{{ row.builder }}</td>
-                        <td>{{ row.street_name.name }}</td>
-                        <td>{{ row.city_area.name }}</td>
-                        <td>{{ row.urban_develop_zone}} район</td>
-                        <td>{{ row.subway.name }}</td>
-                        <td>{{ row.parking }}</td>
+                        <td>{{row.class_field }}</td>
+                        <td>{{row.name }}</td>
+                        <td>{{row.customer.name }}</td>
+                        <td>{{row.builder }}</td>
+                        <td>{{row.street_name.name }}</td>
+                        <td>{{row.city_area.name }}</td>
+                        <td>{{row.urban_develop_zone}}</td>
+                        <td>{{row.subway.name }}</td>
+                        <td>{{row.parking }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

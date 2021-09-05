@@ -16,6 +16,7 @@
         <div class="col-xl-2 p-0" id="tofixed">
             <h5 class="text-left ml-3">О комплексе:</h5>
             <ul class="list-group">
+                <li class="p-2 list-group-item">Название: {{complex.name}}</li>
                 <li class="p-2 list-group-item">Класс: {{complex.class_field}}</li>
                 <li class="p-2 list-group-item">Улица: {{complex.street_name.name}}</li>
                 <li class="p-2 list-group-item">Застройщик: {{complex.customer.name}}</li>
@@ -37,7 +38,7 @@
                     <input type="submit" class="btn btn-warning btn-sm col-xl-12" name="edit_complex" value="Редактировать комплекс">
                     {% endif %}
                     {% if request.user.is_superuser%}
-                    <input type="submit" class="btn btn-danger check_complex mt-2 btn-sm col-xl-12" name="delete_complex" value="Удалить комплекс">
+                    <input type="submit" class="btn btn-danger btn-sm check_complex mt-2 col-xl-12" name="delete_complex" value="Удалить комплекс">
                     {% endif %}
                 </li>
             </form>
@@ -152,8 +153,9 @@
             <form action='.' id="form_section" method='POST'>
                 {% csrf_token %}
                 <input type="hidden" class="required" id = "selected_sales" name="selected_sales" value="">
+                <input type="hidden" class="required" id = "selected_section_sale" name="selected_section" value="">
                 {% if request.user.is_staff or request.user.is_superuser%}
-                <input type="submit" disabled class="ml-1 btn btn-warning btn-sm btnTable_third" name="update_sale" value="Обновить продажи">
+                <input type="submit" disabled class="ml-1 btn btn-warning btn-sm btnTable_third_add" name="update_sale" value="Обновить продажи">
                 <input type="submit" disabled class="ml-1 btnTable_third btn btn-warning btn-sm" name="edit_sale" value="Редактировать месяц">              
                 {% endif %}
                 {% if request.user.is_superuser%}
@@ -453,6 +455,7 @@
                     $("#selected_house").val("");
                     $(".btnTable_first").prop("disabled", true);
                     $(".btnTable_third").prop("disabled", true);
+                    $(".btnTable_second").prop("disabled", true);
                     $(".toRemoveSale").remove();
                 }
                 else {
@@ -463,6 +466,7 @@
                     selectChg();
                     $(".btnTable_first").prop("disabled", false);
                     $(".btnTable_third").prop("disabled", true);
+                    $(".btnTable_second").prop("disabled", true);
                     $(".toRemoveSale").remove();
                 }
             }
@@ -473,16 +477,20 @@
                 if ($(this).hasClass('active')) {
                     $(this).removeClass('active');
                     $("#selected_section").val("");
+                     $("#selected_section_sale").val("");
                     $(".btnTable_second").prop("disabled", true);
                     $(".btnTable_third").prop("disabled", true);
+                    $(".btnTable_third_add").prop("disabled", true);
                     $(".toRemoveSale").remove();
                 }
                 else {
                     $('tr.toRemove').removeClass('active');
                     $(this).addClass('active');
                     $("#selected_section").val($(this).closest('tr').find('.id').text());
+                    $("#selected_section_sale").val($(this).closest('tr').find('.id').text());
                     $(".btnTable_second").prop("disabled", false);
-
+                    $(".btnTable_third_add").prop("disabled", false);
+                    
                     $(".toRemoveSale").remove();
                     selectSale();
                 }
