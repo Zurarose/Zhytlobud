@@ -32,55 +32,65 @@
                             </div>
                             <div class="form-row mt-2">
                                 <div class="col-xl-1">
-                                    <label>Год</label>
-                                    <div class="input-group flex-nowrap">
-                                        <input class="form-control" type="number" min="2005" max="2099" step="1" id="" name="" value="2020" />
-                                    </div>
+                                        <label>Год</label>
+                                        <div class="input-group flex-nowrap">
+                                            <input class="form-control" type="number" min="2005" max="2099" step="1" id="year" name="year" value="2020" />
+                                        </div>
+                                        <label>Месяц</label>
+                                        <div class="input-group flex-nowrap">
+                                            <select class="custom-select" id="month_select" name="month_select">
+                                                <option selected value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                            </select>
+                                            <input type="hidden" class="required" id = "month" name="month" value="">
+                                        </div>
                                 </div>
-                                <div class="col-xl-1">
-                                    <label>Месяц</label>
-                                    <div class="input-group flex-nowrap">
-                                        <select class="custom-select" id="sales1" name="sales1">
-                                            <option selected value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                        </select>
+                                <div class="col-xl-2 text-center">
+                                    <label>Мин. стоимость парковки (₴ \ $)</label>
+                                    <div class="row">
+                                        <div class="input-group col-6 pr-1">
+                                            <input class="num calc_dollar form-control" type="text" id="MinParkingPrice" name="MinParkingPrice" value="">
+                                        </div>
+                                        <div class="input-group col-6 pl-1">
+                                            <input class="num dollar form-control" readonly type="text" id="MinParkingPrice_dol" name="MinParkingPrice_dol" value="">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 text-center">
-                                    <label>Стоимость парковки (₴ \ $)</label>
+                                    <label>Макс. стоимость парковки (₴ \ $)</label>
                                     <div class="row">
                                         <div class="input-group col-6 pr-1">
-                                            <input class="num calc_dollar form-control" type="text" id="" name="" value="">
+                                            <input class="num calc_dollar form-control" type="text" id="MaxParkingPrice" name="MaxParkingPrice" value="">
                                         </div>
                                         <div class="input-group col-6 pl-1">
-                                            <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                            <input class="num dollar form-control" readonly type="text" id="MaxParkingPrice_dol" name="MaxParkingPrice_dol" value="">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-2">
+                                <div class="col-xl-1">
                                     <label>Остаток кв.м.</label>
                                     <div class="input-group flex-nowrap">
-                                        <input class="num form-control areaRemain" readonly type="text" id="" name="" value="">
+                                        <input class="num form-control areaRemain" readonly type="text" id="TtlAreaRemain" name="TtlAreaRemain" value="">
                                     </div>
                                 </div>
                                 <div class="col-xl-2 text-center">
                                     <label>Минимальная цена (₴ \ $)</label>
                                     <div class="row">
                                         <div class="input-group col-6 pr-1">
-                                            <input class="num avg minPrice calc_dollar form-control" readonly type="text" id="" name="" value="">
+                                            <input class="num avg minPrice calc_dollar form-control" readonly type="text" id="TtlMinPrice" name="TtlMinPrice" value="">
                                         </div>
                                         <div class="input-group col-6 pl-1">
-                                            <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                            <input class="num dollar form-control" readonly type="text" id="TtlMinPrice_dol" name="TtlMinPrice_dol" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -88,26 +98,25 @@
                                     <label>Максимальная цена (₴ \ $)</label>
                                     <div class="row">
                                         <div class="input-group col-6 pr-1">
-                                            <input class="num avg maxPrice calc_dollar form-control" readonly type="text" id="" name="" value="">
+                                            <input class="num avg maxPrice calc_dollar form-control" readonly type="text" id="TtlMaxPrice" name="TtlMaxPrice" value="">
                                         </div>
                                         <div class="input-group col-6 pl-1">
-                                            <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                            <input class="num dollar form-control" readonly type="text" id="TtlMaxPrice_dol" name="TtlMaxPrice_dol" value="">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 text-center">
-                                    <label>Средняя цена (₴ \ $)</label>
+                                    <label>Сред. цена (₴ \ $)</label>
                                     <div class="row">
                                         <div class="input-group col-6 pr-1">
-                                            <input class="num avgPrice calc_dollar form-control" readonly type="text" id="" name="" value="">
+                                            <input class="num avgPrice calc_dollar form-control" readonly type="text" id="TtlAvgPrice" name="TtlAvgPrice" value="">
                                         </div>
                                         <div class="input-group col-6 pl-1">
-                                            <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                            <input class="num dollar form-control" readonly type="text" id="TtlAvgPrice_dol" name="TtlAvgPrice_dol" value="">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="form-row mt-2">
                                 <div class="card col-6 except p-0 shadow-none border-right-0 border rounded-0">
                                     <div class="p-1 pl-2 card-header">
@@ -117,17 +126,17 @@
                                         <div class="col-xl-1 p-0 pr-1">
                                             <label>Квартир</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="form-control totalApart" type="number" id="" name="" min="0" max="10000">
+                                                <input class="form-control totalApart" type="number" id="Ttl1Ap" name="Ttl1Ap" min="0" max="10000">
                                             </div>
                                         </div>
                                         <div class="col-xl-3 text-center">
                                             <label>Мин. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num min avgAp calc_dollar form-control" type="text" id="" name="" value="">
+                                                    <input class="num min avgAp calc_dollar form-control" type="text" id="Min1ApPrice" name="Min1ApPrice" value="">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                    <input class="num dollar form-control" readonly type="text" id="Min1ApPrice_dol" name="Min1ApPrice_dol" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -135,10 +144,10 @@
                                             <label>Макс. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="" name="" value="">
+                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="Max1ApPrice" name="Max1ApPrice" value="">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                    <input class="num dollar form-control" readonly type="text" id="Max1ApPrice_dol" name="Max1ApPrice_dol" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -146,17 +155,17 @@
                                             <label>Средняя цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num calc_dollar avgApPrice form-control" readonly type="text" id="" name="" value="">
+                                                    <input class="num calc_dollar avgApPrice form-control" readonly type="text" id="Avg1pPrice" name="Avg1pPrice" value="">
                                                 </div>
                                                 <div class="input-group col-6 p-0">
-                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                    <input class="num dollar form-control" readonly type="text" id="Avg1pPrice_dol" name="Avg1ApPrice_dol" value="">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-2 pl-1 pr-0">
                                             <label>Остаток кв.м.</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="num form-control area" type="text" id="" name="" value="">
+                                                <input class="num form-control area" type="text" id="Area1ApRemain" name="Area1ApRemain" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -169,17 +178,17 @@
                                         <div class="col-xl-1 p-0 pr-1">
                                             <label>Квартир</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="form-control totalApart" type="number" id="" name="" min="0" max="10000">
+                                                <input class="form-control totalApart" type="number" id="Ttl2Ap" name="Ttl2Ap" min="0" max="10000">
                                             </div>
                                         </div>
                                         <div class="col-xl-3 text-center">
                                             <label>Мин. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num avgAp min calc_dollar form-control" type="text" id="" name="" value="">
+                                                    <input class="num avgAp min calc_dollar form-control" type="text" id="Min2ApPrice" name="Min2ApPrice" value="">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                    <input class="num dollar form-control" readonly type="text" id="Min2ApPrice_dol" name="Min2ApPrice_dol" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -187,10 +196,10 @@
                                             <label>Макс. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="" name="" value="">
+                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="Max2ApPrice" name="Max2ApPrice" value="">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                    <input class="num dollar form-control" readonly type="text" id="Max2ApPrice_dol" name="Max2ApPrice_dol" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -198,17 +207,17 @@
                                             <label>Средняя цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num calc_dollar avgApPrice form-control" readonly type="text" id="" name="" value="">
+                                                    <input class="num calc_dollar avgApPrice form-control" readonly type="text" id="Avg2ApPrice" name="Avg2ApPrice" value="">
                                                 </div>
                                                 <div class="input-group col-6 p-0">
-                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                    <input class="num dollar form-control" readonly type="text" id="Avg2ApPrice_dol" name="Avg2ApPrice_dol" value="">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-2 pl-1 pr-0">
                                             <label>Остаток кв.м.</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="num form-control area" type="text" id="" name="" value="">
+                                                <input class="num form-control area" type="text" id="Area2ApRemain" name="Area2ApRemain" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -223,17 +232,17 @@
                                         <div class="col-xl-1 p-0 pr-1">
                                             <label>Квартир</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="form-control totalApart" type="number" id="" name="" min="0" max="10000">
+                                                <input class="form-control totalApart" type="number" id="Ttl3Ap" name="Ttl3Ap" min="0" max="10000">
                                             </div>
                                         </div>
                                         <div class="col-xl-3 text-center">
                                             <label>Мин. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num avgAp min calc_dollar form-control" type="text" id="" name="" value="">
+                                                    <input class="num avgAp min calc_dollar form-control" type="text" id="Min3ApPrice" name="Min3ApPrice" value="">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                    <input class="num dollar form-control" readonly type="text" id="Min3ApPrice_dol" name="Min3ApPrice_dol" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -241,10 +250,10 @@
                                             <label>Макс. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="" name="" value="">
+                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="Max3ApPrice" name="Max3ApPrice" value="">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                    <input class="num dollar form-control" readonly type="text" id="Max3ApPrice_dol" name="Max3ApPrice_dol" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -255,14 +264,14 @@
                                                     <input class="num avgApPrice calc_dollar form-control" readonly type="text" id="" name="" value="">
                                                 </div>
                                                 <div class="input-group col-6 p-0">
-                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                    <input class="num dollar form-control" readonly type="text" id="Avg3ApPrice_dol" name="Avg3ApPrice_dol" value="">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-2 pl-1 pr-0">
                                             <label>Остаток кв.м.</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="num form-control area" type="text" id="" name="" value="">
+                                                <input class="num form-control area" type="text" id="Area3ApRemain" name="Area3ApRemain" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -275,17 +284,17 @@
                                         <div class="col-xl-1 p-0 pr-1">
                                             <label>Квартир</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="form-control totalApart" type="number" id="" name="" min="0" max="10000">
+                                                <input class="form-control totalApart" type="number" id="Ttl4Ap" name="Ttl4Ap" min="0" max="10000">
                                             </div>
                                         </div>
                                         <div class="col-xl-3 text-center">
                                             <label>Мин. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num avgAp min calc_dollar form-control" type="text" id="" name="" value="">
+                                                    <input class="num avgAp min calc_dollar form-control" type="text" id="Min4ApPrice" name="Min4ApPrice" value="">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                    <input class="num dollar form-control" readonly type="text" id="Min4ApPrice_dol" name="Min4ApPrice_dol" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -293,10 +302,10 @@
                                             <label>Макс. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="" name="" value="">
+                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="Max4ApPrice" name="Max4ApPrice" value="">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                    <input class="num dollar form-control" readonly type="text" id="Max4ApPrice_dol" name="Max4ApPrice_dol" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -304,17 +313,17 @@
                                             <label>Средняя цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num calc_dollar avgApPrice form-control" readonly type="text" id="" name="" value="">
+                                                    <input class="num calc_dollar avgApPrice form-control" readonly type="text" id="Avg4ApPrice" name="Avg4ApPrice" value="">
                                                 </div>
                                                 <div class="input-group col-6 p-0">
-                                                    <input class="num dollar form-control" readonly type="text" id="" name="" value="">
+                                                    <input class="num dollar form-control" readonly type="text" id="Avg4ApPrice_dol" name="Avg4ApPrice_dol" value="">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-2 pl-1 pr-0">
                                             <label>Остаток кв.м.</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="num form-control area" type="text" id="" name="" value="">
+                                                <input class="num form-control area" type="text" id="Area4ApRemain" name="Area4ApRemain" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -323,7 +332,6 @@
                         </div>
                         <input type="submit" class="btn btn-success mt-4 mb-3" name="save" value="Сохранить информацию">
                     </div>
-
                 </div>
             </form>
         </div>
@@ -337,7 +345,28 @@
     $(window).on('load', function () {
         $('#loading').hide();
         masknum();
+        var last = '{{last|safe}}'
+        console.log(last);
+        if (last != "None") {
+            var year = '{{last.year|safe}}';
+            year = parseInt(year);
+            var month = '{{last.month|safe}}';
+            month = parseInt(month);
+            month = month + 1;
+            if (month > 12) {
+                month = 1;
+                year = year + 1;
+            }
+            $('#month_select option[value="' + month + '"]').prop("selected", true);
+            $("#month").val($('#month_select').val());
+            $("#month_select").prop("disabled", true);
+            $('#year').val(year);
+            $('#year').prop("readonly", true);
+        }   
     })
+    $('#month_select').change(function () {
+        $('#month').val($('#month_select').val())
+    });
     //mask for double
     function masknum() {
         $('.num').inputmask({

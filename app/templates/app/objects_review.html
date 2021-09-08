@@ -9,7 +9,7 @@
         </div>
     {% endfor %}
     {% if complex %}
-    <a class="btn btn-warning" href="{% url 'objects_edit' %}"><i class="fas fa-chevron-circle-left"></i> Назад</a>
+    <a class="btn btn-warning" href="{% url 'objects_edit' %}"><i class="fas fa-chevron-circle-left"></i>Назад</a>
     <h5 class="text-center mb-2">Комплекс: {{complex.name}}</h5>
     <hr class="bg-warning col-6 mb-2">
     <div class="row row-cols-xl-2">
@@ -28,13 +28,12 @@
                 {% if complex.parking == "Есть" %}
                 <li class="p-2 list-group-item">Тип парковки: {{complex.parking_type}}</li>
                 {% if complex.parking_type == "Надземная" %}
-                <li class="p-2 list-group-item">Парковка (мест): {{complex.parking_num}}</li>               
+                <li class="p-2 list-group-item">Парковка (мест): {{complex.parking_num}}</li>
                 {% endif %}     
             {% endif %}
             <form action='.' id="form_complex" method='POST'>
                 {% csrf_token %}
-                <li class="border-bottom-0 list-group-item p-2">
-                    {% if request.user.is_staff or request.user.is_superuser%}
+                <li class="border-bottom-0 list-group-item p-2">{% if request.user.is_staff or request.user.is_superuser%}
                     <input type="submit" class="btn btn-warning btn-sm col-xl-12" name="edit_complex" value="Редактировать комплекс">
                     {% endif %}
                     {% if request.user.is_superuser%}
@@ -58,7 +57,7 @@
                 {% endif %}
             </form>
             <div class="pl-1 pr-2 m-0 table-responsive col-xl-12">
-                <table id="DataTable" class='table table-Light table-bordered display compact' style="width:100%;">
+                <table id="DataTable" class='table table-Light table-bordered display compact' style="width: 100%;">
                     <thead>
                         <tr class="bg-warning text-white">
                             <th style="display: none;">ИД</th>
@@ -71,7 +70,7 @@
                             <th>Квартал</th>
                             <th>Этажность</th>
                             {% if complex.parking_type == "Подземная" and complex.parking == "Есть" %}
-                            <th>Парковка (мест)</th>                          
+                            <th>Парковка (мест)</th>
                             {% endif %}
                             <th>Заметка</th>
                         </tr>
@@ -89,7 +88,7 @@
                             <td>{{ row.quarter }}</td>
                             <td>{{ row.storeys }}</td>
                             {% if complex.parking_type == "Подземная" %}
-                            <td>{{ row.parking_num }}</td>                           
+                            <td>{{ row.parking_num }}</td>
                             {% endif %}
                             <td class="p-1"><a class="col-12 border border-warning btn btn-light" role="button" data-toggle="popover" data-trigger="hover" title="Примечание" data-content="{{row.remark}}"><i class="fas fa-search"></i></a></td>
                         </tr>
@@ -100,10 +99,10 @@
             <h5 class="ml-1">Секции:</h5>
             <form action='.' id="form_section" method='POST'>
                 {% csrf_token %}
-                <input type="hidden" class="required" id = "selected_section" name="selected_section" value="">
+                <input type="hidden" class="required" id="selected_section" name="selected_section" value="">
                 {% if request.user.is_staff or request.user.is_superuser%}
                 <input type="submit" class="ml-1 btn btn-warning btn-sm" name="add_section" value="Добавить секцию">
-                <input type="submit" disabled class="ml-1 btnTable_second btn btn-warning btn-sm" name="edit_section" value="Редактировать секцию">              
+                <input type="submit" disabled class="ml-1 btnTable_second btn btn-warning btn-sm" name="edit_section" value="Редактировать секцию">
                 {% endif %}
                 {% if request.user.is_superuser%}
                 <input type="submit" disabled class="ml-1 btnTable_second btn btn-danger check_section btn-sm" name="delete_section" value="Удалить секцию">
@@ -114,7 +113,7 @@
                 {% endif %}
             </form>
             <div class="p-1 m-0 table-responsive col-xl-12">
-                <table id="DataTable_second" class='table table-bordered table-Light display compact' style="width:100%;">
+                <table id="DataTable_second" class='table table-bordered table-Light display compact' style="width: 100%;">
                     <thead>
                         <tr class="bg-warning text-white">
                             <th style="display: none;">ИД</th>
@@ -133,7 +132,7 @@
                     </thead>
                     <tbody id="appendHere">
                         <tr class="toRemove">
-                            <td></td>
+                            <td style="display: none;"></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -150,20 +149,20 @@
                 </table>
             </div>
             <h5 class="ml-1">Продажи:</h5>
-            <form action='.' id="form_section" method='POST'>
+            <form action='.' id="form_sale" method='POST'>
                 {% csrf_token %}
-                <input type="hidden" class="required" id = "selected_sales" name="selected_sales" value="">
-                <input type="hidden" class="required" id = "selected_section_sale" name="selected_section" value="">
+                <input type="hidden" class="required" id="selected_sales" name="selected_sales" value="">
+                <input type="hidden" class="required" id="selected_section_sale" name="selected_section" value="">
                 {% if request.user.is_staff or request.user.is_superuser%}
                 <input type="submit" disabled class="ml-1 btn btn-warning btn-sm btnTable_third_add" name="update_sale" value="Обновить продажи">
-                <input type="submit" disabled class="ml-1 btnTable_third btn btn-warning btn-sm" name="edit_sale" value="Редактировать месяц">              
+                <input type="submit" disabled class="ml-1 btnTable_third btn btn-warning btn-sm" name="edit_sale" value="Редактировать месяц">
                 {% endif %}
                 {% if request.user.is_superuser%}
-                <input type="submit" disabled class="ml-1 btnTable_third btn btn-danger btn-sm" name="delete_sale" value="Удалить последний месяц">
+                <input type="submit" disabled class="ml-1 btn btn-danger btn-sm btnTable_third_add" name="delete_sale" value="Удалить последний месяц">
                 {% endif %}              
             </form>
-            <div class="p-1 m-0 table-responsive col-xl-12">
-                <table id="DataTable_third" class='table table-Light display compact table-bordered' style="width:100%;">
+            <div class="p-1 m-0 mb-5 table-responsive col-xl-12">
+                <table id="DataTable_third" class='table table-Light display compact table-bordered mb-5' style="width: 100%;">
                     <thead>
                         <tr class="bg-warning text-white">
                             <th style="display: none;">ИД</th>
@@ -180,16 +179,17 @@
                     </thead>
                     <tbody id="appendHereSale">
                         <tr class="toRemove">
-                            <td></td>                          
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
 </div>
 {% else %}
-            <p>No data available</p>
+<p>No data available</p>
 {% endif %}
 
 {% endblock %}
@@ -477,7 +477,7 @@
                 if ($(this).hasClass('active')) {
                     $(this).removeClass('active');
                     $("#selected_section").val("");
-                     $("#selected_section_sale").val("");
+                    $("#selected_section_sale").val("");
                     $(".btnTable_second").prop("disabled", true);
                     $(".btnTable_third").prop("disabled", true);
                     $(".btnTable_third_add").prop("disabled", true);
@@ -490,7 +490,6 @@
                     $("#selected_section_sale").val($(this).closest('tr').find('.id').text());
                     $(".btnTable_second").prop("disabled", false);
                     $(".btnTable_third_add").prop("disabled", false);
-                    
                     $(".toRemoveSale").remove();
                     selectSale();
                 }
@@ -512,15 +511,24 @@
                 }
             }
         });
-
-        $("#DataTable>tbody>tr:first").attr("class", "active");
-        $("#selected_house").val($("#DataTable>tbody>tr:first").find('.id').text());
         $(".toRemove").remove();
-        selectChg();
+        var SelectedSection = '{{SelectedSection|safe}}';
+        if (SelectedSection != "None") {
+            var selectIdHouse = '{{SelectedSection.id_house.id_house|safe}}';
+            $('#DataTable').find('tr td:first-child:contains("' + selectIdHouse + '")').parent().addClass("active");
+            $("#selected_house").val(selectIdHouse);
+            selectChg();
+            $(".btnTable_first").prop("disabled", false);
+            $(".btnTable_third").prop("disabled", true);
+            $(".btnTable_second").prop("disabled", true);
+        }
+        else {
+            $("#DataTable>tbody>tr:first").attr("class", "active");
+            $("#selected_house").val($("#DataTable>tbody>tr:first").find('.id').text());
+            selectChg();
+        }
     });
-
     var appendTable = document.getElementById("appendHere");
-
     var appendTableSale = document.getElementById("appendHereSale");
     //To get section info
     function selectChg() {
@@ -570,7 +578,7 @@
                             tr.appendChild(td);
                         }
                         else if (j > 0 && j < 8) {
-                            var td = document.createElement('td');                           
+                            var td = document.createElement('td');
                             td.innerHTML = data.objects[i][j];
                             tr.appendChild(td);
                         }
@@ -582,8 +590,19 @@
                             tr.appendChild(td);
                         }
                     }
-                    $('[data-toggle="popover"]').popover();
                 }
+                var SelectedSection = '{{SelectedSection|safe}}';
+                if (SelectedSection != "None") {
+                    var selectIdSection = '{{SelectedSection.id_sections|safe}}';
+                    $('#DataTable_second').find('tr td:first-child:contains("' + selectIdSection + '")').parent().addClass("active");
+                    $("#selected_section").val(selectIdSection);
+                    $("#selected_section_sale").val(selectIdSection);
+                    $(".btnTable_second").prop("disabled", false);
+                    $(".btnTable_third_add").prop("disabled", false);
+                    selectSale();
+                }
+                $('[data-toggle="popover"]').popover()
+
             },
             error: function () {
                 enableSelect = false;
@@ -621,8 +640,10 @@
 
                             if (data.sales[i][j + 1] != null) {
                                 ap_min_price = data.sales[i][j + 1];
-                                if (data.sales[i][26] != null)
+                                if (data.sales[i][26] != null && data.sales[i][26] != "0")
                                     ap_min_price_dol = ap_min_price / data.sales[i][26];
+                                else
+                                    ap_min_price_dol = 0;
                             }
                             else {
                                 ap_min_price = "—";
@@ -630,8 +651,10 @@
                             }
                             if (data.sales[i][j + 2] != null) {
                                 ap_max_price = data.sales[i][j + 2];
-                                if (data.sales[i][26] != null)
+                                if (data.sales[i][26] != null && data.sales[i][26] != "0")
                                     ap_max_price_dol = ap_max_price / data.sales[i][26];
+                                else
+                                    ap_max_price_dol = 0;
                             }
                             else {
                                 ap_max_price = "—"
@@ -639,8 +662,10 @@
                             }
                             if (data.sales[i][j + 3] != null) {
                                 ap_avg_price = data.sales[i][j + 3];
-                                if (data.sales[i][26] != null)
+                                if (data.sales[i][26] != null && data.sales[i][26] != "0")
                                     ap_avg_price_dol = ap_avg_price / data.sales[i][26];
+                                else
+                                    ap_avg_price_dol = 0;
                             }
                             else {
                                 ap_avg_price = "—"
@@ -672,9 +697,10 @@
                                 td.setAttribute("style", "display: none;")
                             td.innerHTML = data.sales[i][j];
                             tr.appendChild(td);
+
                         }
                         else if (j == 23) {
-                            var area_remain;
+                            var area_remain = data.sales[i][23];
                             var td = document.createElement('td');
                             td.setAttribute("class", "id");
                             td.innerHTML = area_remain;;
@@ -692,8 +718,10 @@
                             var parking_price_max;
                             if (data.sales[i][j] != null) {
                                 parking_price_min = data.sales[i][j];
-                                if (data.sales[i][26] != null)
+                                if (data.sales[i][26] != null && data.sales[i][26] != "0")
                                     parking_price_min_dol = parking_price_min / data.sales[i][26];
+                                else
+                                    parking_price_min_dol = 0;
                             }
                             else {
                                 parking_price_min = "—";
@@ -701,8 +729,10 @@
                             }
                             if (data.sales[i][j + 1] != null) {
                                 parking_price_max = data.sales[i][j + 1];
-                                if (data.sales[i][26] != null)
+                                if (data.sales[i][26] != null && data.sales[i][26] != "0")
                                     parking_price_max_dol = parking_price_max / data.sales[i][26];
+                                else
+                                    parking_price_max_dol = 0;
                             }
                             else {
                                 parking_price_max = "—";
@@ -737,8 +767,10 @@
                                 dollar = "—";
                             if (data.sales[i][j + 1] != null) {
                                 min_price = data.sales[i][j + 1];
-                                if (data.sales[i][26] != null)
+                                if (data.sales[i][26] != null && data.sales[i][26] != "0")
                                     min_price_dol = min_price / data.sales[i][26];
+                                else
+                                    min_price_dol = 0;
                             }
                             else {
                                 min_price = "—";
@@ -746,8 +778,10 @@
                             }
                             if (data.sales[i][j + 2] != null) {
                                 max_price = data.sales[i][j + 2];
-                                if (data.sales[i][26] != null)
+                                if (data.sales[i][26] != null && data.sales[i][26] != "0")
                                     max_price_dol = max_price / data.sales[i][26];
+                                else
+                                    max_price_dol = 0;
                             }
                             else {
                                 max_price = "—";
@@ -755,8 +789,10 @@
                             }
                             if (data.sales[i][j + 3] != null) {
                                 avg_price = data.sales[i][j + 3];
-                                if (data.sales[i][26] != null)
+                                if (data.sales[i][26] != null && data.sales[i][26] != "0")
                                     avg_price_dol = avg_price / data.sales[i][26];
+                                else
+                                    avg_price_dol = 0;
                             }
                             else {
                                 avg_price = "—";
@@ -774,8 +810,8 @@
                             tr.appendChild(td);
                         }
                     }
-                    $('[data-toggle="popover"]').popover()
                 }
+                $('[data-toggle="popover"]').popover()
             }
         })
     }
