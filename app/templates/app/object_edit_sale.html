@@ -26,7 +26,7 @@
                                 <label>Курс доллара</label>
                                 <div class="input-group flex-nowrap p-0 col-xl-8">
                                     <span class="input-group-text">$</span>
-                                    <input class="num form-control dollar_val" type="text" id="dollar" name="dollar">
+                                    <input class="num form-control dollar_val" type="text" id="dollar" name="dollar" value="{{sales.dollar}}">
                                     <a class="btn btn-warning" id="checkDollar" href="https://goo-gl.su/jd6bSL" target="_blank">Узнать</a>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                     <label>Мин. стоимость парковки (₴ \ $)</label>
                                     <div class="row">
                                         <div class="input-group col-6 pr-1">
-                                            <input class="num calc_dollar form-control" type="text" id="MinParkingPrice" name="MinParkingPrice" value="">
+                                            <input class="num calc_dollar form-control" type="text" id="MinParkingPrice" name="MinParkingPrice" value="{{sales.parking_price_min}}">
                                         </div>
                                         <div class="input-group col-6 pl-1">
                                             <input class="num dollar form-control" readonly type="text" id="MinParkingPrice_dol" name="MinParkingPrice_dol" value="">
@@ -70,7 +70,7 @@
                                     <label>Макс. стоимость парковки (₴ \ $)</label>
                                     <div class="row">
                                         <div class="input-group col-6 pr-1">
-                                            <input class="num calc_dollar form-control" type="text" id="MaxParkingPrice" name="MaxParkingPrice" value="">
+                                            <input class="num calc_dollar form-control" type="text" id="MaxParkingPrice" name="MaxParkingPrice" value="{{sales.parking_price_max}}">
                                         </div>
                                         <div class="input-group col-6 pl-1">
                                             <input class="num dollar form-control" readonly type="text" id="MaxParkingPrice_dol" name="MaxParkingPrice_dol" value="">
@@ -80,14 +80,14 @@
                                 <div class="col-xl-1">
                                     <label>Остаток кв.м.</label>
                                     <div class="input-group flex-nowrap">
-                                        <input class="num form-control areaRemain" readonly type="text" id="TtlAreaRemain" name="TtlAreaRemain" value="">
+                                        <input class="num form-control areaRemain" readonly type="text" id="TtlAreaRemain" name="TtlAreaRemain" value="{{sales.area_remain}}">
                                     </div>
                                 </div>
                                 <div class="col-xl-2 text-center">
                                     <label>Минимальная цена (₴ \ $)</label>
                                     <div class="row">
                                         <div class="input-group col-6 pr-1">
-                                            <input class="num avg minPrice calc_dollar form-control" readonly type="text" id="TtlMinPrice" name="TtlMinPrice" value="">
+                                            <input class="num avg minPrice calc_dollar form-control" readonly type="text" id="TtlMinPrice" name="TtlMinPrice" value="{{sales.min_price}}">
                                         </div>
                                         <div class="input-group col-6 pl-1">
                                             <input class="num dollar form-control" readonly type="text" id="TtlMinPrice_dol" name="TtlMinPrice_dol" value="">
@@ -98,7 +98,7 @@
                                     <label>Максимальная цена (₴ \ $)</label>
                                     <div class="row">
                                         <div class="input-group col-6 pr-1">
-                                            <input class="num avg maxPrice calc_dollar form-control" readonly type="text" id="TtlMaxPrice" name="TtlMaxPrice" value="">
+                                            <input class="num avg maxPrice calc_dollar form-control" readonly type="text" id="TtlMaxPrice" name="TtlMaxPrice" value="{{sales.max_price}}">
                                         </div>
                                         <div class="input-group col-6 pl-1">
                                             <input class="num dollar form-control" readonly type="text" id="TtlMaxPrice_dol" name="TtlMaxPrice_dol" value="">
@@ -109,7 +109,7 @@
                                     <label>Сред. цена (₴ \ $)</label>
                                     <div class="row">
                                         <div class="input-group col-6 pr-1">
-                                            <input class="num avgPrice calc_dollar form-control" readonly type="text" id="TtlAvgPrice" name="TtlAvgPrice" value="">
+                                            <input class="num avgPrice calc_dollar form-control" readonly type="text" id="TtlAvgPrice" name="TtlAvgPrice" value="{{sales.avg_price}}">
                                         </div>
                                         <div class="input-group col-6 pl-1">
                                             <input class="num dollar form-control" readonly type="text" id="TtlAvgPrice_dol" name="TtlAvgPrice_dol" value="">
@@ -126,14 +126,14 @@
                                         <div class="col-xl-1 p-0 pr-1">
                                             <label>Квартир</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="form-control totalApart" type="number" id="Ttl1Ap" name="Ttl1Ap" min="0" max="10000">
+                                                <input class="form-control totalApart" type="number" id="Ttl1Ap" name="Ttl1Ap" min="0" max="10000" value="{{sales.a1_to_sale}}">
                                             </div>
                                         </div>
                                         <div class="col-xl-3 text-center">
                                             <label>Мин. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num min avgAp calc_dollar form-control" type="text" id="Min1ApPrice" name="Min1ApPrice" value="">
+                                                    <input class="num min avgAp calc_dollar form-control" type="text" id="Min1ApPrice" name="Min1ApPrice" value="{{sales.a1_min_price}}">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
                                                     <input class="num dollar form-control" readonly type="text" id="Min1ApPrice_dol" name="Min1ApPrice_dol" value="">
@@ -144,7 +144,7 @@
                                             <label>Макс. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="Max1ApPrice" name="Max1ApPrice" value="">
+                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="Max1ApPrice" name="Max1ApPrice" value="{{sales.a1_max_price}}">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
                                                     <input class="num dollar form-control" readonly type="text" id="Max1ApPrice_dol" name="Max1ApPrice_dol" value="">
@@ -155,17 +155,17 @@
                                             <label>Средняя цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num calc_dollar avgApPrice form-control" readonly type="text" id="Avg1ApPrice" name="Avg1pPrice" value="">
+                                                    <input class="num calc_dollar avgApPrice form-control" readonly type="text" id="Avg1ApPrice" name="Avg1ApPrice" value="{{sales.a1_avg_price}}">
                                                 </div>
                                                 <div class="input-group col-6 p-0">
-                                                    <input class="num dollar form-control" readonly type="text" id="Avg1pPrice_dol" name="Avg1ApPrice_dol" value="">
+                                                    <input class="num dollar form-control" readonly type="text" id="Avg1ApPrice_dol" name="Avg1ApPrice_dol" value="">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-2 pl-1 pr-0">
                                             <label>Остаток кв.м.</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="num form-control area" type="text" id="Area1ApRemain" name="Area1ApRemain" value="">
+                                                <input class="num form-control area" type="text" id="Area1ApRemain" name="Area1ApRemain" value="{{sales.a1_area_to_sale}}">
                                             </div>
                                         </div>
                                     </div>
@@ -178,14 +178,14 @@
                                         <div class="col-xl-1 p-0 pr-1">
                                             <label>Квартир</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="form-control totalApart" type="number" id="Ttl2Ap" name="Ttl2Ap" min="0" max="10000">
+                                                <input class="form-control totalApart" type="number" id="Ttl2Ap" name="Ttl2Ap" min="0" max="10000" value="{{sales.a2_to_sale}}">
                                             </div>
                                         </div>
                                         <div class="col-xl-3 text-center">
                                             <label>Мин. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num avgAp min calc_dollar form-control" type="text" id="Min2ApPrice" name="Min2ApPrice" value="">
+                                                    <input class="num avgAp min calc_dollar form-control" type="text" id="Min2ApPrice" name="Min2ApPrice" value="{{sales.a2_min_price}}">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
                                                     <input class="num dollar form-control" readonly type="text" id="Min2ApPrice_dol" name="Min2ApPrice_dol" value="">
@@ -196,7 +196,7 @@
                                             <label>Макс. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="Max2ApPrice" name="Max2ApPrice" value="">
+                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="Max2ApPrice" name="Max2ApPrice" value="{{sales.a2_max_price}}">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
                                                     <input class="num dollar form-control" readonly type="text" id="Max2ApPrice_dol" name="Max2ApPrice_dol" value="">
@@ -207,7 +207,7 @@
                                             <label>Средняя цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num calc_dollar avgApPrice form-control" readonly type="text" id="Avg2ApPrice" name="Avg2ApPrice" value="">
+                                                    <input class="num calc_dollar avgApPrice form-control" readonly type="text" id="Avg2ApPrice" name="Avg2ApPrice" value="{{sales.a2_avg_price}}">
                                                 </div>
                                                 <div class="input-group col-6 p-0">
                                                     <input class="num dollar form-control" readonly type="text" id="Avg2ApPrice_dol" name="Avg2ApPrice_dol" value="">
@@ -217,7 +217,7 @@
                                         <div class="col-xl-2 pl-1 pr-0">
                                             <label>Остаток кв.м.</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="num form-control area" type="text" id="Area2ApRemain" name="Area2ApRemain" value="">
+                                                <input class="num form-control area" type="text" id="Area2ApRemain" name="Area2ApRemain" value="{{sales.a2_area_to_sale}}">
                                             </div>
                                         </div>
                                     </div>
@@ -232,14 +232,14 @@
                                         <div class="col-xl-1 p-0 pr-1">
                                             <label>Квартир</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="form-control totalApart" type="number" id="Ttl3Ap" name="Ttl3Ap" min="0" max="10000">
+                                                <input class="form-control totalApart" type="number" id="Ttl3Ap" name="Ttl3Ap" min="0" max="10000" value="{{sales.a3_to_sale}}">
                                             </div>
                                         </div>
                                         <div class="col-xl-3 text-center">
                                             <label>Мин. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num avgAp min calc_dollar form-control" type="text" id="Min3ApPrice" name="Min3ApPrice" value="">
+                                                    <input class="num avgAp min calc_dollar form-control" type="text" id="Min3ApPrice" name="Min3ApPrice" value="{{sales.a3_min_price}}">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
                                                     <input class="num dollar form-control" readonly type="text" id="Min3ApPrice_dol" name="Min3ApPrice_dol" value="">
@@ -250,7 +250,7 @@
                                             <label>Макс. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="Max3ApPrice" name="Max3ApPrice" value="">
+                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="Max3ApPrice" name="Max3ApPrice" value="{{sales.a3_max_price}}">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
                                                     <input class="num dollar form-control" readonly type="text" id="Max3ApPrice_dol" name="Max3ApPrice_dol" value="">
@@ -261,7 +261,7 @@
                                             <label>Средняя цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num avgApPrice calc_dollar form-control" readonly type="text" id="Avg3ApPrice" name="Avg3ApPrice" value="">
+                                                    <input class="num avgApPrice calc_dollar form-control" readonly type="text" id="Avg3ApPrice" name="Avg3ApPrice" value="{{sales.a3_avg_price}}">
                                                 </div>
                                                 <div class="input-group col-6 p-0">
                                                     <input class="num dollar form-control" readonly type="text" id="Avg3ApPrice_dol" name="Avg3ApPrice_dol" value="">
@@ -271,7 +271,7 @@
                                         <div class="col-xl-2 pl-1 pr-0">
                                             <label>Остаток кв.м.</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="num form-control area" type="text" id="Area3ApRemain" name="Area3ApRemain" value="">
+                                                <input class="num form-control area" type="text" id="Area3ApRemain" name="Area3ApRemain" value="{{sales.a3_area_to_sale}}">
                                             </div>
                                         </div>
                                     </div>
@@ -284,14 +284,14 @@
                                         <div class="col-xl-1 p-0 pr-1">
                                             <label>Квартир</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="form-control totalApart" type="number" id="Ttl4Ap" name="Ttl4Ap" min="0" max="10000">
+                                                <input class="form-control totalApart" type="number" id="Ttl4Ap" name="Ttl4Ap" min="0" max="10000" value="{{sales.a4_to_sale}}">
                                             </div>
                                         </div>
                                         <div class="col-xl-3 text-center">
                                             <label>Мин. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num avgAp min calc_dollar form-control" type="text" id="Min4ApPrice" name="Min4ApPrice" value="">
+                                                    <input class="num avgAp min calc_dollar form-control" type="text" id="Min4ApPrice" name="Min4ApPrice" value="{{sales.a4_min_price}}">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
                                                     <input class="num dollar form-control" readonly type="text" id="Min4ApPrice_dol" name="Min4ApPrice_dol" value="">
@@ -302,7 +302,7 @@
                                             <label>Макс. цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="Max4ApPrice" name="Max4ApPrice" value="">
+                                                    <input class="num avgAp max calc_dollar form-control" type="text" id="Max4ApPrice" name="Max4ApPrice" value="{{sales.a4_max_price}}">
                                                 </div>
                                                 <div class="input-group col-6 p-0 pr-1">
                                                     <input class="num dollar form-control" readonly type="text" id="Max4ApPrice_dol" name="Max4ApPrice_dol" value="">
@@ -313,7 +313,7 @@
                                             <label>Средняя цена (₴ \ $)</label>
                                             <div class="row">
                                                 <div class="input-group col-6 p-0 pr-1">
-                                                    <input class="num calc_dollar avgApPrice form-control" readonly type="text" id="Avg4ApPrice" name="Avg4ApPrice" value="">
+                                                    <input class="num calc_dollar avgApPrice form-control" readonly type="text" id="Avg4ApPrice" name="Avg4ApPrice" value="{{sales.a4_avg_price}}">
                                                 </div>
                                                 <div class="input-group col-6 p-0">
                                                     <input class="num dollar form-control" readonly type="text" id="Avg4ApPrice_dol" name="Avg4ApPrice_dol" value="">
@@ -323,7 +323,7 @@
                                         <div class="col-xl-2 pl-1 pr-0">
                                             <label>Остаток кв.м.</label>
                                             <div class="input-group flex-nowrap">
-                                                <input class="num form-control area" type="text" id="Area4ApRemain" name="Area4ApRemain" value="">
+                                                <input class="num form-control area" type="text" id="Area4ApRemain" name="Area4ApRemain" value="{{sales.a4_area_to_sale}}">
                                             </div>
                                         </div>
                                     </div>
@@ -345,23 +345,20 @@
     $(window).on('load', function () {
         $('#loading').hide();
         masknum();
-        var last = '{{last|safe}}'
+        var last = '{{sales|safe}}'
         console.log(last);
         if (last != "None") {
-            var year = '{{last.year|safe}}';
+            var year = '{{sales.year|safe}}';
             year = parseInt(year);
-            var month = '{{last.month|safe}}';
+            var month = '{{sales.month|safe}}';
             month = parseInt(month);
-            month = month + 1;
-            if (month > 12) {
-                month = 1;
-                year = year + 1;
-            }
             $('#month_select option[value="' + month + '"]').prop("selected", true);
             $("#month").val($('#month_select').val());
             $("#month_select").prop("disabled", true);
             $('#year').val(year);
             $('#year').prop("readonly", true);
+
+            $('.calc_dollar').trigger("change")
         }   
     })
     $('#month_select').change(function () {
@@ -409,7 +406,6 @@
             $('.avgPrice').trigger("change");
         }
     });
-
     $('.max').change(function () {
         var arrey = [];
         $('.max').each(function () {
@@ -423,7 +419,6 @@
             $('.avg').trigger("change");
         }
     });
-
     $('.avg').change(function () {
         flag = true;
         var arrey = [];
@@ -439,7 +434,6 @@
         }
         else { $('.avgPrice').val(""); $('.avgPrice').trigger("change")}
     });
-
     $('.avgAp').change(function () {
         var arrey = [];
         flag = true;
@@ -455,6 +449,5 @@
         }
         else { $(this).closest('.card-body').find(".avgApPrice").val(""); $(this).closest('.card-body').find(".avgApPrice").trigger("change") }
     });
-
 </script>
 {% endblock %}

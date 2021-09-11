@@ -132,8 +132,8 @@
                     </thead>
                     <tbody id="appendHere">
                         <tr class="toRemove">
-                            <td style="display: none;"></td>
-                            <td></td>
+                            <td style="display: none;">10</td>
+                            <td>10</td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -235,7 +235,7 @@
     })
 
 </script>
-<script>
+<script >
     //to enable buttons flag
     var enableSelect = true;
     //table setup
@@ -452,22 +452,26 @@
                 if ($(this).hasClass('active')) {
                     $(this).removeClass('active');
                     $(".toRemove").remove();
+                    $(".toRemoveSale").remove();
                     $("#selected_house").val("");
+                    $("#selected_section").val("");
                     $(".btnTable_first").prop("disabled", true);
                     $(".btnTable_third").prop("disabled", true);
                     $(".btnTable_second").prop("disabled", true);
-                    $(".toRemoveSale").remove();
+                    
                 }
                 else {
                     table_first.$('tr.active').removeClass('active');
                     $(this).addClass('active');
                     $("#selected_house").val($(this).closest('tr').find('.id').text());
+                    $("#selected_section").val("");
                     $(".toRemove").remove();
+                    $(".toRemoveSale").remove();
                     selectChg();
                     $(".btnTable_first").prop("disabled", false);
                     $(".btnTable_third").prop("disabled", true);
                     $(".btnTable_second").prop("disabled", true);
-                    $(".toRemoveSale").remove();
+                    
                 }
             }
         });
@@ -512,15 +516,25 @@
             }
         });
         $(".toRemove").remove();
-        var SelectedSection = '{{SelectedSection|safe}}';
-        if (SelectedSection != "None") {
+        
+        if ('{{SelectedSection|safe}}' != "None" && '{{SelectedSection.id_house.id_buildings.id_buildings|safe}}' == '{{complex.id_buildings|safe}}') {
             var selectIdHouse = '{{SelectedSection.id_house.id_house|safe}}';
-            $('#DataTable').find('tr td:first-child:contains("' + selectIdHouse + '")').parent().addClass("active");
+            $('#DataTable').find('.id:contains("' + selectIdHouse + '"):first').parent().addClass("active");
             $("#selected_house").val(selectIdHouse);
-            selectChg();
             $(".btnTable_first").prop("disabled", false);
             $(".btnTable_third").prop("disabled", true);
             $(".btnTable_second").prop("disabled", true);
+            $.when(selectChg()).done(function () {
+                            
+                var selectIdSection = '{{SelectedSection.id_sections|safe}}';
+                $('#DataTable_second').find('.id:contains("' + selectIdSection + '"):first').parent().addClass("active");
+                $("#selected_section").val(selectIdSection);
+                $("#selected_section_sale").val(selectIdSection);
+                $(".btnTable_second").prop("disabled", false);
+                $(".btnTable_third_add").prop("disabled", false);
+                selectSale();
+            });
+           
         }
         else {
             $("#DataTable>tbody>tr:first").attr("class", "active");
@@ -532,7 +546,7 @@
     var appendTableSale = document.getElementById("appendHereSale");
     //To get section info
     function selectChg() {
-        $.ajax({
+        $.ajax({            
             type: "GET",
             url: '/ajax/getSection/',
             data: {
@@ -590,25 +604,16 @@
                             tr.appendChild(td);
                         }
                     }
-                }
-                var SelectedSection = '{{SelectedSection|safe}}';
-                if (SelectedSection != "None") {
-                    var selectIdSection = '{{SelectedSection.id_sections|safe}}';
-                    $('#DataTable_second').find('tr td:first-child:contains("' + selectIdSection + '")').parent().addClass("active");
-                    $("#selected_section").val(selectIdSection);
-                    $("#selected_section_sale").val(selectIdSection);
-                    $(".btnTable_second").prop("disabled", false);
-                    $(".btnTable_third_add").prop("disabled", false);
-                    selectSale();
-                }
-                $('[data-toggle="popover"]').popover()
+                }              
+                $('[data-toggle="popover"]').popover();
 
             },
             error: function () {
                 enableSelect = false;
                 $(".btnTable_first").prop("disabled", true);
-            }
+            }           
         })
+        return $.ajax();
     }
     function selectSale() {
         $.ajax({
@@ -691,18 +696,17 @@
                             tr.appendChild(td);
                         }
                         else if (j < 3) {
-                            var td = document.createElement('td');
-                            td.setAttribute("class", "id");
-                            if (j == 0)
-                                td.setAttribute("style", "display: none;")
+                            var td = document.createElement('td');                           
+                            if (j == 0) {
+                                td.setAttribute("style", "display: none;");
+                                td.setAttribute("class", "id");
+                            }
                             td.innerHTML = data.sales[i][j];
                             tr.appendChild(td);
-
                         }
                         else if (j == 23) {
                             var area_remain = data.sales[i][23];
                             var td = document.createElement('td');
-                            td.setAttribute("class", "id");
                             td.innerHTML = area_remain;;
                             tr.appendChild(td);
                         }
