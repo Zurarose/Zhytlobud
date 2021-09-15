@@ -34,23 +34,30 @@
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            font-size:0.8vw;
+            
         }
-        .form-control {
-            font-size:0.8vw;
+        @media screen and (min-width: 1200px) {
+            #tofixed {
+                position: fixed;
+            }
+            .form-control {
+                font-size: 0.9vw;
+            }
+            .input-group-text {
+                font-size: 0.9vw;
+            }
+            .custom-select {
+                font-size: 0.9vw;
+            }
+            .btn {
+                font-size: 0.9vw;
+            }
+            body{
+            font-size: 0.9vw;
+            }
         }
-        .input-group-text
-        {
-            font-size:0.8vw;
-        }
-        .custom-select
-        {
-            font-size:0.8vw;
-        }
-        .btn
-        {
-            font-size:0.8vw;
-        }
+
+        
     </style>
 </head>
 <body>
