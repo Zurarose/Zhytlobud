@@ -139,6 +139,7 @@
     <Content Include="app\static\app\scripts\main.js" />
     <Content Include="app\templates\app\building_add.html" />
     <Content Include="app\templates\app\logger.html" />
+    <Content Include="app\templates\app\analytic_view.html" />
     <Content Include="app\templates\app\object_edit_sale.html" />
     <Content Include="app\templates\app\object_add_sale.html" />
     <Content Include="app\templates\app\sections_review.html" />
