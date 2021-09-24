@@ -8,19 +8,90 @@
                 {{ message }}
             </div>
     {% endfor %}
-    <a class="btn btn-warning" href="{% url 'menu' %}"><i class="fas fa-chevron-circle-left"></i> Назад</a>
+    <a class="btn btn-warning" href="{% url 'menu' %}"><i class="fas fa-chevron-circle-left"></i>Назад</a>
     <h5 class="text-center mb-2">Аналитика</h5>
     <hr class="bg-warning col-6 mb-2">
+
+
+    <div class="col-12 pl-0 pr-1 mb-4">
+        <div class="form-row mt-2">
+            <div class="col-xl-2">
+                <label for="class-select">Класс<span style="color: red;">*</span></label>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text"><i class="fas fa-star"></i></span>
+                    <select multiple="multiple" id="class-select" name="class-select">
+                        <option value="Де-люкс">Де-люкс</option>
+                        <option value="Премиум">Премиум</option>
+                        <option value="Бизнес">Бизнес</option>
+                        <option value="Комфорт">Комфорт</option>
+                        <option value="Эконом">Эконом</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <label for="customer">Заказчик</label>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                    <select multiple="multiple" id="customer" name="customer">                       
+                        {% for custs in cust %}
+                    <option value="{{ custs.name }}">{{ custs.ownership.name}} {{ custs.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2">
+                <label for="urban-zone">Зона</label>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                    <select multiple="multiple" id="urban-zone" name="urban-zone">
+                        <option value="Центр">Центр</option>
+                        <option value="Приближенный">Приближенный р-н</option>
+                        <option value="Отдаленный">Отдаленный р-н</option>
+                        <option value="Область">Область</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2">
+                <label for="city-area">Бытовой район</label>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                    <select multiple="multiple" id="city-area" name="city-area">                        
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2">
+                <label for="subway">Метрополитен</label>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text"><i class="fas fa-subway"></i></span>
+                    <select multiple="multiple" id="subway" name="subway">                      
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-1">
+                <label for="urban-zone">Квартиры</label>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                    <select multiple="multiple" id="apart" name="apart">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="table-responsive col-12 pl-0">
-        <table id="DataTable" class='table table-sm table-Light' style="font-size:0.7vw">          
+        <table id="DataTable" class='table table-sm table-Light' style="font-size: 0.7vw">
             <thead>
-                 <tr>
-                    <th colspan="6" style="background-color:#ffc404; color:white">Общая информация</th>
-                    <th colspan="3" style="background-color:#fffcfc; ">Общая сумма</th>
-                    <th colspan="3" style="background-color:#30a444; color:white">Однокомнатные квартиры</th>
-                    <th colspan="3" style="background-color:#087cfc; color:white">Двухкомнатные квартиры</th>
-                    <th colspan="3" style="background-color:#e03444; color:white">Трехкомнатные квартиры</th>
-                    <th colspan="3" style="background-color:#18a4bc; color:white">Четырехкомнатные квартиры</th>
+                <tr>
+                    <th colspan="6" style="background-color: #ffc404; color: white">Общая информация</th>
+                    <th colspan="3" style="background-color: #fffcfc;">Общая сумма</th>
+                    <th colspan="3" style="background-color: #30a444; color: white">Однокомнатные квартиры</th>
+                    <th colspan="3" style="background-color: #087cfc; color: white">Двухкомнатные квартиры</th>
+                    <th colspan="3" style="background-color: #e03444; color: white">Трехкомнатные квартиры</th>
+                    <th colspan="3" style="background-color: #18a4bc; color: white">Четырехкомнатные квартиры</th>
                 </tr>
                 <tr>
                     <th class="bg-warning text-white">Застройщик</th>
@@ -45,11 +116,10 @@
                     <th class="bg-info text-white">Остаток м<sup>2</sup></th>
                     <th class="bg-info text-white">Сред. цена</th>
                 </tr>
-            </thead>          
+            </thead>
             <tbody>
                 {% for row in instances %}
                     <tr>
-                        <td class="id"></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -69,7 +139,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>                       
+                        <td></td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -84,7 +154,7 @@
         <form action='.' id="form2" method='POST'>
             {% csrf_token %}
             <input class="filter" type="hidden" name="filter" value="">
-        </form>    
+        </form>
     </div>
 </div>
 {% endblock %}
@@ -93,16 +163,18 @@
 <script>
     $(window).on('load', function () {
         $('#loading').hide();
+        zoneSelect();
     })
 </script>
 <script>
     $(document).ready(function () {
         var table = $('#DataTable').DataTable({
-            dom: '<"toolbar">frtlip',           
-            fnInitComplete: function(){
-               $('div.toolbar').html('');
+            dom: '<"toolbar">frtlip',
+            fnInitComplete: function () {
+                $('div.toolbar').html('');
             },
             select: true,
+            "searching": false,
             language: {
                 "processing": "Подождите...",
                 "search": "Поиск:",
@@ -320,19 +392,175 @@
                 $(".btn").prop("disabled", false);
             }
         });
-       
+
         $("#DataTable>tbody>tr:first").attr("class", "active");
         $("#selected").val($("#DataTable>tbody>tr:first").find('.id').text());
 
         var filter = `{{ filtered|safe }}`;
         $('#filter-select option[value="' + filter + '"]').prop("selected", true);
 
-        $("#filter-select").change(function () {           
+        $("#filter-select").change(function () {
             $(".filter").val($(this).val());
-            console.log($(".filter").val());
             form2.submit();
         });
+        $('#urban-zone').multipleSelect({
+            formatSelectAll() {
+                return 'Все'
+            },
+            formatAllSelected() {
+                return 'Все'
+            },
+            formatCountSelected(count, total) {
+                return 'Выбрано ' + total + ' из ' + count
+            },
+            formatNoMatchesFound() {
+                return 'Нет данных'
+            },
+            onClick: function () {
+                var mas = $('#urban-zone').multipleSelect('getSelects');
+                zoneSelect(mas);
+            },
+            onCheckAll: function () {
+                var mas = $('#urban-zone').multipleSelect('getSelects');
+                zoneSelect(mas);
+            },
+            onUncheckAll: function () {
+                var mas = $('#urban-zone').multipleSelect('getSelects');
+                zoneSelect(mas);
+            }
+        })
+        $('#class-select').multipleSelect({
+            formatSelectAll() {
+                return 'Все'
+            },
+            formatAllSelected() {
+                return 'Все'
+            },
+            formatCountSelected(count, total) {
+                return 'Выбрано ' + total + ' из ' + count
+            },
+            formatNoMatchesFound() {
+                return 'Нет данных'
+            },
+           
+        })
+        $('#customer').multipleSelect({
+            formatSelectAll() {
+                return 'Все'
+            },
+            formatAllSelected() {
+                return 'Все'
+            },
+            formatCountSelected(count, total) {
+                return 'Выбрано ' + total + ' из ' + count
+            },
+            formatNoMatchesFound() {
+                return 'Нет данных'
+            },
+
+        })
+        $('#city-area').multipleSelect({
+            formatSelectAll() {
+                return 'Все'
+            },
+            formatAllSelected() {
+                return 'Все'
+            },
+            formatCountSelected(count, total) {
+                return 'Выбрано ' + total + ' из ' + count
+            },
+            formatNoMatchesFound() {
+                return 'Нет данных'
+            },
+
+        })
+        $('#subway').multipleSelect({
+            formatSelectAll() {
+                return 'Все'
+            },
+            formatAllSelected() {
+                return 'Все'
+            },
+            formatCountSelected(count, total) {
+                return 'Выбрано ' + total + ' из ' + count
+            },
+            formatNoMatchesFound() {
+                return 'Нет данных'
+            },
+
+        })
+        $('#apart').multipleSelect({
+            formatSelectAll() {
+                return 'Все'
+            },
+            formatAllSelected() {
+                return 'Все'
+            },
+            formatCountSelected(count, total) {
+                return 'Выбрано ' + total + ' из ' + count
+            },
+            formatNoMatchesFound() {
+                return 'Нет данных'
+            },
+
+        })
     });
-    
+</script>
+<script>
+    //To zone select 
+    function zoneSelect(zone) {       
+        if (zone != "") {
+            $('#city-area').disabled = false;
+            $('#subway').disabled = false;
+            $.ajax({
+                type: "GET",
+                url: '/ajax/getSubways/',
+                data: {                  
+                    'zone': zone
+                },
+                dataType: 'json',
+                success: function (data) {
+                    $('#subway').multipleSelect('refresh');
+                    for (var i = 0; i < data.names.length; i++) {
+                        var opt = document.createElement('option');
+                        opt.value = data.names[i];
+                        opt.innerHTML = data.names[i];
+                        $('#subway').append(opt)
+                    }
+                    $('#urban-zone').multipleSelect('refresh');
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: '/ajax/getCityAreas/',
+                data: {
+                    'zone': zone
+                },
+                dataType: 'json',
+                success: function (data) {
+                    $('#city-area').multipleSelect('refresh');
+                    for (var i = 0; i < data.names.length; i++) {
+                        var opt = document.createElement('option');
+                        opt.value = data.names[i];
+                        opt.innerHTML = data.names[i];
+                        $('#city-area').append(opt)
+                    }
+                    
+                }
+            });
+        }
+        else {
+            var length = $('#city-area').options.length;
+            for (var i = length - 1; i >= 0; i--) {
+                $('#city-area').options[i] = null;
+            }
+            var length = $('#subway').options.length;
+            for (i = length - 1; i >= 0; i--) {
+                $('#subway').options[i] = null;
+            }
+            $('#city-area').disabled = true;
+            $('#subway').disabled = true;
+        }
+    }
 </script>
 {% endblock %}
