@@ -10,17 +10,14 @@
     {% endfor %}
     <a class="btn btn-warning" href="{% url 'menu' %}"><i class="fas fa-chevron-circle-left"></i>Назад</a>
     <h5 class="text-center mb-2">Аналитика</h5>
-    <hr class="bg-warning col-6 mb-2">
-
-
-    <div class="col-12 pl-0 pr-1 mb-4">
+    <div class="col-12 mb-2 border border-warning p-1 pb-3 mr-5">
         <div class="form-row mt-2">
             <div class="col-xl-2">
                <label for="class-select">Месяц и год</label>
                <div class="d-flex flex-nowrap">
                     <div class="input-group flex-nowrap">
                         <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                        <select multiple="multiple" id="months-select" name="months-select">
+                        <select  id="months-select" name="months-select">
                             <option value="1">Январь</option>
                             <option value="2">Февраль</option>
                             <option value="3">Март</option>
@@ -35,13 +32,12 @@
                             <option value="12">Декабрь</option>
                         </select>
                     </div>                   
-                        <input class="form-control form-control-sm" type="number" min="2005" max="2099" step="1" id="date-pick-start" name="date-pick-start" value="{{house.start_year}}" />
+                        <input class="form-control border border-secondary form-control-xs-mine col-4" type="number" min="2005" max="2099" step="1" id="date-pick-start" name="date-pick-start" value="2010" />
                 </div>
             </div>
-            <div class="col-xl-2">
+            <div class="col-xl-1">
                 <label for="class-select">Класс</label>
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text"><i class="fas fa-star"></i></span>
+                <div class="input-group flex-nowrap">                   
                     <select multiple="multiple" id="class-select" name="class-select">
                         <option value="Де-люкс">Де-люкс</option>
                         <option value="Премиум">Премиум</option>
@@ -105,7 +101,8 @@
         </div>
     </div>
 
-    <div class="table-responsive col-12 pl-0">
+    <div class="table-responsive col-12 pr-3 pl-0">
+        <div class="col-12 p-0">
         <table id="DataTable" class='table table-sm table-Light' style="font-size: 0.7vw">
             <thead>
                 <tr>
@@ -178,6 +175,7 @@
             {% csrf_token %}
             <input class="filter" type="hidden" name="filter" value="">
         </form>
+        </div>
     </div>
 </div>
 {% endblock %}

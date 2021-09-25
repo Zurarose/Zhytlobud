@@ -317,3 +317,9 @@ h2 {
 select {
     width: 100%;
 }
+.form-control-xs-mine {
+    height: calc(1.5em + .375rem + 2px) !important;
+    padding: .125rem .25rem !important;
+    font-size: .75rem !important;
+    font-weight: bolder !important;
+}
