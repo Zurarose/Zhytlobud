@@ -72,6 +72,10 @@ urlpatterns = [
    url(r'^ajax/getStreets/$', views.getStreets, name='getStreets'),
    url(r'^ajax/getSubways/$', views.getSubways, name='getSubways'),
    url(r'^ajax/getCityAreas/$', views.getCityAreas, name='getCityAreas'),
+
+   url(r'^ajax/getSubways_multi/$', views.getSubways_multi, name='getSubways_multi'),
+   url(r'^ajax/getCityAreas_multi/$', views.getCityAreas_multi, name='getCityAreas_multi'),
+
    url(r'^ajax/getSection/$', views.getSection, name='getSection'),
    url(r'^ajax/getSales/$', views.getSales, name='getSales'),
 
