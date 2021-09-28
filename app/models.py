@@ -38,6 +38,7 @@ class Streets(models.Model):
 
 class Subways(models.Model):
     id_subway = models.AutoField(db_column='ID_subway', primary_key=True)  # Field name made lowercase.
+    area =  models.ForeignKey(Areas, models.SET_NULL, db_column='id_areas', blank=True, null=True)
     zone = models.CharField(db_column='Zone', max_length=50, blank=True, null=True)  # Field name made lowercase.
     name = models.CharField(db_column='Name', max_length=50, blank=True, null=True) # Field name made lowercase.
 

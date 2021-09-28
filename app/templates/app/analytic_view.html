@@ -264,6 +264,21 @@
             formatNoMatchesFound() {
                 return 'Нет данных'
             },
+            onClick: function () {
+                var mas = $('#urban-zone').multipleSelect('getSelects');
+                var areas = $('#city-area').multipleSelect('getSelects');
+                AreaSelect(mas, areas);
+            },
+            onCheckAll: function () {
+                var mas = $('#urban-zone').multipleSelect('getSelects');
+                var areas = $('#city-area').multipleSelect('getSelects');
+                AreaSelect(mas, areas);
+            },
+            onUncheckAll: function () {
+                var mas = $('#urban-zone').multipleSelect('getSelects');
+                var areas = $('#city-area').multipleSelect('getSelects');
+                AreaSelect(mas, areas);
+            }
 
         })
         $('#subway').multipleSelect({
@@ -507,13 +522,7 @@
                     }
                 }
             }
-        });
-
-        var filter = `{{ filtered|safe }}`;
-        $('#filter-select option[value="' + filter + '"]').prop("selected", true);
-
-
-        
+        });   
     });
 </script>
 <script>
@@ -522,24 +531,7 @@
         if (zone != "") {
             $('#city-area').disabled = false;
             $('#subway').disabled = false;
-            $.ajax({
-                type: "GET",
-                url: '/ajax/getSubways_multi/',
-                data: {
-                    'zone': zone
-                },
-                dataType: 'json',
-                success: function (data) {
-                    $("#subway option").remove();
-                    for (var i = 0; i < data.names.length; i++) {
-                        var opt = document.createElement('option');
-                        opt.value = data.names[i];
-                        opt.innerHTML = data.names[i];
-                        $('#subway').append(opt)
-                    }
-                    $('#subway').multipleSelect('refresh');
-                }
-            });
+            
             $.ajax({
                 type: "GET",
                 url: '/ajax/getCityAreas_multi/',
@@ -565,6 +557,35 @@
             $("#city-area option").remove();
             $('#subway').multipleSelect('refresh');
             $('#city-area').multipleSelect('refresh');
+        }
+    }
+    function AreaSelect(zone, areas) {
+        if (zone != "") {
+            $('#city-area').disabled = false;
+            $('#subway').disabled = false;
+            $.ajax({
+                type: "GET",
+                url: '/ajax/getSubways_multi/',
+                data: {
+                    'zone': zone,
+                    'areas': areas
+                },
+                dataType: 'json',
+                success: function (data) {
+                    $("#subway option").remove();
+                    for (var i = 0; i < data.names.length; i++) {
+                        var opt = document.createElement('option');
+                        opt.value = data.names[i];
+                        opt.innerHTML = data.names[i];
+                        $('#subway').append(opt)
+                    }
+                    $('#subway').multipleSelect('refresh');
+                }
+            });           
+        }
+        else {
+            $("#subway option").remove();
+            $('#subway').multipleSelect('refresh');
         }
     }
 </script>

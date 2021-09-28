@@ -112,17 +112,6 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-4">
-                                    <label for="subway">Метрополитен</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text"><i class="fas fa-subway"></i></span>
-                                        <select class="custom-select" id="subway" name="subway">
-                                            <option selected value=""></option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row mt-2">
-                                <div class="col-xl-2">
                                     <label for="city-area">Бытовой район</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -131,6 +120,18 @@
                                         </select>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="form-row mt-2">
+                                <div class="col-xl-4">
+                                    <label for="subway">Метрополитен</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fas fa-subway"></i></span>
+                                        <select class="custom-select" id="subway" name="subway">
+                                            <option selected value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
                                 <div class="col-xl-2">
                                     <label for="parking">Парковка</label>
                                     <div class="input-group flex-nowrap">
@@ -512,33 +513,10 @@
     var subway = document.getElementById("subway");
     var cityArea = document.getElementById("city-area");
     function zoneSelect() {
-
         var zone = document.getElementById("urban-zone").value
 
         if (zone != "") {
             cityArea.disabled = false;
-            subway.disabled = false;
-
-            $.ajax({
-                type: "GET",
-                url: '/ajax/getSubways/',
-                data: {
-                    'zone': zone
-                },
-                dataType: 'json',
-                success: function (data) {
-                    var length = subway.options.length;
-                    for (var i = length - 1; i >= 0; i--) {
-                        subway.options[i] = null;
-                    }
-                    for (var i = 0; i < data.names.length; i++) {
-                        var opt = document.createElement('option');
-                        opt.value = data.names[i];
-                        opt.innerHTML = data.names[i];
-                        subway.appendChild(opt);
-                    }
-                }
-            });
             $.ajax({
                 type: "GET",
                 url: '/ajax/getCityAreas/',
@@ -557,8 +535,9 @@
                         opt.innerHTML = data.names[i];
                         cityArea.appendChild(opt);
                     }
+                    AreaSelect()
                 }
-            });
+            });                   
         }
         else {
             var length = cityArea.options.length;
@@ -570,6 +549,47 @@
                 subway.options[i] = null;
             }
             cityArea.disabled = true;
+            subway.disabled = true;
+        }
+    }
+    $('#city-area').change(AreaSelect);
+    function AreaSelect() {
+        var zone = document.getElementById("urban-zone").value
+        var area = document.getElementById("city-area").value
+
+        if (zone != "" && area != "") {
+           
+            $.ajax({
+                type: "GET",
+                url: '/ajax/getSubways/',
+                data: {
+                    'zone': zone,
+                    'area': area
+                },
+                dataType: 'json',
+                success: function (data) {
+                    var length = subway.options.length;
+                    for (var i = length - 1; i >= 0; i--) {
+                        subway.options[i] = null;
+                    }
+                    if (data.names.length != 0)
+                        subway.disabled = false;
+                    else
+                        subway.disabled = true;
+                    for (var i = 0; i < data.names.length; i++) {
+                        var opt = document.createElement('option');
+                        opt.value = data.names[i];
+                        opt.innerHTML = data.names[i];
+                        subway.appendChild(opt);
+                    }
+                }
+            });
+        }
+        else {
+            var length = subway.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                subway.options[i] = null;
+            }
             subway.disabled = true;
         }
     }
