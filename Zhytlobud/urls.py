@@ -14,7 +14,6 @@ heroku run python manage.py createsuperuser -a zhytlobud
 heroku run python manage.py makemigrations -a zhytlobud
 heroku run python manage.py migrate -a zhytlobud
 
-heroku run python manage.py syncdb -a zhytlobud
 
 python manage.py dumpdata > db.json
 
