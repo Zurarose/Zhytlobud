@@ -26,72 +26,73 @@
                                         <label>№ дома<span style="color:red;">*</span></label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text">№</span>
-                                            <input class="form-control house-nums required" type="text" id="num-build" name="num-build" value="{{house.street_number}}">
+                                            <input autocomplete="off" class="form-control house-nums required" type="text" id="num-build" name="num-build" value="{{house.street_number}}">
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
                                         <label>Площадь дома</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                            <input class="num form-control" type="text" id="area-build" name="area-build" value="{{house.ttl_area_building}}">
+                                            <input autocomplete="off" class="num form-control" type="text" id="area-build" name="area-build" value="{{house.ttl_area_building}}">
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
                                         <label>Площадь квартир</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                            <input class="num form-control" type="text" id="area-apart" name="area-apart" value="{{house.ttl_area_apartments}}">
+                                            <input autocomplete="off" class="num form-control" type="text" id="area-apart" name="area-apart" value="{{house.ttl_area_apartments}}">
                                         </div>
                                     </div>
-                                    <div class="col-xl-1">
+                                    <div class="col-xl-2">
                                         <label>Этажность</label>
+                                        <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
                                         <div class="input-group flex-nowrap">
-                                            <input class="form-control" type="number" id="num-storeys" name="num-storeys" min="0" max="1000" value="{{house.storeys}}">
+                                            <input autocomplete="off" class="form-control" type="number" id="num-storeys" name="num-storeys" min="0" max="1000" value="{{house.storeys}}">
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
                                         <label class="ml-3">Этап постройки</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-percent"></i></span>
-                                            <input class="form-control" step="5" type="number" id="constr-phase-prc" name="constr-phase-prc" min="0" max="100" value="{{house.construction_phase_prst}}">
+                                            <input autocomplete="off" class="form-control" step="5" type="number" id="constr-phase-prc" name="constr-phase-prc" min="0" max="100" value="{{house.construction_phase_prst}}">
                                         </div>
                                     </div>
-                                    <div class="col-xl-3">
-                                        <label>Примечание</label>
+                                    
+                                    <div class="col-xl-2">
+                                        <label>Парковка(мест)</label>
                                         <div class="input-group flex-nowrap">
-                                            <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
-                                            <input type="text" class="form-control" id="info-house" name="info-house" value="{{house.remark}}">
+                                            <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
+                                            <input autocomplete="off" class="form-control parking-down" type="number" id="num-parking-down" name="num-parking-down" min="0" max="1000">
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="form-row mt-2">
                                     <div class="col-xl-2">
                                         <label>Год начала</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                                            <input class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-start" name="date-pick-start" value="{{house.start_year}}" />
+                                            <input autocomplete="off" class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-start" name="date-pick-start" value="{{house.start_year}}" />
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
                                         <label>Год ввода</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                                            <input class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-commis" name="date-pick-commis" value="{{house.commis_year}}" />
+                                            <input autocomplete="off" class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-commis" name="date-pick-commis" value="{{house.commis_year}}" />
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
                                         <label>Квартал</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
-                                            <input class="form-control" type="number" min="0" max="4" step="1" id="quarter-pick" name="quarter-pick" value="{{house.quarter}}"/>
+                                            <input autocomplete="off" class="form-control" type="number" min="0" max="4" step="1" id="quarter-pick" name="quarter-pick" value="{{house.quarter}}"/>
                                         </div>
                                     </div>
-                                    <div class="col-xl-2">
-                                        <label>Парковка(мест)</label>
+                                    <div class="col-xl-6">
+                                        <label>Примечание</label>
                                         <div class="input-group flex-nowrap">
-                                            <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
-                                            <input class="form-control parking-down" type="number" id="num-parking-down" name="num-parking-down" min="0" max="1000">
+                                            <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                                            <input autocomplete="off" type="text" class="form-control" id="info-house" name="info-house" value="{{house.remark}}">
                                         </div>
                                     </div>                                   
                                 </div>
@@ -136,7 +137,7 @@
             'placeholder': '0.00'
         })
     };
-    //To check all inputs
+    /*To check all inputs
     var exsisted = JSON.parse(`{{houses|safe}}`)
     var thisHouse = '{{house.street_number|safe}}';
     $('#form1').submit(function (evt) {
@@ -154,6 +155,6 @@
             alert('Номера домов должны быть уникальны!');
             return false;
         }
-    });
+    });/*
 </script>
 {% endblock %}

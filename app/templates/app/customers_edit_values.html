@@ -33,21 +33,21 @@
                     <label for="builder">Наименование<span style="color:red;">*</span></label>
                     <div class="input-group flex-nowrap">
                         <span class="input-group-text"><i class="fas fa-signature"></i></span>
-                        <input type="text" class="form-control" id="name" name="name" value="{{cust.name}}" required>
+                        <input autocomplete="off" type="text" class="form-control" id="name" name="name" value="{{cust.name}}" required>
                     </div>
                 </div>
                 <div class="col-xl-2">
                     <label for="urban-zone">Номер телефона<span style="color:red;">*</span></label>
                     <div class="input-group flex-nowrap">
                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        <input type="text" class="form-control" id="phone" name="phone" value="{{cust.phone}}" required>
+                        <input autocomplete="off" type="text" class="form-control" id="phone" name="phone" value="{{cust.phone}}" required>
                     </div>
                 </div>
                 <div class="col-xl-2">
                     <label>Год<span style="color:red;">*</span></label>
                     <div class="input-group flex-nowrap">
                         <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                        <input class="form-control" required type="number" min="2005" max="2099" step="1" id="date" name="date" value="{{cust.start_work}}" />
+                        <input autocomplete="off" class="form-control" required type="number" min="2005" max="2099" step="1" id="date" name="date" value="{{cust.start_work}}" />
                     </div>
                 </div>
             </div>

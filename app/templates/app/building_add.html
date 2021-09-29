@@ -53,7 +53,7 @@
                                     <label for="complex-name">Название<span style="color:red;">*</span></label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-signature"></i></span>
-                                        <input type="text" class="form-control required" id="complex-name" name="complex-name" value="">
+                                        <input autocomplete="off" type="text" class="form-control required" id="complex-name" name="complex-name" value="">
                                     </div>
                                 </div>
                                 <div class="col-xl-2">
@@ -95,7 +95,7 @@
                                     <label for="builder">Генподрядчик</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-hammer"></i></span>
-                                        <input type="text" class="form-control" id="builder" name="builder" value="">
+                                        <input autocomplete="off" type="text" class="form-control" id="builder" name="builder" value="">
                                     </div>
                                 </div>
                                 <div class="col-xl-2">
@@ -156,7 +156,7 @@
                                     <label>Парковка(мест)</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
-                                        <input class="form-control parking-up" type="number" id="num-parking-up" name="num-parking-up" min="0" max="1000">
+                                        <input autocomplete="off" class="form-control parking-up" type="number" id="num-parking-up" name="num-parking-up" min="0" max="1000">
                                     </div>
                                 </div>                               
                             </div>                           
@@ -176,41 +176,42 @@
                                         <label>№ дома<span style="color:red;">*</span></label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text">№</span>
-                                            <input class="form-control house-nums required" type="text" id="num-build1" name="num-build1">
+                                            <input autocomplete="off" class="form-control house-nums required" type="text" id="num-build1" name="num-build1">
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
                                         <label>Площадь дома</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                            <input class="num form-control" type="text" id="area-build1" name="area-build1">
+                                            <input autocomplete="off" class="num form-control" type="text" id="area-build1" name="area-build1">
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
                                         <label>Площадь квартир</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                            <input class="num form-control" type="text" id="area-apart1" name="area-apart1">
+                                            <input autocomplete="off" class="num form-control" type="text" id="area-apart1" name="area-apart1">
                                         </div>
                                     </div>
-                                    <div class="col-xl-1">
+                                    <div class="col-xl-2">
                                         <label>Этажность</label>
                                         <div class="input-group flex-nowrap">
-                                            <input class="form-control" type="number" id="num-storeys1" name="num-storeys1" min="0" max="1000">
+                                            <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                                            <input autocomplete="off" class="form-control" type="number" id="num-storeys1" name="num-storeys1" min="0" max="1000">
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
                                         <label class="ml-3">Этап постройки</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-percent"></i></span>
-                                            <input class="form-control" step="5" type="number" id="constr-phase-prc1" name="constr-phase-prc1" min="0" max="100">
+                                            <input autocomplete="off" class="form-control" step="5" type="number" id="constr-phase-prc1" name="constr-phase-prc1" min="0" max="100">
                                         </div>
                                     </div>
-                                    <div class="col-xl-3">
-                                        <label>Примечание</label>
+                                    <div class="col-xl-2">
+                                        <label>Парковка(мест)</label>
                                         <div class="input-group flex-nowrap">
-                                            <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
-                                            <input type="text" class="form-control" id="info-house1" name="info-house1" value="">
+                                            <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
+                                            <input autocomplete="off" class="form-control parking-down" type="number" id="num-parking-down1" name="num-parking-down1" min="0" max="1000">
                                         </div>
                                     </div>
 
@@ -220,30 +221,31 @@
                                         <label>Год начала</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                                            <input class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-start1" name="date-pick-start1" value="" />
+                                            <input autocomplete="off" class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-start1" name="date-pick-start1" value="" />
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
                                         <label>Год ввода</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                                            <input class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-commis1" name="date-pick-commis1" value="" />
+                                            <input autocomplete="off" class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-commis1" name="date-pick-commis1" value="" />
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
                                         <label>Квартал</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
-                                            <input class="form-control" type="number" min="0" max="4" step="1" id="quarter-pick1" name="quarter-pick1" value="" />
+                                            <input autocomplete="off" class="form-control" type="number" min="0" max="4" step="1" id="quarter-pick1" name="quarter-pick1" value="" />
                                         </div>
                                     </div>
-                                    <div class="col-xl-2">
-                                        <label>Парковка(мест)</label>
+                                    <div class="col-xl-6">
+                                        <label>Примечание</label>
                                         <div class="input-group flex-nowrap">
-                                            <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
-                                            <input class="form-control parking-down" type="number" id="num-parking-down1" name="num-parking-down1" min="0" max="1000">
+                                            <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                                            <input autocomplete="off" type="text" class="form-control" id="info-house1" name="info-house1" value="">
                                         </div>
-                                    </div>                                   
+                                    </div>
+                                                                       
                                 </div>                               
                                 <hr class="bg-warning col-6">
                             </div>
@@ -321,14 +323,14 @@
                                         <label>Квартир всего</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text">№</span>
-                                            <input readonly class="form-control num-apart-ttl" type="number" id="num-apart-ttl1" name="num-apart-ttl1" min="0" max="10000">
+                                            <input autocomplete="off" readonly class="form-control num-apart-ttl" type="number" id="num-apart-ttl1" name="num-apart-ttl1" min="0" max="10000">
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
                                         <label>Ср. площадь</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                            <input readonly class="num form-control avg-area" type="text" id="avg-area1" name="avg-area1">
+                                            <input autocomplete="off" readonly class="num form-control avg-area" type="text" id="avg-area1" name="avg-area1">
                                         </div>
                                     </div>
                                 </div>
@@ -342,21 +344,21 @@
                                                 <label>Количество 1км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text">№</span>
-                                                    <input class="form-control totalApart" type="number" id="num-apart-one1" name="num-apart-one1" min="0" max="10000">
+                                                    <input autocomplete="off" class="form-control totalApart" type="number" id="num-apart-one1" name="num-apart-one1" min="0" max="10000">
                                                 </div>
                                             </div>
                                             <div class="col-xl-4">
                                                 <label>Мин. площадь 1км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                                    <input class="num form-control totalArea" type="text" id="min-area-one1" name="min-area-one1">
+                                                    <input autocomplete="off" class="num form-control totalArea" type="text" id="min-area-one1" name="min-area-one1">
                                                 </div>
                                             </div>
                                             <div class="col-xl-4">
                                                 <label>Макс. площадь 1км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                                    <input class="num form-control totalArea" type="text" id="max-area-one1" name="max-area-one1">
+                                                    <input autocomplete="off" class="num form-control totalArea" type="text" id="max-area-one1" name="max-area-one1">
                                                 </div>
                                             </div>
                                         </div>
@@ -370,21 +372,21 @@
                                                 <label>Количество 2км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text">№</span>
-                                                    <input class="form-control totalApart" type="number" id="num-apart-two1" name="num-apart-two1" min="0" max="10000">
+                                                    <input autocomplete="off" class="form-control totalApart" type="number" id="num-apart-two1" name="num-apart-two1" min="0" max="10000">
                                                 </div>
                                             </div>
                                             <div class="col-xl-4">
                                                 <label>Мин. площадь 2км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                                    <input class="num form-control totalArea" type="text" id="min-area-two1" name="min-area-two1">
+                                                    <input autocomplete="off" class="num form-control totalArea" type="text" id="min-area-two1" name="min-area-two1">
                                                 </div>
                                             </div>
                                             <div class="col-xl-4">
                                                 <label>Макс. площадь 2км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                                    <input class="num form-control totalArea" type="text" id="max-area-two1" name="max-area-two1">
+                                                    <input autocomplete="off" class="num form-control totalArea" type="text" id="max-area-two1" name="max-area-two1">
                                                 </div>
                                             </div>
                                         </div>
@@ -400,21 +402,21 @@
                                                 <label>Количество 3км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text">№</span>
-                                                    <input class="form-control totalApart" type="number" id="num-apart-three1" name="num-apart-three1" min="0" max="10000">
+                                                    <input autocomplete="off" class="form-control totalApart" type="number" id="num-apart-three1" name="num-apart-three1" min="0" max="10000">
                                                 </div>
                                             </div>
                                             <div class="col-xl-4">
                                                 <label>Мин. площадь 3км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                                    <input class="num form-control totalArea" type="text" id="min-area-three1" name="min-area-three1">
+                                                    <input autocomplete="off" class="num form-control totalArea" type="text" id="min-area-three1" name="min-area-three1">
                                                 </div>
                                             </div>
                                             <div class="col-xl-4">
                                                 <label>Макс. площадь 3км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                                    <input class="num form-control totalArea" type="text" id="max-area-three1" name="max-area-three1">
+                                                    <input autocomplete="off" class="num form-control totalArea" type="text" id="max-area-three1" name="max-area-three1">
                                                 </div>
                                             </div>
                                         </div>
@@ -428,7 +430,7 @@
                                                 <label>Количество 4км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text">№</span>
-                                                    <input class="form-control totalApart" type="number" id="num-apart-four1" name="num-apart-four1" min="0" max="10000">
+                                                    <input autocomplete="off" class="form-control totalApart" type="number" id="num-apart-four1" name="num-apart-four1" min="0" max="10000">
                                                 </div>
                                             </div>
 
@@ -436,14 +438,14 @@
                                                 <label>Мин. площадь 4км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                                    <input class="num form-control totalArea" type="text" id="min-area-four1" name="min-area-four1">
+                                                    <input autocomplete="off" class="num form-control totalArea" type="text" id="min-area-four1" name="min-area-four1">
                                                 </div>
                                             </div>
                                             <div class="col-xl-4">
                                                 <label>Макс. площадь 4км.</label>
                                                 <div class="input-group flex-nowrap">
                                                     <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                                    <input class="num form-control totalArea" type="text" id="max-area-four1" name="max-area-four1">
+                                                    <input autocomplete="off" class="num form-control totalArea" type="text" id="max-area-four1" name="max-area-four1">
                                                 </div>
                                             </div>
                                         </div>

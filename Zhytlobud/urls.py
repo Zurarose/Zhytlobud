@@ -20,6 +20,8 @@ python manage.py dumpdata > db.json
 on heroku: heroku run python manage.py loaddata db.json -a zhytlobud
 
 DELETE ALL SUPERUSERS IF THERE IS PROBLEM!!
+or 
+heroku pg:reset DATABASE - to delete DB
 
 > python manage.py shell
 $ from django.contrib.auth.models import User

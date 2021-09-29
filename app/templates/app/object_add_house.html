@@ -28,41 +28,42 @@
                                  <label>№ дома<span style="color: red;">*</span></label>
                                  <div class="input-group flex-nowrap">
                                      <span class="input-group-text">№</span>
-                                     <input class="form-control house-nums" required type="text" id="num-build1" name="num-build1">
+                                     <input autocomplete="off" class="form-control house-nums" required type="text" id="num-build1" name="num-build1">
                                  </div>
                              </div>
                              <div class="col-xl-2">
                                  <label>Площадь дома</label>
                                  <div class="input-group flex-nowrap">
                                      <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                     <input class="num form-control" type="text" id="area-build1" name="area-build1">
+                                     <input autocomplete="off" class="num form-control" type="text" id="area-build1" name="area-build1">
                                  </div>
                              </div>
                              <div class="col-xl-2">
                                  <label>Площадь квартир</label>
                                  <div class="input-group flex-nowrap">
                                      <span class="input-group-text"><i class="fas fa-vector-square"></i></span>
-                                     <input class="num form-control" type="text" id="area-apart1" name="area-apart1">
+                                     <input autocomplete="off" class="num form-control" type="text" id="area-apart1" name="area-apart1">
                                  </div>
                              </div>
-                             <div class="col-xl-1">
+                             <div class="col-xl-2">
                                  <label>Этажность</label>
+                                 <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
                                  <div class="input-group flex-nowrap">
-                                     <input class="form-control" type="number" id="num-storeys1" name="num-storeys1" min="0" max="1000">
+                                     <input autocomplete="off" class="form-control" type="number" id="num-storeys1" name="num-storeys1" min="0" max="1000">
                                  </div>
                              </div>
                              <div class="col-xl-2">
                                  <label class="ml-3">Этап постройки</label>
                                  <div class="input-group flex-nowrap">
                                      <span class="input-group-text"><i class="fas fa-percent"></i></span>
-                                     <input class="form-control" step="5" type="number" id="constr-phase-prc1" name="constr-phase-prc1" min="0" max="100">
+                                     <input autocomplete="off" class="form-control" step="5" type="number" id="constr-phase-prc1" name="constr-phase-prc1" min="0" max="100">
                                  </div>
                              </div>
-                             <div class="col-xl-3">
-                                 <label>Примечание</label>
+                             <div class="col-xl-2">
+                                 <label>Парковка(мест)</label>
                                  <div class="input-group flex-nowrap">
-                                     <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
-                                     <input type="text" class="form-control" id="info-house1" name="info-house1">
+                                     <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
+                                     <input autocomplete="off" class="form-control parking-down" type="number" id="num-parking-down1" name="num-parking-down1" min="0" max="1000">
                                  </div>
                              </div>
 
@@ -72,30 +73,31 @@
                                  <label>Год начала</label>
                                  <div class="input-group flex-nowrap">
                                      <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                                     <input class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-start1" name="date-pick-start1" />
+                                     <input autocomplete="off" class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-start1" name="date-pick-start1" />
                                  </div>
                              </div>
                              <div class="col-xl-2">
                                  <label>Год ввода</label>
                                  <div class="input-group flex-nowrap">
                                      <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                                     <input class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-commis1" name="date-pick-commis1" />
+                                     <input autocomplete="off" class="form-control" type="number" min="2005" max="2099" step="1" id="date-pick-commis1" name="date-pick-commis1" />
                                  </div>
                              </div>
                              <div class="col-xl-2">
                                  <label>Квартал</label>
                                  <div class="input-group flex-nowrap">
                                      <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
-                                     <input class="form-control" type="number" min="0" max="4" step="1" id="quarter-pick1" name="quarter-pick1" />
+                                     <input autocomplete="off" class="form-control" type="number" min="0" max="4" step="1" id="quarter-pick1" name="quarter-pick1" />
                                  </div>
                              </div>
-                             <div class="col-xl-2">
-                                 <label>Парковка(мест)</label>
+                             
+                             <div class="col-xl-6">
+                                 <label>Примечание</label>
                                  <div class="input-group flex-nowrap">
-                                     <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
-                                     <input class="form-control parking-down" type="number" id="num-parking-down1" name="num-parking-down1" min="0" max="1000">
+                                     <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                                     <input autocomplete="off" type="text" class="form-control" id="info-house1" name="info-house1">
                                  </div>
-                             </div>                            
+                             </div>
                          </div>
                          <hr class="bg-warning col-6">
                      </div>
@@ -205,7 +207,7 @@
             e.preventDefault();
         }
     });
-    //To check all inputs
+    /*To check all inputs
     $('#form1').submit(function (evt) {
         var inputs = [], flag = false;
         $('.house-nums').each(function () {
@@ -220,6 +222,6 @@
             alert('Номера домов должны быть уникальны!');
             return false;
         }
-    });
+    });/*
 </script>
 {% endblock %}
