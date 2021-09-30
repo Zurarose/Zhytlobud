@@ -180,8 +180,7 @@
         
 
 
-        var city_area = `{{ build.city_area.name|safe }}`;
-        $('#city-area option[value="' + city_area + '"]').prop("selected", true);
+        
         var parking = `{{ build.parking|safe }}`;
         $('#parking option[value="' + parking + '"]').prop("selected", true);
         parkOnOff();
@@ -252,6 +251,8 @@
                         opt.innerHTML = data.names[i];
                         cityArea.appendChild(opt);
                     }
+                    var city_area = `{{ build.city_area.name|safe }}`;
+                    $('#city-area option[value="' + city_area + '"]').prop("selected", true);
                     AreaSelect()                    
                 }
             });
