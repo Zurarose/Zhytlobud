@@ -272,14 +272,14 @@
         var totalobj = 0;
         if (how == "ttl") {
             for (var i = 0; i < WhatCount.length; i++) {
-                if (WhatCount[i].value != "") {
+                if (WhatCount[i].value != "" && WhatCount[i].value != "0" && WhatCount[i].value != "0.00") {
                     count = count + parseFloat(WhatCount[i].value);
                 }
             }
         }
         else if (how == "avg") {
             for (var i = 0; i < WhatCount.length; i++) {
-                if (WhatCount[i].value != "") {
+                if (WhatCount[i].value != "" && WhatCount[i].value != "0" && WhatCount[i].value != "0.00") {
                     count = count + parseFloat(WhatCount[i].value);
                     totalobj = totalobj + 1;
                 }
