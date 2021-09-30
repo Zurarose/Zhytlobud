@@ -169,8 +169,7 @@
         var type_streets = `{{ build.street_name.type|safe }}`;
         $('#type-streets option[value="' + type_streets + '"]').prop("selected", true);
         selectChg();
-        var name_streets = `{{ build.street_name.name|safe }}`;
-        $('#name-streets option[value="' + name_streets + '"]').prop("selected", true);
+        
         var customer = `{{ build.customer.name|safe }}`;
         $('#customer option[value="' + customer + '"]').prop("selected", true);
         var urban_zone = `{{ build.urban_develop_zone|safe }}`;
@@ -343,6 +342,8 @@
                     opt.innerHTML = data.names[i];
                     select.appendChild(opt);
                 }
+                var name_streets = `{{ build.street_name.name|safe }}`;
+                $('#name-streets option[value="' + name_streets + '"]').prop("selected", true);
             }
         })
     }
