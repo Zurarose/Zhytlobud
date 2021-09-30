@@ -156,11 +156,11 @@
 <script>
     $(window).on('load', function () {
         $('#loading').hide();
-        selectChg();
+        savedData();
         zoneSelect();
         parkOnOff();
         masknum();
-        savedData();
+        
     })
     
     function savedData() {
@@ -168,18 +168,12 @@
         $('#class-select option[value="' + class_type + '"]').prop("selected", true);
         var type_streets = `{{ build.street_name.type|safe }}`;
         $('#type-streets option[value="' + type_streets + '"]').prop("selected", true);
-        selectChg();
-        
+        selectChg();       
         var customer = `{{ build.customer.name|safe }}`;
         $('#customer option[value="' + customer + '"]').prop("selected", true);
         var urban_zone = `{{ build.urban_develop_zone|safe }}`;
         $('#urban-zone option[value="' + urban_zone + '"]').prop("selected", true);
-        zoneSelect();
-
-        
-
-
-        
+        zoneSelect();        
         var parking = `{{ build.parking|safe }}`;
         $('#parking option[value="' + parking + '"]').prop("selected", true);
         parkOnOff();
