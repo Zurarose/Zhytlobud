@@ -101,9 +101,8 @@
                 </div>
             </div>
         </div>
-        <div class="form-row mt-3 d-flex flex-row-reverse pr-1">
+        <div class="form-row mt-3 d-flex flex-row-reverse pr-1" id="insert">
             <input type="submit" class="btn btn-success btn-sm mt-2 ml-1" name="show" value="Показать">
-            <input type="submit" class="btn btn-success btn-sm mt-2" name="export" value="Экспорт">
         </div>
     </div>
 
@@ -318,10 +317,34 @@
 <script>
     $(document).ready(function () {
         var table = $('#DataTable').DataTable({
-            dom: '<"toolbar">frtlip',
-            fnInitComplete: function () {
-                $('div.toolbar').html('');
-            },
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: '<i class="fa fa-files-o"></i> Excel',
+                    titleAttr: 'Экспорт в эксель',
+                    className: 'btn btn-warning btn-sm mt-2',
+                    customize: function (xlsx) {
+
+                        /*var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                        var row = 0;
+
+                        $('row', sheet).each(function (x) {
+                            if (x > 1) row++;
+
+                            console.log(table.row(':eq(' + row + ')').data())
+                            if ($(table.cell(':eq(' + row + ')', 0).node()).hasClass('bg-warning')) {
+                                console.log('YES')
+                                $('row:nth-child(' + (x + 1) + ') c', sheet).attr('s', '41');
+                            }
+                            else if ($('c[r=C' + x + '] t', sheet).text() === 'MaterialApp') {
+                                $('row:nth-child(' + x + ') c', sheet).attr('s', '39');
+                            }
+                        });*/
+                    }
+                }
+
+            ],
             "searching": false,
             language: {
                 "processing": "Подождите...",
@@ -449,7 +472,7 @@
                     },
                     "copyTitle": "Скопировать в буфер обмена",
                     "csv": "CSV",
-                    "excel": "Excel"
+                    "excel": "Экспорт в эксель"
                 },
                 "decimal": ".",
                 "infoThousands": ",",
@@ -524,7 +547,8 @@
                     }
                 }
             }
-        });   
+        });
+        table.buttons().container().appendTo('#insert');
     });
 </script>
 <script>
