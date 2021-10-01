@@ -52,7 +52,7 @@
                                                 <option value="11">11</option>
                                                 <option value="12">12</option>
                                             </select>
-                                            <input type="hidden" class="required" id = "month" name="month" value="">
+                                            <input type="hidden" class="required" id = "month" name="month" value="1">
                                         </div>
                                 </div>
                                 <div class="col-xl-2 text-center">
@@ -346,7 +346,7 @@
         $('#loading').hide();
         masknum();
         var last = '{{last|safe}}'
-        console.log(last);
+        
         if (last != "None") {
             var year = '{{last.year|safe}}';
             year = parseInt(year);
@@ -357,12 +357,13 @@
                 month = 1;
                 year = year + 1;
             }
+            console.log(month);
             $('#month_select option[value="' + month + '"]').prop("selected", true);
             $("#month").val($('#month_select').val());
             $("#month_select").prop("disabled", true);
             $('#year').val(year);
             $('#year').prop("readonly", true);
-        }   
+        }
     })
     $('#month_select').change(function () {
         $('#month').val($('#month_select').val())
@@ -403,7 +404,7 @@
                 arrey.push(parseFloat($(this).val()));
             }
         });
-        console.log(arrey.length);
+        //console.log(arrey.length);
         if (arrey.length !=0) {
             $(".minPrice").val(Math.min.apply(Math, arrey));
             $('.avgPrice').trigger("change");
@@ -417,7 +418,7 @@
                 arrey.push(parseFloat($(this).val()));
             }
         });
-        console.log(arrey.length);
+        //console.log(arrey.length);
         if (arrey.length != 0) {
             $(".maxPrice").val(Math.max.apply(Math, arrey));
             $('.avg').trigger("change");
@@ -428,7 +429,7 @@
         flag = true;
         var arrey = [];
         $('.avg').each(function () {
-            if ($(this).val() != "" && $(this).val()!=0) {
+            if ($(this).val() != "" && $(this).val() != "0" && $(this).val() != "0.00") {
                 arrey.push(parseFloat($(this).val()));
             }
             else { flag = false; }
@@ -444,7 +445,7 @@
         var arrey = [];
         flag = true;
         $(this).closest('.card-body').find(".avgAp").each(function () {
-            if ($(this).val() != "" && $(this).val() != 0) {
+            if ($(this).val() != "" && $(this).val() != "0" && $(this).val() != "0.00") {
                 arrey.push(parseFloat($(this).val()));
             }
             else { flag = false; }

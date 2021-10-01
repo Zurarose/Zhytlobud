@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
 <a class="btn btn-warning btn-sm ml-3 mt-2" href="{% url 'customers_edit' %}"><i class="fas fa-chevron-circle-left"></i> Назад</a>
-<div class="container col-12 bg-trasparent" style="position: relative;">
+<div class="container-fluid bg-trasparent" style="position: relative;">
     {% for message in messages %}
     <div class="alert alert-danger">
         <a class="close" href="#" data-dismiss="alert">×</a>
@@ -11,10 +11,9 @@
     {% endfor %}
     <h5 class="text-center mt-1 mb-2">Редактирование информации. Введите новые значения</h5>
     <hr class="bg-warning col-6 mb-2">
-    <div class="d-flex justify-content-center mt-5 col-12">
         <form action='.' id="form1" method='POST'>
             {% csrf_token %}
-            <div class="form-row border border-warning col-xl-12 shadow-sm rounded row align-items-center p-2 m-0">
+            <div class="form-row border border-warning col-xl-12 shadow-sm rounded row align-items-center p-2 m-0  mt-5">
                 <div class="col-xl-1 d-flex justify-content-center mt-4 mb-4">
                     <i class="fas fa-user-tie fa-4x"></i>
                 </div>
@@ -44,16 +43,15 @@
                     </div>
                 </div>
                 <div class="col-xl-2">
-                    <label>Год<span style="color:red;">*</span></label>
+                    <label>Год</label>
                     <div class="input-group flex-nowrap">
                         <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                        <input autocomplete="off" class="form-control" required type="number" min="2005" max="2099" step="1" id="date" name="date" value="{{cust.start_work}}" />
+                        <input autocomplete="off" class="form-control" type="number" min="1800" max="2099" step="1" id="date" name="date" value="{{cust.start_work}}" />
                     </div>
                 </div>
             </div>
             <button type="submit" class="btn btn-success mt-5 mb-4">Сохранить информацию</button>
         </form>
-    </div>
 </div>
 {% endblock %}
 

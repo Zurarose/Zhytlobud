@@ -52,7 +52,7 @@
                                                 <option value="11">11</option>
                                                 <option value="12">12</option>
                                             </select>
-                                            <input type="hidden" class="required" id = "month" name="month" value="">
+                                            <input type="hidden" class="required" id = "month" name="month" value="1">
                                         </div>
                                 </div>
                                 <div class="col-xl-2 text-center">
@@ -423,7 +423,7 @@
         flag = true;
         var arrey = [];
         $('.avg').each(function () {
-            if ($(this).val() != "" && $(this).val()!=0) {
+            if ($(this).val() != "" && $(this).val() != "0" && $(this).val() != "0.00") {
                 arrey.push(parseFloat($(this).val()));
             }
             else { flag = false; }
@@ -438,7 +438,7 @@
         var arrey = [];
         flag = true;
         $(this).closest('.card-body').find(".avgAp").each(function () {
-            if ($(this).val() != "" && $(this).val() != 0) {
+            if ($(this).val() != "" && $(this).val() != "0" && $(this).val() != "0.00") {
                 arrey.push(parseFloat($(this).val()));
             }
             else { flag = false; }

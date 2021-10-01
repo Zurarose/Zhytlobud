@@ -39,11 +39,12 @@
             {% csrf_token %}
                 <input class="required" type="hidden" id="selected" name="selected" value="">
             {% if request.user.is_staff or request.user.is_superuser%}
-            <input type="submit" class="btn btn-warning mt-5 mb-4" name="edit" value="Редактировать">
+            <input type="submit" class="btn checkBtn btn-warning mt-5 mb-4" name="edit" value="Редактировать">
             {% endif %}
             {% if request.user.is_superuser%}
-            <input type="submit" class="btn btn-danger mt-5 mb-4 check" name="delete" value="Удалить">
+            <input type="submit" class="btn checkBtn btn-danger mt-5 mb-4 check" name="delete" value="Удалить">
             {% endif %}
+            <input type="submit" class="btn checkBtn btn-success mt-5 mb-4 ml-xl-5" name="new" value="Добавить">
         </form>
     </div>
     {% else %}
@@ -285,13 +286,13 @@
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
                 $("#selected").val("");
-                $(".btn").prop("disabled", true);
+                $(".checkBtn").prop("disabled", true);
             }
             else {
                 table.$('tr.active').removeClass('active');
                 $(this).addClass('active');
                 $("#selected").val($(this).closest('tr').find('.id').text());
-                $(".btn").prop("disabled", false);
+                $(".checkBtn").prop("disabled", false);
             }
         });
         $("#DataTable>tbody>tr:first").attr("class", "active");
