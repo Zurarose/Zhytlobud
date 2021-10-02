@@ -324,23 +324,28 @@
                     text: '<i class="fa fa-files-o"></i> Excel',
                     titleAttr: 'Экспорт в эксель',
                     className: 'btn btn-warning btn-sm mt-2',
+                    filename: function () {
+                        return $('#year').val() + '-' + $('#months-select').val() + ' - Report';
+                    },
                     customize: function (xlsx) {
+                        var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                        $('c[r=A1] t', sheet).text($('#year').val() + "-" + $('#months-select').val());
+                        // Loop over the cells in column `K`
+                        $('row c[r^="M"]', sheet).attr('s', '40');
+                        $('row c[r^="N"]', sheet).attr('s', '40');
+                        $('row c[r^="O"]', sheet).attr('s', '40');
 
-                        /*var sheet = xlsx.xl.worksheets['sheet1.xml'];
-                        var row = 0;
+                        $('row c[r^="J"]', sheet).attr('s', '35');
+                        $('row c[r^="K"]', sheet).attr('s', '35');
+                        $('row c[r^="L"]', sheet).attr('s', '35');
 
-                        $('row', sheet).each(function (x) {
-                            if (x > 1) row++;
+                        $('row c[r^="P"]', sheet).attr('s', '20');
+                        $('row c[r^="Q"]', sheet).attr('s', '20');
+                        $('row c[r^="R"]', sheet).attr('s', '20');
 
-                            console.log(table.row(':eq(' + row + ')').data())
-                            if ($(table.cell(':eq(' + row + ')', 0).node()).hasClass('bg-warning')) {
-                                console.log('YES')
-                                $('row:nth-child(' + (x + 1) + ') c', sheet).attr('s', '41');
-                            }
-                            else if ($('c[r=C' + x + '] t', sheet).text() === 'MaterialApp') {
-                                $('row:nth-child(' + x + ') c', sheet).attr('s', '39');
-                            }
-                        });*/
+                        $('row c[r^="S"]', sheet).attr('s', '5');
+                        $('row c[r^="T"]', sheet).attr('s', '5');
+                        $('row c[r^="U"]', sheet).attr('s', '5');
                     }
                 }
 
