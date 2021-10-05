@@ -10,6 +10,7 @@
     {% endfor %}
     <a class="btn btn-warning btn-sm" href="{% url 'menu' %}"><i class="fas fa-chevron-circle-left"></i>Назад</a>
     <h5 class="text-center mb-2">Аналитика</h5>
+
     <form action='.' id="form1" method='POST'>
         {% csrf_token %}
     <div class="col-12 mb-2 border border-warning p-1 pb-2 mr-5">
@@ -351,6 +352,7 @@
 
             ],
             "searching": false,
+            "bInfo": false,
             language: {
                 "processing": "Подождите...",
                 "search": "Поиск:",
@@ -373,16 +375,16 @@
                 },
                 "select": {
                     "rows": {
-                        "_": "Выбрано записей: %d",
-                        "1": "Выбрана одна запись"
+                        "_": "",
+                        "1": ""
                     },
                     "cells": {
-                        "1": "1 ячейка выбрана",
-                        "_": "Выбрано %d ячеек"
+                        "1": "",
+                        "_": ""
                     },
                     "columns": {
-                        "1": "1 столбец выбран",
-                        "_": "%d столбцов выбрано"
+                        "1": "",
+                        "_": ""
                     }
                 },
                 "searchBuilder": {
