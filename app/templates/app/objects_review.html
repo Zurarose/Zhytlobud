@@ -29,8 +29,11 @@
                 <li class="p-2 list-group-item">Тип парковки: {{complex.parking_type}}</li>
                 {% if complex.parking_type == "Надземная" %}
                 <li class="p-2 list-group-item">Парковка (мест): {{complex.parking_num}}</li>
-                {% endif %}     
+                {% endif %}               
             {% endif %}
+                {% if complex.url %}
+                <li class="p-2 list-group-item">Ссылка: <a target="_blank" href="{{complex.url}}">страница объекта <i class="fab fa-internet-explorer"></i></a></li>
+                {% endif %}
             <form action='.' id="form_complex" method='POST'>
                 {% csrf_token %}
                 <li class="border-bottom-0 list-group-item p-2">{% if request.user.is_staff or request.user.is_superuser%}

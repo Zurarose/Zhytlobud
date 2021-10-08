@@ -106,7 +106,7 @@
                                 </div>                               
                             </div>
                             <div class="form-row mt-2">
-                                <div class="col-xl-4">
+                                <div class="col-xl-3">
                                     <label for="subway">Метрополитен</label>
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text"><i class="fas fa-subway"></i></span>
@@ -141,8 +141,15 @@
                                         <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
                                         <input autocomplete="off" class="form-control parking-up" type="number" id="num-parking-up" name="num-parking-up" min="0" max="1000">
                                     </div>
-                                </div>                              
                                 </div>
+                                <div class="col-xl-3">
+                                    <label>Ссылка</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fab fa-internet-explorer"></i></span>
+                                        <input autocomplete="off" type="text" class="form-control" id="url" name="url" value="">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
             <input type="submit" class="btn btn-success mt-4" name="save" value="Сохранить информацию">
@@ -182,6 +189,9 @@
         EnableChoice();
         var num_parking_up = `{{ build.parking_num|safe }}`;
         $('#num-parking-up').val(num_parking_up);
+        
+        var link = `{{ build.url|safe }}`;
+        $('#url').val(link);
 
     }
 </script>

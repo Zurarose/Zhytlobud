@@ -79,6 +79,7 @@ class Buildings(models.Model):
     parking = models.CharField(max_length=25, blank=True, null=True)
     parking_type = models.CharField(max_length=25, blank=True, null=True)
     parking_num = models.IntegerField(blank=True, null=True)
+    url = models.CharField(max_length=400, blank=True, null=True)
 
     class Meta:
         managed = True
