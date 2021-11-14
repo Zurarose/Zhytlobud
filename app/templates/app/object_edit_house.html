@@ -56,8 +56,7 @@
                                             <span class="input-group-text"><i class="fas fa-percent"></i></span>
                                             <input autocomplete="off" class="form-control" step="5" type="number" id="constr-phase-prc" name="constr-phase-prc" min="0" max="100" value="{{house.construction_phase_prst}}">
                                         </div>
-                                    </div>
-                                    
+                                    </div>                                  
                                     <div class="col-xl-2">
                                         <label>Парковка(мест)</label>
                                         <div class="input-group flex-nowrap">
@@ -75,6 +74,13 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-2">
+                                        <label>Квартал</label>
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
+                                            <input autocomplete="off" class="form-control" type="number" min="0" max="4" step="1" id="quarter-pick-start" name="quarter-pick-start" value="{{house.quarter_start}}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
                                         <label>Год ввода</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -88,7 +94,7 @@
                                             <input autocomplete="off" class="form-control" type="number" min="0" max="4" step="1" id="quarter-pick" name="quarter-pick" value="{{house.quarter}}"/>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6">
+                                    <div class="col-xl-4">
                                         <label>Примечание</label>
                                         <div class="input-group flex-nowrap">
                                             <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>

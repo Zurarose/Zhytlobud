@@ -18,6 +18,7 @@
                 <tr class="bg-warning text-white">
                     <th>ИД</th>
                     <th>Класс</th>
+                    <th>Тип</th>
                     <th>Наименование</th>
                     <th>Застройщик</th>
                     <th>Генподрядчик</th>
@@ -33,6 +34,7 @@
                     <tr>
                         <td class="id">{{ row.id_buildings }}</td>
                         <td>{{row.class_field }}</td>
+                        <td>{{row.type_complex }}</td>
                         <td>{{row.name }}</td>
                         <td>{{row.customer.name }}</td>
                         <td>{{row.builder }}</td>

@@ -12,11 +12,12 @@
     <a class="btn btn-warning btn-sm" href="{% url 'objects_edit' %}"><i class="fas fa-chevron-circle-left"></i>Назад</a>
     <h5 class="text-center mb-2">Комплекс: {{complex.name}}</h5>
     <hr class="bg-warning col-6 mb-2">
-    <div class="row row-cols-xl-2">
-        <div class="col-xl-2 p-0" id="tofixed">
+    <div class="row" >
+        <div class="col-xl-2 p-0 m-0" id=""> <!--toFixed-->
             <h5 class="text-left ml-3">О комплексе:</h5>
             <ul class="list-group">
-                <li class="p-2 list-group-item">Название: {{complex.name}}</li>
+                <li class="p-2 list-group-item">Тип: {{complex.type_complex}}</li>
+                <li class="p-2 list-group-item">Название: {{complex.name}}</li>               
                 <li class="p-2 list-group-item">Класс: {{complex.class_field}}</li>
                 <li class="p-2 list-group-item">Улица: {{complex.street_name.name}}</li>
                 <li class="p-2 list-group-item">Застройщик: {{complex.customer.name}}</li>
@@ -29,11 +30,17 @@
                 <li class="p-2 list-group-item">Тип парковки: {{complex.parking_type}}</li>
                 {% if complex.parking_type == "Надземная" %}
                 <li class="p-2 list-group-item">Парковка (мест): {{complex.parking_num}}</li>
-                {% endif %}               
+                {% endif %}                        
             {% endif %}
                 {% if complex.url %}
                 <li class="p-2 list-group-item">Ссылка: <a target="_blank" href="{{complex.url}}">страница объекта <i class="fab fa-internet-explorer"></i></a></li>
                 {% endif %}
+                <li class="p-2 list-group-item">GPS: {{complex.gps}}</li>
+                <li class="p-2 list-group-item">Центр продаж: {{complex.sell_center}}</li>
+                <li class="p-2 list-group-item">Площадь комплекса: {{complex.total_area_complex}}</li>
+                <li class="p-2 list-group-item">Коммерческие помещ.: {{complex.commerc}}</li>
+                <li class="p-2 list-group-item">Рейтинг ЖК: {{complex.rating}}</li>
+                <li class="p-2 list-group-item">Оценка центра продаж: {{complex.grade}}</li>
             <form action='.' id="form_complex" method='POST'>
                 {% csrf_token %}
                 <li class="border-bottom-0 list-group-item p-2">{% if request.user.is_staff or request.user.is_superuser%}
@@ -46,7 +53,7 @@
             </form>
             </ul>
         </div>
-        <div class="p-0 col-xl-10 offset-xl-2">
+        <div class="p-0 m-0 col-xl-10 offset-xl-2">
             <h5 class="ml-1">Дома:</h5>
             <form action='.' id="form_house" method='POST'>
                 {% csrf_token %}
@@ -69,6 +76,7 @@
                             <th>Площадь квартир</th>
                             <th>Этап постройки</th>
                             <th>Год начала</th>
+                            <th>Квартал</th>
                             <th>Год ввода</th>
                             <th>Квартал</th>
                             <th>Этажность</th>
@@ -87,6 +95,7 @@
                             <td>{{ row.ttl_area_apartments }}</td>
                             <td>{{ row.construction_phase_prst}}</td>
                             <td>{{ row.start_year }}</td>
+                            <td>{{ row.quarter_start }}</td>
                             <td>{{ row.commis_year }}</td>
                             <td>{{ row.quarter }}</td>
                             <td>{{ row.storeys }}</td>

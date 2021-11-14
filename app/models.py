@@ -69,7 +69,8 @@ class Customers(models.Model):
 class Buildings(models.Model):
     id_buildings = models.AutoField(db_column='ID_buildings', primary_key=True)  # Field name made lowercase.
     class_field = models.CharField(db_column='class', max_length=50, blank=True, null=True)  # Field renamed because it was a Python reserved word.
-    name = models.CharField(max_length=50)
+    type_complex = models.CharField(max_length=50, blank=True, null=True)
+    name = models.CharField(max_length=50, blank=True, null=True)
     street_name = models.ForeignKey(Streets, models.SET_NULL, db_column='street_name', blank=True, null=True)
     builder = models.CharField(max_length=50, blank=True, null=True)
     customer = models.ForeignKey(Customers, models.SET_NULL, db_column='customer', blank=True, null=True)
@@ -80,6 +81,13 @@ class Buildings(models.Model):
     parking_type = models.CharField(max_length=25, blank=True, null=True)
     parking_num = models.IntegerField(blank=True, null=True)
     url = models.CharField(max_length=400, blank=True, null=True)
+    gps = models.CharField(max_length=200, blank=True, null=True)
+    sell_center = models.CharField(max_length=200, blank=True, null=True)
+    total_area_complex = models.FloatField(blank=True, null=True)
+    build_in = models.FloatField(blank=True, null=True)
+    commerc = models.CharField(max_length=200, blank=True, null=True)
+    rating = models.CharField(max_length=200, blank=True, null=True)
+    grade =  models.CharField(max_length=200, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -108,6 +116,7 @@ class Houses(models.Model):
     remark = models.CharField(max_length=500, blank=True, null=True)
     start_year = models.CharField(db_column='start_year', max_length=50, blank=True, null=True)  # This field type is a guess.
     commis_year = models.CharField(db_column='commis_year', max_length=50, blank=True, null=True)  # This field type is a guess.
+    quarter_start = models.IntegerField(db_column='Quarter_start', blank=True, null=True)  # Field name made lowercase.
     quarter = models.IntegerField(db_column='Quarter', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
