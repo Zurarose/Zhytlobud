@@ -49,6 +49,134 @@
                     {% if request.user.is_superuser%}
                     <input type="submit" class="btn btn-danger btn-sm check_complex mt-2 col-xl-12" name="delete_complex" value="Удалить комплекс">
                     {% endif %}
+                    <button type="button" class="btn btn-primary btn-sm col-xl-12 mt-2" data-toggle="modal" data-target="#exampleModal">
+                        Технические параметры
+                    </button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Технические параметры</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body px-0">
+                            <div class="col-12">
+                                <label>Технология каркаса</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="frame"  value="{{tech.frame}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Межетажное перекрытие</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="overlap" value="{{tech.overlap}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Межквартирные перегородки</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="partitions" value="{{tech.partitions}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Фасад</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="facade" value="{{tech.facade}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Профиль и стеклопакет</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="profile" value="{{tech.profile}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Тип отопления</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="heating" value="{{tech.heating}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Тип крыши</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="roof" value="{{tech.roof}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Наличие террас</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="terraces" value="{{tech.terraces}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Высота потолков</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="ceilings" value="{{tech.ceilings}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Конструкционный материал</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="material" value="{{tech.material}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Наружные стены</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="walls" value="{{tech.walls}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Утепление</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="warming" value="{{tech.warming}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Вікна</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="windows" value="{{tech.windows}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Производитель окон</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="manuf_windows" value="{{tech.manuf_windows}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Марка котла</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="boiler" value="{{tech.boiler}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Кровля</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="roofing" value="{{tech.roofing}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Наличие балконов</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="balconies" value="{{tech.balconies}}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Комплектность квартиры</label>
+                                <div class="input-group flex-nowrap">
+                                    <input readonly autocomplete="off" class="form-control" type="text" name="apartments" value="{{tech.apartments}}">
+                                </div>
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                 </li>
             </form>
             </ul>

@@ -55,6 +55,15 @@ class Ownership(models.Model):
         managed = True
         db_table = 'ownership'
 
+class Financing(models.Model):
+    id_finance = models.AutoField(db_column='ID_finance', primary_key=True)  # Field name made lowercase.
+    name = models.CharField(db_column='Name', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    full_name = models.CharField(db_column='Full_name', max_length=50, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = True
+        db_table = 'financing'
+
 class Customers(models.Model):
     id_customer = models.AutoField(db_column='ID_customer', primary_key=True)  # Field name made lowercase.
     ownership = models.ForeignKey(Ownership, models.SET_NULL, db_column='form', blank=True, null=True)
@@ -93,14 +102,28 @@ class Buildings(models.Model):
         managed = True
         db_table = 'buildings'
 
-class Financing(models.Model):
-    id_finance = models.AutoField(db_column='ID_finance', primary_key=True)  # Field name made lowercase.
-    name = models.CharField(db_column='Name', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    full_name = models.CharField(db_column='Full_name', max_length=50, blank=True, null=True)  # Field name made lowercase.
 
-    class Meta:
-        managed = True
-        db_table = 'financing'
+class Technical(models.Model):
+    id_buildings = models.ForeignKey(Buildings, models.CASCADE, db_column='ID_buildings', blank=True, null=True)  # Field name made lowercase.
+    id_tech = models.AutoField(db_column='id_tech', primary_key=True)  # Field name made lowercase.
+    frame = models.CharField(max_length=500, blank=True, null=True)
+    overlap = models.CharField(max_length=500, blank=True, null=True)
+    partitions = models.CharField(max_length=500, blank=True, null=True)
+    facade = models.CharField(max_length=500, blank=True, null=True)
+    profile = models.CharField(max_length=500, blank=True, null=True)
+    heating = models.CharField(max_length=500, blank=True, null=True)
+    roof = models.CharField(max_length=500, blank=True, null=True)
+    terraces = models.CharField(max_length=500, blank=True, null=True)
+    ceilings = models.CharField(max_length=500, blank=True, null=True)
+    material = models.CharField(max_length=500, blank=True, null=True)
+    walls = models.CharField(max_length=500, blank=True, null=True)
+    warming = models.CharField(max_length=500, blank=True, null=True)
+    windows = models.CharField(max_length=500, blank=True, null=True)
+    manuf_windows = models.CharField(max_length=500, blank=True, null=True)
+    boiler = models.CharField(max_length=500, blank=True, null=True)
+    roofing = models.CharField(max_length=500, blank=True, null=True)
+    balconies = models.CharField(max_length=500, blank=True, null=True)
+    apartments = models.CharField(max_length=500, blank=True, null=True)
 
 
 
