@@ -3,21 +3,22 @@
 {% load static %}
 <div class="container-fluid col-12 bg-trasparent p-3" style="position: relative;">
     {% for message in messages %}
-        <div class="alert alert-danger">
-            <a class="close" href="#" data-dismiss="alert">×</a>
-            {{ message }}
-        </div>
+    <div class="alert alert-danger">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+        {{ message }}
+    </div>
     {% endfor %}
     {% if complex %}
     <a class="btn btn-warning btn-sm" href="{% url 'objects_edit' %}"><i class="fas fa-chevron-circle-left"></i>Назад</a>
     <h5 class="text-center mb-2">Комплекс: {{complex.name}}</h5>
     <hr class="bg-warning col-6 mb-2">
-    <div class="row" >
-        <div class="col-xl-2 p-0 m-0" id=""> <!--toFixed-->
+    <div class="row">
+        <div class="col-xl-2 p-0 m-0" id="">
+            <!--toFixed-->
             <h5 class="text-left ml-3">О комплексе:</h5>
             <ul class="list-group">
                 <li class="p-2 list-group-item">Тип: {{complex.type_complex}}</li>
-                <li class="p-2 list-group-item">Название: {{complex.name}}</li>               
+                <li class="p-2 list-group-item">Название: {{complex.name}}</li>
                 <li class="p-2 list-group-item">Класс: {{complex.class_field}}</li>
                 <li class="p-2 list-group-item">Улица: {{complex.street_name.name}}</li>
                 <li class="p-2 list-group-item">Застройщик: {{complex.customer.name}}</li>
@@ -30,8 +31,8 @@
                 <li class="p-2 list-group-item">Тип парковки: {{complex.parking_type}}</li>
                 {% if complex.parking_type == "Надземная" %}
                 <li class="p-2 list-group-item">Парковка (мест): {{complex.parking_num}}</li>
-                {% endif %}                        
-            {% endif %}
+                {% endif %}
+                {% endif %}
                 {% if complex.url %}
                 <li class="p-2 list-group-item">Ссылка: <a target="_blank" href="{{complex.url}}">страница объекта <i class="fab fa-internet-explorer"></i></a></li>
                 {% endif %}
@@ -41,144 +42,450 @@
                 <li class="p-2 list-group-item">Коммерческие помещ.: {{complex.commerc}}</li>
                 <li class="p-2 list-group-item">Рейтинг ЖК: {{complex.rating}}</li>
                 <li class="p-2 list-group-item">Оценка центра продаж: {{complex.grade}}</li>
-            <form action='.' id="form_complex" method='POST'>
-                {% csrf_token %}
-                <li class="border-bottom-0 list-group-item p-2">{% if request.user.is_staff or request.user.is_superuser%}
+                <form action='.' id="form_complex" method='POST'>
+                    {% csrf_token %}
+                <li class="border-bottom-0 list-group-item p-2">
+                    {% if request.user.is_staff or request.user.is_superuser%}
                     <input type="submit" class="btn btn-warning btn-sm col-xl-12" name="edit_complex" value="Редактировать комплекс">
                     {% endif %}
                     {% if request.user.is_superuser%}
                     <input type="submit" class="btn btn-danger btn-sm check_complex mt-2 col-xl-12" name="delete_complex" value="Удалить комплекс">
                     {% endif %}
-                    <button type="button" class="btn btn-primary btn-sm col-xl-12 mt-2" data-toggle="modal" data-target="#exampleModal">
-                        Технические параметры
-                    </button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Технические параметры</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>
-                            <div class="modal-body px-0">
-                            <div class="col-12">
-                                <label>Технология каркаса</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="frame"  value="{{tech.frame}}">
+                    <!--new btn-->
+                    <div class="pt-5">
+                        <button type="button" class="btn btn-primary btn-sm mt-2 col-xl-12" data-toggle="modal" data-target="#exampleModal1">
+                            Финансирование
+                        </button>
+                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel1">Финансирование</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body px-0">
+                                        <div class="col-12">
+                                            <label>Первый вклад</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="contribution" value="{{fin.contribution}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Рассрочка</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="installment" value="{{fin.installment}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Ипотека</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="mortgage" value="{{fin.mortgage}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Скидка при оплате 100%</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="discount_100" value="{{fin.discount_100}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Скидки</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="discount" value="{{fin.discount}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Банк</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="bank" value="{{fin.bank}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Межетажное перекрытие</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="overlap" value="{{tech.overlap}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Межквартирные перегородки</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="partitions" value="{{tech.partitions}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Фасад</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="facade" value="{{tech.facade}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Профиль и стеклопакет</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="profile" value="{{tech.profile}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Тип отопления</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="heating" value="{{tech.heating}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Тип крыши</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="roof" value="{{tech.roof}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Наличие террас</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="terraces" value="{{tech.terraces}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Высота потолков</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="ceilings" value="{{tech.ceilings}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Конструкционный материал</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="material" value="{{tech.material}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Наружные стены</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="walls" value="{{tech.walls}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Утепление</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="warming" value="{{tech.warming}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Вікна</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="windows" value="{{tech.windows}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Производитель окон</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="manuf_windows" value="{{tech.manuf_windows}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Марка котла</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="boiler" value="{{tech.boiler}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Кровля</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="roofing" value="{{tech.roofing}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Наличие балконов</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="balconies" value="{{tech.balconies}}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label>Комплектность квартиры</label>
-                                <div class="input-group flex-nowrap">
-                                    <input readonly autocomplete="off" class="form-control" type="text" name="apartments" value="{{tech.apartments}}">
-                                </div>
-                            </div>
-                            </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
                             </div>
                         </div>
+
+                        <button type="button" class="btn btn-primary btn-sm mt-2 col-xl-12" data-toggle="modal" data-target="#exampleModal2">
+                            Земля
+                        </button>
+                        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel2">Земля</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body px-0">
+                                        <div class="col-12">
+                                            <label>Титул</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="title" value="{{land.title}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Площадь земельного участка</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="land_area" value="{{land.land_area}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Кадастровий номер</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="cadastral" value="{{land.cadastral}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Целевое назначение</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="purpose" value="{{land.purpose}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Процент застройки участка</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="percentage" value="{{land.percentage}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+
+                        <button type="button" class="btn btn-primary btn-sm mt-2 col-xl-12" data-toggle="modal" data-target="#exampleModal3">
+                            Технические параметры
+                        </button>
+                        <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Технические параметры</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body px-0">
+                                        <div class="col-12">
+                                            <label>Технология каркаса</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="frame" value="{{tech.frame}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Межетажное перекрытие</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="overlap" value="{{tech.overlap}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Межквартирные перегородки</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="partitions" value="{{tech.partitions}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Фасад</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="facade" value="{{tech.facade}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Профиль и стеклопакет</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="profile" value="{{tech.profile}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Тип отопления</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="heating" value="{{tech.heating}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Тип крыши</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="roof" value="{{tech.roof}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Наличие террас</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="terraces" value="{{tech.terraces}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Высота потолков</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="ceilings" value="{{tech.ceilings}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Конструкционный материал</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="material" value="{{tech.material}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Наружные стены</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="walls" value="{{tech.walls}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Утепление</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="warming" value="{{tech.warming}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Вікна</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="windows" value="{{tech.windows}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Производитель окон</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="manuf_windows" value="{{tech.manuf_windows}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Марка котла</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="boiler" value="{{tech.boiler}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Кровля</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="roofing" value="{{tech.roofing}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Наличие балконов</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="balconies" value="{{tech.balconies}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Комплектность квартиры</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="apartments" value="{{tech.apartments}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-sm mt-2 col-xl-12" data-toggle="modal" data-target="#exampleModal4">
+                            Назначение и инфраструктура
+                        </button>
+                        <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel4">Назначение и инфраструктура</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body px-0">
+                                        <div class="col-12">
+                                            <label>Типы социальных объектов комплекса</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="social_facilities" value="{{purpose.social_facilities}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Детская площадка</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="playground" value="{{purpose.playground}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Комфорт</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="comfort" value="{{purpose.comfort}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Безопасность</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="security" value="{{purpose.security}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Внутренняя инфраструктура</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="infrastructure" value="{{purpose.infrastructure}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Зона отдыха</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="rest" value="{{purpose.rest}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Холл / гостевые зоны</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="halls" value="{{purpose.halls}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>ИТ решения/Умный дом/Умный ЖК</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="solutions" value="{{purpose.solutions}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Вело паркинги</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="bicycle_parking" value="{{purpose.bicycle_parking}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Места для выгула животных</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="animals" value="{{purpose.animals}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Доступ на территорию комплекса</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="access" value="{{purpose.access}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Места для хранения</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="storage" value="{{purpose.storage}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Консьерж сервис</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="concierge" value="{{purpose.concierge}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-sm mt-2 col-xl-12" data-toggle="modal" data-target="#exampleModal5">
+                            Наружная инфраструктура
+                        </button>
+                        <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel5" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel5">Наружная инфраструктура</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body px-0">
+                                        <div class="col-12">
+                                            <label>Развлечения</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="entertainment" value="{{outdoor.entertainment}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Транспорт</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="transport" value="{{outdoor.transport}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Школа</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="school" value="{{outdoor.school}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Садик</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="kindergarten" value="{{outdoor.kindergarten}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Магазины</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="shops" value="{{outdoor.shops}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-sm mt-2 col-xl-12" data-toggle="modal" data-target="#exampleModal6">
+                            Дополнительно
+                        </button>
+                        <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Дополнительно</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body px-0">
+                                        <div class="col-12">
+                                            <label>Юридическая схема продажи</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="schemes" value="{{additionally.schemes}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Сильные стороны проекта</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="strengths" value="{{additionally.strengths}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Слабые стороны проекта</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="weaknesses" value="{{additionally.weaknesses}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Дополнительное описание</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="additional" value="{{additionally.additional}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 </li>
-            </form>
+                </form>
             </ul>
         </div>
         <div class="p-0 m-0 col-xl-10 offset-xl-2">
@@ -299,7 +606,7 @@
                 {% endif %}
                 {% if request.user.is_superuser%}
                 <input type="submit" disabled class="ml-1 btn btn-danger btn-sm btnTable_third_add" name="delete_sale" value="Удалить последний месяц">
-                {% endif %}              
+                {% endif %}
             </form>
             <div class="p-1 m-0 mb-5 table-responsive col-xl-12">
                 <table id="DataTable_third" class='table table-Light display compact table-bordered mb-5' style="width: 100%;">
@@ -375,7 +682,7 @@
     })
 
 </script>
-<script >
+<script>
     //to enable buttons flag
     var enableSelect = true;
     //table setup
@@ -598,7 +905,7 @@
                     $(".btnTable_first").prop("disabled", true);
                     $(".btnTable_third").prop("disabled", true);
                     $(".btnTable_second").prop("disabled", true);
-                    
+
                 }
                 else {
                     table_first.$('tr.active').removeClass('active');
@@ -611,7 +918,7 @@
                     $(".btnTable_first").prop("disabled", false);
                     $(".btnTable_third").prop("disabled", true);
                     $(".btnTable_second").prop("disabled", true);
-                    
+
                 }
             }
         });
@@ -656,7 +963,7 @@
             }
         });
         $(".toRemove").remove();
-        
+
         if ('{{SelectedSection|safe}}' != "None" && '{{SelectedSection.id_house.id_buildings.id_buildings|safe}}' == '{{complex.id_buildings|safe}}') {
             var selectIdHouse = '{{SelectedSection.id_house.id_house|safe}}';
             $('#DataTable').find('.id:contains("' + selectIdHouse + '"):first').parent().addClass("active");
@@ -665,7 +972,7 @@
             $(".btnTable_third").prop("disabled", true);
             $(".btnTable_second").prop("disabled", true);
             $.when(selectChg()).done(function () {
-                            
+
                 var selectIdSection = '{{SelectedSection.id_sections|safe}}';
                 $('#DataTable_second').find('.id:contains("' + selectIdSection + '"):first').parent().addClass("active");
                 $("#selected_section").val(selectIdSection);
@@ -674,7 +981,7 @@
                 $(".btnTable_third_add").prop("disabled", false);
                 selectSale();
             });
-           
+
         }
         else {
             $("#DataTable>tbody>tr:first").attr("class", "active");
@@ -686,7 +993,7 @@
     var appendTableSale = document.getElementById("appendHereSale");
     //To get section info
     function selectChg() {
-        $.ajax({            
+        $.ajax({
             type: "GET",
             url: '/ajax/getSection/',
             data: {
@@ -744,14 +1051,14 @@
                             tr.appendChild(td);
                         }
                     }
-                }              
+                }
                 $('[data-toggle="popover"]').popover();
 
             },
             error: function () {
                 enableSelect = false;
                 $(".btnTable_first").prop("disabled", true);
-            }           
+            }
         })
         return $.ajax();
     }
@@ -836,7 +1143,7 @@
                             tr.appendChild(td);
                         }
                         else if (j < 3) {
-                            var td = document.createElement('td');                           
+                            var td = document.createElement('td');
                             if (j == 0) {
                                 td.setAttribute("style", "display: none;");
                                 td.setAttribute("class", "id");

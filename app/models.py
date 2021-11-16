@@ -103,6 +103,27 @@ class Buildings(models.Model):
         db_table = 'buildings'
 
 
+
+
+class Finance(models.Model):
+    id_buildings = models.ForeignKey(Buildings, models.CASCADE, db_column='ID_buildings', blank=True, null=True)  # Field name made lowercase.
+    id_fin = models.AutoField(db_column='id_fin', primary_key=True)  # Field name made lowercase.
+    contribution = models.CharField(max_length=500, blank=True, null=True)
+    installment = models.CharField(max_length=500, blank=True, null=True)
+    mortgage = models.CharField(max_length=500, blank=True, null=True)
+    discount_100 = models.CharField(max_length=500, blank=True, null=True)
+    discount = models.CharField(max_length=500, blank=True, null=True)
+    bank = models.CharField(max_length=500, blank=True, null=True)
+
+class Land(models.Model):
+    id_buildings = models.ForeignKey(Buildings, models.CASCADE, db_column='ID_buildings', blank=True, null=True)  # Field name made lowercase.
+    id_land = models.AutoField(db_column='id_land', primary_key=True)  # Field name made lowercase.
+    title = models.CharField(max_length=500, blank=True, null=True)
+    land_area = models.CharField(max_length=500, blank=True, null=True)
+    cadastral = models.CharField(max_length=500, blank=True, null=True)
+    purpose = models.CharField(max_length=500, blank=True, null=True)
+    percentage = models.CharField(max_length=500, blank=True, null=True)
+
 class Technical(models.Model):
     id_buildings = models.ForeignKey(Buildings, models.CASCADE, db_column='ID_buildings', blank=True, null=True)  # Field name made lowercase.
     id_tech = models.AutoField(db_column='id_tech', primary_key=True)  # Field name made lowercase.
@@ -124,6 +145,41 @@ class Technical(models.Model):
     roofing = models.CharField(max_length=500, blank=True, null=True)
     balconies = models.CharField(max_length=500, blank=True, null=True)
     apartments = models.CharField(max_length=500, blank=True, null=True)
+
+class Purpose(models.Model):
+    id_buildings = models.ForeignKey(Buildings, models.CASCADE, db_column='ID_buildings', blank=True, null=True)  # Field name made lowercase.
+    id_purp = models.AutoField(db_column='id_purp', primary_key=True)  # Field name made lowercase.
+    social_facilities = models.CharField(max_length=500, blank=True, null=True)
+    playground = models.CharField(max_length=500, blank=True, null=True)
+    comfort = models.CharField(max_length=500, blank=True, null=True)
+    security = models.CharField(max_length=500, blank=True, null=True)
+    infrastructure = models.CharField(max_length=500, blank=True, null=True)
+    rest = models.CharField(max_length=500, blank=True, null=True)
+    halls = models.CharField(max_length=500, blank=True, null=True)
+    solutions = models.CharField(max_length=500, blank=True, null=True)
+    bicycle_parking = models.CharField(max_length=500, blank=True, null=True)
+    animals = models.CharField(max_length=500, blank=True, null=True)
+    access = models.CharField(max_length=500, blank=True, null=True)
+    storage = models.CharField(max_length=500, blank=True, null=True)
+    concierge = models.CharField(max_length=500, blank=True, null=True)
+
+class Outdoor(models.Model):
+    id_buildings = models.ForeignKey(Buildings, models.CASCADE, db_column='ID_buildings', blank=True, null=True)  # Field name made lowercase.
+    id_out = models.AutoField(db_column='id_out', primary_key=True)  # Field name made lowercase.
+    entertainment = models.CharField(max_length=500, blank=True, null=True)
+    transport = models.CharField(max_length=500, blank=True, null=True)
+    school = models.CharField(max_length=500, blank=True, null=True)
+    kindergarten = models.CharField(max_length=500, blank=True, null=True)
+    shops = models.CharField(max_length=500, blank=True, null=True)
+
+class Additionally(models.Model):
+    id_buildings = models.ForeignKey(Buildings, models.CASCADE, db_column='ID_buildings', blank=True, null=True)  # Field name made lowercase.
+    id_add = models.AutoField(db_column='id_add', primary_key=True)  # Field name made lowercase.
+    schemes = models.CharField(max_length=500, blank=True, null=True)
+    strengths = models.CharField(max_length=500, blank=True, null=True)
+    weaknesses = models.CharField(max_length=500, blank=True, null=True)
+    additional = models.CharField(max_length=500, blank=True, null=True)
+    
 
 
 

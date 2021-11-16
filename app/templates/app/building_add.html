@@ -172,7 +172,6 @@
                                         </div>
                                 </div>
                             </div> 
-                            <!--new -->
                             <div class="form-row mt-2">
                                 <div class="col-xl-2">
                                     <label>GPS</label>
@@ -219,12 +218,121 @@
                                     </div>
                                  </div>
                             </div>
+
                             <!--new btn-->
                             <div class="pt-5">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+                                 Финансирование
+                                </button>
+                                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel1">Финансирование</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body px-0">
+                                        <div class="col-12">
+                                            <label>Первый вклад</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="contribution">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Рассрочка</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="installment">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Ипотека</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="mortgage">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Скидка при оплате 100%</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="discount_100">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Скидки</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="discount">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Банк</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="bank">
+                                            </div>
+                                        </div>                                        
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
+                                 Земля
+                                </button>
+                                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel2">Земля</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body px-0">
+                                        <div class="col-12">
+                                            <label>Титул</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="title">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Площадь земельного участка</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="land_area">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Кадастровий номер</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="cadastral">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Целевое назначение</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="purpose">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Процент застройки участка</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="percentage">
+                                            </div>
+                                        </div>                            
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3">
                                   Технические параметры
                                 </button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
                                   <div class="modal-dialog">
                                     <div class="modal-content">
                                       <div class="modal-header">
@@ -349,9 +457,203 @@
                                     </div>
                                   </div>
                                 </div>
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal4">
+                                 Назначение и инфраструктура
+                                </button>
+                                <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel4">Назначение и инфраструктура</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body px-0">
+                                        <div class="col-12">
+                                            <label>Типы социальных объектов комплекса</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="social_facilities">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Детская площадка</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="playground">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Комфорт</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="comfort">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Безопасность</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="security">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Внутренняя инфраструктура</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="infrastructure">
+                                            </div>
+                                        </div>  
+                                        <div class="col-12">
+                                            <label>Зона отдыха</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="rest">
+                                            </div>
+                                        </div>  
+                                        <div class="col-12">
+                                            <label>Холл / гостевые зоны</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="halls">
+                                            </div>
+                                        </div>  
+                                        <div class="col-12">
+                                            <label>ИТ решения/Умный дом/Умный ЖК</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="solutions">
+                                            </div>
+                                        </div>  
+                                        <div class="col-12">
+                                            <label>Вело паркинги</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="bicycle_parking">
+                                            </div>
+                                        </div>  
+                                        <div class="col-12">
+                                            <label>Места для выгула животных</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="animals">
+                                            </div>
+                                        </div>  
+                                        <div class="col-12">
+                                            <label>Доступ на территорию комплекса</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="access">
+                                            </div>
+                                        </div>  
+                                        <div class="col-12">
+                                            <label>Места для хранения</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="storage">
+                                            </div>
+                                        </div> 
+                                        <div class="col-12">
+                                            <label>Консьерж сервис</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="concierge">
+                                            </div>
+                                        </div> 
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal5">
+                                 Наружная инфраструктура
+                                </button>
+                                <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel5" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel5">Наружная инфраструктура</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body px-0">
+                                        <div class="col-12">
+                                            <label>Развлечения</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="entertainment">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Транспорт</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="transport">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Школа</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="school">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Садик</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="kindergarten">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Магазины</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="shops">
+                                            </div>
+                                        </div>                            
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal6">
+                                 Дополнительно
+                                </button>
+                                <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Дополнительно</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body px-0">
+                                        <div class="col-12">
+                                            <label>Юридическая схема продажи</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="schemes">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Сильные стороны проекта</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="strengths">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Слабые стороны проекта</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="weaknesses">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Дополнительное описание</label>
+                                            <div class="input-group flex-nowrap">
+                                                <input autocomplete="off" class="form-control" type="text" name="additional">
+                                            </div>
+                                        </div>                                                            
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                             </div>
-                            <button type="button" class="btn btn-warning btn-next mt-5 btn-complex-name">Продолжить</button>
-                            
+                            <button type="button" class="btn btn-warning btn-next mt-5 btn-complex-name">Продолжить</button>                            
                         </div>
                     </div>
                     <div class="tab-pane fade mt-3 bg-white shadow-lg rounded p-0" id="menu2" role="tabpanel" aria-labelledby="building-tab">
@@ -405,7 +707,6 @@
                                             <input autocomplete="off" class="form-control parking-down" type="number" id="num-parking-down1" name="num-parking-down1" min="0" max="1000">
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="form-row mt-2">
                                     <div class="col-xl-2">
