@@ -49,8 +49,9 @@
                     <input type="submit" class="btn btn-warning btn-sm col-xl-12" name="edit_complex" value="Редактировать комплекс">
                     {% endif %}
                     {% if request.user.is_superuser%}
-                    <input type="submit" class="btn btn-danger btn-sm check_complex mt-2 col-xl-12" name="delete_complex" value="Удалить комплекс">
+                    <input type="submit" class="btn btn-danger btn-sm check_complex mt-2 col-xl-12" name="delete_complex" value="Удалить комплекс">                   
                     {% endif %}
+                    <input type="submit" class="btn btn-success btn-sm mt-2 col-xl-12" name="cardPrint" value="Напечатать карту">
                     <!--new btn-->
                     <div class="pt-5">
                         <button type="button" class="btn btn-primary btn-sm mt-2 col-xl-12" data-toggle="modal" data-target="#exampleModal1">
@@ -484,6 +485,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                 </li>
                 </form>
             </ul>

@@ -102,9 +102,6 @@ class Buildings(models.Model):
         managed = True
         db_table = 'buildings'
 
-
-
-
 class Finance(models.Model):
     id_buildings = models.ForeignKey(Buildings, models.CASCADE, db_column='ID_buildings', blank=True, null=True)  # Field name made lowercase.
     id_fin = models.AutoField(db_column='id_fin', primary_key=True)  # Field name made lowercase.

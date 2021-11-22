@@ -4,3 +4,4 @@ django-heroku
 psycopg2==2.8.6
 django-crispy-forms
 xlwt
+python-docx
