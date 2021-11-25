@@ -186,7 +186,7 @@ class Houses(models.Model):
     street_number = models.CharField(max_length=25, blank=True, null=True)
     ttl_area_building = models.FloatField(blank=True, null=True)
     ttl_area_apartments = models.FloatField(blank=True, null=True)
-    storeys = models.IntegerField(blank=True, null=True)
+    storeys = models.CharField(max_length=50, blank=True, null=True)
     construction_phase_prst = models.IntegerField(blank=True, null=True)
     parking_num = models.IntegerField(blank=True, null=True)   
     remark = models.CharField(max_length=500, blank=True, null=True)
@@ -202,7 +202,7 @@ class Houses(models.Model):
 class Sections(models.Model):
     id_house = models.ForeignKey(Houses, models.CASCADE, db_column='ID_house', blank=True, null=True)  # Field name made lowercase.
     id_sections = models.AutoField(db_column='ID_sections', primary_key=True)  # Field name made lowercase.
-    number = models.IntegerField(blank=True, null=True)
+    number = models.CharField(max_length=50, blank=True, null=True)
     attribute = models.CharField(max_length=50, blank=True, null=True)
     financing = models.ForeignKey(Financing, models.CASCADE, db_column='financing', blank=True, null=True)
     duplex_apartments = models.CharField(max_length=50, blank=True, null=True)
