@@ -3,109 +3,130 @@
 {% load static %}
 <div class="container col-12 bg-trasparent py-3 px-1" style="position: relative;">
     {% for message in messages %}
-            <div class="alert alert-danger">
-                <a class="close" href="#" data-dismiss="alert">×</a>
-                {{ message }}
-            </div>
+    <div class="alert alert-danger">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+        {{ message }}
+    </div>
     {% endfor %}
     <a class="btn btn-warning btn-sm" href="{% url 'menu' %}"><i class="fas fa-chevron-circle-left"></i>Назад</a>
     <h5 class="text-center mb-2">Аналитика</h5>
 
     <form action='.' id="form1" method='POST'>
         {% csrf_token %}
-    <div class="col-12 mb-2 border border-warning p-1 pb-2 mr-5">
-        <div class="form-row mt-2">
-            <div class="col-xl-2">
-                <label for="class-select">Месяц и год</label>
-                <div class="d-flex flex-nowrap">
-                    <div class="input-group flex-nowrap">
-                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                        <select id="months-select" name="month">
-                            <option value="1">Январь</option>
-                            <option value="2">Февраль</option>
-                            <option value="3">Март</option>
-                            <option value="4">Апрель</option>
-                            <option value="5">Май</option>
-                            <option value="6">Июнь</option>
-                            <option value="7">Июль</option>
-                            <option value="8">Август</option>
-                            <option value="9">Сентябрь</option>
-                            <option value="10">Октябрь</option>
-                            <option value="11">Ноябрь</option>
-                            <option value="12">Декабрь</option>
-                        </select>
+        <div class="col-12 mb-2 border border-warning p-1 pb-2 mr-5">
+            <div class="form-row mt-2">
+                <div class="col-xl-2">
+                    <label for="class-select">Месяц и год</label>
+                    <div class="d-flex flex-nowrap">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                            <select id="months-select" name="month">
+                                <option value="1">Январь</option>
+                                <option value="2">Февраль</option>
+                                <option value="3">Март</option>
+                                <option value="4">Апрель</option>
+                                <option value="5">Май</option>
+                                <option value="6">Июнь</option>
+                                <option value="7">Июль</option>
+                                <option value="8">Август</option>
+                                <option value="9">Сентябрь</option>
+                                <option value="10">Октябрь</option>
+                                <option value="11">Ноябрь</option>
+                                <option value="12">Декабрь</option>
+                            </select>
+                        </div>
+                        <input class="form-control border border-secondary form-control-xs-mine col-4" type="number" min="2005" max="2099" step="1" id="year" name="year" value="2020" />
+                        </div>
+                    
+                    <div class="d-flex flex-nowrap mt-2">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                            <select id="months-select" name="month_end">
+                                <option value="1">Январь</option>
+                                <option value="2">Февраль</option>
+                                <option value="3">Март</option>
+                                <option value="4">Апрель</option>
+                                <option value="5">Май</option>
+                                <option value="6">Июнь</option>
+                                <option value="7">Июль</option>
+                                <option value="8">Август</option>
+                                <option value="9">Сентябрь</option>
+                                <option value="10">Октябрь</option>
+                                <option value="11">Ноябрь</option>
+                                <option value="12">Декабрь</option>
+                            </select>
+                        </div>
+                        <input class="form-control border border-secondary form-control-xs-mine col-4" type="number" min="2005" max="2099" step="1" id="year_end" name="year_end" value="2020" />
                     </div>
-                    <input class="form-control border border-secondary form-control-xs-mine col-4" type="number" min="2005" max="2099" step="1" id="year" name="year" value="2010" />
+                    </div>
+                    <div class="col-xl-1">
+                        <label for="class-select">Класс</label>
+                        <div class="input-group flex-nowrap">
+                            <select multiple="multiple" id="class-select" name="id_sections__id_house__id_buildings__class_field__in">
+                                <option value="Де-люкс">Де-люкс</option>
+                                <option value="Премиум">Премиум</option>
+                                <option value="Бизнес">Бизнес</option>
+                                <option value="Комфорт">Комфорт</option>
+                                <option value="Эконом">Эконом</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <label for="customer">Заказчик</label>
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                            <select multiple="multiple" id="customer" name="id_sections__id_house__id_buildings__customer__name__in">
+                                {% for custs in cust %}
+                                <option value="{{ custs.name }}">{{ custs.ownership.name}} {{ custs.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <label for="urban-zone">Зона</label>
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                            <select multiple="multiple" id="urban-zone" name="id_sections__id_house__id_buildings__urban_develop_zone__in">
+                                <option value="Центр">Центр</option>
+                                <option value="Приближенный">Приближенный р-н</option>
+                                <option value="Отдаленный">Отдаленный р-н</option>
+                                <option value="Область">Область</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <label for="city-area">Бытовой район</label>
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                            <select multiple="multiple" id="city-area" name="id_sections__id_house__id_buildings__city_area__name__in">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <label for="subway">Метрополитен</label>
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text"><i class="fas fa-subway"></i></span>
+                            <select multiple="multiple" id="subway" name="id_sections__id_house__id_buildings__subway__name__in">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-1">
+                        <label for="urban-zone">Квартиры</label>
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text"><i class="fas fa-building"></i></span>
+                            <select multiple="multiple" id="apart" name="apart">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mt-3 d-flex flex-row-reverse pr-1" id="insert">
+                    <input type="submit" class="btn btn-success btn-sm mt-2 ml-1" name="show" value="Показать">
                 </div>
             </div>
-            <div class="col-xl-1">
-                <label for="class-select">Класс</label>
-                <div class="input-group flex-nowrap">
-                    <select multiple="multiple" id="class-select" name="id_sections__id_house__id_buildings__class_field__in">
-                        <option value="Де-люкс">Де-люкс</option>
-                        <option value="Премиум">Премиум</option>
-                        <option value="Бизнес">Бизнес</option>
-                        <option value="Комфорт">Комфорт</option>
-                        <option value="Эконом">Эконом</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-xl-2">
-                <label for="customer">Заказчик</label>
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
-                    <select multiple="multiple" id="customer" name="id_sections__id_house__id_buildings__customer__name__in">
-                        {% for custs in cust %}
-                    <option value="{{ custs.name }}">{{ custs.ownership.name}} {{ custs.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-            <div class="col-xl-2">
-                <label for="urban-zone">Зона</label>
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                    <select multiple="multiple" id="urban-zone" name="id_sections__id_house__id_buildings__urban_develop_zone__in">
-                        <option value="Центр">Центр</option>
-                        <option value="Приближенный">Приближенный р-н</option>
-                        <option value="Отдаленный">Отдаленный р-н</option>
-                        <option value="Область">Область</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-xl-2">
-                <label for="city-area">Бытовой район</label>
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
-                    <select multiple="multiple" id="city-area" name="id_sections__id_house__id_buildings__city_area__name__in">
-                    </select>
-                </div>
-            </div>
-            <div class="col-xl-2">
-                <label for="subway">Метрополитен</label>
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text"><i class="fas fa-subway"></i></span>
-                    <select multiple="multiple" id="subway" name="id_sections__id_house__id_buildings__subway__name__in">
-                    </select>
-                </div>
-            </div>
-            <div class="col-xl-1">
-                <label for="urban-zone">Квартиры</label>
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text"><i class="fas fa-building"></i></span>
-                    <select multiple="multiple" id="apart" name="apart">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="form-row mt-3 d-flex flex-row-reverse pr-1" id="insert">
-            <input type="submit" class="btn btn-success btn-sm mt-2 ml-1" name="show" value="Показать">
-        </div>
-    </div>
 
     </form>
     <div class="table-responsive col-12 pr-3 pl-0">
@@ -146,7 +167,7 @@
                 </thead>
                 <tbody>
                     {% for sales in sale %}
-                    <tr>                      
+                    <tr>
                         <td>{{sales.id_sections.id_house.id_buildings.customer.name}}</td>
                         <td>{{sales.id_sections.id_house.id_buildings.name}}</td>
                         <td>{{sales.id_sections.id_house.street_number}}\{{sales.id_sections.number}}</td>
@@ -166,7 +187,7 @@
                         <td class="bg-danger text-white">{{sales.a3_area_to_sale}}</td>
                         <td class="bg-danger text-white">{{sales.a3_avg_price}}</td>
                         <td class="bg-info text-white">{{sales.a4_to_sale}}</td>
-                        <td class="bg-info text-white">{{sales.a4_area_to_sale}}</td>  
+                        <td class="bg-info text-white">{{sales.a4_area_to_sale}}</td>
                         <td class="bg-info text-white">{{sales.a4_avg_price}}</td>
                     </tr>
                     {% endfor %}
@@ -559,12 +580,12 @@
     });
 </script>
 <script>
-    //To zone select 
+    //To zone select
     function zoneSelect(zone) {
         if (zone != "") {
             $('#city-area').disabled = false;
             $('#subway').disabled = false;
-            
+
             $.ajax({
                 type: "GET",
                 url: '/ajax/getCityAreas_multi/',
@@ -614,7 +635,7 @@
                     }
                     $('#subway').multipleSelect('refresh');
                 }
-            });           
+            });
         }
         else {
             $("#subway option").remove();
