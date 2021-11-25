@@ -97,6 +97,8 @@ class Buildings(models.Model):
     commerc = models.CharField(max_length=200, blank=True, null=True)
     rating = models.CharField(max_length=200, blank=True, null=True)
     grade =  models.CharField(max_length=200, blank=True, null=True)
+    Render = models.ImageField(upload_to='imgs', default=None)
+    map = models.ImageField(upload_to='imgs' , default=None)
 
     class Meta:
         managed = True

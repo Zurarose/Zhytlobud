@@ -27,7 +27,7 @@
                 </ul>
             </div>             
             <!-- Tab panes -->
-            <form action='.' id="form1" method='POST'>
+            <form action='.' id="form1" method='POST' enctype="multipart/form-data">
                 {% csrf_token %}              
                 <div class="tab-content">
                     <div class="tab-pane fade show active mt-3 shadow-lg rounded p-4" id="menu1" role="tabpanel" aria-labelledby="complex-tab">
@@ -217,8 +217,7 @@
                                         <input autocomplete="off" class="form-control" type="text" id="grade" name="grade">
                                     </div>
                                  </div>
-                            </div>
-
+                            </div>                          
                             <!--new btn-->
                             <div class="pt-5">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
@@ -652,6 +651,26 @@
                                     </div>
                                   </div>
                                 </div>
+                                <div class="col-4 p-0 mt-4">
+                                    <div class="input-group mb-3">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupFileAddon01">Рендер</span>
+                                      </div>
+                                      <div class="custom-file">
+                                        <input type="file" class="custom-file-input" accept="image/*" name="render" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
+                                      </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupFileAddon02">Карта</span>
+                                      </div>
+                                      <div class="custom-file">
+                                        <input type="file" class="custom-file-input" accept="image/*" name="map" aria-describedby="inputGroupFileAddon02">
+                                        <label class="custom-file-label" for="inputGroupFile02">Выберите файл</label>
+                                      </div>
+                                    </div>
+                                </div>
                             </div>
                             <button type="button" class="btn btn-warning btn-next mt-5 btn-complex-name">Продолжить</button>                            
                         </div>
@@ -973,6 +992,8 @@
 </div>
 {% endblock %}
 {% block scripts %}
+<script type="text/javascript" src="{% static 'app/scripts/bs-custom-file-input.min.js' %}"></script>
+<script>bsCustomFileInput.init()</script>
 <script>
     //For change tabs
     var current = 1;
@@ -1000,7 +1021,6 @@
         parkOnOff();
         masknum();
     })
-
 </script>
 <script>
     //To change complex name

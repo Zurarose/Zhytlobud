@@ -80,6 +80,7 @@
     <Folder Include="Zhytlobud\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\static\app\content\1.jpeg" />
     <Content Include="app\static\app\content\card.docx" />
     <Content Include="app\static\app\DataTables\Buttons-2.0.1\css\buttons.bootstrap.css" />
     <Content Include="app\static\app\DataTables\Buttons-2.0.1\css\buttons.bootstrap.min.css" />
@@ -256,6 +257,7 @@
     <Content Include="app\static\app\img\icon.ico" />
     <Content Include="app\static\app\img\settings,old.png" />
     <Content Include="app\static\app\img\update.old.png" />
+    <Content Include="app\static\app\scripts\bs-custom-file-input.min.js" />
     <Content Include="app\static\app\scripts\jquery-3.3.1.min.js" />
     <Content Include="app\static\app\scripts\jquery.inputmask.min.js" />
     <Content Include="app\static\app\scripts\jquery.min.js" />

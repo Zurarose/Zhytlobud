@@ -128,7 +128,7 @@ if USE_S3 == 'TRUE':
     AWS_LOCATION = 'static'
     STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    DEFAULT_FILE_STORAGE = 'TwentyTwo.storage_backends.MediaStorage'
+    DEFAULT_FILE_STORAGE = 'Zhytlobud.storage_backends.MediaStorage'
 else:
     STATIC_URL = 'app/static/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
