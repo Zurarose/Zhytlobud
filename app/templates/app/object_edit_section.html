@@ -84,11 +84,16 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-xl-2">
-                                    <label>Квартир всего</label>
+                                <div class="col-xl-1">
+                                    <label>Этажность</label>
                                     <div class="input-group flex-nowrap">
-                                        <span class="input-group-text">№</span>
-                                        <input autocomplete="off" readonly class="form-control num-apart-ttl" type="number" id="num-apart-ttl" name="num-apart-ttl" min="0" max="10000">
+                                        <input autocomplete="off" class="form-control" type="number" id="storeys-apart" name="storeys-apart" min="0" max="999" value="{{section.storeys}}">
+                                    </div>
+                                </div>
+                                <div class="col-xl-1">
+                                    <label>Кварт. всего</label>
+                                    <div class="input-group flex-nowrap">
+                                        <input autocomplete="off" readonly class="form-control num-apart-ttl" type="number" id="num-apart-ttl" name="num-apart-ttl" min="0" max="999">
                                     </div>
                                 </div>
                                 <div class="col-xl-2">
@@ -260,6 +265,7 @@
 
         var penthouse = `{{ section.penthouses|safe }}`;
         $('#penthouse option[value="' + penthouse + '"]').prop("selected", true);
+
     }
 
     //To count avg prices and areas

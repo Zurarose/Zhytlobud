@@ -164,15 +164,22 @@
                                         <input autocomplete="off" class="form-control parking-up" type="number" id="num-parking-up" name="num-parking-up" min="0" max="1000">
                                     </div>
                                 </div>
-                                <div class="col-xl-3">
-                                        <label>Ссылка</label>
-                                        <div class="input-group flex-nowrap">
-                                            <span class="input-group-text"><i class="fab fa-internet-explorer"></i></span>
-                                            <input autocomplete="off" type="text" class="form-control" id="url" name="url" value="">
-                                        </div>
+                                <div class="col-xl-2">
+                                <label>Гостевая парковка(мест)</label>
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
+                                    <input autocomplete="off" class="form-control parking-up" type="number" id="num-guest-parking-up" name="num-guest-parking-up" min="0" max="1000">
                                 </div>
+                            </div>   
                             </div> 
                             <div class="form-row mt-2">
+                                <div class="col-xl-2">
+                                    <label>Ссылка</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text"><i class="fab fa-internet-explorer"></i></span>
+                                        <input autocomplete="off" type="text" class="form-control" id="url" name="url" value="">
+                                    </div>
+                                </div>
                                 <div class="col-xl-2">
                                     <label>GPS</label>
                                     <div class="input-group flex-nowrap">
@@ -202,22 +209,24 @@
                                 <div class="col-xl-2">
                                     <label>Коммер. помещ.</label>
                                     <div class="input-group flex-nowrap">
-                                        <input autocomplete="off" class="form-control" type="text" id="commerc" name="commerc">
+                                        <input autocomplete="off" class="num form-control" type="text" id="commerc" name="commerc">
                                     </div>
                                  </div>
-                                <div class="col-xl-1">
-                                    <label>Рейтинг</label>
-                                    <div class="input-group flex-nowrap">
-                                        <input autocomplete="off" class="form-control" type="text" id="rating" name="rating">
-                                    </div>
-                                 </div>
-                                <div class="col-xl-1">
-                                    <label>Оценка</label>
-                                    <div class="input-group flex-nowrap">
-                                        <input autocomplete="off" class="form-control" type="text" id="grade" name="grade">
-                                    </div>
-                                 </div>
-                            </div>                          
+                                </div>
+                                <div class="form-row mt-2">
+                                    <div class="col-xl-1">
+                                        <label>Рейтинг</label>
+                                        <div class="input-group flex-nowrap">
+                                            <input autocomplete="off" class="form-control" type="text" id="rating" name="rating">
+                                        </div>
+                                     </div>
+                                    <div class="col-xl-1">
+                                        <label>Оценка</label>
+                                        <div class="input-group flex-nowrap">
+                                            <input autocomplete="off" class="form-control" type="text" id="grade" name="grade">
+                                        </div>
+                                     </div>
+                                </div>
                             <!--new btn-->
                             <div class="pt-5">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
@@ -842,11 +851,16 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-xl-2">
-                                        <label>Квартир всего</label>
+                                    <div class="col-xl-1">
+                                        <label>Этажность</label>
                                         <div class="input-group flex-nowrap">
-                                            <span class="input-group-text">№</span>
-                                            <input autocomplete="off" readonly class="form-control num-apart-ttl" type="number" id="num-apart-ttl1" name="num-apart-ttl1" min="0" max="10000">
+                                            <input autocomplete="off" class="form-control" type="number" id="storeys-apart1" name="storeys-apart1" min="0" max="999">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1">
+                                        <label>Кварт. всего</label>
+                                        <div class="input-group flex-nowrap">
+                                            <input autocomplete="off" readonly class="form-control num-apart-ttl" type="number" id="num-apart-ttl1" name="num-apart-ttl1" min="0" max="999">
                                         </div>
                                     </div>
                                     <div class="col-xl-2">

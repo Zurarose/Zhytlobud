@@ -29,6 +29,7 @@
                 <li class="p-2 list-group-item">Наличие парковки: {{complex.parking}}</li>
                 {% if complex.parking == "Есть" %}
                 <li class="p-2 list-group-item">Тип парковки: {{complex.parking_type}}</li>
+                <li class="p-2 list-group-item">Гостевая парковка (мест): {{complex.guest_parking_num}}</li>
                 {% if complex.parking_type == "Надземная" %}
                 <li class="p-2 list-group-item">Парковка (мест): {{complex.parking_num}}</li>
                 {% endif %}
@@ -49,7 +50,7 @@
                     <input type="submit" class="btn btn-warning btn-sm col-xl-12" name="edit_complex" value="Редактировать комплекс">
                     {% endif %}
                     {% if request.user.is_superuser%}
-                    <input type="submit" class="btn btn-danger btn-sm check_complex mt-2 col-xl-12" name="delete_complex" value="Удалить комплекс">                   
+                    <input type="submit" class="btn btn-danger btn-sm check_complex mt-2 col-xl-12" name="delete_complex" value="Удалить комплекс">
                     {% endif %}
                     <input type="submit" class="btn btn-success btn-sm mt-2 col-xl-12" name="cardPrint" value="Напечатать карту">
                     <!--new btn-->
@@ -485,7 +486,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                 </li>
                 </form>
             </ul>
@@ -519,7 +520,7 @@
                             <th>Этажность</th>
                             {% if complex.parking_type == "Подземная" and complex.parking == "Есть" %}
                             <th>Парковка (мест)</th>
-                            {% endif %}
+                            {% endif %}                            
                             <th>Заметка</th>
                         </tr>
                     </thead>
@@ -538,7 +539,7 @@
                             <td>{{ row.storeys }}</td>
                             {% if complex.parking_type == "Подземная" %}
                             <td>{{ row.parking_num }}</td>
-                            {% endif %}
+                            {% endif %}                            
                             <td class="p-1"><a class="col-12 border border-warning btn btn-light" role="button" data-toggle="popover" data-trigger="hover" title="Примечание" data-content="{{row.remark}}"><i class="fas fa-search"></i></a></td>
                         </tr>
                         {% endfor %}
@@ -572,6 +573,7 @@
                             <th>Дюплекс</th>
                             <th>Пентхаусы</th>
                             <th>Квартир всего</th>
+                            <th>Этажность</th>
                             <th>Ср. площадь</th>
                             <th>1км. кв.</th>
                             <th>2км. кв.</th>
@@ -583,6 +585,7 @@
                         <tr class="toRemove">
                             <td style="display: none;">10</td>
                             <td>10</td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -1007,8 +1010,8 @@
                     var tr = document.createElement('tr')
                     tr.setAttribute("class", "toRemove")
                     appendTable.appendChild(tr);
-                    for (var j = 0; j < 20; j++) {
-                        if (j > 7) {
+                    for (var j = 0; j < 21; j++) {
+                        if (j > 8) {
                             var td = document.createElement('td');
                             var a = document.createElement('a');
                             a.setAttribute("class", "col-12 border border-warning btn btn-light");
@@ -1040,7 +1043,8 @@
                             td.setAttribute("class", "p-1");
                             tr.appendChild(td);
                         }
-                        else if (j > 0 && j < 8) {
+                        else if (j > 0 && j < 9) {
+                            console.log(data.objects[i][j])
                             var td = document.createElement('td');
                             td.innerHTML = data.objects[i][j];
                             tr.appendChild(td);

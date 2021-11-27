@@ -80,7 +80,6 @@
     <Folder Include="Zhytlobud\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\static\app\content\1.jpeg" />
     <Content Include="app\static\app\content\card.docx" />
     <Content Include="app\static\app\DataTables\Buttons-2.0.1\css\buttons.bootstrap.css" />
     <Content Include="app\static\app\DataTables\Buttons-2.0.1\css\buttons.bootstrap.min.css" />
