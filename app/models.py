@@ -10,7 +10,7 @@ import datetime
 
 class Logger(models.Model):
     id_log = models.AutoField(db_column='id_log', primary_key=True)  # Field name made lowercase.
-    info = models.CharField(db_column='info', max_length=2000, blank=True, null=True)  # Field name made lowercase.
+    info = models.CharField(db_column='info', max_length=5000, blank=True, null=True)  # Field name made lowercase.
     time = models.DateTimeField(db_column='time',auto_now_add=True, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -19,8 +19,8 @@ class Logger(models.Model):
 
 class Areas(models.Model):
     id_areas = models.AutoField(db_column='ID_areas', primary_key=True)  # Field name made lowercase.
-    zone = models.CharField(db_column='Zone', max_length=500, blank=True, null=True)  # Field name made lowercase.
-    name = models.CharField(db_column='Name', max_length=500, blank=True, null=True)  # Field name made lowercase.
+    zone = models.CharField(db_column='Zone', max_length=5000, blank=True, null=True)  # Field name made lowercase.
+    name = models.CharField(db_column='Name', max_length=5000, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = True
@@ -28,8 +28,8 @@ class Areas(models.Model):
 
 class Streets(models.Model):
     id_street = models.AutoField(db_column='ID_street', primary_key=True)  # Field name made lowercase.
-    type = models.CharField(max_length=500, blank=True, null=True)
-    name = models.CharField(max_length=500, blank=True, null=True)
+    type = models.CharField(max_length=5000, blank=True, null=True)
+    name = models.CharField(max_length=5000, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -39,8 +39,8 @@ class Streets(models.Model):
 class Subways(models.Model):
     id_subway = models.AutoField(db_column='ID_subway', primary_key=True)  # Field name made lowercase.
     area =  models.ForeignKey(Areas, models.SET_NULL, db_column='id_areas', blank=True, null=True)
-    zone = models.CharField(db_column='Zone', max_length=500, blank=True, null=True)  # Field name made lowercase.
-    name = models.CharField(db_column='Name', max_length=500, blank=True, null=True) # Field name made lowercase.
+    zone = models.CharField(db_column='Zone', max_length=5000, blank=True, null=True)  # Field name made lowercase.
+    name = models.CharField(db_column='Name', max_length=5000, blank=True, null=True) # Field name made lowercase.
 
     class Meta:
         managed = True
@@ -48,8 +48,8 @@ class Subways(models.Model):
 
 class Ownership(models.Model):
     id_ownership = models.AutoField(db_column='id_ownership', primary_key=True)  # Field name made lowercase.
-    form = models.CharField(db_column='form', max_length=500, blank=True, null=True)  # Field name made lowercase.
-    full_form = models.CharField(db_column='full_form', max_length=500, blank=True, null=True)  # Field name made lowercase.
+    form = models.CharField(db_column='form', max_length=5000, blank=True, null=True)  # Field name made lowercase.
+    full_form = models.CharField(db_column='full_form', max_length=5000, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = True
@@ -57,8 +57,8 @@ class Ownership(models.Model):
 
 class Financing(models.Model):
     id_finance = models.AutoField(db_column='ID_finance', primary_key=True)  # Field name made lowercase.
-    name = models.CharField(db_column='Name', max_length=500, blank=True, null=True)  # Field name made lowercase.
-    full_name = models.CharField(db_column='Full_name', max_length=500, blank=True, null=True)  # Field name made lowercase.
+    name = models.CharField(db_column='Name', max_length=5000, blank=True, null=True)  # Field name made lowercase.
+    full_name = models.CharField(db_column='Full_name', max_length=5000, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = True
@@ -67,7 +67,7 @@ class Financing(models.Model):
 class Customers(models.Model):
     id_customer = models.AutoField(db_column='ID_customer', primary_key=True)  # Field name made lowercase.
     ownership = models.ForeignKey(Ownership, models.SET_NULL, db_column='form', blank=True, null=True)
-    name = models.CharField(db_column='Name', max_length=500, blank=True, null=True)  # Field name made lowercase.
+    name = models.CharField(db_column='Name', max_length=5000, blank=True, null=True)  # Field name made lowercase.
     phone = models.CharField(db_column='Phone', max_length=15, blank=True, null=True)  # Field name made lowercase.
     start_work = models.CharField(db_column='start_work', max_length=15, blank=True, null=True)
 
@@ -78,26 +78,26 @@ class Customers(models.Model):
 class Buildings(models.Model):
     id_buildings = models.AutoField(db_column='ID_buildings', primary_key=True)  # Field name made lowercase.
     class_field = models.CharField(db_column='class', max_length=500, blank=True, null=True)  # Field renamed because it was a Python reserved word.
-    type_complex = models.CharField(max_length=500, blank=True, null=True)
+    type_complex = models.CharField(max_length=5000, blank=True, null=True)
     name = models.CharField(max_length=5000, blank=True, null=True)
     street_name = models.ForeignKey(Streets, models.SET_NULL, db_column='street_name', blank=True, null=True)
     builder = models.CharField(max_length=5000, blank=True, null=True)
     customer = models.ForeignKey(Customers, models.SET_NULL, db_column='customer', blank=True, null=True)
-    urban_develop_zone = models.CharField(max_length=500, blank=True, null=True)
+    urban_develop_zone = models.CharField(max_length=5000, blank=True, null=True)
     city_area = models.ForeignKey(Areas, models.SET_NULL, db_column='city area', blank=True, null=True)  # Field renamed to remove unsuitable characters.
     subway = models.ForeignKey(Subways, models.SET_NULL, db_column='subway', blank=True, null=True)
     parking = models.CharField(max_length=25, blank=True, null=True)
     parking_type = models.CharField(max_length=25, blank=True, null=True)
     parking_num = models.IntegerField(blank=True, null=True)
     guest_parking_num = models.IntegerField(blank=True, null=True)
-    url = models.CharField(max_length=400, blank=True, null=True)
-    gps = models.CharField(max_length=200, blank=True, null=True)
+    url = models.CharField(max_length=5000, blank=True, null=True)
+    gps = models.CharField(max_length=5000, blank=True, null=True)
     sell_center = models.CharField(max_length=200, blank=True, null=True)
     total_area_complex = models.FloatField(blank=True, null=True)
     build_in = models.FloatField(blank=True, null=True)
     commerc = models.FloatField(blank=True, null=True)
-    rating = models.CharField(max_length=200, blank=True, null=True)
-    grade =  models.CharField(max_length=200, blank=True, null=True)
+    rating = models.CharField(max_length=5000, blank=True, null=True)
+    grade =  models.CharField(max_length=5000, blank=True, null=True)
     Render = models.ImageField(upload_to='imgs', default=None)
     map = models.ImageField(upload_to='imgs' , default=None)
 
@@ -189,7 +189,7 @@ class Houses(models.Model):
     street_number = models.CharField(max_length=25, blank=True, null=True)
     ttl_area_building = models.FloatField(blank=True, null=True)
     ttl_area_apartments = models.FloatField(blank=True, null=True)
-    storeys = models.CharField(max_length=500, blank=True, null=True)
+    storeys = models.CharField(max_length=5000, blank=True, null=True)
     construction_phase_prst = models.IntegerField(blank=True, null=True)
     parking_num = models.IntegerField(blank=True, null=True)   
     remark = models.CharField(max_length=5000, blank=True, null=True)
@@ -206,7 +206,7 @@ class Sections(models.Model):
     id_house = models.ForeignKey(Houses, models.CASCADE, db_column='ID_house', blank=True, null=True)  # Field name made lowercase.
     id_sections = models.AutoField(db_column='ID_sections', primary_key=True)  # Field name made lowercase.
     number = models.CharField(max_length=500, blank=True, null=True)
-    attribute = models.CharField(max_length=500, blank=True, null=True)
+    attribute = models.CharField(max_length=5000, blank=True, null=True)
     financing = models.ForeignKey(Financing, models.CASCADE, db_column='financing', blank=True, null=True)
     duplex_apartments = models.CharField(max_length=500, blank=True, null=True)
     penthouses = models.CharField(max_length=500, blank=True, null=True)
