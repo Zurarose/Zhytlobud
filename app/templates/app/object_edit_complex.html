@@ -651,7 +651,7 @@
                                 <input type="file" class="custom-file-input" accept="image/*" name="render" aria-describedby="inputGroupFileAddon01">
                                 <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
                                 </div>
-                                {% if build.Render %}
+                                {% if build.Render and build.Render != "Нет" %}
                                 <span class="p-2">Текущий рендер: <a target="_blank" href="{{build.Render.url}}">ссылка <i class="fab fa-internet-explorer"></i></a></span>
                                 {% endif %}
                             </div>
@@ -663,7 +663,7 @@
                                 <input type="file" class="custom-file-input" accept="image/*" name="map" aria-describedby="inputGroupFileAddon02">
                                 <label class="custom-file-label" for="inputGroupFile02">Выберите файл</label>
                                 </div>
-                                {% if build.map %}
+                                {% if build.map and build.map != "Нет" %}
                                 <span class="p-2">Текущая карта: <a target="_blank" href="{{build.map.url}}">ссылка <i class="fab fa-internet-explorer"></i></a></span>
                                 {% endif %}
                             </div>                            

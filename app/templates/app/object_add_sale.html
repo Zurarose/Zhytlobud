@@ -165,7 +165,7 @@
                                         <div class="col-xl-2 pl-1 pr-0">
                                             <label>Остаток кв.м.</label>
                                             <div class="input-group flex-nowrap">
-                                                <input autocomplete="off" class="num form-control area" type="text" id="Area1ApRemain" name="Area1ApRemain" value="">
+                                                <input autocomplete="off" readonly class="num form-control area" type="text" id="Area1ApRemain" name="Area1ApRemain" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -217,7 +217,7 @@
                                         <div class="col-xl-2 pl-1 pr-0">
                                             <label>Остаток кв.м.</label>
                                             <div class="input-group flex-nowrap">
-                                                <input autocomplete="off" class="num form-control area" type="text" id="Area2ApRemain" name="Area2ApRemain" value="">
+                                                <input autocomplete="off" readonly class="num form-control area" type="text" id="Area2ApRemain" name="Area2ApRemain" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -271,7 +271,7 @@
                                         <div class="col-xl-2 pl-1 pr-0">
                                             <label>Остаток кв.м.</label>
                                             <div class="input-group flex-nowrap">
-                                                <input autocomplete="off" class="num form-control area" type="text" id="Area3ApRemain" name="Area3ApRemain" value="">
+                                                <input autocomplete="off" readonly class="num form-control area" type="text" id="Area3ApRemain" name="Area3ApRemain" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -323,7 +323,7 @@
                                         <div class="col-xl-2 pl-1 pr-0">
                                             <label>Остаток кв.м.</label>
                                             <div class="input-group flex-nowrap">
-                                                <input autocomplete="off" class="num form-control area" type="text" id="Area4ApRemain" name="Area4ApRemain" value="">
+                                                <input autocomplete="off" readonly class="num form-control area" type="text" id="Area4ApRemain" name="Area4ApRemain" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -345,6 +345,50 @@
     $(window).on('load', function () {
         $('#loading').hide();
         masknum();
+
+        var a1_area_min = parseFloat(`{{ section.a1_area_min|safe }}`);
+        var a1_area_max = parseFloat(`{{ section.a1_area_max|safe }}`);
+        var a1avg = (a1_area_min + a1_area_max) / 2
+
+        var a2_area_min = parseFloat(`{{ section.a2_area_min|safe }}`);
+        var a2_area_max = parseFloat(`{{ section.a2_area_max|safe }}`);
+        var a2avg = (a2_area_min + a2_area_max) / 2
+
+        var a3_area_min = parseFloat(`{{ section.a3_area_min|safe }}`);
+        var a3_area_max = parseFloat(`{{ section.a3_area_max|safe }}`);
+        var a3avg = (a3_area_min + a3_area_max) / 2
+
+        var a4_area_min = parseFloat(`{{ section.a4_area_min|safe }}`);
+        var a4_area_max = parseFloat(`{{ section.a4_area_max|safe }}`);
+        var a4avg = (a4_area_min + a4_area_max) / 2
+        $('#Ttl1Ap').change(function () {
+            var temp1 = $('#Ttl1Ap').val()
+            temp1 = parseInt(temp1)
+            $(this).closest('.card-body').find(".area").val(a1avg * temp1);
+            $(this).closest('.card-body').find(".area").trigger("change")
+        });
+
+        $('#Ttl2Ap').change(function () {
+            var temp2 = $('#Ttl2Ap').val()
+            temp2 = parseInt(temp2)
+            $(this).closest('.card-body').find(".area").val(a2avg * temp2);
+            $(this).closest('.card-body').find(".area").trigger("change")
+        });
+
+        $('#Ttl3Ap').change(function () {
+            var temp3 = $('#Ttl3Ap').val()
+            temp3 = parseInt(temp3)
+            $(this).closest('.card-body').find(".area").val(a3avg * temp3);
+            $(this).closest('.card-body').find(".area").trigger("change")
+        });
+
+        $('#Ttl4Ap').change(function () {
+            var temp4 = $('#Ttl4Ap').val()
+            temp4 = parseInt(temp4)
+            $(this).closest('.card-body').find(".area").val(a4avg * temp4);
+            $(this).closest('.card-body').find(".area").trigger("change")
+        });
+        
         var last = '{{last|safe}}'
         
         if (last != "None") {
