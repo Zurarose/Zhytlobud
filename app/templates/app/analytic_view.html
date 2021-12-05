@@ -35,13 +35,13 @@
                                 <option value="12">Декабрь</option>
                             </select>
                         </div>
-                        <input class="form-control border border-secondary form-control-xs-mine col-4" type="number" min="2005" max="2099" step="1" id="year" name="year" value="2020" />
+                        <input class="form-control border border-secondary form-control-xs-mine col-4" type="number" min="2005" max="2099" step="1" id="year" name="year__gte" value="2020" />
                         </div>
                     
                     <div class="d-flex flex-nowrap mt-2">
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                            <select id="months-select" name="month_end">
+                            <select id="months-select" name="">
                                 <option value="1">Январь</option>
                                 <option value="2">Февраль</option>
                                 <option value="3">Март</option>
@@ -56,7 +56,7 @@
                                 <option value="12">Декабрь</option>
                             </select>
                         </div>
-                        <input class="form-control border border-secondary form-control-xs-mine col-4" type="number" min="2005" max="2099" step="1" id="year_end" name="year_end" value="2020" />
+                        <input class="form-control border border-secondary form-control-xs-mine col-4" type="number" min="2005" max="2099" step="1" id="year_end" name="year__lte" value="2020" />
                     </div>
                     </div>
                     <div class="col-xl-1">
