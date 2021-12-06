@@ -355,21 +355,22 @@
                         var sheet = xlsx.xl.worksheets['sheet1.xml'];
                         $('c[r=A1] t', sheet).text($('#year').val() + "-" + $('#months-select').val());
                         // Loop over the cells in column `K`
-                        $('row c[r^="M"]', sheet).attr('s', '40');
-                        $('row c[r^="N"]', sheet).attr('s', '40');
-                        $('row c[r^="O"]', sheet).attr('s', '40');
-
-                        $('row c[r^="J"]', sheet).attr('s', '35');
                         $('row c[r^="K"]', sheet).attr('s', '35');
                         $('row c[r^="L"]', sheet).attr('s', '35');
+                        $('row c[r^="M"]', sheet).attr('s', '35');
 
-                        $('row c[r^="P"]', sheet).attr('s', '20');
+                        $('row c[r^="N"]', sheet).attr('s', '40');
+                        $('row c[r^="O"]', sheet).attr('s', '40');
+                        $('row c[r^="P"]', sheet).attr('s', '40');
+
+                       
                         $('row c[r^="Q"]', sheet).attr('s', '20');
                         $('row c[r^="R"]', sheet).attr('s', '20');
+                        $('row c[r^="S"]', sheet).attr('s', '20');
 
-                        $('row c[r^="S"]', sheet).attr('s', '5');
                         $('row c[r^="T"]', sheet).attr('s', '5');
                         $('row c[r^="U"]', sheet).attr('s', '5');
+                        $('row c[r^="V"]', sheet).attr('s', '5');
                     }
                 }
 
