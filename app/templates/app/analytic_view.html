@@ -20,7 +20,7 @@
                     <div class="d-flex flex-nowrap">
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                            <select id="months-select" name="month">
+                            <select id="month" name="month">
                                 <option value="1">Январь</option>
                                 <option value="2">Февраль</option>
                                 <option value="3">Март</option>
@@ -41,7 +41,7 @@
                     <div class="d-flex flex-nowrap mt-2">
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                            <select id="months-select" name="month_end">
+                            <select id="month_end" name="month_end">
                                 <option value="1">Январь</option>
                                 <option value="2">Февраль</option>
                                 <option value="3">Март</option>
@@ -205,6 +205,7 @@
     $(window).on('load', function () {
         $('#loading').hide();
         zoneSelect();
+
         $('#urban-zone').multipleSelect({
             formatSelectAll() {
                 return 'Все'
@@ -246,7 +247,22 @@
             },
 
         })
-        $('#months-select').multipleSelect({
+        $('#month').multipleSelect({
+            formatSelectAll() {
+                return 'Все'
+            },
+            formatAllSelected() {
+                return 'Все'
+            },
+            formatCountSelected(count, total) {
+                return 'Выбрано ' + total + ' из ' + count
+            },
+            formatNoMatchesFound() {
+                return 'Нет данных'
+            },
+
+        })
+        $('#month_end').multipleSelect({
             formatSelectAll() {
                 return 'Все'
             },
@@ -336,6 +352,46 @@
             },
 
         })
+
+        var yearStart_save = {{ yearStart_save|safe}}
+        var yearEnd_save = {{ yearEnd_save| safe}}
+        var monthStart_save = {{ monthStart_save|safe}}
+        var monthEnd_save = {{ monthEnd_save|safe}}
+        var class_save = {{ class_save|safe}}
+        var customer_save = {{ customer_save| safe}}
+        var zone_save = {{ zone_save| safe}}
+        
+        var apart_save = {{ apart_save| safe}}
+        console.log(yearStart_save)
+        if (yearStart_save != "") {
+        $('#year').val(yearStart_save);
+        }
+        if (yearEnd_save != "") {
+            $('#year_end').val(yearEnd_save);
+        }
+        if (monthStart_save != "") {
+            $('#month').multipleSelect('setSelects', [monthStart_save])
+        } 
+        if (monthEnd_save != "") {
+            $('#month_end').multipleSelect('setSelects', [monthEnd_save])
+        }
+        if (class_save.length != 0) {
+            $('#class-select').multipleSelect('setSelects', class_save)
+        }
+        if (customer_save.length != 0) {
+            $('#customer').multipleSelect('setSelects', customer_save)
+        }
+        if (zone_save.length != 0) {
+            $('#urban-zone').multipleSelect('setSelects', zone_save)
+            var mas = $('#urban-zone').multipleSelect('getSelects');
+            zoneSelect(mas);
+        }
+
+       
+        if (apart_save.length != 0) {
+            $('#apart').multipleSelect('setSelects', apart_save)
+        }
+
     })
 </script>
 <script>
@@ -608,6 +664,11 @@
                         $('#city-area').append(opt)
                     }
                     $('#city-area').multipleSelect('refresh');
+                    var area_save = {{ area_save| safe}}
+                    if (area_save.length != 0) {
+                        console.log(area_save)
+                        $('#city-area').multipleSelect('setSelects', area_save)
+                    }
                 }
             });
         }
@@ -639,6 +700,10 @@
                         $('#subway').append(opt)
                     }
                     $('#subway').multipleSelect('refresh');
+                    var subway_save = {{ subway_save| safe}}
+                    if (subway_save.length != 0) {
+                        $('#subway').multipleSelect('setSelects', subway_save)
+                    }
                 }
             });
         }
