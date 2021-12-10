@@ -143,6 +143,7 @@
                     </tr>
                     <tr>
                         <th class="bg-white ">Дата</th>
+                        <th class="bg-white ">Класс</th>
                         <th class="bg-white ">Застройщик</th>
                         <th class="bg-white ">Название</th>
                         <th class="bg-white ">Дом\Секция</th>
@@ -170,6 +171,7 @@
                     {% for sales in sale %}
                     <tr>
                         <td>{{sales.year}}/{{sales.month}}</td>
+                        <td>{{sales.id_sections.id_house.id_buildings.class_field}}</td>
                         <td>{{sales.id_sections.id_house.id_buildings.customer.name}}</td>
                         <td>{{sales.id_sections.id_house.id_buildings.name}}</td>
                         <td>{{sales.id_sections.id_house.street_number}}\{{sales.id_sections.number}}</td>
