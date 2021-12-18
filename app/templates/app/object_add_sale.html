@@ -404,9 +404,9 @@
             console.log(month);
             $('#month_select option[value="' + month + '"]').prop("selected", true);
             $("#month").val($('#month_select').val());
-            $("#month_select").prop("disabled", true);
+            //$("#month_select").prop("disabled", true);
             $('#year').val(year);
-            $('#year').prop("readonly", true);
+            //$('#year').prop("readonly", true);
         }
     })
     $('#month_select').change(function () {

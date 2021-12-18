@@ -134,7 +134,7 @@
             <table id="DataTable" class='table table-sm table-Light' style="font-size: 0.7vw">
                 <thead>
                     <tr>
-                        <th colspan="8" style="background-color: #fffcfc;">Общая информация</th>
+                        <th colspan="10" style="background-color: #fffcfc;">Общая информация</th>
                         <th colspan="3" style="background-color: #ffc404; color: black">Общая сумма</th>
                         <th colspan="3" style="background-color: #30a444; color: white">Однокомнатные квартиры</th>
                         <th colspan="3" style="background-color: #087cfc; color: white">Двухкомнатные квартиры</th>
@@ -142,11 +142,13 @@
                         <th colspan="3" style="background-color: #18a4bc; color: white">Четырехкомнатные квартиры</th>
                     </tr>
                     <tr>
-                        <th class="bg-white ">Дата</th>
+                        <th class="bg-white ">Год</th>
+                        <th class="bg-white ">Месяц</th>
                         <th class="bg-white ">Класс</th>
                         <th class="bg-white ">Застройщик</th>
                         <th class="bg-white ">Название</th>
-                        <th class="bg-white ">Дом\Секция</th>
+                        <th class="bg-white ">Дом</th>
+                        <th class="bg-white ">Секция</th>
                         <th class="bg-white ">Зона</th>
                         <th class="bg-white ">Район</th>
                         <th class="bg-white ">Метро</th>
@@ -170,11 +172,13 @@
                 <tbody>
                     {% for sales in sale %}
                     <tr>
-                        <td>{{sales.year}}/{{sales.month}}</td>
+                        <td>{{sales.year}}</td>
+                        <td>{{sales.month}}</td>
                         <td>{{sales.id_sections.id_house.id_buildings.class_field}}</td>
                         <td>{{sales.id_sections.id_house.id_buildings.customer.name}}</td>
                         <td>{{sales.id_sections.id_house.id_buildings.name}}</td>
-                        <td>{{sales.id_sections.id_house.street_number}}\{{sales.id_sections.number}}</td>
+                        <td>{{sales.id_sections.id_house.street_number}}</td>
+                        <td>{{sales.id_sections.number}}</td>
                         <td>{{sales.id_sections.id_house.id_buildings.urban_develop_zone}}</td>
                         <td>{{sales.id_sections.id_house.id_buildings.city_area.name}}</td>
                         <td>{{sales.id_sections.id_house.id_buildings.subway.name}}</td>
