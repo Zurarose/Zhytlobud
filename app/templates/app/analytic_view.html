@@ -359,27 +359,26 @@
 
         })
 
-        var yearStart_save = {{ yearStart_save|safe}}
-        var yearEnd_save = {{ yearEnd_save| safe}}
-        var monthStart_save = {{ monthStart_save|safe}}
-        var monthEnd_save = {{ monthEnd_save|safe}}
-        var class_save = {{ class_save|safe}}
-        var customer_save = {{ customer_save| safe}}
-        var zone_save = {{ zone_save| safe}}
-        
+        var yearStart_save = "{{ yearStart_save|safe}}"
+        var yearEnd_save = "{{ yearEnd_save| safe}}"
+        var monthStart_save = "{{ monthStart_save|safe}}"
+        var monthEnd_save = "{{ monthEnd_save|safe}}"
+        var class_save = "{{ class_save|safe}}"
+        var customer_save = "{{ customer_save| safe}}"
+        var zone_save = "{{ zone_save| safe}}"
+
         var apart_save = {{ apart_save| safe}}
-        console.log(yearStart_save)
-        if (yearStart_save != "") {
+        if (yearStart_save != "None") {
         $('#year').val(yearStart_save);
         }
-        if (yearEnd_save != "") {
+        if (yearEnd_save != "None") {
             $('#year_end').val(yearEnd_save);
         }
-        if (monthStart_save != "") {
-            $('#month').multipleSelect('setSelects', [monthStart_save])
-        } 
-        if (monthEnd_save != "") {
-            $('#month_end').multipleSelect('setSelects', [monthEnd_save])
+        if (monthStart_save != "None") {
+                $('#month').multipleSelect('setSelects', [monthStart_save])
+            } 
+        if (monthEnd_save != "None") {
+                $('#month_end').multipleSelect('setSelects', [monthEnd_save])
         }
         if (class_save.length != 0) {
             $('#class-select').multipleSelect('setSelects', class_save)
@@ -391,9 +390,7 @@
             $('#urban-zone').multipleSelect('setSelects', zone_save)
             var mas = $('#urban-zone').multipleSelect('getSelects');
             zoneSelect(mas);
-        }
-
-       
+        }  
         if (apart_save.length != 0) {
             $('#apart').multipleSelect('setSelects', apart_save)
         }
@@ -670,11 +667,14 @@
                         $('#city-area').append(opt)
                     }
                     $('#city-area').multipleSelect('refresh');
-                    var area_save = {{ area_save| safe}}
+                    var area_save = "{{ area_save| safe}}"
+
                     if (area_save.length != 0) {
-                        console.log(area_save)
                         $('#city-area').multipleSelect('setSelects', area_save)
                     }
+                    var mas = $('#urban-zone').multipleSelect('getSelects');
+                    var areas = $('#city-area').multipleSelect('getSelects');
+                    AreaSelect(mas, areas);
                 }
             });
         }
@@ -706,7 +706,7 @@
                         $('#subway').append(opt)
                     }
                     $('#subway').multipleSelect('refresh');
-                    var subway_save = {{ subway_save| safe}}
+                    var subway_save = "{{ subway_save| safe}}"
                     if (subway_save.length != 0) {
                         $('#subway').multipleSelect('setSelects', subway_save)
                     }
