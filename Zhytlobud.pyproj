@@ -262,6 +262,7 @@
     <Content Include="app\static\app\scripts\jquery.min.js" />
     <Content Include="app\static\app\scripts\jquery.steps.js" />
     <Content Include="app\static\app\scripts\main.js" />
+    <Content Include="app\templates\app\analytic_dashboard.html" />
     <Content Include="app\templates\app\building_add.html" />
     <Content Include="app\templates\app\logger.html" />
     <Content Include="app\templates\app\analytic_view.html" />

@@ -68,6 +68,7 @@ urlpatterns = [
    path("object_edit_sale/", views.object_edit_sale, name="object_edit_sale"),
 
    path("analytic_view/", views.analytic_view, name="analytic_view"),
+   path("analytic_dashboard/", views.analytic_dashboard, name="analytic_dashboard"),
 
    #For Ajax. Look at script in building_add.html.
    url(r'^ajax/getStreets/$', views.getStreets, name='getStreets'),

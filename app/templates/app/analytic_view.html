@@ -9,6 +9,7 @@
     </div>
     {% endfor %}
     <a class="btn btn-warning btn-sm" href="{% url 'menu' %}"><i class="fas fa-chevron-circle-left"></i>Назад</a>
+    <a class="btn btn-warning btn-sm" href="{% url 'analytic_dashboard' %}">Дашборд</a>
     <h5 class="text-center mb-2">Аналитика</h5>
 
     <form action='.' id="form1" method='POST'>
@@ -367,6 +368,7 @@
         var customer_save = "{{ customer_save| safe}}"
         var zone_save = "{{ zone_save| safe}}"
 
+       
         var apart_save = {{ apart_save| safe}}
         if (yearStart_save != "None") {
         $('#year').val(yearStart_save);
@@ -641,7 +643,12 @@
             }
         });
         table.buttons().container().appendTo('#insert');
+        var sale = JSON.parse('{{sale | safe}}')
+        console.log(sale)
     });
+</script>
+<script>
+
 </script>
 <script>
     //To zone select

@@ -1,0 +1,643 @@
+﻿{% extends "app/layout.html" %}
+{% block content %}
+{% load static %}
+<div class="container col-12 bg-trasparent px-0" style="position: relative;">
+    {% for message in messages %}
+    <div class="alert alert-danger">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+        {{ message }}
+    </div>
+    {% endfor %}
+    <div class="d-flex justify-content-center">
+        <div class="col-2 border border-warning p-1 pb-2">
+            <form action='.' id="form1" method='POST'>
+                {% csrf_token %}   
+            <div class="form-row">
+                <div class="col-xl-12">
+                    <label class="mb-0" for="class-select">Период:</label>
+                    <div class="d-flex flex-nowrap">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                            <select id="month" name="month">
+                                <option value="1">Январь</option>
+                                <option value="2">Февраль</option>
+                                <option value="3">Март</option>
+                                <option value="4">Апрель</option>
+                                <option value="5">Май</option>
+                                <option value="6">Июнь</option>
+                                <option value="7">Июль</option>
+                                <option value="8">Август</option>
+                                <option value="9">Сентябрь</option>
+                                <option value="10">Октябрь</option>
+                                <option value="11">Ноябрь</option>
+                                <option value="12">Декабрь</option>
+                            </select>
+                        </div>
+                        <input class="form-control border border-secondary form-control-xs-mine col-4" type="number" min="2005" max="2099" step="1" id="year" name="year__gte" value="2022" />
+                    </div>
+
+                    <div class="d-flex flex-nowrap mt-2">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                            <select id="month_end" name="month_end">
+                                <option value="1">Январь</option>
+                                <option value="2">Февраль</option>
+                                <option value="3">Март</option>
+                                <option value="4">Апрель</option>
+                                <option value="5">Май</option>
+                                <option value="6">Июнь</option>
+                                <option value="7">Июль</option>
+                                <option value="8">Август</option>
+                                <option value="9">Сентябрь</option>
+                                <option value="10">Октябрь</option>
+                                <option value="11">Ноябрь</option>
+                                <option value="12">Декабрь</option>
+                            </select>
+                        </div>
+                        <input class="form-control border border-secondary form-control-xs-mine col-4" type="number" min="2005" max="2099" step="1" id="year_end" name="year__lte" value="2022" />
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <label class="mb-0" for="class-select">Класс:</label>
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                        <select multiple="multiple" id="class-select" name="id_sections__id_house__id_buildings__class_field__in">
+                            <option value="Де-люкс">Де-люкс</option>
+                            <option value="Премиум">Премиум</option>
+                            <option value="Бизнес">Бизнес</option>
+                            <option value="Комфорт">Комфорт</option>
+                            <option value="Эконом">Эконом</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <label class="mb-0" for="customer">Заказчик:</label>
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                        <select multiple="multiple" id="customer" name="id_sections__id_house__id_buildings__customer__name__in">
+                            {% for custs in cust %}
+                                <option value="{{ custs.name }}">{{ custs.ownership.name}} {{ custs.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <label class="mb-0" for="urban-zone">Зона:</label>
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                        <select multiple="multiple" id="urban-zone" name="id_sections__id_house__id_buildings__urban_develop_zone__in">
+                            <option value="Центр">Центр</option>
+                            <option value="Приближенный">Приближенный р-н</option>
+                            <option value="Отдаленный">Отдаленный р-н</option>
+                            <option value="Область">Область</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <label class="mb-0" for="city-area">Бытовой район:</label>
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                        <select multiple="multiple" id="city-area" name="id_sections__id_house__id_buildings__city_area__name__in">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <label class="mb-0" for="subway">Метрополитен:</label>
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text"><i class="fas fa-subway"></i></span>
+                        <select multiple="multiple" id="subway" name="id_sections__id_house__id_buildings__subway__name__in">
+                        </select>
+                    </div>
+                </div>
+            </div>
+                <div class="form-row ml-0 d-flex flex-row-reverse pr-1" id="insert">
+                    <input type="submit" class="btn col-12 btn-success btn-sm mt-2 ml-1" name="show" value="Показать">
+                </div>
+            </form>
+            <div class="d-flex flex-row">
+                <div class="col-12 p-1">
+                    <div class="col-xl-12 p-0">
+                        <label class="mb-0">Объем м<sup>2</sup>:</label>
+                        <input autocomplete="off" readonly type="text" class="form-control form-control-xs" id="m2" name="m2">
+                    </div>
+                    <div class="col-xl-12 p-0">
+                        <label class="mb-0">Кол-во квартир:</label>
+                        <input autocomplete="off" readonly type="text" class="form-control form-control-xs" id="aparts" name="aparts">
+                    </div>
+                </div>
+                <!--<div class="col-4 p-0 border border-warning">
+                    <label class="col-12 px-1 mb-0 mt-1">Прирост:</label>
+                    <div class="p-1 d-flex justify-content-center">
+                        <span><i class="fas fa-long-arrow-alt-up fa-4x" style="color: green"></i><span class="fa-2x">4%</span></span>
+                    </div>
+                </div>-->
+            </div>
+            <div class="d-flex flex-row">
+                <div class="col-12 p-1">
+                    <div class="col-xl-12 p-0">
+                        <label class="mb-0">Всего объектов:</label>
+                        <input autocomplete="off" readonly type="text" class="form-control form-control-xs" id="total_obj" name="total_obj">
+                    </div>
+                    <div class="col-xl-12 p-0">
+                        <label class="mb-0">1 км. квартир (количество\м<sup>2</sup>)</label>
+                        <div class="d-flex flex-row">
+                            <input autocomplete="off" readonly type="text" class="col-6 form-control form-control-xs" id="1_apart_sum" name="1_apart_sum">
+                            <input autocomplete="off" readonly type="text" class="col-6 form-control form-control-xs" id="1_apart_m2" name="1_apart_m2">
+                        </div>
+                    </div>
+                    <div class="col-xl-12 p-0">
+                        <label class="mb-0">2 км. квартир (количество\м<sup>2</sup>)</label>
+                        <div class="d-flex flex-row">
+                            <input autocomplete="off" readonly type="text" class="col-6 form-control form-control-xs" id="2_apart_sum" name="2_apart_sum">
+                            <input autocomplete="off" readonly type="text" class="col-6 form-control form-control-xs" id="2_apart_m2" name="2_apart_m2">
+                        </div>
+                    </div>
+                    <div class="col-xl-12 p-0">
+                        <label class="mb-0">3 км. квартир (количество\м<sup>2</sup>)</label>
+                        <div class="d-flex flex-row">
+                            <input autocomplete="off" readonly type="text" class="col-6 form-control form-control-xs" id="3_apart_sum" name="3_apart_sum">
+                            <input autocomplete="off" readonly type="text" class="col-6 form-control form-control-xs" id="3_apart_m2" name="3_apart_m2">
+                        </div>
+                    </div>
+                    <div class="col-xl-12 p-0">
+                        <label class="mb-0">4 км. квартир (количество\м<sup>2</sup>)</label>
+                        <div class="d-flex flex-row">
+                            <input autocomplete="off" readonly type="text" class="col-6 form-control form-control-xs" id="4_apart_sum" name="4_apart_sum">
+                            <input autocomplete="off" readonly type="text" class="col-6 form-control form-control-xs" id="4_apart_m2" name="4_apart_m2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-10 p-0">
+            <div class="d-flex flex-row justify-content-around mt-2">
+                <div class="col-5  p-0" style="height:25em">
+                    <canvas id="Chart1"></canvas>
+                </div>
+                <div class="col-5  p-0" style="height:25em">
+                    <canvas id="Chart2"></canvas>
+                </div>
+            </div>
+             <div class="d-flex flex-row justify-content-around mt-2">
+                <div class="col-5  p-0" style="height:25em">
+                    <canvas id="Chart3"></canvas>
+                </div>
+                <div class="col-5  p-0" style="height:25em">
+                    <canvas id="Chart4"></canvas>
+                </div>
+            </div>
+       </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+    $(window).on('load', function () {
+        $('#loading').hide();
+        zoneSelect();
+
+        $('#urban-zone').multipleSelect({
+            formatSelectAll() {
+                return 'Все'
+            },
+            formatAllSelected() {
+                return 'Все'
+            },
+            formatCountSelected(count, total) {
+                return 'Выбрано ' + total + ' из ' + count
+            },
+            formatNoMatchesFound() {
+                return 'Нет данных'
+            },
+            onClick: function () {
+                var mas = $('#urban-zone').multipleSelect('getSelects');
+                zoneSelect(mas);
+            },
+            onCheckAll: function () {
+                var mas = $('#urban-zone').multipleSelect('getSelects');
+                zoneSelect(mas);
+            },
+            onUncheckAll: function () {
+                var mas = $('#urban-zone').multipleSelect('getSelects');
+                zoneSelect(mas);
+            }
+        })
+        $('#class-select').multipleSelect({
+            formatSelectAll() {
+                return 'Все'
+            },
+            formatAllSelected() {
+                return 'Все'
+            },
+            formatCountSelected(count, total) {
+                return 'Выбрано ' + total + ' из ' + count
+            },
+            formatNoMatchesFound() {
+                return 'Нет данных'
+            },
+
+        })
+        $('#month').multipleSelect({
+            formatSelectAll() {
+                return 'Все'
+            },
+            formatAllSelected() {
+                return 'Все'
+            },
+            formatCountSelected(count, total) {
+                return 'Выбрано ' + total + ' из ' + count
+            },
+            formatNoMatchesFound() {
+                return 'Нет данных'
+            },
+
+        })
+        $('#month_end').multipleSelect({
+            formatSelectAll() {
+                return 'Все'
+            },
+            formatAllSelected() {
+                return 'Все'
+            },
+            formatCountSelected(count, total) {
+                return 'Выбрано ' + total + ' из ' + count
+            },
+            formatNoMatchesFound() {
+                return 'Нет данных'
+            },
+
+        })
+        $('#customer').multipleSelect({
+            formatSelectAll() {
+                return 'Все'
+            },
+            formatAllSelected() {
+                return 'Все'
+            },
+            formatCountSelected(count, total) {
+                return 'Выбрано ' + total + ' из ' + count
+            },
+            formatNoMatchesFound() {
+                return 'Нет данных'
+            },
+
+        })
+        $('#city-area').multipleSelect({
+            formatSelectAll() {
+                return 'Все'
+            },
+            formatAllSelected() {
+                return 'Все'
+            },
+            formatCountSelected(count, total) {
+                return 'Выбрано ' + total + ' из ' + count
+            },
+            formatNoMatchesFound() {
+                return 'Нет данных'
+            },
+            onClick: function () {
+                var mas = $('#urban-zone').multipleSelect('getSelects');
+                var areas = $('#city-area').multipleSelect('getSelects');
+                AreaSelect(mas, areas);
+            },
+            onCheckAll: function () {
+                var mas = $('#urban-zone').multipleSelect('getSelects');
+                var areas = $('#city-area').multipleSelect('getSelects');
+                AreaSelect(mas, areas);
+            },
+            onUncheckAll: function () {
+                var mas = $('#urban-zone').multipleSelect('getSelects');
+                var areas = $('#city-area').multipleSelect('getSelects');
+                AreaSelect(mas, areas);
+            }
+
+        })
+        $('#subway').multipleSelect({
+            formatSelectAll() {
+                return 'Все'
+            },
+            formatAllSelected() {
+                return 'Все'
+            },
+            formatCountSelected(count, total) {
+                return 'Выбрано ' + total + ' из ' + count
+            },
+            formatNoMatchesFound() {
+                return 'Нет данных'
+            },
+
+        })
+        $('#apart').multipleSelect({
+            formatSelectAll() {
+                return 'Все'
+            },
+            formatAllSelected() {
+                return 'Все'
+            },
+            formatCountSelected(count, total) {
+                return 'Выбрано ' + total + ' из ' + count
+            },
+            formatNoMatchesFound() {
+                return 'Нет данных'
+            },
+
+        })
+
+        var yearStart_save = "{{ yearStart_save|safe}}"
+        var yearEnd_save = "{{ yearEnd_save| safe}}"
+        var monthStart_save = "{{ monthStart_save|safe}}"
+        var monthEnd_save = "{{ monthEnd_save|safe}}"
+        var class_save = "{{ class_save|safe}}"
+        var customer_save = "{{ customer_save| safe}}"
+        var zone_save = "{{ zone_save| safe}}"
+
+
+        var apart_save = "{{ apart_save| safe}}"
+        if (yearStart_save != "None") {
+            $('#year').val(yearStart_save);
+        }
+        if (yearEnd_save != "None") {
+            $('#year_end').val(yearEnd_save);
+        }
+        if (monthStart_save != "None") {
+            $('#month').multipleSelect('setSelects', [monthStart_save])
+        }
+        if (monthEnd_save != "None") {
+            $('#month_end').multipleSelect('setSelects', [monthEnd_save])
+        }
+        if (class_save.length != 0) {
+            $('#class-select').multipleSelect('setSelects', class_save)
+        }
+        if (customer_save.length != 0) {
+            $('#customer').multipleSelect('setSelects', customer_save)
+        }
+        if (zone_save.length != 0) {
+            $('#urban-zone').multipleSelect('setSelects', zone_save)
+            var mas = $('#urban-zone').multipleSelect('getSelects');
+            zoneSelect(mas);
+        }
+        if (apart_save.length != 0) {
+            $('#apart').multipleSelect('setSelects', apart_save)
+        }
+
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        var sales = JSON.parse('{{ sale | safe }}')
+       
+        //console.log(classes_arr[0])
+        //console.log(sales[0].fields.year)
+        //information panel
+        var to_sale_1 = 0;
+        var to_sale_2 = 0;
+        var to_sale_3 = 0;
+        var to_sale_4 = 0;
+        var to_sale_area_1 = 0;
+        var to_sale_area_2 = 0;
+        var to_sale_area_3 = 0;
+        var to_sale_area_4 = 0;
+        for (var i = 0; i < sales.length; i++) {
+            to_sale_1 = to_sale_1 + sales[i].fields.a1_to_sale;
+            to_sale_2 = to_sale_2 + sales[i].fields.a2_to_sale;
+            to_sale_3 = to_sale_3 + sales[i].fields.a3_to_sale;
+            to_sale_4 = to_sale_4 + sales[i].fields.a4_to_sale;
+
+            if (isFloat(sales[i].fields.a1_area_to_sale))
+                to_sale_area_1 = to_sale_area_1 + sales[i].fields.a1_area_to_sale;
+
+            if (isFloat(sales[i].fields.a2_area_to_sale))
+                to_sale_area_2 = to_sale_area_2 + sales[i].fields.a2_area_to_sale;
+
+            if (isFloat(sales[i].fields.a3_area_to_sale))
+                to_sale_area_3 = to_sale_area_3 + sales[i].fields.a3_area_to_sale;
+
+            if (isFloat(sales[i].fields.a4_area_to_sale))
+                to_sale_area_4 = to_sale_area_4 + sales[i].fields.a4_area_to_sale;
+        }
+        var total_to_sale_area = to_sale_area_1 + to_sale_area_2 + to_sale_area_3 + to_sale_area_4;
+        var total_to_sale = to_sale_1 + to_sale_2 + to_sale_3 + to_sale_4;
+        $("#m2").val(total_to_sale_area.toFixed(2))
+        $("#aparts").val(total_to_sale)
+
+        //console.log(classes[0].fields.class_field)
+
+        //to check if it unique value
+        var arr = []
+        for (var i = 0; i < sales.length; i++) {
+            arr.push(sales[i].fields.id_sections)
+        }
+        let unique = arr.filter((item, i, ar) => ar.indexOf(item) === i);
+
+        $("#total_obj").val(unique.length)
+        $("#1_apart_sum").val(to_sale_1)
+        $("#2_apart_sum").val(to_sale_2)
+        $("#3_apart_sum").val(to_sale_3)
+        $("#4_apart_sum").val(to_sale_4)
+
+        $("#1_apart_m2").val(to_sale_area_1.toFixed(2))
+        $("#2_apart_m2").val(to_sale_area_2.toFixed(2))
+        $("#3_apart_m2").val(to_sale_area_3.toFixed(2))
+        $("#4_apart_m2").val(to_sale_area_4.toFixed(2))
+    });
+    //To check if is it num or not
+    function isFloat(n) {
+        return Number(n) === n && n % 1 !== 0;
+    }
+    
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+<script>
+    var classes_arr = {{ classes_arr | safe }}
+    var customers_arr = {{ customers_arr | safe }}
+    var places_arr = {{ places_arr | safe }}
+
+    counts_classes = {}  
+    classes_arr.forEach(function (x) { counts_classes[x] = (counts_classes[x] || 0) + 1; });
+
+    counts_customers= {}
+    customers_arr.forEach(function (x) { counts_customers[x] = (counts_customers[x] || 0) + 1; });
+
+    counts_places = {}
+    places_arr.forEach(function (x) { counts_places[x] = (counts_places[x] || 0) + 1; });
+
+    function create_graph(counts, title) {
+
+        const data = {
+            labels: Object.keys(counts),
+            datasets: [
+                {
+                    label: 'Dataset 1',
+                    data: Object.values(counts),
+                    backgroundColor: ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'BlueViolet', "Chocolate", "Cyan", "DarkSeaGreen", "FloralWhite", "HotPink", "Thistle"],
+                }
+            ]
+        };
+        const config = {
+            type: 'doughnut',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        fontSize: 24,
+                        padding: 0,
+                    },
+                    title: {
+                        display: true,
+                        text: title,
+                        fontSize: 24,
+                    }
+                }
+            },
+        };
+        return config;
+    }
+    //sort
+    function sort_object(obj) {
+        items = Object.keys(obj).map(function (key) {
+            return [key, obj[key]];
+        });
+        items.sort(function (first, second) {
+            return second[1] - first[1];
+        });
+        sorted_obj = {}
+        $.each(items, function (k, v) {
+            use_key = v[0]
+            use_value = v[1]
+            sorted_obj[use_key] = use_value
+        })
+        return sorted_obj
+    }
+    var config
+    //class graph
+    config = create_graph(sort_object(counts_classes), "Структура по классности")
+    const Chart1 = new Chart(
+        document.getElementById('Chart1'), config       
+    );
+    //top 5 cust
+    counts_customers = sort_object(counts_customers)
+    var count = 0
+    var other = 0
+    let top_five_customes = {}
+
+    for (const [key, value] of Object.entries(counts_customers)) {
+        if (count < 5) {
+            top_five_customes[key] = value
+        }
+        else {
+            other = other + 1            
+        }
+        count = count + 1
+    }
+    top_five_customes["Другие"] = other
+    config = create_graph(top_five_customes, "Структура по застройщиков")
+    const Chart2 = new Chart(
+        document.getElementById('Chart2'), config
+    );
+    //place graph
+    config = create_graph(sort_object(counts_places), "Структура по месторасположения")
+    const Chart3 = new Chart(
+        document.getElementById('Chart3'), config
+    );
+    //apart count graph
+    var to_sale_1 = 0
+    var to_sale_2 = 0
+    var to_sale_3 = 0
+    var to_sale_4 = 0
+
+    var sales = JSON.parse('{{ sale | safe }}')
+    for (var i = 0; i < sales.length; i++) {
+        to_sale_1 = to_sale_1 + sales[i].fields.a1_to_sale;
+        to_sale_2 = to_sale_2 + sales[i].fields.a2_to_sale;
+        to_sale_3 = to_sale_3 + sales[i].fields.a3_to_sale;
+        to_sale_4 = to_sale_4 + sales[i].fields.a4_to_sale;
+    }
+    var aparts = { "1км. квартиры": to_sale_1, "2км. квартиры": to_sale_2, "3км. квартиры": to_sale_3, "4км. квартиры": to_sale_4 }
+    config = create_graph(sort_object(aparts), "Структура по комнатности")
+    const Chart4 = new Chart(
+        document.getElementById('Chart4'), config
+    );
+</script>
+
+<script>
+    //To zone select
+    function zoneSelect(zone) {
+        if (zone != "") {
+            $('#city-area').disabled = false;
+            $('#subway').disabled = false;
+
+            $.ajax({
+                type: "GET",
+                url: '/ajax/getCityAreas_multi/',
+                data: {
+                    'zone': zone
+                },
+                dataType: 'json',
+                success: function (data) {
+                    $("#city-area option").remove();
+                    $('#city-area').multipleSelect('refresh');
+                    for (var i = 0; i < data.names.length; i++) {
+                        var opt = document.createElement('option');
+                        opt.value = data.names[i];
+                        opt.innerHTML = data.names[i];
+                        $('#city-area').append(opt)
+                    }
+                    $('#city-area').multipleSelect('refresh');
+                    var area_save = "{{ area_save| safe}}"
+
+                    if (area_save.length != 0) {
+                        $('#city-area').multipleSelect('setSelects', area_save)
+                    }
+                    var mas = $('#urban-zone').multipleSelect('getSelects');
+                    var areas = $('#city-area').multipleSelect('getSelects');
+                    AreaSelect(mas, areas);
+                }
+            });
+        }
+        else {
+            $("#subway option").remove();
+            $("#city-area option").remove();
+            $('#subway').multipleSelect('refresh');
+            $('#city-area').multipleSelect('refresh');
+        }
+    }
+    function AreaSelect(zone, areas) {
+        if (zone != "") {
+            $('#city-area').disabled = false;
+            $('#subway').disabled = false;
+            $.ajax({
+                type: "GET",
+                url: '/ajax/getSubways_multi/',
+                data: {
+                    'zone': zone,
+                    'areas': areas
+                },
+                dataType: 'json',
+                success: function (data) {
+                    $("#subway option").remove();
+                    for (var i = 0; i < data.names.length; i++) {
+                        var opt = document.createElement('option');
+                        opt.value = data.names[i];
+                        opt.innerHTML = data.names[i];
+                        $('#subway').append(opt)
+                    }
+                    $('#subway').multipleSelect('refresh');
+                    var subway_save = "{{ subway_save| safe}}"
+                    if (subway_save.length != 0) {
+                        $('#subway').multipleSelect('setSelects', subway_save)
+                    }
+                }
+            });
+        }
+        else {
+            $("#subway option").remove();
+            $('#subway').multipleSelect('refresh');
+        }
+    }
+</script>
+{% endblock %}
