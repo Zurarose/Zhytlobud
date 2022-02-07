@@ -125,7 +125,7 @@
                         <input autocomplete="off" readonly type="text" class="form-control form-control-xs" id="aparts" name="aparts">
                     </div>
                 </div>
-                <!--<div class="col-4 p-0 border border-warning">
+             <!--<div class="col-4 p-0 border border-warning">
                     <label class="col-12 px-1 mb-0 mt-1">Прирост:</label>
                     <div class="p-1 d-flex justify-content-center">
                         <span><i class="fas fa-long-arrow-alt-up fa-4x" style="color: green"></i><span class="fa-2x">4%</span></span>
@@ -387,8 +387,7 @@
 <script>
     $(document).ready(function () {
         var sales = JSON.parse('{{ sale | safe }}')
-       
-        //console.log(classes_arr[0])
+        var complexes = {{ complexes | safe }}
         //console.log(sales[0].fields.year)
         //information panel
         var to_sale_1 = 0;
@@ -424,14 +423,14 @@
 
         //console.log(classes[0].fields.class_field)
 
-        //to check if it unique value
+        /*to check if it unique value
         var arr = []
         for (var i = 0; i < sales.length; i++) {
             arr.push(sales[i].fields.id_sections)
         }
         let unique = arr.filter((item, i, ar) => ar.indexOf(item) === i);
-
-        $("#total_obj").val(unique.length)
+        */
+    $("#total_obj").val(complexes.length)
         $("#1_apart_sum").val(to_sale_1)
         $("#2_apart_sum").val(to_sale_2)
         $("#3_apart_sum").val(to_sale_3)
