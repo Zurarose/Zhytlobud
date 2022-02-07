@@ -388,6 +388,7 @@
     $(document).ready(function () {
         var sales = JSON.parse('{{ sale | safe }}')
         var complexes = {{ complexes | safe }}
+        console.log(complexes)
         //console.log(sales[0].fields.year)
         //information panel
         var to_sale_1 = 0;
