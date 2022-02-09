@@ -471,7 +471,7 @@
                 {
                     label: 'Dataset 1',
                     data: Object.values(counts),
-                    backgroundColor: ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'BlueViolet', "Chocolate", "Cyan", "DarkSeaGreen", "FloralWhite", "HotPink", "Thistle"],
+                    backgroundColor: ['#ff6800', '#ff812b', '#ff9a55', '#ffb480', '#ffcdaa', '#ffe6d5', '#fff2ea'],
                 }
             ]
         };
@@ -515,7 +515,7 @@
     }
     var config
     //class graph
-    config = create_graph(sort_object(counts_classes), "Структура по классности")
+    config = create_graph(sort_object(counts_classes), "Структура по классности (шт.)")
     const Chart1 = new Chart(
         document.getElementById('Chart1'), config       
     );
@@ -535,12 +535,12 @@
         count = count + 1
     }
     top_five_customes["Другие"] = other
-    config = create_graph(top_five_customes, "Структура по застройщиков")
+    config = create_graph(top_five_customes, "Структура по застройщиков (шт.)")
     const Chart2 = new Chart(
         document.getElementById('Chart2'), config
     );
     //place graph
-    config = create_graph(sort_object(counts_places), "Структура по месторасположения")
+    config = create_graph(sort_object(counts_places), "Структура по месторасположения (шт.)")
     const Chart3 = new Chart(
         document.getElementById('Chart3'), config
     );
@@ -558,7 +558,7 @@
         to_sale_4 = to_sale_4 + sales[i].fields.a4_to_sale;
     }
     var aparts = { "1км. квартиры": to_sale_1, "2км. квартиры": to_sale_2, "3км. квартиры": to_sale_3, "4км. квартиры": to_sale_4 }
-    config = create_graph(sort_object(aparts), "Структура по комнатности")
+    config = create_graph(sort_object(aparts), "Структура по комнатности (шт.)")
     const Chart4 = new Chart(
         document.getElementById('Chart4'), config
     );
