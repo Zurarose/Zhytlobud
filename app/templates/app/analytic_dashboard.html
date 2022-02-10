@@ -464,7 +464,6 @@
     places_arr.forEach(function (x) { counts_places[x] = (counts_places[x] || 0) + 1; });
 
     function create_graph(counts, title) {
-
         const data = {
             labels: Object.keys(counts),
             datasets: [
@@ -515,7 +514,15 @@
     }
     var config
     //class graph
-    config = create_graph(sort_object(counts_classes), "Структура по классности (шт.)")
+    var total = 0
+    for (const key of Object.keys(counts_classes)) {
+        total = total + counts_classes[key]
+    }
+    for (const [key, value] of Object.entries(counts_classes)) {
+        counts_classes[key] = ((value / total) * 100).toFixed(1)
+    }
+    console.log(counts_classes)
+    config = create_graph(sort_object(counts_classes), "Структура по классности (%)")
     const Chart1 = new Chart(
         document.getElementById('Chart1'), config       
     );
@@ -525,22 +532,33 @@
     var other = 0
     let top_five_customes = {}
 
+    var total = 0
+    for (const key of Object.keys(counts_customers)) {
+        total = total + counts_customers[key]
+    }
     for (const [key, value] of Object.entries(counts_customers)) {
         if (count < 5) {
-            top_five_customes[key] = value
+            top_five_customes[key] = ((value / total) * 100).toFixed(1)
         }
         else {
             other = other + 1            
         }
         count = count + 1
     }
-    top_five_customes["Другие"] = other
-    config = create_graph(top_five_customes, "Структура по застройщиков (шт.)")
+    top_five_customes["Другие"] = ((other / total) * 100).toFixed(1)
+    config = create_graph(top_five_customes, "Структура по застройщиков (%)")
     const Chart2 = new Chart(
         document.getElementById('Chart2'), config
     );
     //place graph
-    config = create_graph(sort_object(counts_places), "Структура по месторасположения (шт.)")
+    var total = 0
+    for (const key of Object.keys(counts_places)) {
+        total = total + counts_places[key]
+    }
+    for (const [key, value] of Object.entries(counts_places)) {
+        counts_places[key] = ((value / total) * 100).toFixed(1)
+    }
+    config = create_graph(sort_object(counts_places), "Структура по месторасположения (%)")
     const Chart3 = new Chart(
         document.getElementById('Chart3'), config
     );
@@ -557,8 +575,15 @@
         to_sale_3 = to_sale_3 + sales[i].fields.a3_to_sale;
         to_sale_4 = to_sale_4 + sales[i].fields.a4_to_sale;
     }
+    total = to_sale_1 + to_sale_2 + to_sale_3 + to_sale_4   
+
+    to_sale_1 = ((to_sale_1 / total) * 100).toFixed(1)
+    to_sale_2 = ((to_sale_2 / total) * 100).toFixed(1)
+    to_sale_3 = ((to_sale_3 / total) * 100).toFixed(1)
+    to_sale_4 = ((to_sale_4 / total) * 100).toFixed(1)
+    
     var aparts = { "1км. квартиры": to_sale_1, "2км. квартиры": to_sale_2, "3км. квартиры": to_sale_3, "4км. квартиры": to_sale_4 }
-    config = create_graph(sort_object(aparts), "Структура по комнатности (шт.)")
+    config = create_graph(sort_object(aparts), "Структура по комнатности (%)")
     const Chart4 = new Chart(
         document.getElementById('Chart4'), config
     );
