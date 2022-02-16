@@ -546,7 +546,7 @@
         }
         return dates_arr
     }
-    function create_graph_bar(title) {
+    function create_graph_bar(title, maximum) {
         const data = {
             
         };
@@ -566,7 +566,8 @@
                         stacked: true,
                     },
                     y: {
-                        stacked: true
+                        stacked: true,
+                        max: maximum,
                     }
                 }
             }
@@ -683,7 +684,7 @@
         }
         count = 0
     }
-    config = create_graph_bar("Динамика объема предложения  (кв.м)")
+    config = create_graph_bar("Динамика объема предложения  (кв.м)", null)
     const Chart5 = new Chart(
         document.getElementById('Chart5'), config
     );
@@ -743,9 +744,7 @@
             data_econom.push(0)
         }
     }
-    console.log(data_econom)
-
-    config = create_graph_bar("Динамика структурных показателей предложения в зависимости от класса (%)")
+    config = create_graph_bar("Динамика структурных показателей предложения в зависимости от класса (%)", 100)
     const Chart6 = new Chart(
         document.getElementById('Chart6'), config
     );
