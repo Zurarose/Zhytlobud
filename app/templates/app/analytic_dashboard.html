@@ -501,13 +501,11 @@
                 plugins: {
                     legend: {
                         position: 'right',
-                        fontSize: 24,
-                        padding: 0,
+                        onClick: null,
                     },
                     title: {
                         display: true,
                         text: title,
-                        fontSize: 24,
                     }
                 }
             },
@@ -558,6 +556,9 @@
                     title: {
                         display: true,
                         text: title
+                    },
+                    legend: {
+                        onClick: null,
                     },
                 },
                 responsive: true,
@@ -747,9 +748,7 @@
     config = create_graph_bar("Динамика структурных показателей предложения в зависимости от класса (%)", 100)
     const Chart6 = new Chart(
         document.getElementById('Chart6'), config
-    );
-    
-
+    ); 
     data = Chart6.data;
     data.labels = dates_arr
     newDataset = {
