@@ -706,7 +706,7 @@
     data_business = []
     data_comfort = []
     data_econom = []
-
+    
 
     for (var i = 0; i < dates_arr.length; i++) {
         if (count_arr[dates_arr[i]]) {
@@ -745,6 +745,7 @@
             data_econom.push(0)
         }
     }
+    console.log(delux_arr)
     config = create_graph_bar("Динамика структурных показателей предложения в зависимости от класса (%)", 100)
     const Chart6 = new Chart(
         document.getElementById('Chart6'), config
