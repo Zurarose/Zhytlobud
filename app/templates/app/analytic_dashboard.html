@@ -187,10 +187,14 @@
                 </div>
             </div>
              <div class="d-flex justify-content-around mt-2">
-                <div class="col-12  p-0" style="height:25em">
+                <div class="col-12  p-0">
                     <canvas id="Chart5"></canvas>
-                </div>
-                
+                </div>                
+            </div>
+            <div class="d-flex justify-content-around mt-2">
+                <div class="col-12  p-0">
+                    <canvas id="Chart6"></canvas>
+                </div>                
             </div>
        </div>
     </div>
@@ -350,7 +354,6 @@
             },
 
         })
-
         var yearStart_save = "{{ yearStart_save|safe}}"
         var yearEnd_save = "{{ yearEnd_save| safe}}"
         var monthStart_save = "{{ monthStart_save|safe}}"
@@ -358,9 +361,8 @@
         var class_save = "{{ class_save|safe}}"
         var customer_save = "{{ customer_save| safe}}"
         var zone_save = "{{ zone_save| safe}}"
-
-
         var apart_save = "{{ apart_save| safe}}"
+
         if (yearStart_save != "None") {
             $('#year').val(yearStart_save);
         }
@@ -459,7 +461,15 @@
     var customers_arr = {{ customers_arr | safe }}
     var places_arr = {{ places_arr | safe }}
     var sales = JSON.parse('{{ sale | safe }}')
-
+    var delux_arr = {{delux_arr|safe}}
+    var premium_arr = {{premium_arr|safe}}
+    var business_arr = {{business_arr|safe}}
+    var comfort_arr = {{comfort_arr|safe}}
+    var econom_arr = {{econom_arr|safe}}
+    var count_arr = {{count_arr|safe}}
+    /*for (const [key, value] of Object.entries(count_arr)) {
+        console.log(key, value);
+    }*/
     counts_classes = {}  
     classes_arr.forEach(function (x) { counts_classes[x] = (counts_classes[x] || 0) + 1; });
     counts_customers= {}
@@ -471,7 +481,6 @@
     function isFloat(n) {
         return Number(n) === n && n % 1 !== 0;
     }
-
     function create_graph(counts, title) {
         const data = {
             labels: Object.keys(counts),
@@ -480,7 +489,7 @@
                     label: 'Dataset 1',
                     data: Object.values(counts),
                     backgroundColor: ['#ff6800', '#ff812b', '#ff9a55', '#ffb480', '#ffcdaa', '#ffe6d5', '#fff2ea'],
-                }
+                },                
             ]
         };
         const config = {
@@ -505,13 +514,15 @@
         };
         return config;
     }
-    function create_graph_bar(counts, title) {
+
+    function dates_build() {
+        //date
         var yearStart_save = parseInt("{{ yearStart_save | safe }}")
         var yearEnd_save = parseInt("{{ yearEnd_save | safe }}")
         var monthStart_save = parseInt("{{ monthStart_save | safe }}")
         var monthEnd_save = parseInt("{{ monthEnd_save | safe }}")
         dates_arr = []
-        //Даты
+
         var go = true
         dates_arr.push(yearStart_save + "." + monthStart_save)
         monthStart = monthStart_save
@@ -533,44 +544,11 @@
                 go = false
             }
         }
-        datas = []
-        var count = 0
-        for (var i = 0; i < dates_arr.length; i++)
-        {
-            for (var j = 0; j < sales.length; j++) {
-
-                temp = sales[j].fields.year + "." + sales[j].fields.month
-
-                if (dates_arr[i] == temp) {
-
-                    if (isFloat(sales[j].fields.a1_area_to_sale))
-                        count = count + sales[j].fields.a1_area_to_sale
-                    if (isFloat(sales[j].fields.a2_area_to_sale))
-                        count = count + sales[j].fields.a2_area_to_sale
-                    if (isFloat(sales[j].fields.a3_area_to_sale))
-                        count = count + sales[j].fields.a3_area_to_sale
-                    if (isFloat(sales[j].fields.a4_area_to_sale))
-                        count = count + sales[j].fields.a4_area_to_sale
-                    datas[i] = count.toFixed(2)
-
-                }
-                if (i == 24) {
-                    console.log(sales[j].fields.a1_area_to_sale + "__" + sales[j].fields.a2_area_to_sale + "__" + sales[j].fields.a3_area_to_sale + "__" + sales[j].fields.a4_area_to_sale + "___" + count)
-                }
-            }
-            count = 0
-        }
-        console.log(datas)
-        const labels = dates_arr
+        return dates_arr
+    }
+    function create_graph_bar(title) {
         const data = {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Dataset 1',
-                    data: datas, 
-                    backgroundColor: ['#ff6800', '#ff812b', '#ff9a55', '#ffb480', '#ffcdaa', '#ffe6d5', '#fff2ea'],
-                }
-            ]
+            
         };
         const config = {
             type: 'bar',
@@ -674,22 +652,143 @@
         to_sale_4 = to_sale_4 + sales[i].fields.a4_to_sale;
     }
     total = to_sale_1 + to_sale_2 + to_sale_3 + to_sale_4   
-
     to_sale_1 = ((to_sale_1 / total) * 100).toFixed(1)
     to_sale_2 = ((to_sale_2 / total) * 100).toFixed(1)
     to_sale_3 = ((to_sale_3 / total) * 100).toFixed(1)
     to_sale_4 = ((to_sale_4 / total) * 100).toFixed(1)
-    
+  
     var aparts = { "1км. квартиры": to_sale_1, "2км. квартиры": to_sale_2, "3км. квартиры": to_sale_3, "4км. квартиры": to_sale_4 }
     config = create_graph(sort_object(aparts), "Структура по комнатности (%)")
     const Chart4 = new Chart(
         document.getElementById('Chart4'), config
     );
-    //create bar graph
-    config = create_graph_bar(null, "Динамика объема предложения  (кв.м)")
+    //create bar graph offer
+    dates_arr = dates_build()
+    datas = []
+    var count = 0
+    for (var i = 0; i < dates_arr.length; i++) {
+        for (var j = 0; j < sales.length; j++) {
+            temp = sales[j].fields.year + "." + sales[j].fields.month
+            if (dates_arr[i] == temp) {
+                if (isFloat(sales[j].fields.a1_area_to_sale))
+                    count = count + sales[j].fields.a1_area_to_sale
+                if (isFloat(sales[j].fields.a2_area_to_sale))
+                    count = count + sales[j].fields.a2_area_to_sale
+                if (isFloat(sales[j].fields.a3_area_to_sale))
+                    count = count + sales[j].fields.a3_area_to_sale
+                if (isFloat(sales[j].fields.a4_area_to_sale))
+                    count = count + sales[j].fields.a4_area_to_sale
+                datas[i] = count.toFixed(2)
+            }
+        }
+        count = 0
+    }
+    config = create_graph_bar("Динамика объема предложения  (кв.м)")
     const Chart5 = new Chart(
         document.getElementById('Chart5'), config
     );
+    data = Chart5.data;
+    data.labels = dates_arr
+    newDataset = {
+        label: 'Предложение',
+        backgroundColor: "#ff6800",
+        data: datas,
+    };
+    Chart5.data.datasets.push(newDataset);
+    Chart5.update();
+
+    //create bar graph offer by class
+    dates_arr = dates_build()
+    data_delux = []
+    data_premium = []
+    data_business = []
+    data_comfort = []
+    data_econom = []
+
+
+    for (var i = 0; i < dates_arr.length; i++) {
+        if (count_arr[dates_arr[i]]) {
+            var temp = (parseInt(delux_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
+            data_delux.push(temp.toFixed(2))
+        }
+        else {
+            data_delux.push(0)
+        }
+        if (count_arr[dates_arr[i]]) {
+            var temp = (parseInt(premium_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
+            data_premium.push(temp.toFixed(2))
+        }
+        else {
+            data_premium.push(0)
+        }
+        if (count_arr[dates_arr[i]]) {
+            var temp = (parseInt(business_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
+            data_business.push(temp.toFixed(2))
+        }
+        else {
+            data_business.push(0)
+        }
+        if (count_arr[dates_arr[i]]) {
+            var temp = (parseInt(comfort_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
+            data_comfort.push(temp.toFixed(2))
+        }
+        else {
+            data_comfort.push(0)
+        }
+        if (count_arr[dates_arr[i]]) {
+            var temp = (parseInt(econom_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
+            data_econom.push(temp.toFixed(2))
+        }
+        else {
+            data_econom.push(0)
+        }
+    }
+    console.log(data_econom)
+
+    config = create_graph_bar("Динамика структурных показателей предложения в зависимости от класса (%)")
+    const Chart6 = new Chart(
+        document.getElementById('Chart6'), config
+    );
+    
+
+    data = Chart6.data;
+    data.labels = dates_arr
+    newDataset = {
+        label: 'Де-люкс',
+        backgroundColor: "#fb474e",
+        data: data_delux,
+    };
+    Chart6.data.datasets.push(newDataset);
+    Chart6.update();
+    newDataset = {
+        label: 'Премиум',
+        backgroundColor: "#fc791e",
+        data: data_premium,
+    };
+    Chart6.data.datasets.push(newDataset);
+    Chart6.update();
+    newDataset = {
+        label: 'Бизнес',
+        backgroundColor: "#fbc315",
+        data: data_business,
+    };
+    Chart6.data.datasets.push(newDataset);
+    Chart6.update();
+    newDataset = {
+        label: 'Комфорт',
+        backgroundColor: "#ffa500",
+        data: data_comfort,
+    };
+    Chart6.data.datasets.push(newDataset);
+    Chart6.update();
+    newDataset = {
+        label: 'Эконом',
+        backgroundColor: "#ffc26c",
+        data: data_econom,
+    };
+    Chart6.data.datasets.push(newDataset);
+    Chart6.update();
+   
 </script>
 
 <script>
