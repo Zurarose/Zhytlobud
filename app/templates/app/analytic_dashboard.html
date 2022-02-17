@@ -192,8 +192,13 @@
                 </div>                
             </div>
             <div class="d-flex justify-content-around mt-2">
-                <div class="col-12  p-0">
+                <div class="col-12 p-0">
                     <canvas id="Chart6"></canvas>
+                </div>                
+            </div>
+            <div class="d-flex justify-content-around mt-2">
+                <div class="col-12 p-0">
+                    <canvas id="Chart7"></canvas>
                 </div>                
             </div>
        </div>
@@ -466,7 +471,15 @@
     var business_arr = {{business_arr|safe}}
     var comfort_arr = {{comfort_arr|safe}}
     var econom_arr = {{econom_arr|safe}}
-    var count_arr = {{count_arr|safe}}
+    var count_arr = {{ count_arr| safe}}
+
+    var one_num_apart = {{ one_num_apart| safe}}
+    var two_num_apart = {{ two_num_apart| safe}}
+    var three_num_apart = {{ three_num_apart| safe}}
+    var four_num_apart = {{ four_num_apart| safe}}
+    var count_arr_apart = {{ count_arr_apart| safe}}
+
+
     /*for (const [key, value] of Object.entries(count_arr)) {
         console.log(key, value);
     }*/
@@ -570,7 +583,7 @@
                         stacked: true,
                         max: maximum,
                     }
-                }
+                }              
             }
         };
         return config;
@@ -600,7 +613,7 @@
     for (const [key, value] of Object.entries(counts_classes)) {
         counts_classes[key] = ((value / total) * 100).toFixed(1)
     }
-    config = create_graph(sort_object(counts_classes), "Структура по классности (%)")
+    config = create_graph(sort_object(counts_classes), "Структура по классности (шт.)")
     const Chart1 = new Chart(
         document.getElementById('Chart1'), config       
     );
@@ -624,7 +637,7 @@
         count = count + 1
     }
     top_five_customes["Другие"] = ((other / total) * 100).toFixed(1)
-    config = create_graph(top_five_customes, "Структура по застройщиков (%)")
+    config = create_graph(top_five_customes, "Структура по застройщиков (шт.)")
     const Chart2 = new Chart(
         document.getElementById('Chart2'), config
     );
@@ -636,7 +649,7 @@
     for (const [key, value] of Object.entries(counts_places)) {
         counts_places[key] = ((value / total) * 100).toFixed(1)
     }
-    config = create_graph(sort_object(counts_places), "Структура по месторасположения (%)")
+    config = create_graph(sort_object(counts_places), "Структура по месторасположения (шт.)")
     const Chart3 = new Chart(
         document.getElementById('Chart3'), config
     );
@@ -660,7 +673,7 @@
     to_sale_4 = ((to_sale_4 / total) * 100).toFixed(1)
   
     var aparts = { "1км. квартиры": to_sale_1, "2км. квартиры": to_sale_2, "3км. квартиры": to_sale_3, "4км. квартиры": to_sale_4 }
-    config = create_graph(sort_object(aparts), "Структура по комнатности (%)")
+    config = create_graph(sort_object(aparts), "Структура по комнатности (шт.)")
     const Chart4 = new Chart(
         document.getElementById('Chart4'), config
     );
@@ -707,7 +720,6 @@
     data_comfort = []
     data_econom = []
     
-
     for (var i = 0; i < dates_arr.length; i++) {
         if (count_arr[dates_arr[i]]) {
             var temp = (parseInt(delux_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
@@ -745,7 +757,6 @@
             data_econom.push(0)
         }
     }
-    console.log(delux_arr)
     config = create_graph_bar("Динамика структурных показателей предложения в зависимости от класса (кв.м)", 100)
     const Chart6 = new Chart(
         document.getElementById('Chart6'), config
@@ -787,7 +798,84 @@
     };
     Chart6.data.datasets.push(newDataset);
     Chart6.update();
-   
+
+    //create bar graph offer by num apart
+
+    dates_arr_apart = dates_build()
+    data_one_num_apart = []
+    data_two_num_apart = []
+    data_three_num_apart = []
+    data_four_num_apart = []
+
+
+    for (var i = 0; i < dates_arr_apart.length; i++) {
+        if (count_arr_apart[dates_arr_apart[i]]) {
+            var temp = (parseInt(one_num_apart[dates_arr_apart[i]]) / parseInt(count_arr_apart[dates_arr_apart[i]])) * 100
+            console.log(dates_arr_apart[i])
+            data_one_num_apart.push(temp.toFixed(2))
+        }
+        else {
+            data_one_num_apart.push(0)
+        }
+        if (count_arr_apart[dates_arr_apart[i]]) {
+            var temp = (parseInt(two_num_apart[dates_arr[i]]) / parseInt(count_arr_apart[dates_arr_apart[i]])) * 100
+            data_two_num_apart.push(temp.toFixed(2))
+        }
+        else {
+            data_two_num_apart.push(0)
+        }
+        if (count_arr_apart[dates_arr_apart[i]]) {
+            var temp = (parseInt(three_num_apart[dates_arr[i]]) / parseInt(count_arr_apart[dates_arr_apart[i]])) * 100
+            data_three_num_apart.push(temp.toFixed(2))
+        }
+        else {
+            data_three_num_apart.push(0)
+        }
+        if (count_arr_apart[dates_arr_apart[i]]) {
+            var temp = (parseInt(four_num_apart[dates_arr[i]]) / parseInt(count_arr_apart[dates_arr_apart[i]])) * 100
+            data_four_num_apart.push(temp.toFixed(2))
+        }
+        else {
+            data_four_num_apart.push(0)
+        }       
+    }
+    config = create_graph_bar("Динамика предложения в зависимости от количества комнат в квартирах", 100)
+    const Chart7 = new Chart(
+        document.getElementById('Chart7'), config
+    );
+
+    //console.log(data_one_num_apart)
+    data = Chart7.data;
+    data.labels = dates_arr_apart
+    newDataset = {
+        label: '1км. кв.',
+        backgroundColor: "#fb474e",
+        data: data_one_num_apart,
+    };
+    Chart7.data.datasets.push(newDataset);
+    Chart7.update();
+    newDataset = {
+        label: '2км. кв.',
+        backgroundColor: "#fc791e",
+        data: data_two_num_apart,
+    };
+    Chart7.data.datasets.push(newDataset);
+    Chart7.update();
+    newDataset = {
+        label: '3км. кв.',
+        backgroundColor: "#fbc315",
+        data: data_three_num_apart,
+    };
+    Chart7.data.datasets.push(newDataset);
+    Chart7.update();
+    newDataset = {
+        label: '4км. кв.',
+        backgroundColor: "#ffa500",
+        data: data_four_num_apart,
+    };
+    Chart7.data.datasets.push(newDataset);
+    Chart7.update();
+    
 </script>
 
 <script>
