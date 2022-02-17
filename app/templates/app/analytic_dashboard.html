@@ -685,14 +685,10 @@
         for (var j = 0; j < sales.length; j++) {
             temp = sales[j].fields.year + "." + sales[j].fields.month
             if (dates_arr[i] == temp) {
-                if (isFloat(sales[j].fields.a1_area_to_sale))
-                    count = count + sales[j].fields.a1_area_to_sale
-                if (isFloat(sales[j].fields.a2_area_to_sale))
-                    count = count + sales[j].fields.a2_area_to_sale
-                if (isFloat(sales[j].fields.a3_area_to_sale))
-                    count = count + sales[j].fields.a3_area_to_sale
-                if (isFloat(sales[j].fields.a4_area_to_sale))
-                    count = count + sales[j].fields.a4_area_to_sale
+                if (isFloat(sales[j].fields.area_remain)) {
+                    count = count + sales[j].fields.area_remain
+                    console.log(sales[j].fields.a1_area_to_sale)
+                }                           
                 datas[i] = count.toFixed(2)
             }
         }
@@ -811,7 +807,6 @@
     for (var i = 0; i < dates_arr_apart.length; i++) {
         if (count_arr_apart[dates_arr_apart[i]]) {
             var temp = (parseInt(one_num_apart[dates_arr_apart[i]]) / parseInt(count_arr_apart[dates_arr_apart[i]])) * 100
-            console.log(dates_arr_apart[i])
             data_one_num_apart.push(temp.toFixed(2))
         }
         else {
