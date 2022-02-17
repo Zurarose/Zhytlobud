@@ -198,7 +198,17 @@
             </div>
             <div class="d-flex justify-content-around mt-2">
                 <div class="col-12 p-0">
+                    <canvas id="Chart9"></canvas>
+                </div>                
+            </div>
+            <div class="d-flex justify-content-around mt-2">
+                <div class="col-12 p-0">
                     <canvas id="Chart7"></canvas>
+                </div>                
+            </div>
+            <div class="d-flex justify-content-around mt-2">
+                <div class="col-12 p-0">
+                    <canvas id="Chart8"></canvas>
                 </div>                
             </div>
        </div>
@@ -708,7 +718,7 @@
     Chart5.data.datasets.push(newDataset);
     Chart5.update();
 
-    //create bar graph offer by class
+    //create bar graph offer by class in percent
     dates_arr = dates_build()
     data_delux = []
     data_premium = []
@@ -795,7 +805,104 @@
     Chart6.data.datasets.push(newDataset);
     Chart6.update();
 
-    //create bar graph offer by num apart
+    //create bar graph offer by class in num
+    dates_arr = dates_build()
+    data_delux = []
+    data_premium = []
+    data_business = []
+    data_comfort = []
+    data_econom = []
+    data_total_count = []
+
+    for (var i = 0; i < dates_arr.length; i++) {
+        if (count_arr[dates_arr[i]]) {
+            var temp = (parseInt(delux_arr[dates_arr[i]]))
+            data_delux.push(temp.toFixed(2))
+        }
+        else {
+            data_delux.push(0)
+        }
+        if (count_arr[dates_arr[i]]) {
+            var temp = (parseInt(premium_arr[dates_arr[i]]))
+            data_premium.push(temp.toFixed(2))
+        }
+        else {
+            data_premium.push(0)
+        }
+        if (count_arr[dates_arr[i]]) {
+            var temp = (parseInt(business_arr[dates_arr[i]]))
+            data_business.push(temp.toFixed(2))
+        }
+        else {
+            data_business.push(0)
+        }
+        if (count_arr[dates_arr[i]]) {
+            var temp = (parseInt(comfort_arr[dates_arr[i]]))
+            data_comfort.push(temp.toFixed(2))
+        }
+        else {
+            data_comfort.push(0)
+        }
+        if (count_arr[dates_arr[i]]) {
+            var temp = (parseInt(econom_arr[dates_arr[i]]))
+            data_econom.push(temp.toFixed(2))
+        }
+        else {
+            data_econom.push(0)
+        }
+        if (count_arr[dates_arr[i]]) {
+            var temp = (parseInt(count_arr[dates_arr[i]]))
+            data_total_count.push(temp.toFixed(2))
+        }
+        else {
+            data_total_count.push(0)
+        }
+    }
+    config = create_graph_bar("Динамика структурных показателей предложения (кв.м) в зависимости от класса", null)
+    const Chart9 = new Chart(
+        document.getElementById('Chart9'), config
+    );
+    data = Chart9.data;
+    data.labels = dates_arr
+    newDataset = {
+        label: 'Де-люкс',
+        backgroundColor: "#fb474e",
+        data: data_delux,
+    };
+    Chart9.data.datasets.push(newDataset);
+    Chart9.update();
+    newDataset = {
+        label: 'Премиум',
+        backgroundColor: "#fc791e",
+        data: data_premium,
+    };
+    Chart9.data.datasets.push(newDataset);
+    Chart9.update();
+    newDataset = {
+        label: 'Бизнес',
+        backgroundColor: "#fbc315",
+        data: data_business,
+    };
+    Chart9.data.datasets.push(newDataset);
+    Chart9.update();
+    newDataset = {
+        label: 'Комфорт',
+        backgroundColor: "#ffa500",
+        data: data_comfort,
+    };
+    Chart9.data.datasets.push(newDataset);
+    Chart9.update();
+    newDataset = {
+        label: 'Общее количество',
+        borderColor: "#7a7ebc",
+        backgroundColor: "#7a7ebc",
+        type: 'line',
+        data: data_total_count,
+    };
+    Chart9.data.datasets.push(newDataset);
+    Chart9.update();
+
+    //create bar graph offer by num apart in percent
 
     dates_arr_apart = dates_build()
     data_one_num_apart = []
@@ -834,7 +941,7 @@
             data_four_num_apart.push(0)
         }       
     }
-    config = create_graph_bar("Динамика предложения в зависимости от количества комнат в квартирах", 100)
+    config = create_graph_bar("Динамика предложения в зависимости от количества комнат в квартирах (кол-во)", 100)
     const Chart7 = new Chart(
         document.getElementById('Chart7'), config
     );
@@ -870,7 +977,106 @@
     };
     Chart7.data.datasets.push(newDataset);
     Chart7.update();
-    
+
+
+    //create bar graph offer by num apart in percent
+
+    dates_arr_apart = dates_build()
+    data_one_num_apart_count = []
+    data_two_num_apart_count = []
+    data_three_num_apart_count = []
+    data_four_num_apart_count = []
+    data_count_num_apart_count = []
+
+    for (var i = 0; i < dates_arr_apart.length; i++) {
+        if (count_arr_apart[dates_arr_apart[i]]) {
+            var temp = (parseInt(one_num_apart[dates_arr_apart[i]]))
+            data_one_num_apart_count.push(temp.toFixed(2))
+        }
+        else {
+            data_one_num_apart_count.push(0)
+        }
+        if (count_arr_apart[dates_arr_apart[i]]) {
+            var temp = (parseInt(two_num_apart[dates_arr[i]]))
+            data_two_num_apart_count.push(temp.toFixed(2))
+        }
+        else {
+            data_two_num_apart_count.push(0)
+        }
+        if (count_arr_apart[dates_arr_apart[i]]) {
+            var temp = (parseInt(three_num_apart[dates_arr[i]]))
+            data_three_num_apart_count.push(temp.toFixed(2))
+        }
+        else {
+            data_three_num_apart_count.push(0)
+        }
+        if (count_arr_apart[dates_arr_apart[i]]) {
+            var temp = (parseInt(four_num_apart[dates_arr[i]]))
+            data_four_num_apart_count.push(temp.toFixed(2))
+        }
+        else {
+            data_four_num_apart_count.push(0)
+        }
+
+        if (count_arr_apart[dates_arr_apart[i]]) {
+            var temp = (parseInt(count_arr_apart[dates_arr[i]]))
+            data_count_num_apart_count.push(temp.toFixed(2))
+        }
+        else {
+            data_count_num_apart_count.push(0)
+        }
+
+
+    }
+    config = create_graph_bar("Динамика предложения в зависимости от количества комнат в квартирах, (кол-во)", null)
+    const Chart8 = new Chart(
+        document.getElementById('Chart8'), config
+    );
+
+    //console.log(data_one_num_apart)
+    data = Chart8.data;
+    data.labels = dates_arr_apart
+    newDataset = {
+        label: '1км. кв.',
+        backgroundColor: "#fb474e",
+        data: data_one_num_apart_count,
+    };
+    Chart8.data.datasets.push(newDataset);
+    Chart8.update();
+    newDataset = {
+        label: '2км. кв.',
+        backgroundColor: "#fc791e",
+        data: data_two_num_apart_count,
+    };
+    Chart8.data.datasets.push(newDataset);
+    Chart8.update();
+    newDataset = {
+        label: '3км. кв.',
+        backgroundColor: "#fbc315",
+        data: data_three_num_apart_count,
+    };
+    Chart8.data.datasets.push(newDataset);
+    Chart8.update();
+    newDataset = {
+        label: '4км. кв.',
+        backgroundColor: "#ffa500",
+        data: data_four_num_apart_count,
+    };
+    Chart8.data.datasets.push(newDataset);
+    Chart8.update();
+
+    newDataset = {
+        label: 'Общее количество',
+        borderColor: "#7a7ebc",
+        backgroundColor: "#7a7ebc",
+        type: 'line',
+        data: data_count_num_apart_count,
+        
+    };
+    Chart8.data.datasets.push(newDataset);
+    Chart8.update();
+
+
 </script>
 
 <script>
