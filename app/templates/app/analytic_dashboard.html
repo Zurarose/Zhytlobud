@@ -483,6 +483,13 @@
     var econom_arr = {{econom_arr|safe}}
     var count_arr = {{ count_arr| safe}}
 
+    console.log(delux_arr)
+    console.log(premium_arr)
+    console.log(business_arr)
+    console.log(comfort_arr)
+    console.log(econom_arr)
+    console.log(count_arr)
+
     var one_num_apart = {{ one_num_apart| safe}}
     var two_num_apart = {{ two_num_apart| safe}}
     var three_num_apart = {{ three_num_apart| safe}}
@@ -697,7 +704,6 @@
             if (dates_arr[i] == temp) {
                 if (isFloat(sales[j].fields.area_remain)) {
                     count = count + sales[j].fields.area_remain
-                    console.log(sales[j].fields.a1_area_to_sale)
                 }                           
                 datas[i] = count.toFixed(2)
             }
@@ -728,42 +734,42 @@
     
     for (var i = 0; i < dates_arr.length; i++) {
         if (count_arr[dates_arr[i]]) {
-            var temp = (parseInt(delux_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
+            var temp = (parseFloat(delux_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
             data_delux.push(temp.toFixed(2))
         }
         else {
             data_delux.push(0)
         }
         if (count_arr[dates_arr[i]]) {
-            var temp = (parseInt(premium_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
+            var temp = (parseFloat(premium_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
             data_premium.push(temp.toFixed(2))
         }
         else {
             data_premium.push(0)
         }
         if (count_arr[dates_arr[i]]) {
-            var temp = (parseInt(business_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
+            var temp = (parseFloat(business_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
             data_business.push(temp.toFixed(2))
         }
         else {
             data_business.push(0)
         }
         if (count_arr[dates_arr[i]]) {
-            var temp = (parseInt(comfort_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
+            var temp = (parseFloat(comfort_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
             data_comfort.push(temp.toFixed(2))
         }
         else {
             data_comfort.push(0)
         }
         if (count_arr[dates_arr[i]]) {
-            var temp = (parseInt(econom_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
+            var temp = (parseFloat(econom_arr[dates_arr[i]]) / parseInt(count_arr[dates_arr[i]])) * 100
             data_econom.push(temp.toFixed(2))
         }
         else {
             data_econom.push(0)
         }
     }
-    config = create_graph_bar("Динамика структурных показателей предложения в зависимости от класса (кв.м)", 100)
+    config = create_graph_bar("Динамика структурных показателей предложения (кв.м) в зависимости от класса в %", 100)
     const Chart6 = new Chart(
         document.getElementById('Chart6'), config
     ); 
@@ -816,42 +822,42 @@
 
     for (var i = 0; i < dates_arr.length; i++) {
         if (count_arr[dates_arr[i]]) {
-            var temp = (parseInt(delux_arr[dates_arr[i]]))
+            var temp = (parseFloat(delux_arr[dates_arr[i]]))
             data_delux.push(temp.toFixed(2))
         }
         else {
             data_delux.push(0)
         }
         if (count_arr[dates_arr[i]]) {
-            var temp = (parseInt(premium_arr[dates_arr[i]]))
+            var temp = (parseFloat(premium_arr[dates_arr[i]]))
             data_premium.push(temp.toFixed(2))
         }
         else {
             data_premium.push(0)
         }
         if (count_arr[dates_arr[i]]) {
-            var temp = (parseInt(business_arr[dates_arr[i]]))
+            var temp = (parseFloat(business_arr[dates_arr[i]]))
             data_business.push(temp.toFixed(2))
         }
         else {
             data_business.push(0)
         }
         if (count_arr[dates_arr[i]]) {
-            var temp = (parseInt(comfort_arr[dates_arr[i]]))
+            var temp = (parseFloat(comfort_arr[dates_arr[i]]))
             data_comfort.push(temp.toFixed(2))
         }
         else {
             data_comfort.push(0)
         }
         if (count_arr[dates_arr[i]]) {
-            var temp = (parseInt(econom_arr[dates_arr[i]]))
+            var temp = (parseFloat(econom_arr[dates_arr[i]]))
             data_econom.push(temp.toFixed(2))
         }
         else {
             data_econom.push(0)
         }
         if (count_arr[dates_arr[i]]) {
-            var temp = (parseInt(count_arr[dates_arr[i]]))
+            var temp = (parseFloat(count_arr[dates_arr[i]]))
             data_total_count.push(temp.toFixed(2))
         }
         else {
@@ -889,6 +895,13 @@
         label: 'Комфорт',
         backgroundColor: "#ffa500",
         data: data_comfort,
+    };
+    Chart9.data.datasets.push(newDataset);
+    Chart9.update();
+    newDataset = {
+        label: 'Эконом',
+        backgroundColor: "#ffc26c",
+        data: data_econom,
     };
     Chart9.data.datasets.push(newDataset);
     Chart9.update();
@@ -941,7 +954,7 @@
             data_four_num_apart.push(0)
         }       
     }
-    config = create_graph_bar("Динамика предложения в зависимости от количества комнат в квартирах (кол-во)", 100)
+    config = create_graph_bar("Динамика предложения (кол-во) в зависимости от количества комнат в квартирах в % ", 100)
     const Chart7 = new Chart(
         document.getElementById('Chart7'), config
     );
@@ -1028,7 +1041,7 @@
 
 
     }
-    config = create_graph_bar("Динамика предложения в зависимости от количества комнат в квартирах, (кол-во)", null)
+    config = create_graph_bar("Динамика предложения (кол-во) в зависимости от количества комнат в квартирах", null)
     const Chart8 = new Chart(
         document.getElementById('Chart8'), config
     );
